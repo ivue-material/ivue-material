@@ -28,10 +28,10 @@ elevation等级从0px到24px深度。您可以在任何HTML标记上添加此类
 
 API
 
-elevation props
-| 名称                   | 说明                                                           |
-| ---------------------- | :------------------------------------------------------------- |
-| ivue-elevation- [size] | 向目标元素添加elevation,大小可以是1到24.例如：ivue-elevation-4 |
+elevation props     
+| 名称                   | 说明                                                           |    
+| ---------------------- | :------------------------------------------------------------- |    
+| ivue-elevation- [size] | 向目标元素添加elevation,大小可以是1到24.例如：ivue-elevation-4 |    
 
 
 ### IVueContent 内容
