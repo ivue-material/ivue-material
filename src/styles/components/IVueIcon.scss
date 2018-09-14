@@ -1,0 +1,49 @@
+@mixin ivue-icon-size($size: $icon-size) {
+      width: $size;
+      min-width: $size;
+      height: $size;
+      font-size: $size !important;
+}
+
+.ivue-icon {
+      @include ivue-icon-size($icon-size);
+      margin: auto;
+      display: inline-flex;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      transition: color .4s $ivue-transition-default-timing;
+      direction: ltr;
+      font-family: "Material Icons";
+      font-feature-settings: "liga";
+      font-style: normal;
+      letter-spacing: normal;
+      line-height: 1;
+      text-rendering: optimizeLegibility;
+      text-transform: none;
+      word-wrap: normal;
+      white-space: nowrap;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      &.ivue-size-2x {
+            @include ivue-icon-size($icon-size * 2);
+      }
+      &.ivue-size-3x {
+            @include ivue-icon-size($icon-size * 3);
+      }
+      &.ivue-size-4x {
+            @include ivue-icon-size($icon-size * 4);
+      }
+      &.ivue-size-5x {
+            @include ivue-icon-size($icon-size * 5);
+      }
+}
+
+.ivue-icon-image {
+      svg {
+            height: 100%;
+            flex: 1;
+            transition: fill .4s $ivue-transition-default-timing;
+      }
+}

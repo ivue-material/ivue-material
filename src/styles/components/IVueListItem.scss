@@ -1,0 +1,27 @@
+.ivue-list-item {
+      position: relative;
+      height: auto;
+      z-index: 2;
+      user-select: none;
+      cursor: pointer;
+      .ivue-icon {
+            margin: 0;
+            transition-property: color, margin-right;
+      }
+}
+
+.ivue-list-item-container {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: left;
+      text-transform: none;
+      &:not(.ivue-list-item-default):not([disabled]) {
+            user-select: none;
+            cursor: pointer;
+      }
+      &.ivue-button-clean:hover {
+            opacity: 1;
+            text-decoration: none;
+      }
+}

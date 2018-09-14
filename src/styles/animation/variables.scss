@@ -1,0 +1,57 @@
+/**
+ * default
+ * ---
+ * $access private
+ * $type transition
+ * $group transition
+ */
+
+$ivue-transition-default-timing: cubic-bezier(.4, 0, .2, 1);
+$ivue-transition-default-duration: .4s;
+$ivue-transition-default: $ivue-transition-default-duration $ivue-transition-default-timing;
+/**
+ * enter
+ * ---
+ * $access private
+ * $type transition
+ * $group transition
+ */
+
+$ivue-transition-enter-timing: cubic-bezier(0, 0, .2, 1);
+$ivue-transition-enter-duration: .4s;
+$ivue-transition-enter: $ivue-transition-enter-duration $ivue-transition-enter-timing;
+/**
+ * leave 
+ * ---
+ * $access private
+ * $type transition
+ * $group transition
+ */
+
+$ivue-transition-leave-timing: cubic-bezier(.4, .0, 1, 1);
+$ivue-transition-leave-duration: .4s;
+$ivue-transition-leave: $ivue-transition-leave-duration $ivue-transition-leave-timing;
+/**
+ * stand 
+ * movements from bottom to top
+ * ---
+ * $access private
+ * $type transition
+ * $group transition
+ */
+
+$ivue-transition-stand-timing: cubic-bezier(.25, .8, .25, 1);
+$ivue-transition-stand-duration: .4s;
+$ivue-transition-stand: $ivue-transition-stand-duration $ivue-transition-stand-timing;
+/**
+ * drop 
+ * movements from top to bottom
+ * ---
+ * $access private
+ * $type transition
+ * $group transition
+ */
+
+$ivue-transition-drop-timing: cubic-bezier(.25, .8, .25, 1);
+$ivue-transition-drop-duration: .4s;
+$ivue-transition-drop: $ivue-transition-drop-duration $ivue-transition-drop-timing;

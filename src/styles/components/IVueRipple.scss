@@ -1,0 +1,31 @@
+.ivue-ripple {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 10;
+      overflow: hidden;
+      -webkit-mask-image: radial-gradient(circle, #fff 100%, #000 100%);
+      box-sizing: border-box;
+}
+
+.ivue-ripple-wave {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(2) translateZ(0);
+      width: 100%;
+      height: 100%;
+  
+      &.ivue-centered {
+            animation-duration: 1.2s;
+            top: 50%;
+            left: 50%;
+      }
+      ~*:not(.ivue-ripple-wave) {
+            position: relative;
+            z-index: 2;
+      }
+}

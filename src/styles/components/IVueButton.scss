@@ -1,0 +1,125 @@
+@import "../../styles/animation/variables";
+@import "../../components/IVueElevation/mixins";
+.ivue-button-clean {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      transition: $ivue-transition-default;
+      font-family: inherit;
+      line-height: normal;
+      text-decoration: none;
+      vertical-align: top;
+      white-space: nowrap;
+}
+
+.isMobile {
+      &:before {
+            opacity: 0 !important;
+      }
+}
+
+.ivue-button {
+      @extend .ivue-button-clean;
+      min-width: $ivue-button-min-width;
+      height: $ivue-button-height;
+      margin: 6px 8px;
+      user-select: none;
+      border-radius: $ivue-button-radius;
+      font-size: $ivue-button-font-size;
+      font-weight: 500;
+      color: currentColor;
+      &:active {
+            outline: none;
+      }
+      &[disabled] {
+            pointer-events: none;
+      }
+      &:not([disabled]) {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            &:hover,
+            &:active {
+                  &:before {
+                        background-color: currentColor;
+                        opacity: .12;
+                  }
+            }
+            &:active {
+                  &:before {
+                        opacity: .2;
+                  }
+            }
+      }
+      &::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+      }
+      &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            transition: $ivue-transition-default;
+            will-change: background-color, opacity;
+            content: " ";
+      }
+      &.ivue-raised:not([disabled]) {
+            @include ivue-elevation(2);
+            &:active {
+                  @include ivue-elevation(8);
+            }
+      }
+      &.ivue-raised-noElevation:not([disabled]) {
+           background: #fff;
+      }
+      
+      &.ivue-raised[disabled],&.ivue-raised-noElevation {
+            background-color: rgba(0, 0, 0, .12);
+      }
+      +.ivue-button {
+            margin-left: 0;
+      }
+      .ivue-ripple {
+            padding: 0 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+      }
+}
+
+.ivue-button-spaced .ivue-ripple {
+      padding: 0 16px;
+}
+
+// icon
+.ivue-icon-button {
+      width: $ivue-button-icon-size;
+      min-width: $ivue-button-icon-size;
+      height: $ivue-button-icon-size;
+      margin: 0 6px;
+      border-radius: 50%;
+      &::before {
+            border-radius: 50%;
+      }
+      .ivue-ripple {
+            border-radius: 50%;
+      }
+      .ivue-ripple-enter-active {
+            transition-duration: 1.2s;
+      }
+      .ivue-ripple-wave {
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+      }
+}

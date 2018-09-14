@@ -1,0 +1,20 @@
+/*
+* 系统像素尺寸
+*/
+// <600px 适用于宽度最大为600px的屏幕。适用于肖像中的小型，中型和大型手机。也适用于肖像小片。
+$ivue-breakpoints-xsmall: 600px !default;
+// 960px 适用于宽度介于600px和960px之间的屏幕。适用于横向中型和大型手机，纵向模式下的小型和大型平板电脑以及一些台式机显示器。
+$ivue-breakpoints-small: 960px !default;
+// 1280px 适用于宽度介于960px和1280px之间的屏幕。适用于横向和桌面显示器中的小型和大型平板电脑
+$ivue-breakpoints-medium: 1280px !default;
+// 1920px 适用于宽度介于1280像素到1920像素之间的屏幕。对于大型桌面显示器。
+$ivue-breakpoints-large: 1920px !default;
+
+/*
+* 排水沟尺寸
+*/
+$ivue-gutter-xsmall: 8px;
+$ivue-gutter-small: 16px;
+$ivue-gutter-medium: 24px;
+$ivue-gutter-large: 40px;
+$ivue-gutter-xlarge: 40px;

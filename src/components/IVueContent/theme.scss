@@ -1,0 +1,5 @@
+.ivue-content{
+      @include ivue-theme-component(){
+            @include ivue-theme-property(background-color, background);
+      }
+}

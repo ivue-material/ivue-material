@@ -1,0 +1,11 @@
+@import "../../styles/animation/variables";
+@import "./variables";
+@import "./mixins";
+
+$ivue-elevation-count: length($ivue-elevation-umbra);
+
+@for $i from 0 to $ivue-elevation-count {
+      .ivue-elevation-#{$i} {
+            @include ivue-elevation($i);
+      }
+}

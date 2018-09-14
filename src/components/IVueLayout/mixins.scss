@@ -1,0 +1,259 @@
+@import "./variables.scss";
+/**
+* Breakpoint
+*/
+
+@mixin ivue-layout-xsmall {
+      @media (max-width: #{$ivue-breakpoints-xsmall}) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-small {
+      @media (max-width: #{$ivue-breakpoints-small}) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-medium {
+      @media (max-width: #{$ivue-breakpoints-medium}) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-large {
+      @media (max-width: #{$ivue-breakpoints-large  - 17px}) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-xlarge {
+      @media (max-width: #{$ivue-breakpoints-large  - 16px}) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-xsmall-and-up {
+      @media (min-width: 1px) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-small-and-up {
+      @media (min-width: 1px) {
+            @content;
+      }
+}
+
+@mixin ivue-layout-large-and-up {
+      @media (min-width: #{$ivue-breakpoints-medium}) {
+            @content;
+      }
+}
+
+/**
+* Base
+*/
+
+@mixin ivue-layout-base {
+      display: flex;
+      .ivue-layout {
+            flex: 1;
+      }
+      .ivue-layout-nowrap {
+            flex-wrap: nowrap
+      }
+}
+
+// 排水沟
+@mixin ivue-layout-gutter($size: $ivue-gutter-large) {
+      $spacing: $size / 2;
+      &.ivue-gutter {
+            margin-right: -$spacing;
+            margin-left: -$spacing;
+            >.ivue-layout-item {
+                  padding-right: $spacing;
+                  padding-left: $spacing;
+            }
+      }
+}
+
+// 校对
+@mixin ivue-layout-alignment() {
+      /*上左*/
+      &.ivue-alignment-top-left {
+            justify-content: flex-start;
+            align-items: flex-start;
+      }
+      /*上中*/
+      &.ivue-alignment-top-center {
+            justify-content: center;
+            align-items: flex-start;
+      }
+      /*上右*/
+      &.ivue-alignment-top-right {
+            justify-content: flex-end;
+            align-items: flex-start;
+      }
+      /*上两侧*/
+      &.ivue-alignment-top-space-around {
+            justify-content: space-around;
+            align-items: flex-start;
+      }
+      /*上两端*/
+      &.ivue-alignment-top-space-between {
+            justify-content: space-between;
+            align-items: flex-start;
+      }
+      /*中左*/
+      &.ivue-alignment-center-left {
+            justify-content: flex-start;
+            align-items: center;
+      }
+      /*中中*/
+      &.ivue-alignment-center,
+      &.ivue-alignment-center-center {
+            justify-content: center;
+            align-items: center;
+      }
+      /*中右*/
+      &.ivue-alignment-center-right {
+            justify-content: flex-end;
+            align-items: center;
+      }
+      /*中两侧*/
+      &.ivue-alignment-center-space-around {
+            justify-content: space-around;
+            align-items: center;
+      }
+      /*中两端*/
+      &.ivue-alignment-center-space-between {
+            justify-content: space-between;
+            align-items: center;
+      }
+      /*下左*/
+      &.ivue-alignment-bottom-left {
+            justify-content: flex-start;
+            align-items: flex-end;
+      }
+      /*下中*/
+      &.ivue-alignment-bottom-center {
+            justify-content: center;
+            align-items: flex-end;
+      }
+      /*下右*/
+      &.ivue-alignment-bottom-right {
+            justify-content: right;
+            align-items: flex-end;
+      }
+      /*下两侧*/
+      &.ivue-alignment-bottom-space-around {
+            justify-content: space-around;
+            align-items: flex-end;
+      }
+      /*下两端*/
+      &.ivue-alignment-bottom-space-between {
+            justify-content: space-between;
+            align-items: flex-end;
+      }
+      /*两侧左*/
+      &.ivue-alignment-space-around-left {
+            justify-content: flex-start;
+            align-items: space-around;
+      }
+      /*两侧中*/
+      &.ivue-alignment-space-around-center {
+            justify-content: center;
+            align-items: space-around;
+      }
+      /*两侧右*/
+      &.ivue-alignment-space-around-right {
+            justify-content: flex-end;
+            align-items: space-around;
+      }
+      /*两侧两侧*/
+      &.ivue-alignment-space-around-space-around {
+            justify-content: space-around;
+            align-items: space-around;
+      }
+      /*两侧两端*/
+      &.ivue-alignment-space-around-space-between {
+            justify-content: space-between;
+            align-items: space-around;
+      }
+      /*两端左*/
+      &.ivue-alignment-space-between-left {
+            justify-content: flex-start;
+            align-items: space-between;
+      }
+      /*两端中*/
+      &.ivue-alignment-space-between-center {
+            justify-content: center;
+            align-items: space-between;
+      }
+      /*两端右*/
+      &.ivue-alignment-space-between-right {
+            justify-content: flex-end;
+            align-items: space-between;
+      }
+      /*两端两侧*/
+      &.ivue-alignment-space-between-space-around {
+            justify-content: space-around;
+            align-items: space-between;
+      }
+      /*两端两端*/
+      &.ivue-alignment-space-between-space-between {
+            justify-content: space-between;
+            align-items: space-between;
+      }
+}
+
+/**
+* Layout Item
+*/
+
+@mixin ivue-layout-item ($size: "") {
+      @if $size !="" {
+            $size: "-#{$size}";
+      }
+      &.ivue#{$size}-size {
+            flex: 1 1;
+      }
+      @for $i from 1 through 19 {
+            $counter: $i * 5;
+            &.ivue#{$size}-size-#{$counter} {
+                  min-width: #{$counter + "%"};
+                  max-width: #{$counter + "%"};
+                  flex: 0 1 #{$counter + "%"};
+            }
+      }
+      &.ivue#{$size}-size-33 {
+            min-width: 33.3333%;
+            max-width: 33.3333%;
+            flex: 0 1 33.3333%;
+      }
+      &.ivue#{$size}-size-66 {
+            min-width: 66.6666%;
+            max-width: 66.6666%;
+            flex: 0 1 66.6666%;
+      }
+      &.ivue#{$size}-size-100 {
+            min-width: 100%;
+            max-width: 100%;
+            margin-left: 0 !important;
+            flex: 1 1 100%;
+      }
+}
+
+/**
+* Hide Element
+*/
+
+@mixin ivue-hide($size: "") {
+      @if $size !="" {
+            $size: "-#{$size}";
+      }
+      .ivue#{$size}-hide {
+            display: none;
+      }
+}

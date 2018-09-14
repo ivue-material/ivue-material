@@ -1,0 +1,16 @@
+@import "./variables";
+@mixin ivue-elevation($value) {
+      // 判断参数是否是 number
+      @if type-of($value) !=number or not unitless($value) {
+            @error "$value must be a unitless number";
+      }
+
+      @if $value < 0 or $value>24 {
+            @error "$value must be between 0 and 24";
+      }
+
+      // map-get 查找键值
+      box-shadow: #{map-get($ivue-elevation-umbra, $value)} $ivue-elevation-umbra-color,
+                  #{map-get($ivue-elevation-penumbra, $value)} $ivue-elevation-penumbra-color,
+                  #{map-get($ivue-elevation-ambient, $value)} $ivue-elevation-ambient-color;
+}

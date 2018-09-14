@@ -1,0 +1,95 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+/*
+* layout base
+*/
+
+.ivue-layout {
+      @include ivue-layout-base;
+      flex-wrap: wrap;
+      &.ivue-centered {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+      }
+}
+
+/*
+* 排水沟 size
+*/
+
+.ivue-layout {
+      @include ivue-layout-gutter($ivue-gutter-xlarge);
+      @include ivue-layout-large {
+            @include ivue-layout-gutter($ivue-gutter-large);
+      }
+      @include ivue-layout-medium {
+            @include ivue-layout-gutter($ivue-gutter-medium);
+      }
+      @include ivue-layout-small {
+            @include ivue-layout-gutter($ivue-gutter-small);
+      }
+      @include ivue-layout-xsmall {
+            @include ivue-layout-gutter($ivue-gutter-xsmall);
+      }
+}
+
+/*
+* 校对
+*/
+
+.ivue-layout {
+      @include ivue-layout-alignment;
+}
+
+/*
+* layout item
+*/
+
+.ivue-layout-item {
+      flex: 1 1;
+      &.ivue-layout {
+            margin: 0;
+      }
+      @include ivue-layout-item;
+      @include ivue-layout-xlarge {
+            @include ivue-layout-item(xlarge);
+      }
+      @include ivue-layout-large {
+            @include ivue-layout-item(large);
+      }
+      @include ivue-layout-medium {
+            @include ivue-layout-item(medium);
+      }
+      @include ivue-layout-small {
+            @include ivue-layout-item(small);
+      }
+      @include ivue-layout-xsmall {
+            @include ivue-layout-item(xsmall);
+      }
+}
+
+/*
+* layout hide
+*/
+
+@include ivue-hide;
+@include ivue-layout-xlarge {
+      @include ivue-hide(xlarge);
+}
+
+@include ivue-layout-large {
+      @include ivue-hide(large);
+}
+
+@include ivue-layout-medium {
+      @include ivue-hide(medium);
+}
+
+@include ivue-layout-small {
+      @include ivue-hide(small);
+}
+
+@include ivue-layout-xsmall {
+      @include ivue-hide(xsmall);
+}
