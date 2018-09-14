@@ -70,8 +70,10 @@ ivue-layout-item
 
 | 名称                            | 说明                                                                                                                |     
 | ------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ |     
-| ivue-size-[amount]              | 设置特定item的大小。数量可以是五的倍数，例如ivue-size-25。还可以接受33,66和100以便于原型设计                        |    
-| ivue-[breakpoint]-size-[amount] | 将大小设置为特定 breakpoint 上的特定项。可能的值是：```xsmall```  ```small``` ```medium``` ```large``` ```xlarge``` |     
+| ivue-size-[amount]     | 设置特定item的大小。数量可以是五的倍数，
+例如ivue-size-25。还可以接受33,66和100以便于原型设计                        |    
+| ivue-[breakpoint]-size-[amount] | 将大小设置为特定 breakpoint 上的特定项。
+可能的值是：```xsmall```  ```small``` ```medium``` ```large``` ```xlarge``` |     
 
 
 ivue-hide
