@@ -13,10 +13,10 @@ Affix props
 | offset-top    | 距离窗口顶部达到指定偏移量后触发       |Number   | 0      |   
 | offset-bottom | 距离窗口底部达到指定偏移量后触发       |Number   | -      |   
 
-Affix events
-| 事件      | 说明                     | 返回值 |   
-| --------- | :----------------------- | :----- |   
-| on-change | 在固定状态发生改变时触发 | true   | false |   
+Affix events   
+| 事件       | 说明                     | 返回值 |     
+| --------- | :----------------------- | :----- |       
+| on-change | 在固定状态发生改变时触发 | true   | false |      
 
 ### IVueElevation 深度
 
