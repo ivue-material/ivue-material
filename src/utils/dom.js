@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from '_vue@2.5.17@vue';
 
 // 判断是否是服务器端
 const isServer = Vue.prototype.$isServer;

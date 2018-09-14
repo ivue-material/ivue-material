@@ -1,6 +1,6 @@
 <template>
       <div class="ivue-list-item-default">
-            <IVueListItemContent>
+            <IVueListItemContent ivueDisabled>
                   <slot></slot>
             </IVueListItemContent>
       </div>

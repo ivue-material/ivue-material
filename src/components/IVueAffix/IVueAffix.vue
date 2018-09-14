@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { on, off } from '../../utils/dom';
+import { on, off } from '../../utils/Dom';
 const prefixCls = 'ivue-affix';
 
 export default {

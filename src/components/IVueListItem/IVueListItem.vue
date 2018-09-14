@@ -1,5 +1,11 @@
 <script>
+import InteractionEvents from '../../utils/InteractionEvents';
+import IVueRouterLinkProps from '../../utils/IVueRouterLinkProps';
 import IVueListItemDefault from './IVueListItemDefault';
+import IVueListItemButton from './IVueListItemButton';
+import IVueListItemLink from './IVueListItemLink';
+import IVueListItemRouter from './IVueListItemRouter';
+import IVueListItemExpand from './IVueListItemExpand';
 
 // 判断是否有扩展
 function hasExpansion (props) {
@@ -16,11 +22,73 @@ function resolvescopedSlots (props, children) {
       }
 }
 
+
+// 判断是否有事件渲染按钮
+function shouldRenderButtonWithListener (listeners) {
+      // 获取事件名称
+      let listenerNames = Object.keys(listeners);
+      // 是否渲染
+      let shouldRender = false;
+
+      listenerNames.forEach(listener => {
+            // includes() 方法用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回false。
+            if (InteractionEvents.includes(listener)) {
+                  shouldRender = true;
+            }
+      });
+
+      return shouldRender;
+
+}
+
+
+// 判断是否是route link
+function isRouterLink (parent, props) {
+      return parent && parent.$router && props.to;
+}
+
+// 判断是否有扩展
+function hasExpansion (props) {
+      return props.hasOwnProperty('ivueExpand') && props.ivueExpand !== false;
+}
+
+
 // 创建列表组件
 function createListComponent (props, parent, listeners) {
-      console.log(props)
+      // 判断扩展
+      if (hasExpansion(props)) {
+            return IVueListItemExpand;
+      }
 
-      return IVueListItemDefault
+      // 判断 disabled 渲染按钮
+      if (props.disabled) {
+            return IVueListItemButton;
+      }
+
+      // 通过判断事件决定是否渲染成按钮
+      if (shouldRenderButtonWithListener(listeners)) {
+            return IVueListItemButton;
+      }
+
+
+
+      // 判断是否是 router link 渲染成 router-link
+      if (isRouterLink(parent, props)) {
+            IVueListItemRouter.props = IVueRouterLinkProps(parent, {
+                  target: String
+            });
+
+            delete IVueListItemRouter.props.href;
+
+            return IVueListItemRouter;
+      }
+
+      // 判断href 渲染成a 标签
+      if (props.href) {
+            return IVueListItemLink;
+      }
+
+      return IVueListItemDefault;
 }
 
 

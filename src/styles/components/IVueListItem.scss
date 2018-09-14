@@ -2,8 +2,6 @@
       position: relative;
       height: auto;
       z-index: 2;
-      user-select: none;
-      cursor: pointer;
       .ivue-icon {
             margin: 0;
             transition-property: color, margin-right;
@@ -23,5 +21,51 @@
       &.ivue-button-clean:hover {
             opacity: 1;
             text-decoration: none;
+      }
+}
+
+.ivue-list-item-link,
+.ivue-list-item-router {
+      color: #000;
+}
+
+.ivue-list-item-content {
+      min-height: 48px;
+      padding: 4px 16px;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      transition: padding $ivue-transition-stand;
+      will-change: padding;
+}
+
+.ivue-list-item-expand {
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      transition: border $ivue-transition-stand;
+      will-change: border;
+      .ivue-list-expand {
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translate3d(0, -24px, -0);
+            transition: $ivue-transition-stand;
+            transition-property: transform, opacity;
+            will-change: transform, opacity;
+      }
+      &.ivue-active {
+            border-color: rgba(0,0,0,0.12);
+            .ivue-list-expand-icon {
+                  perspective: 1000px;
+                  perspective-origin: 50% 50%;
+                  transform: rotateX(180deg);
+            }
+            .ivue-list-expand {
+                  opacity: 1;
+                  transform: translate3d(0, 0, 0);
+            }
       }
 }
