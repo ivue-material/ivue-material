@@ -6,6 +6,9 @@ import IVueButton from './components/IVueButton';
 import IVueIcon from './components/IVueIcon';
 import IVueList from './components/IVueList';
 import IVueListItem from './components/IVueListItem';
+import IVueSpin from './components/IVueSpin';
+import IVueCarousel from './components/IVueCarousel';
+import IVueCarouselItem from './components/IVueCarouselItem';
 
 const components = {
   IVueAffix,
@@ -15,7 +18,10 @@ const components = {
   IVueButton,
   IVueIcon,
   IVueList,
-  IVueListItem
+  IVueListItem,
+  IVueSpin,
+  IVueCarousel,
+  IVueCarouselItem
 };
 
 const iVue = {
@@ -28,6 +34,16 @@ const install = function (Vue, opts = {}) {
   Object.keys(iVue).forEach(key => {
     Vue.component(key, iVue[key]);
   });
+
+  // 获取组件参数
+  Vue.prototype.$IVUE = {
+    size: opts.size || '',
+    transfer: 'transfer' in opts ? opts.transfer : ''
+  };
+
+  // 注册全局 ivueSpin 组件
+  Vue.prototype.$IVueSpin = IVueSpin;
+
 };
 
 // auto install

@@ -11,9 +11,10 @@ $value in $colors {
                   .#{$key} {
                         background: $rgb;
                         color: $rgb !important;
-                        &.ivue-raised.#{$key}:not([disabled]),&.ivue-raised-noElevation.#{$key}:not([disabled]) {
+                        &.ivue-raised.#{$key}:not([disabled]),
+                        &.ivue-raised-noElevation.#{$key}:not([disabled]) {
                               color: #fff !important;
-                              background: $rgb ;
+                              background: $rgb;
                         }
                   }
             }
@@ -21,11 +22,22 @@ $value in $colors {
                   .#{$key}-#{$colorName} {
                         background: $rgb;
                         color: $rgb !important;
-                        &.ivue-raised.#{$key}-#{$colorName}:not([disabled]),&.ivue-raised-noElevation.#{$key}-#{$colorName}:not([disabled]) {
+                        &.ivue-raised.#{$key}-#{$colorName}:not([disabled]),
+                        &.ivue-raised-noElevation.#{$key}-#{$colorName}:not([disabled]) {
                               color: #fff !important;
                               background: $rgb;
                         }
                   }
             }
       }
+}
+
+// 正方形
+@mixin square ($size) {
+      @include size($size, $size);
+}
+
+@mixin size($width, $height) {
+      width: $width;
+      height: $height;
 }

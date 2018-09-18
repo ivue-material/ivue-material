@@ -35,7 +35,9 @@ nav {
                 <li><router-link to="/Layout">Layout</router-link></li>
                 <li><router-link to="/Button">Button</router-link></li>
                 <li><router-link to="/Icon">Icon</router-link></li>
-                <li><router-link to="/IVueList">VueList</router-link></li>
+                <li><router-link to="/IVueList">IVueList</router-link></li>
+                <li><router-link to="/IVueSpin">IVueSpin</router-link></li>
+                <li><router-link to="/IVueCarousel">IVueCarousel</router-link></li>
             </ul>
         </nav>
         <router-view></router-view>

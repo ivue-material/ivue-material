@@ -6,6 +6,8 @@ import Layout from '../components/layout';
 import Button from '../components/button';
 import Icon from '../components/icon';
 import IVueList from '../components/ivueList';
+import IVueSpin from '../components/ivueSpin';
+import IVueCarousel from '../components/ivueCarousel';
 
 Vue.use(Router);
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/IVueList',
       name: 'IVueList',
       component: IVueList
+    },
+    {
+      path: '/IVueSpin',
+      name: 'IVueSpin',
+      component: IVueSpin
+    },
+    {
+      path: '/IVueCarousel',
+      name: 'IVueCarousel',
+      component: IVueCarousel
     }
   ]
 });

@@ -1,0 +1,81 @@
+.ivu-carousel {
+      position: relative;
+      display: block;
+      box-sizing: border-box;
+      user-select: none;
+      touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
+      /*箭头*/
+      &-arrow {
+            position: absolute;
+            top: 50%;
+            display: none;
+            text-align: center;
+            font-size: 1em;
+            font-family: inherit;
+            line-height: inherit;
+            border: none;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: all .2s;
+            color: #fff;
+            background-color: rgba(31, 45, 61, .11);
+            z-index: 10;
+            &.left {
+                  left: 16px;
+            }
+            &.right {
+                  right: 16px;
+            }
+            &-always {
+                  display: inherit;
+            }
+            &-hover {
+                  display: inline;
+                  opacity: 0;
+            }
+            &:hover {
+                  background-color: rgba(31, 45, 61, .5);
+            }
+      }
+      &:hover &-arrow-hover {
+            opacity: 1;
+      }
+      &-slot,
+      &-list {
+            transform: translate3d(0, 0, 0);
+      }
+      &-list {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+      }
+
+      /*前一个内容*/ 
+      &-slot{
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            overflow: hidden;
+            z-index: 1;
+            &.higher{
+                  z-index: 2;
+            }
+      }
+
+      &-item{
+            float: left;
+            display: block;
+            height: 100%;
+            min-height: 1px;
+      }
+}
