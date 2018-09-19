@@ -2,9 +2,15 @@
       <div>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-            <IVueCarousel>
+            <IVueCarousel loop>
                   <IVueCarouselItem>
                         <div class="demo-carousel">1</div>
+                  </IVueCarouselItem>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">2</div>
+                  </IVueCarouselItem>
+                    <IVueCarouselItem>
+                        <div class="demo-carousel">3</div>
                   </IVueCarouselItem>
             </IVueCarousel>
       </div>

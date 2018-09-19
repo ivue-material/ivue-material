@@ -1,4 +1,4 @@
-.ivu-carousel {
+.ivue-carousel {
       position: relative;
       display: block;
       box-sizing: border-box;
@@ -47,7 +47,7 @@
       &:hover &-arrow-hover {
             opacity: 1;
       }
-      &-slot,
+      &-track,
       &-list {
             transform: translate3d(0, 0, 0);
       }
@@ -58,24 +58,84 @@
             margin: 0;
             padding: 0;
       }
-
-      /*前一个内容*/ 
-      &-slot{
+      /*前一个内容*/
+      &-track {
             position: relative;
             top: 0;
             left: 0;
             display: block;
             overflow: hidden;
             z-index: 1;
-            &.higher{
+            &.higher {
                   z-index: 2;
             }
       }
-
-      &-item{
+      &-item {
             float: left;
             display: block;
             height: 100%;
             min-height: 1px;
+      }
+      /*指示器*/
+      &-dots {
+            $padding: 7px;
+            position: relative;
+            display: none;
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 3px + $padding * 2;
+            z-index: 10;
+            /*内部*/
+            &-inside {
+                  display: block;
+                  position: absolute;
+                  bottom: 10px - $padding;
+            }
+            /*外部*/
+            &-outside {
+                  display: block;
+                  margin-top: 10px - $padding;
+            }
+            li {
+                  position: relative;
+                  display: inline-block;
+                  vertical-align: top;
+                  text-align: center;
+                  margin: 0 2px;
+                  padding: $padding 0;
+                  cursor: pointer;
+                  button {
+                        border: 0;
+                        opacity: .3;
+                        width: 16px;
+                        height: 3px;
+                        border-radius: 1px;
+                        outline: none;
+                        font-size: 0;
+                        display: block;
+                        cursor: pointer;
+                        color: transparent;
+                        background: #8391a5;
+                        transition: all .5s;
+                        &.radius {
+                              width: 6px;
+                              height: 6px;
+                              border-radius: 50%;
+                        }
+                  }
+                  &:hover>button {
+                        opacity: 0.7;
+                  }
+                  &.ivue-carousel-active>button {
+                        opacity: 1;
+                        width: 24px;
+                        &.radius {
+                              width: 6px;
+                        }
+                  }
+            }
       }
 }

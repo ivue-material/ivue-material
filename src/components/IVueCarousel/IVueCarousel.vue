@@ -1,25 +1,36 @@
 <template>
       <div :class="classes">
-            <button type="button" :class="arrowClasses" class="left">
+            <button type="button" :class="arrowClasses" class="left" @click="arrowEvent(-1)">
                   <IVueIcon>{{leftArrow}}</IVueIcon>
             </button>
             <div :class="[prefixCls + '-list']">
-                  <div :class="[prefixCls + '-slot', showLoopSlot ? '' : 'higher']" :style="slotStyle" ref="originSlot">
+                  <div :class="[prefixCls + '-track', showCopyTrack ? '' : 'higher']" :style="trackStyles" ref="originTrack">
                         <slot></slot>
                   </div>
-                  <div :class="[prefixCls + '-slot', showLoopSlot ? 'higher' : '']"  :style="loopSlotStyle" ref="loopSlot" v-if="loop"></div>
+                  <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
-            <button type="button" :class="arrowClasses" class="right">
+            <button type="button" :class="arrowClasses" class="right" @click="arrowEvent(1)">
                   <IVueIcon>{{rightArrow}}</IVueIcon>
             </button>
+            <ul :class="dotsClasses">
+                  <li   v-for="index in slides.length" 
+                        :key="index"
+                        :class="[index -1 === currentIndex ? prefixCls + '-active' : '']"
+                        @click="dotsEvent('click', index-1)"
+                        @mouseover="dotsEvent('hover', index-1)"
+                  >
+                        <button type="button" :class="[radiusDot ? 'radius' : '']"></button>
+                  </li>
+            </ul>
       </div>
 </template>
 
 <script>
-import { oneOf } from '../../utils/Assist';
+import { getStyle, oneOf } from '../../utils/Assist';
+import { on, off } from '../../utils/Dom';
 import IVueIcon from '../IVueIcon/IVueIcon';
 
-const prefixCls = 'ivu-carousel';
+const prefixCls = 'ivue-carousel';
 
 export default {
       name: 'IVueCarousel',
@@ -96,6 +107,57 @@ export default {
             value: {
                   type: Number,
                   default: 0
+            },
+            /*
+            * 是否自动切换
+            * 
+            * @type {Boolean}
+            */
+            autoplay: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 自动切换的时间间隔，单位为毫秒
+            * 
+            * @type {Number}
+            */
+            autoplaySpeed: {
+                  type: Number,
+                  default: 2000
+            },
+            /*
+            * 指示器的位置，可选值为 inside （内部），outside（外部），none（不显示）	
+            * 
+            * @type {String}
+            */
+            dots: {
+                  type: String,
+                  default: 'inside',
+                  validator (value) {
+                        return oneOf(value, ['inside', 'outside', 'none'])
+                  }
+            },
+            /*
+            * 是否显示圆形指示器
+            * 
+            * @type {Boolean}
+            */
+            radiusDot: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 指示器的触发方式，可选值为 click（点击），hover（悬停）
+            * 
+            * @type {String}
+            */
+            trigger: {
+                  type: String,
+                  default: 'click',
+                  validator (value) {
+                        return oneOf(value, ['click', 'hover'])
+                  }
             }
       },
       data () {
@@ -107,25 +169,35 @@ export default {
                   */
                   listWidth: 0,
                   /*
-                  * 内容外层宽度
+                  * 跟踪宽度
                   * @type {Number}
                   */
-                  slotWidth: 0,
+                  trackWidth: 0,
                   /*
-                  * 内容偏移位置
+                  * 跟踪偏移位置
                   * @type {Number}
                   */
-                  slotOffset: 0,
+                  trackOffset: 0,
                   /*
-                  * 循环内容偏移位置
+                  * 跟踪索引位置
                   * @type {Number}
                   */
-                  slotLoopOffset: 0,
+                  trackIndex: this.value,
                   /*
-                  * 显示循环的内容
+                  * 跟踪内容偏移位置
+                  * @type {Number}
+                  */
+                  trackCopyOffset: 0,
+                  /*
+                  * 跟踪复制索引位置
+                  * @type {Number}
+                  */
+                  trackCopyIndex: this.value,
+                  /*
+                  * 显示复制的内容
                   * @type {Boolean}
                   */
-                  showLoopSlot: false,
+                  showCopyTrack: false,
                   /*
                   * 滑动列表
                   * @type {Array}
@@ -137,19 +209,26 @@ export default {
                   */
                   slideInstances: [],
                   /*
-                  * 内容索引位置
+                  * 当前内容索引位置
                   * @type {Number}
                   */
-                  slotIndex: this.value,
+                  currentIndex: this.value,
                   /*
-                  * 循环内容索引位置
+                  * 跟踪滑动位置
                   * @type {Number}
                   */
-                  loopSlotIndex: this.value
+                  hideTrackPos: -1
             }
       },
       mounted () {
+            // 更新滑动列表
             this.updateSlides(true);
+            // 监听调整大小
+            this.handleResize();
+            // 设置自动播放
+            this.setAutoplay();
+
+            on(window, 'resize', this.handleResize());
       },
       computed: {
             // 外城样式
@@ -166,43 +245,48 @@ export default {
                   ]
             },
             // 内容样式
-            slotStyle () {
+            trackStyles () {
                   return {
-                        width: `${this.slotWidth}px`,
-                        transfrom: `transfrom3d(${-this.slotOffset}px,0px,0px)`,
-                        transition: `transfrom 500ms ${this.easing}`
+                        width: `${this.trackWidth}px`,
+                        transform: `translate3d(${-this.trackOffset}px, 0px, 0px)`,
+                        transition: `transform 500ms ${this.easing}`
                   }
             },
-            // 循环内容样式
-            loopSlotStyle () {
+            // 复制的内容的样式
+            copyTrackStyles () {
                   return {
-                        width: `${this.slotWidth}px`,
-                        transfrom: `transfrom3d(${-this.slotLoopOffset}px,0px,0px)`,
-                        transition: `transfrom 500ms ${this.easing}`,
+                        width: `${this.trackWidth}px`,
+                        transform: `translate3d(${-this.trackCopyOffset}px, 0px, 0px)`,
+                        transition: `transform 500ms ${this.easing}`,
                         position: 'absolute',
                         top: 0
                   }
+            },
+            // dots 样式
+            dotsClasses () {
+                  return [
+                        `${prefixCls}-dots`,
+                        `${prefixCls}-dots-${this.dots}`
+                  ]
             }
       },
       methods: {
-            // 复制内容
-            initCopySlot () {
+            // 初始化复制内容节点
+            initCopyTrackDom () {
                   this.$nextTick(() => {
-                        this.$refs.loopSlot.innerHTML = this.$refs.loopSlot.innerHTML;
+                        this.$refs.copyTrack.innerHTML = this.$refs.originTrack.innerHTML;
                   });
             },
             // 当slot改变时使用
-            slotChange () {
+            slotChange (thisChild) {
                   this.$nextTick(() => {
                         this.slides = [];
-                        this.slideInstance = [];
+                        this.slideInstances = [];
 
                         // 更新滑动列表
                         this.updateSlides(true);
-
-                        // 更新内容位置
+                        // 更新内容宽度高度
                         this.updatePos();
-
                         // 更新偏移位置
                         this.updateOffset();
                   })
@@ -217,17 +301,16 @@ export default {
                         }
                         else if (child.$children.length) {
                               child.$children.forEach((innerChild) => {
-                                    find(innerChild, cb)
-                              })
+                                    find(innerChild, cb);
+                              });
                         }
-                  }
+                  };
 
                   if (this.slideInstances.length || !this.$children) {
                         this.slideInstances.forEach((child) => {
                               find(child);
-                        })
-                  }
-                  else {
+                        });
+                  } else {
                         this.$children.forEach((child) => {
                               find(child);
                         });
@@ -249,12 +332,13 @@ export default {
                         }
                   });
 
+                  // 获取滑动列表数量
                   this.slides = slides;
 
-                  // 更新内容位置
+                  // 更新内容宽度高度
                   this.updatePos();
             },
-            // 更新内容位置
+            // 更新内容宽度高度
             updatePos () {
                   this.findChild((child) => {
                         // 设置子节点宽度和高度
@@ -262,33 +346,164 @@ export default {
                         child.height = typeof this.height === 'number' ? `${this.height}px` : this.height;
                   });
 
-                  this.slotWidth = (this.slides.length || 0) * this.listWidth;
+                  // 跟踪宽度
+                  this.trackWidth = (this.slides.length || 0) * this.listWidth;
             },
             // 更新偏移位置
             updateOffset () {
                   this.$nextTick(() => {
-                        let offset = this.loopSlotIndex > 0 ? -1 : 1;
+                        let offset = this.trackCopyIndex > 0 ? -1 : 1;
 
-                        this.slotOffset = this.slotIndex * this.listWidth;
-                        this.slotLoopOffset = this.loopSlotIndex * this.listWidth * offset;
-                  })
+                        // 跟着偏移位置
+                        this.trackOffset = this.trackIndex * this.listWidth;
+                        // 跟着复制内容的偏移位置
+                        this.trackCopyOffset = this.trackCopyIndex * this.listWidth + offset;
+                  });
+            },
+            // 更新跟踪位置
+            updateTrackPos (index) {
+                  // 显示复制的内容
+                  if (this.showCopyTrack) {
+                        // 跟踪索引位置
+                        this.trackIndex = index
+                  }
+                  else {
+                        // 跟踪复制索引位置
+                        this.trackCopyIndex = index;
+                  }
+            },
+            // 更新跟踪索引
+            updateTrackIndex (index) {
+                  // 显示复制的内容
+                  if (this.showCopyTrack) {
+                        // 跟踪复制索引位置
+                        this.trackCopyIndex = index;
+                  }
+                  else {
+                        // 跟踪索引位置
+                        this.trackIndex = index;
+                  }
+
+                  // 当前索引
+                  this.currentIndex = index;
+            },
+            // 监听调整大小
+            handleResize () {
+                  // 当前列表宽度
+                  this.listWidth = parseInt(getStyle(this.$el, 'width'));
+
+                  // 更新内容宽度高度
+                  this.updatePos();
+                  // 更新偏移位置
+                  this.updateOffset();
+            },
+            add (offset) {
+                  // 获取内容数量
+                  let slidesLen = this.slides.length;
+
+                  // 如果是无缝滚动，需要初始化双内容位置
+                  if (this.loop) {
+                        if (offset > 0) {
+                              // 跟踪滑动位置
+                              this.hideTrackPos = -1;
+                        }
+                        else {
+                              // 跟踪滑动位置
+                              this.hideTrackPos = slidesLen;
+                        }
+
+                        // 更新跟踪位置
+                        this.updateTrackPos(this.hideTrackPos);
+                  }
+
+                  // 获取当前显示图片的索引 如果显示复制的内容 跟踪复制索引位置 否则 跟踪索引位置
+                  const oldIndex = this.showCopyTrack ? this.trackCopyIndex : this.trackIndex;
+
+                  let index = oldIndex + offset;
+
+                  while (index < 0) {
+                        index += slidesLen;
+                  }
+
+                  // 判断到达边界点
+                  if (((offset > 0 && index === slidesLen) || (offset < 0 && index === slidesLen - 1)) && this.loop) {
+                        // 极限值（左滑：当前索引为总图片张数， 右滑：当前索引为总图片张数 - 1）切换内容
+
+                        // 显示复制的内容
+                        this.showCopyTrack = !this.showCopyTrack;
+                        // 跟踪索引位置
+                        this.trackIndex += offset;
+                        //  跟踪复制索引位置
+                        this.trackCopyIndex += offset;
+                  }
+                  else {
+                        if (!this.loop) {
+                              index = index % this.slides.length;
+                        }
+
+                        // 更新跟踪索引
+                        this.updateTrackIndex(index);
+                  }
+
+                  // 当前内容索引
+                  this.currentIndex = index === this.slides.length ? 0 : index;
+            },
+            // 设置自动播放
+            setAutoplay () {
+                  window.clearInterval(this.timer);
+
+                  if (this.autoplay) {
+                        this.timer = window.setInterval(() => {
+                              this.add(1);
+                        }, this.autoplaySpeed);
+                  }
+            },
+            // 切换内容事件
+            arrowEvent (offset) {
+                  this.setAutoplay();
+                  this.add(offset);
+            },
+            // dots 点击
+            dotsEvent (event, index) {
+                  // 获取当前显示图片的索引 如果显示复制的内容 跟踪复制索引位置 否则 跟踪索引位置
+                  let currentIndex = this.showCopyTrack ? this.trackCopyIndex : this.trackIndex;
+
+                  if (event === this.trigger && currentIndex !== index) {
+                        // 更新跟踪索引
+                        this.updateTrackIndex(index);
+                        // 激活时重置自动播放计时器
+                        this.setAutoplay();
+                  }
             }
       },
+      beforeDestroy () {
+            off(window, 'resize', this.handleResize());
+      },
       watch: {
-            // 监听高度
+            // 是否自动切换
+            autoplay () {
+                  this.setAutoplay();
+            },
+            // 是否自动切换速度
+            autoplaySpeed () {
+                  this.setAutoplay();
+            },
+            // 跟踪索引位置
+            trackIndex () {
+                  this.updateOffset();
+            },
+            // 跟踪复制索引位置
+            trackCopyIndex () {
+                  this.updateOffset();
+            },
+            // 轮播图高度
             height () {
-                  // 更新内容位置
                   this.updatePos();
             },
-            // 监听内容索引
-            slotIndex () {
-                  // 更新偏移位置
-                  this.updateOffset()
-            },
-            // 监听循环内容索引
-            loopSlotIndex () {
-                  // 更新偏移位置
-                  this.updateOffset()
+            // 幻灯片的索引
+            value (value) {
+                  this.updateTrackIndex(value);
+                  this.setAutoplay();
             }
       },
       components: {

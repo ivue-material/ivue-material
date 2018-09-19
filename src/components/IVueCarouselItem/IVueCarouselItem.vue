@@ -37,7 +37,7 @@ export default {
             width (value) {
                   if (value && this.$parent.loop) {
                         this.$nextTick(() => {
-                              this.$parent.initCopySlot();
+                              this.$parent.initCopyTrackDom();
                         })
                   }
             }
