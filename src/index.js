@@ -9,6 +9,7 @@ import IVueListItem from './components/IVueListItem';
 import IVueSpin from './components/IVueSpin';
 import IVueCarousel from './components/IVueCarousel';
 import IVueCarouselItem from './components/IVueCarouselItem';
+import IVueSwitch from './components/IVueSwitch';
 
 const components = {
   IVueAffix,
@@ -21,7 +22,8 @@ const components = {
   IVueListItem,
   IVueSpin,
   IVueCarousel,
-  IVueCarouselItem
+  IVueCarouselItem,
+  IVueSwitch
 };
 
 const iVue = {

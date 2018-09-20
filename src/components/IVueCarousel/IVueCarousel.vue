@@ -1,17 +1,17 @@
 <template>
       <div :class="classes">
-            <button type="button" :class="arrowClasses" class="left" @click="arrowEvent(-1)">
+            <IVueButton :class="arrowClasses" class="left ivue-icon-button" @click="arrowEvent(-1)">
                   <IVueIcon>{{leftArrow}}</IVueIcon>
-            </button>
+            </IVueButton>
             <div :class="[prefixCls + '-list']">
                   <div :class="[prefixCls + '-track', showCopyTrack ? '' : 'higher']" :style="trackStyles" ref="originTrack">
                         <slot></slot>
                   </div>
                   <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
-            <button type="button" :class="arrowClasses" class="right" @click="arrowEvent(1)">
+            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)">
                   <IVueIcon>{{rightArrow}}</IVueIcon>
-            </button>
+            </IVueButton>
             <ul :class="dotsClasses">
                   <li   v-for="index in slides.length" 
                         :key="index"
@@ -29,6 +29,7 @@
 import { getStyle, oneOf } from '../../utils/Assist';
 import { on, off } from '../../utils/Dom';
 import IVueIcon from '../IVueIcon/IVueIcon';
+import IVueButton from '../IVueButton/IVueButton';
 
 const prefixCls = 'ivue-carousel';
 
@@ -222,13 +223,13 @@ export default {
       },
       mounted () {
             // 更新滑动列表
-            this.updateSlides(true);
+            // this.updateSlides(true);
             // 监听调整大小
             this.handleResize();
             // 设置自动播放
             this.setAutoplay();
 
-            on(window, 'resize', this.handleResize());
+            on(window, 'resize', this.handleResize);
       },
       computed: {
             // 外城样式
@@ -447,6 +448,10 @@ export default {
 
                   // 当前内容索引
                   this.currentIndex = index === this.slides.length ? 0 : index;
+
+                  // 发送点击事件
+                  this.$emit('onChange', oldIndex, this.currentIndex);
+                  this.$emit('currentIndex', this.currentIndex);
             },
             // 设置自动播放
             setAutoplay () {
@@ -471,13 +476,17 @@ export default {
                   if (event === this.trigger && currentIndex !== index) {
                         // 更新跟踪索引
                         this.updateTrackIndex(index);
+
+                        // 发送点击事件
+                        this.$emit('currentIndex', index);
+
                         // 激活时重置自动播放计时器
                         this.setAutoplay();
                   }
             }
       },
       beforeDestroy () {
-            off(window, 'resize', this.handleResize());
+            off(window, 'resize', this.handleResize);
       },
       watch: {
             // 是否自动切换
@@ -492,7 +501,7 @@ export default {
             trackIndex () {
                   this.updateOffset();
             },
-            // 跟踪复制索引位置
+            // 跟踪复制索引位=置
             trackCopyIndex () {
                   this.updateOffset();
             },
@@ -507,7 +516,8 @@ export default {
             }
       },
       components: {
-            IVueIcon
+            IVueIcon,
+            IVueButton
       }
 }
 </script>

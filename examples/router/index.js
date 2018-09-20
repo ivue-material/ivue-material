@@ -8,6 +8,7 @@ import Icon from '../components/icon';
 import IVueList from '../components/ivueList';
 import IVueSpin from '../components/ivueSpin';
 import IVueCarousel from '../components/ivueCarousel';
+import IVueSwitch from '../components/ivueSwitch';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/IVueCarousel',
       name: 'IVueCarousel',
       component: IVueCarousel
+    },
+    {
+      path: '/IVueSwitch',
+      name: 'IVueSwitch',
+      component: IVueSwitch
     }
   ]
 });

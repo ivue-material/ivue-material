@@ -19,6 +19,7 @@
             padding: 0;
             margin: 0;
             width: 36px;
+            min-width: 36px;
             height: 36px;
             border-radius: 50%;
             cursor: pointer;
@@ -121,6 +122,7 @@
                         background: #8391a5;
                         transition: all .5s;
                         &.radius {
+                              padding: 0;
                               width: 6px;
                               height: 6px;
                               border-radius: 50%;
