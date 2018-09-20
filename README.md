@@ -206,7 +206,7 @@ IVueCarousel props
 | leftArrow | 用于改变←左切换箭头图片，通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用 | String | keyboard_arrow_left |         
 | rightArrow | 用于改变→右切换箭头图片，通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用  | String | keyboard_arrow_right |       
 | easing | 改变走马灯切换的动画效果 | String | ease |      
-| loop | 是否开启循环,用于无缝循环 | Boolean | false |      
+| loop |是否开启循环,用于无缝循环 | Boolean | false |      
 | height | 走马灯高度，可填 auto 或具体高度数值，单位 px | String | auto |      
 | value | 幻灯片的索引 |  Number | 0 |      
 | autoplay | 是否自动切换 |  Boolean | false |      
@@ -214,3 +214,12 @@ IVueCarousel props
 | dots |  指示器(dots)的位置，可选值为 inside （内部），outside（外部），none（不显示） |  String | inside |      
 | radiusDot |  是否显示圆形指示器(dots) |  Boolean | false |      
 | trigger | 指示器(dots)的触发方式，可选值为 click（点击），hover（悬停） |  Str | ingclick |      
+
+
+IVueList events      
+
+| 事件名称          | 说明                                                   | 返回值    |
+| ------------- | :----------------------------------------------------- | ------- |
+| onChange   | 幻灯片切换时触发，目前激活的幻灯片的索引，原幻灯片的索引           | oldValue, value |
+| currentIndex   | 当前激活的幻灯片的索引          | currentIndex |
+
