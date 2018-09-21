@@ -70,10 +70,8 @@ ivue-layout-item
 
 | 名称                                                                        | 说明                                     |
 | --------------------------------------------------------------------------- | :--------------------------------------- |
-| ivue-size-[amount]                                                          | 设置特定item的大小。数量可以是五的倍数， |
-| 例如ivue-size-25。还可以接受33,66和100以便于原型设计                        |
-| ivue-[breakpoint]-size-[amount]                                             | 将大小设置为特定 breakpoint 上的特定项。 |
-| 可能的值是：```xsmall```  ```small``` ```medium``` ```large``` ```xlarge``` |
+| ivue-size-[amount]                                                          | 设置特定item的大小。数量可以是五的倍数， 例如ivue-size-25。还可以接受33,66和100以便于原型设计                        |
+| ivue-[breakpoint]-size-[amount]                                             | 将大小设置为特定 breakpoint 上的特定项。可能的值是：```xsmall```  ```small``` ```medium``` ```large``` ```xlarge``` |
 
 
 ivue-hide
@@ -238,7 +236,7 @@ IVueSwitch props
 | disabled   | 是否禁用开关                                          | Boolean | false |     
 | loading   | 加载中的开关                                          | Boolean | false |     
 | trueValue   | 选中时的值   | String,Number,Boolean | true |     
-| falseValue   | 没有选中时的值  | String,Number,Boolean | false |    
+| falseValue   | 没有选中时的值  | String,Number,Boolean | false |  f  
 | value   |  指定当前是否开启，可以使用 v-model 双向绑定数据  | String,Number,Boolean | false |    
 | size   | 开关的尺寸，可选值为large、small、default或者不写。建议如果使用了2个汉字的文字，使用 large | String,Number,Boolean | - |      
 
