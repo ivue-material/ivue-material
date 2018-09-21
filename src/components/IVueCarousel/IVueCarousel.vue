@@ -1,17 +1,22 @@
 <template>
       <div :class="classes">
+            <!-- 左按钮 -->
             <IVueButton :class="arrowClasses" class="left ivue-icon-button" @click="arrowEvent(-1)">
                   <IVueIcon>{{leftArrow}}</IVueIcon>
             </IVueButton>
+            <!-- 内容 -->
             <div :class="[prefixCls + '-list']">
                   <div :class="[prefixCls + '-track', showCopyTrack ? '' : 'higher']" :style="trackStyles" ref="originTrack">
                         <slot></slot>
                   </div>
+                  <!-- loop开启时使用 -->
                   <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
+            <!-- 右按钮 -->
             <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)">
                   <IVueIcon>{{rightArrow}}</IVueIcon>
             </IVueButton>
+            <!-- 导航器 -->
             <ul :class="dotsClasses">
                   <li   v-for="index in slides.length" 
                         :key="index"
@@ -222,8 +227,6 @@ export default {
             }
       },
       mounted () {
-            // 更新滑动列表
-            // this.updateSlides(true);
             // 监听调整大小
             this.handleResize();
             // 设置自动播放
@@ -355,9 +358,9 @@ export default {
                   this.$nextTick(() => {
                         let offset = this.trackCopyIndex > 0 ? -1 : 1;
 
-                        // 跟着偏移位置
+                        // 跟踪偏移位置
                         this.trackOffset = this.trackIndex * this.listWidth;
-                        // 跟着复制内容的偏移位置
+                        // 跟踪复制内容的偏移位置
                         this.trackCopyOffset = this.trackCopyIndex * this.listWidth + offset;
                   });
             },
@@ -436,6 +439,8 @@ export default {
                         this.trackIndex += offset;
                         //  跟踪复制索引位置
                         this.trackCopyIndex += offset;
+                        
+                        console.log(offset)
                   }
                   else {
                         if (!this.loop) {

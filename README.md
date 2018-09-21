@@ -212,14 +212,48 @@ IVueCarousel props
 | autoplay | 是否自动切换 |  Boolean | false |      
 | autoplaySpeed | 自动切换的时间间隔，单位为毫秒 |  Number | 2000 |      
 | dots |  指示器(dots)的位置，可选值为 inside （内部），outside（外部），none（不显示） |  String | inside |      
-| radiusDot |  是否显示圆形指示器(dots) |  Boolean | false |      
-| trigger | 指示器(dots)的触发方式，可选值为 click（点击），hover（悬停） |  Str | ingclick |      
+| radiusDot |  是否显示圆形指示器(dots) |  Boolean | false |       
+| trigger | 指示器(dots)的触发方式，可选值为 click（点击），hover（悬停） |  Str | ingclick |        
 
 
 IVueList events      
 
-| 事件名称          | 说明                                                   | 返回值    |
-| ------------- | :----------------------------------------------------- | ------- |
-| onChange   | 幻灯片切换时触发，目前激活的幻灯片的索引，原幻灯片的索引           | oldValue, value |
-| currentIndex   | 当前激活的幻灯片的索引          | currentIndex |
+| 事件名称          | 说明                                                   | 返回值    |       
+| ------------- | :----------------------------------------------------- | ------- |      
+| onChange   | 幻灯片切换时触发，目前激活的幻灯片的索引，原幻灯片的索引           | oldValue, value |         
+| currentIndex   | 当前激活的幻灯片的索引          | currentIndex |       
 
+
+
+### IVueSwitch 开关
+
+开/关切换可切换单个设置选项的状态。    
+
+API     
+
+IVueSwitch props      
+
+| 名称          | 说明                                                   | 类型    | 默认  |      
+| ------------- | :----------------------------------------------------- | ------- | :---- |     
+| disabled   | 是否禁用开关                                          | Boolean | false |     
+| loading   | 加载中的开关                                          | Boolean | false |     
+| trueValue   | 选中时的值   | String,Number,Boolean | true |     
+| falseValue   | 没有选中时的值  | String,Number,Boolean | false |    
+| value   |  指定当前是否开启，可以使用 v-model 双向绑定数据  | String,Number,Boolean | false |    
+| size   | 开关的尺寸，可选值为large、small、default或者不写。建议如果使用了2个汉字的文字，使用 large | String,Number,Boolean | - |      
+
+
+IVueSwitch events        
+
+| 事件名称          | 说明                                                   | 返回值    |        
+| ------------- | :----------------------------------------------------- | ------- |         
+| onChange   | 开关变化时触发，返回当前的状态           | true or false |       
+
+IVueList slot      
+
+| 名称          | 说明                                                   |      
+| ------------- | :----------------------------------------------------- |     
+| open   | 自定义显示打开时的内容          |          
+| close   | 自定义显示关闭时的内容          |     
+
+ 

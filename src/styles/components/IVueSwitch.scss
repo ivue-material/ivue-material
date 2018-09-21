@@ -1,14 +1,24 @@
 $name: 'ivue-switch';
+$defailt-after-width: 20px;
+$small-after-width: 14px;
+$large-after-width: 28px;
+
+@mixin transition() {
+      transition: transform .2s ease-in-out 0s, width .2s ease-in-out 0s;
+      will-change: transform, width;
+}
+
+
 .ivue-switch {
       position: relative;
       display: inline-block;
       width: 44px;
       height: 22px;
-      line-height: 20px;
+      line-height: $defailt-after-width;
       border-radius: 22px;
       vertical-align: middle;
       border: 1px solid #ccc;
-      background-color: #ccc;
+      background: #ccc;
       cursor: pointer;
       user-select: none;
       outline: none;
@@ -16,7 +26,7 @@ $name: 'ivue-switch';
       will-change: all;
       -webkit-tap-highlight-color: transparent;
       &:focus {
-            box-shadow: 0 0 0 2px fade($primary-color, 20%);
+            box-shadow: 0 0 0 2px fade(currentColor, 20%);
             outline: 0;
       }
       &:focus:hover {
@@ -24,19 +34,19 @@ $name: 'ivue-switch';
       }
       &:after {
             content: '';
-            width: 20px;
-            height: 20px;
-            border-radius: 20px;
-            background-color: #fff;
+            width: $defailt-after-width;
+            height: $defailt-after-width;
+            border-radius: $defailt-after-width;
+            background: #fff;
             position: absolute;
-            left: 1px;
             top: 1px;
+            transform: translate3d(1px, 0, 0);
             cursor: pointer;
-            transition: left .2s ease-in-out 0s, width .2s ease-in-out 0s;
-            will-change: left width;
+            @include transition;
       }
       &:active:after {
             width: 28px;
+            @include transition;
       }
       &:before {
             content: '';
@@ -46,41 +56,24 @@ $name: 'ivue-switch';
             border-radius: 50%;
             background-color: transparent;
             position: absolute;
-            left: 3px;
-            top: 3px;
+            top: 2px;
+            left: 2px;
             z-index: 1;
-            border: 1px solid $primary-color;
-            border-color: transparent transparent transparent $primary-color;
+            border: 1px solid currentColor;
+            border-color: transparent transparent transparent currentColor;
             animation: switch-loading 1s linear;
             animation-iteration-count: infinite;
-      }
-      /*检查*/
-      &-checked {
-            border-color: $primary-color;
-            background-color: $primary-color;
-            .#{$name}-inner {
-                  left: 7px;
-            }
-            &:after {
-                  left: 23px;
-            }
-            &:before {
-                  left: 25px;
-            }
-            // ---
-            &:active:after {
-                  left: 20px;
-            }
       }
       /*内部文字样式*/
       &-inner {
             position: absolute;
-            left: 23px;
             height: 100%;
             align-items: center;
             display: flex;
             color: #fff;
             font-size: $font-size-small;
+            transform: translate3d(23px, 0, 0);
+            will-change: transform;
             i {
                   position: relative;
                   top: -1px;
@@ -104,39 +97,53 @@ $name: 'ivue-switch';
       }
       /*loading*/
       &-loading {
-            opacity: .4;
-      }
-      &-loading:before {
-            display: block;
+            opacity: .6;
+            &:before {
+                  display: block;
+            }
+            &:active:after {
+                  width: $defailt-after-width;
+                  transform: translate3d(23px, 0, 0) !important;
+            }
+            &.#{$name}-small:active:after {
+                  width: $small-after-width;
+                  transform: translate3d(13px, 0, 0) !important;
+            }
+            &.#{$name}-large:active:after {
+                  width: $large-after-width;
+                  transform: translate3d(27px, 0, 0) !important;
+            }
       }
       /*小*/
       &-small {
             width: 28px;
             height: 16px;
-            line-height: 14px;
+            line-height: $small-after-width;
             &:after {
-                  width: 14px;
-                  height: 14px;
+                  width: $small-after-width;
+                  height: $small-after-width;
             }
             &:active:after {
                   width: 16px;
+                  @include transition;
             }
             &:before {
                   width: 10px;
                   height: 10px;
-                  left: 2px;
-                  height: 2px;
+                  transform: translate3d(2px, 0, 0);
             }
             &.#{$name}-checked:after {
-                  left: 13px;
+                  transform: translate3d(13px, 0, 0);
             }
             &.#{$name}-checked:before {
-                  left: 14px;
+                  left:  $small-after-width;
+                  width: 10px;
+                  height: 10px;
             }
       }
       &-small:active {
             &.#{$name}-checked:after {
-                  left: 11px;
+                  transform: translate3d(11px, 0, 0);
             }
       }
       /*大*/
@@ -145,21 +152,41 @@ $name: 'ivue-switch';
             height: 30px;
             &:active:after {
                   width: 36px;
+                  @include transition;
             }
             &:after {
-                  width: 28px;
-                  height: 28px;
+                  width: $large-after-width;
+                  height: $large-after-width;
             }
             &.#{$name}-checked:after {
-                  left: 27px;
+                  transform: translate3d(27px, 0, 0);
             }
             &.#{$name}-checked:before {
-                  left: 37px;
+                  left: $large-after-width;
+                  width: 24px;
+                  height: 24px;
             }
       }
       &-large:active {
             &.#{$name}-checked:after {
-                  left: 19px;
+                  transform: translate3d(19px, 0, 0);
+            }
+      }
+      /*检查*/
+      &-checked {
+            border-color: currentColor;
+            background: currentColor;
+            .#{$name}-inner {
+                  transform: translate3d(7px, 0, 0);
+            }
+            &:after {
+                  transform: translate3d(23px, 0, 0);
+            }
+            &:before {
+                  left: 24px;
+            }
+            &:active:after {
+                  transform: translate3d(15px, 0, 0);
             }
       }
 }

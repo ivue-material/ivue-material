@@ -3,7 +3,7 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           
             <p>基础</p>
-            <IVueSwitch></IVueSwitch>
+            <IVueSwitch class="red-accent-4"></IVueSwitch>
 
             <p>大小</p>
             <IVueSwitch size="large"></IVueSwitch>
@@ -22,8 +22,12 @@
             </IVueSwitch>
 
             <p>不可用</p>
-            <IVueSwitch :disabled="true"></IVueSwitch>
+            <IVueSwitch :disabled="true" class="red-accent-4"></IVueSwitch>
 
+            <p>loading</p>
+            <IVueSwitch loading :value="true" class="red-accent-4"></IVueSwitch>
+            <IVueSwitch loading :value="true" size="large" class="red-accent-4"></IVueSwitch>
+            <IVueSwitch loading :value="true" size="small" class="red-accent-4"></IVueSwitch>
       </div>
 </template>
 

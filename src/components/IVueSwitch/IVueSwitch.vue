@@ -37,7 +37,7 @@ export default {
                   default: false
             },
             /*
-            * 选中时的值，当使用类似 1 和 0 来判断是否选中时会很有用
+            * 选中时的值
             * 
             * @type {String,Number,Boolean}             
             */
@@ -46,7 +46,7 @@ export default {
                   default: true
             },
             /*
-            * 没有选中时的值，当使用类似 1 和 0 来判断是否选中时会很有用
+            * 没有选中时的值
             * 
             * @type {String,Number,Boolean}             
             */
@@ -55,7 +55,7 @@ export default {
                   default: false
             },
             /*
-            * 指定当前是否选中，可以使用 v-model 双向绑定数据
+            * 指定当前是否开启，可以使用 v-model 双向绑定数据
             * 
             * @type {String,Number,Boolean}            
             */
@@ -64,7 +64,7 @@ export default {
                   default: false
             },
             /*
-            * 开关的尺寸，可选值为large、small、default或者不写。建议如果使用了2个汉字的文字，使用 large。
+            * 开关的尺寸，可选值为large、small、default或者不写。建议如果使用了2个汉字的文字，使用 large
             * 
             * @type {String,Number,Boolean}             
             */
@@ -118,6 +118,8 @@ export default {
                   const checked = this.currentValue === this.trueValue ? this.falseValue : this.trueValue;
 
                   this.currentValue = checked;
+
+                  this.$emit('onChange', checked);
             }
       },
       watch: {
