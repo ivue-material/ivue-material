@@ -142,7 +142,6 @@ export default {
                   delete buttonAttrs.attrs.href;
             }
 
-
             return createElement(tag, buttonAttrs, [buttonContent]);
       }
 }
