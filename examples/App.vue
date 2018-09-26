@@ -39,6 +39,7 @@ nav {
                 <li><router-link to="/IVueSpin">IVueSpin</router-link></li>
                 <li><router-link to="/IVueCarousel">IVueCarousel</router-link></li>
                 <li><router-link to="/IVueSwitch">IVueSwitch</router-link></li>
+                <li><router-link to="/IVueBottomNav">IVueBottomNav</router-link></li>
             </ul>
         </nav>
         <router-view></router-view>

@@ -1,0 +1,65 @@
+.ivue-bottom-nav {
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 3px 14px 2px rgba(0, 0, 0, .12);
+      width: 100%;
+      transform: translate3d(0, 60px, 0);
+      transition: all $ivue-transition-stand;
+      &--absolute {
+            position: absolute;
+      }
+      &--fixed {
+            position: fixed;
+            z-index: 4;
+      }
+      &--active {
+            transform: translate3d(0, 0, 0);
+      }
+      .ivue-button {
+            flex-shrink: 1;
+            margin: 0;
+            text-transform: none;
+            max-width: 168px;
+            min-width: 80px;
+            width: 100%;
+            height: 100%;
+            // font-weight: 400;
+            border-radius: 0;
+            // opacity: .8;
+            box-shadow: none !important;
+            background: transparent !important;
+            .ivue-ripple {
+                  padding: 8px 12px 10px;
+            }
+            .ivue-button-content {
+                  display: flex;
+                  flex-direction: column-reverse;
+                  font-size: 12px;
+                  white-space: nowrap;
+                  will-change: font-size;
+            }
+            i.ivue-icon {
+                  color: inherit;
+                  margin-bottom: 4px;
+                  transition: all $ivue-transition-stand;
+            }
+            span {
+                  line-height: 1;
+            }
+            // 激活
+            &--active {
+                  padding-top: 6px;
+                  opacity: 1;
+                  background-color: transparent;
+                  .ivue-button-content {
+                        font-size: 14px;
+                  }
+            }
+            // 没有激活时的状态
+            &:not(.ivue-button--active){
+                  color: rgba(0,0,0,.54) !important;
+            }
+      }
+}

@@ -439,8 +439,6 @@ export default {
                         this.trackIndex += offset;
                         //  跟踪复制索引位置
                         this.trackCopyIndex += offset;
-                        
-                        console.log(offset)
                   }
                   else {
                         if (!this.loop) {

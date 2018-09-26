@@ -1,5 +1,5 @@
 import IVueList from '../../src/components/IVueList';
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 describe('IVueList', function () {
       it('should render the list', async () => {

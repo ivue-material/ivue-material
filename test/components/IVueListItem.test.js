@@ -1,11 +1,11 @@
 import IVueListItem from '../../src/components/IVueListItem';
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 describe('IVueListItem', function () {
       it('should render the list item', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueListItem>list</IVueListItem>
+                        <IVueListItem @click="">list item</IVueListItem>
                   `,
                   components: {
                         IVueListItem
@@ -14,7 +14,7 @@ describe('IVueListItem', function () {
                         attachToDocument: true
                   });
 
-            expect(wrapper.classes()).to.contain('ivue-list');
-            expect(wrapper.text()).to.be.equal('list');
+            expect(wrapper.classes()).to.contain('ivue-list-item');
+            expect(wrapper.text().trim()).to.be.equal('list item');
       });
-})
+});

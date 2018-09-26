@@ -9,6 +9,7 @@ import IVueList from '../components/ivueList';
 import IVueSpin from '../components/ivueSpin';
 import IVueCarousel from '../components/ivueCarousel';
 import IVueSwitch from '../components/ivueSwitch';
+import IVueBottomNav from '../components/ivueBottomNav';
 
 Vue.use(Router);
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/IVueSwitch',
       name: 'IVueSwitch',
       component: IVueSwitch
+    },
+    {
+      path: '/IVueBottomNav',
+      name: 'IVueBottomNav',
+      component: IVueBottomNav
     }
   ]
 });

@@ -1,5 +1,5 @@
 import IVueIcon from '../../src/components/IVueIcon';
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import testSvg from './test.svg';
 
 describe('IVueIcon', function () {

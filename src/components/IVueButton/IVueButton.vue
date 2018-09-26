@@ -3,7 +3,7 @@ import IVueButtonContent from "./IVueButtonContent";
 import IVueRouterLinkProps from "../../utils/IVueRouterLinkProps";
 
 export default {
-      name: "IVueButton",
+      name: "IVueButtom",
       data () {
             return {
                   /*
