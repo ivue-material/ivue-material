@@ -57,6 +57,8 @@
                   color: inherit;
                   margin-bottom: 4px;
                   transition: none;
+                  transform: none;
+                  will-change: transform;
             }
             /*激活*/
             &--active {
