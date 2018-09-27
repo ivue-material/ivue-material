@@ -35,24 +35,28 @@
             .ivue-button-content {
                   display: flex;
                   flex-direction: column-reverse;
+                  justify-content: center;
                   font-size: 12px;
                   white-space: nowrap;
                   will-change: font-size;
                   height: 100%;
                   transition: all $ivue-transition-stand;
+                  span {
+                        line-height: 1;
+                        transform: scale(1);
+                        will-change: transform;
+                        transition: all $ivue-transition-stand;
+                  }
             }
-            i.ivue-icon {
-                  position: absolute;
-                  left: 0;
-                  top: 0;
-                  right: 0;
+            .ivue-icon {
+                  // position: absolute;
+                  // left: 0;
+                  // top: 0;
+                  // right: 0;
+                  margin-top: 0;
                   color: inherit;
                   margin-bottom: 4px;
                   transition: none;
-            }
-            span {
-                  display: block;
-                  line-height: 1;
             }
             /*激活*/
             &--active {
@@ -63,8 +67,14 @@
                   .ivue-ripple {
                         padding-top: 6px;
                   }
+                  .ivue-icon {
+                        transform: translate3d(0, -2px, 0);
+                  }
                   .ivue-button-content {
-                        font-size: 14px;
+                        // font-size: 14px;
+                        span {
+                              transform: scale(1.2);
+                        }
                   }
             }
             /*没有激活时的状态*/
@@ -77,20 +87,20 @@
             .ivue-button {
                   min-width: 56px;
                   max-width: 96px;
-                  will-change: min-width,max-width;
+                  will-change: min-width, max-width;
                   transition: .3s $ivue-transition-default-timing;
-                  transition-property:  min-width, max-width;
+                  transition-property: min-width, max-width;
                   will-change: min-width, max-width;
                   &--active {
                         min-width: 96px;
                         max-width: 168px;
                   }
                   .ivue-button-content {
-                        font-size: 14px;
-                        .ivue-icon{
+                        // font-size: 14px;
+                        .ivue-icon {
                               will-change: transform;
                         }
-                        span{
+                        span {
                               will-change: transform, opacity;
                         }
                   }
