@@ -11,7 +11,13 @@ export default {
                   * 
                   * @type {Boolean}
                   */
-                  rippleActive: false
+                  rippleActive: false,
+                  /*
+                  * 按钮是否激活状态
+                  * 
+                  * @type {Boolean}
+                  */
+                  isActive: false
             }
       },
       props: {
@@ -61,6 +67,13 @@ export default {
       computed: {
             rippleWorks () {
                   return !this.disabled;
+            },
+            // 判断按钮是否激活
+            activeButton () {
+                  if (this.isActive) {
+                        return 'ivue-button--active';
+                  }
+                  return;
             }
       },
       components: {
@@ -86,7 +99,8 @@ export default {
                   staticClass: 'ivue-button',
                   class: [
                         {
-                              'isMobile': this.mobile
+                              'isMobile': this.mobile,
+                              'ivue-button--active': this.isActive
                         }
                   ],
                   data: {
@@ -120,6 +134,8 @@ export default {
                                     this.rippleActive = event;
                               }
                               this.$listeners.mousedown && this.$listeners.mousedown(event);
+
+                              this.$emit('mousedown', this);
                         }
                   }
             }

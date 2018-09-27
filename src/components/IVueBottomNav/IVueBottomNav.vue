@@ -5,6 +5,7 @@ function isCssColor (color) {
 
 
 export default {
+      name: 'IVueBottomNav',
       props: {
             /*
             * 当前激活的导航
@@ -54,19 +55,29 @@ export default {
             position: {
                   type: String,
                   default: null
+            },
+            /*
+            * 不是激活状态时隐藏按钮上的文字
+            * 
+            * @type {Boolean}
+            */
+            shift: {
+                  type: Boolean,
+                  default: false
             }
       },
       data () {
             return {
                   // 按钮导航数组
-                  buttons: []
+                  buttons: [],
+                  // 监听事件列表
+                  listeners: []
             }
       },
       mounted () {
+            // 初始化
             if (this.$children.length > 0) {
-                  this.buttons = this.$children;
-
-                  this.update()
+                  this.update();
             }
       },
       computed: {
@@ -75,7 +86,8 @@ export default {
                   return {
                         'ivue-bottom-nav--absolute': this.position === 'absolute',
                         'ivue-bottom-nav--active': this.value,
-                        'ivue-bottom-nav--fixed': this.position === 'fixed'
+                        'ivue-bottom-nav--fixed': this.position === 'fixed',
+                        'ivue-bottom-nav--shift': this.shift
                   }
             },
             // 实时计算高度
@@ -102,41 +114,65 @@ export default {
 
                   return data;
             },
+            getValue (i) {
+                  if (this.buttons[i]) {
+                        return i;
+                  }
+
+                  return;
+            },
             // 判断是否选中
             isSelected (i) {
-                  let item;
-
-                  if (this.buttons[i]) {
-                        item = i;
-                  }
+                  const item = this.getValue(i);
 
                   return this.active === item;
             },
+            // 更新当前激活的导航
+            updateValue (i) {
+                  const item = this.getValue(i);
+
+                  this.$emit('update:active', item);
+            },
             // 更新数据
             update () {
-                  const selected = [];
+                  this.buttons = this.$children;
 
                   for (let i = 0; i < this.buttons.length; i++) {
-                        const elm = this.buttons[i].$el;
                         const button = this.buttons[i];
 
                         // 设置是否激活
                         if (this.isSelected(i)) {
-                              button.isActive = true;
-                              // !button.to && (button.isActive = true);
-                              selected.push(i);
-                              console.log(button)
+                              !button.to && (button.$data.isActive = true);
                         }
                         else {
-                              !button.to && (button.isActive = false);
+                              !button.to && (button.$data.isActive = false);
                         }
 
+                        this.listeners.push(this.updateValue.bind(this, i));
+
+                        // 触发事件
+                        button.$on('mousedown', (event) => {
+                              this.listeners[i]();
+                        });
                   }
             }
       },
+      // 实例销毁之前调
+      beforeDestroy () {
+            for (let i = 0; i < this.buttons.length; i++) {
+                  const button = this.buttons[i];
+
+                  // 销毁事件
+                  button.$off('mousedown', this.listeners[i]);
+            }
+            this.buttons = [];
+            this.listeners = [];
+      },
       watch: {
-            active () {
+            active (index) {
                   this.update();
+
+                  this.$emit('onChange', index);
             }
       },
       render (h) {
