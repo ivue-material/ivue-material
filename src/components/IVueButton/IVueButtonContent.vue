@@ -4,7 +4,7 @@
                   :ivueActive="ivueRippleActive" 
                   @update:ivueActive="active => $emit('update:ivueRippleActive', active)"
             >
-            <div class="ivue-button-content">
+            <div :class="`${prefixCls}-content`">
                   <slot></slot>
             </div>
       </IVueRipple>
@@ -12,6 +12,8 @@
 
 <script>
 import IVueRipple from '../IVueRipple/IVueRipple';
+
+const prefixCls = 'ivue-button';
 
 export default {
       name: "IVueButtonContent",
@@ -40,6 +42,11 @@ export default {
             * @type {Boolean}
             */
             ivueRippleActive: null,
+      },
+      data () {
+            return {
+                  prefixCls: prefixCls
+            }
       },
       components: {
             IVueRipple

@@ -10,7 +10,7 @@ import IVueSpin from '../components/ivueSpin';
 import IVueCarousel from '../components/ivueCarousel';
 import IVueSwitch from '../components/ivueSwitch';
 import IVueBottomNav from '../components/ivueBottomNav';
-
+import IVueBreadcrumbs from '../components/ivueBreadcrumb';
 Vue.use(Router);
 
 export default new Router({
@@ -64,6 +64,11 @@ export default new Router({
       path: '/IVueBottomNav',
       name: 'IVueBottomNav',
       component: IVueBottomNav
+    },
+    {
+      path: '/IVueBreadcrumbs',
+      name: 'IVueBreadcrumbs',
+      component: IVueBreadcrumbs
     }
   ]
 });

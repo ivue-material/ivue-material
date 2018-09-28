@@ -3,6 +3,7 @@ function isCssColor (color) {
       return !!color && !!color.match(/^(#|(rgb|hsl)a?\()/);
 }
 
+const prefixCls = 'ivue-bottom-nav';
 
 export default {
       name: 'IVueBottomNav',
@@ -71,7 +72,11 @@ export default {
                   // 按钮导航数组
                   buttons: [],
                   // 监听事件列表
-                  listeners: []
+                  listeners: [],
+                  // 判断是否是路由按钮
+                  isRouteButton: [],
+                  // 是否开启监听导航路由
+                  ivueSyncRoute: false
             }
       },
       mounted () {
@@ -79,15 +84,31 @@ export default {
             if (this.$children.length > 0) {
                   this.update();
             }
+
+            this.$nextTick().then(() => {
+                  if (this.ivueSyncRoute) {
+                        this.setActiveItemByRoute()
+                  }
+
+                  window.setTimeout(() => {
+                        this.setupWatchers()
+                  }, 100)
+            })
       },
       computed: {
             // class
             classes () {
+                  const absolute = `${prefixCls}--absolute`;
+                  const active = `${prefixCls}--active`;
+                  const fixed = `${prefixCls}--fixed`;
+                  const shift = `${prefixCls}--shift`;
+
                   return {
-                        'ivue-bottom-nav--absolute': this.position === 'absolute',
-                        'ivue-bottom-nav--active': this.value,
-                        'ivue-bottom-nav--fixed': this.position === 'fixed',
-                        'ivue-bottom-nav--shift': this.shift
+                        prefixCls,
+                        absolute: this.position === 'absolute',
+                        active: this.value,
+                        fixed: this.position === 'fixed',
+                        shift: this.shift
                   }
             },
             // 实时计算高度
@@ -136,23 +157,57 @@ export default {
             // 更新数据
             update () {
                   this.buttons = this.$children;
+                  this.listeners = [];
 
-                  for (let i = 0; i < this.buttons.length; i++) {
-                        const button = this.buttons[i];
+                  this.buttons.forEach((key, index) => {
+                        this.listeners.push(this.updateValue.bind(this, index));
 
                         // 设置是否激活
-                        if (this.isSelected(i)) {
-                              !button.to && (button.$data.isActive = true);
+                        if (this.isSelected(index)) {
+                              key.$data.isActive = true;
                         }
                         else {
-                              !button.to && (button.$data.isActive = false);
+                              key.$data.isActive = false;
                         }
 
-                        this.listeners.push(this.updateValue.bind(this, i));
-
                         // 触发事件
-                        button.$on('mousedown', (event) => {
-                              this.listeners[i]();
+                        key.$on('mousedown', (event) => {
+                              this.listeners[index]();
+                        });
+
+                        // 判断是否有按钮路由导航
+                        if (key.to) {
+                              this.ivueSyncRoute = true;
+                        }
+
+                  });
+            },
+            // 设置watch
+            setupWatchers () {
+                  // 监听路由变化
+                  if (this.ivueSyncRoute) {
+                        this.$watch('$route', {
+                              deep: true,
+                              handler (route) {
+                                    if (this.ivueSyncRoute) {
+                                          this.setActiveItemByRoute();
+                                    }
+                              }
+                        })
+                  }
+
+            },
+            // 判断路由激活导航
+            setActiveItemByRoute () {
+                  if (this.$router) {
+                        this.buttons.forEach((key, index) => {
+                              if (key.to === (this.$router.path || this.$router.currentRoute.path)) {
+                                    key.$data.isActive = true;
+                                    this.updateValue(index);
+                              }
+                              else {
+                                    key.$data.isActive = false;
+                              }
                         });
                   }
             }
@@ -177,7 +232,7 @@ export default {
       },
       render (h) {
             return h('div', this.setBackgroundColor(this.color, {
-                  staticClass: 'ivue-bottom-nav',
+                  staticClass: prefixCls,
                   'class': this.classes,
                   style: {
                         height: `${parseInt(this.computedHeight)}px`

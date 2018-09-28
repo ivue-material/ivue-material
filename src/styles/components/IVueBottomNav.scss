@@ -56,9 +56,9 @@
                   margin-top: 0;
                   color: inherit;
                   margin-bottom: 4px;
-                  transition: none;
-                  transform: none;
                   will-change: transform;
+                  transition: all $ivue-transition-stand;
+
             }
             /*激活*/
             &--active {

@@ -2,7 +2,6 @@
 @import "../src/styles/index.scss";
 </style>
 <style lang="scss" scoped>
-
 nav {
   margin-bottom: 40px;
 
@@ -40,16 +39,19 @@ nav {
                 <li><router-link to="/IVueCarousel">IVueCarousel</router-link></li>
                 <li><router-link to="/IVueSwitch">IVueSwitch</router-link></li>
                 <li><router-link to="/IVueBottomNav">IVueBottomNav</router-link></li>
+                <li><router-link to="/IVueBreadcrumbs">IVueBreadcrumbs</router-link></li>
             </ul>
         </nav>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <router-view></router-view>
     </div>
 </template>
 <script>
 module.exports = {
-  data: function () {
+  data () {
     return {
-
+      bottomNav2: 0
     }
   },
   mounted: function () {

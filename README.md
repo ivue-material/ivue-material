@@ -265,7 +265,47 @@ API
 | ------------- | :------------------------------- | :----- |      
 | update:active    | 设置激活那个导航| this.$emit('update:active', item) |      
 | onChange    | 获取当前激活那个导航 |  - |
-       
+
+
+
+### IVueBreadcrumbs面包屑
+
+```IVueBreadcrumbsItem```组件是一个页面导航辅助器。它可以接受一个Material Icons图标或字符作为分隔符。一个包含字段href，text和disabled的对象数组可以被传递给组件items。此外，还有一个常规插槽用于更多地控制面包屑使用```IVueBreadcrumbsItem```。
+
+例子
+```javascript
+      <IVueBreadcrumbs>
+                        <IVueBreadcrumbsItem>
+                              <IVueIcon>home</IVueIcon>
+                              Home
+                        </IVueBreadcrumbsItem>
+                        <IVueBreadcrumbsItem >
+                              home
+                        </IVueBreadcrumbsItem>
+      </IVueBreadcrumbs>
+```
+
+
+API
+
+##### props       
+      
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |     
+| active    | 当前激活的导航 | Number, String | -      |     
+| height | 底部导航栏高度 | Number, String | 56    |    
+| value | 底部导航栏是否可见(注意：父级节点必须设置 overflow: hidden) | Boolean | false |      
+| color | 底部导航栏背景颜色 | String | null |     
+| position | 底部导航栏定位(```absolute``` ```fixed```) | String | null |      
+| shift | 不是激活状态时隐藏按钮上的文字 | Boolean | false |      
+        
+##### slots       
+      
+| 属性          | 说明                             |
+| ------------- | :------------------------------- | 
+| default    | Vue默认原生插槽|
+
+
  
 # 其他
 

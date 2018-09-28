@@ -2,8 +2,10 @@
 import IVueButtonContent from "./IVueButtonContent";
 import IVueRouterLinkProps from "../../utils/IVueRouterLinkProps";
 
+const prefixCls = 'ivue-button';
+
 export default {
-      name: "IVueButtom",
+      name: "IVueButton",
       data () {
             return {
                   /*
@@ -71,7 +73,7 @@ export default {
             // 判断按钮是否激活
             activeButton () {
                   if (this.isActive) {
-                        return 'ivue-button--active';
+                        return `${prefixCls}--active`;
                   }
                   return;
             }
@@ -96,7 +98,7 @@ export default {
             }, this.$slots.default);
 
             let buttonAttrs = {
-                  staticClass: 'ivue-button',
+                  staticClass: prefixCls,
                   class: [
                         {
                               'isMobile': this.mobile,
@@ -112,7 +114,7 @@ export default {
                         disabled: this.disabled,
                         type: !this.href && (this.type || 'button')
                   },
-                  on: {
+                  [this.to ? 'nativeOn' : 'on']: {
                         ...this.$listeners,
                         touchstart: (event) => {
                               if (this.rippleWorks) {
@@ -120,7 +122,7 @@ export default {
                               }
                               this.$listeners.touchstart && this.$listeners.touchstart(event);
 
-                              this.mobile = true
+                              this.mobile = true;
                         },
                         touchmove: (event) => {
                               if (this.rippleWorks) {

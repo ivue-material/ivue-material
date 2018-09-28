@@ -16,11 +16,11 @@
 
            <p>基础</p>
            <IVueBottomNav :value="true" :active.sync="bottomNav2" key="base" :height="'100'">
-                  <IVueButton class="red" key="base1" >
+                  <IVueButton class="red" key="base1">
                           <span>Recents</span>
                           <IVueIcon>history</IVueIcon>
                   </IVueButton>
-                   <IVueButton class="buld" key="base2">
+                   <IVueButton class="buld" key="base2"  to="/">
                           <span>Recents</span>
                           <IVueIcon>history</IVueIcon>
                   </IVueButton>
@@ -37,6 +37,8 @@
                           <IVueIcon>history</IVueIcon>
                   </IVueButton>
            </IVueBottomNav>
+           <br>
+           <br>
      </div>
 </template>
 

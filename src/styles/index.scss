@@ -1,3 +1,22 @@
 @import "./theme/index";
 @import "./custom";
 @import "./components/index";
+*,
+::after,
+::before {
+      box-sizing: border-box;
+}
+
+* {
+      -webkit-tap-highlight-color: transparent;
+}
+
+a {
+      text-decoration: none;
+      outline: 0px;
+      color: #2d8cf0;
+      will-change: color;
+      transition: color 0.2s ease 0s;
+      background: 0px 0px;
+      cursor: pointer;
+}

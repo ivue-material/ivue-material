@@ -11,6 +11,8 @@ import IVueCarousel from './components/IVueCarousel';
 import IVueCarouselItem from './components/IVueCarouselItem';
 import IVueSwitch from './components/IVueSwitch';
 import IVueBottomNav from './components/IVueBottomNav';
+import IVueBreadcrumbs from './components/IVueBreadcrumbs';
+import IVueBreadcrumbsItem from './components/IVueBreadcrumbsItem';
 
 const components = {
   IVueAffix,
@@ -25,7 +27,9 @@ const components = {
   IVueCarousel,
   IVueCarouselItem,
   IVueSwitch,
-  IVueBottomNav
+  IVueBottomNav,
+  IVueBreadcrumbs,
+  IVueBreadcrumbsItem
 };
 
 const iVue = {
