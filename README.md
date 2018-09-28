@@ -8,6 +8,48 @@
 
 elevation等级从0px到24px深度。您可以在任何HTML标记上添加此类。
 
+##### 例子
+
+```javascript
+
+<template>
+      <div class="elevation-demo">
+            <IVueContent :class="`ivue-elevation-${index}`" 
+                        v-for="(item,index) in length"
+                        :key="index">
+                  {{index}}
+            </IVueContent>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  length: 25
+            }
+      }
+
+}
+</script>
+
+<style  lass="scss"> 
+.elevation-demo {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ivue-content {
+  width: 100px;
+  height: 100px;
+  margin: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+```     
+
 API
 
 ##### props        
@@ -19,6 +61,233 @@ API
 ### IVueLayout 布局
 
 布局系统使用行和列的概念。您可以创建大小的列。您将能够为每个列设置大小，即使在嵌套列上也是如此。
+
+
+##### 例子
+
+```javascript
+<template>
+      <div>
+            <h1>列布局</h1>
+            <p>要开始使用布局，您需要做的是创建一个ivue-layout父元素，它将包含一个列表ivue-layout-item。您可以设置所需的列数：</p>
+            <div class="ivue-layout">
+                  <div class="ivue-layout-item layout"></div>
+                  <div class="ivue-layout-item layout"></div>
+                  <div class="ivue-layout-item layout"></div>
+            </div>
+
+            <h1>排水沟</h1>
+            <p>默认情况下，布局之间没有空格，这对于常规布局有点不好，例如卡牌,
+                  您可以使用 ivue-gutter 为自动计算元素之间的空间，这些空间基于屏幕宽度：</p>
+            <div class="ivue-layout ivue-gutter">
+                  <div class="ivue-layout-item gutter-item"></div>
+                  <div class="ivue-layout-item gutter-item"></div>
+                  <div class="ivue-layout-item gutter-item"></div>
+            </div>
+
+            <h1>嵌套布局</h1>
+            <p>列布局也适用于嵌套布局</p>
+            <div class="ivue-layout ivue-gutter ">
+                  <div class="ivue-layout-item ivue-layout ivue-gutter ">
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                  </div>
+                  <div class="ivue-layout-item ivue-layout ivue-gutter ">
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                  </div>
+                   <div class="ivue-layout-item ivue-layout ivue-gutter ">
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                         <div class="ivue-layout-item"></div>
+                  </div>
+            </div>
+
+            <h1>对齐</h1>
+            <p>使用ivue-alignment-[horizontal]-[vertical]类，例如ivue-alignment-top-center。对齐适用于父元素，并将影响所有子项的位置</p>
+            <div class="example">
+                  <div class="ivue-layout ivue-gutter ivue-alignment-top-center">
+                        <div class="ivue-layout-item ivue-size-25">
+                              <span>Lorem ipsum dolor sit amet.</span>
+                        </div>
+                         <div class="ivue-layout-item ivue-size-25">
+                              <span>Lorem ipsum dolor sit amet.</span>
+                        </div>
+                         <div class="ivue-layout-item ivue-size-25">
+                              <span>Lorem ipsum dolor sit amet.</span>
+                        </div>
+                  </div>
+            </div>
+
+            <h1>尺寸</h1>
+            <p>布局系统根据项目数量计算子项大小。但是如果你想为每个项目设置尺寸？您只需ivue-size-[amount]在项目中设置一个，例如ivue-size-30。总是以％表示的大小可以是5的倍数，也可以接受值33和66。</p>
+            <div class="ivue-layout ivue-gutter">
+                  <div class="ivue-layout-item ivue-size-15 size" ></div>
+                  <div class="ivue-layout-item size"></div>
+                  <div class="ivue-layout-item size"></div>
+                  <div class="ivue-layout-item ivue-size-15 size"></div>
+            </div>
+            
+            <h1>响应</h1>
+            <p>加入类 ivue-[breakpoint]-size-[amount] 布局引擎将发挥神奇作用。尝试调整浏览器的大小</p>
+            <div class="ivue-layout ivue-gutter ivue-alignment-center response">
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+                  <div class="ivue-layout-item  ivue-medium-size-33  ivue-small-size-50 ivue-xsmall-size-100"></div>
+            </div>
+
+            <h1>隐藏元素</h1>
+            <p>在较小的屏幕上隐藏元素的需求是相当普遍的。你可以使用这些ivue-[breakpoint]-hide类来做到这一点</p>
+            <div class="ivue-layout ivue-gutter ivue-alignment-center hide">
+                  <div class="ivue-layout-item ivue-medium-size-33 ivue-small-size-50 ivue-xsmall-size-100">
+                        <span>Always Show</span>
+                  </div>
+
+                  <div class="ivue-layout-item ivue-medium-size-33 ivue-small-size-50 ivue-xsmall-size-100">
+                        <span>Always Show</span>
+                  </div>
+
+                  <div class="ivue-layout-item ivue-medium-size-33 ivue-small-size-50 ivue-xsmall-size-100">
+                        <span>Always Show</span>
+                  </div>
+
+                  <div class="ivue-layout-item ivue-medium-size-50 ivue-small-size-50 ivue-xsmall-hide">
+                        <span>Hide Xsmall</span>
+                  </div>
+
+                  <div class="ivue-layout-item ivue-medium-size-50 ivue-small-hide">
+                        <span>Hide Small</span>
+                  </div>
+                  <div class="ivue-layout-item ivue-medium-hide">
+                        <span>Hide Medium</span>
+                  </div>
+            </div>
+      </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+* {
+  box-sizing: border-box;
+}
+
+.layout {
+  height: 40px;
+
+  &:nth-child(1) {
+    background: rgba(128, 128, 128, 0.3);
+  }
+
+  &:nth-child(2) {
+    background: rgba(128, 128, 128, 0.4);
+  }
+
+  &:nth-child(3) {
+    background: rgba(128, 128, 128, 0.5);
+  }
+}
+
+.gutter-item {
+  height: 40px;
+
+  &:after {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgba(255, 0, 0, 0.2);
+    content: " ";
+  }
+}
+
+.ivue-layout-item {
+  height: 72px;
+
+  &:after {
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: " ";
+  }
+
+  &.ivue-layout {
+    &:after {
+      transform: translateY(-100%);
+      background: rgba(255, 255, 0, 0.2);
+    }
+
+    .ivue-layout-item:after {
+      height: 40px;
+      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+      background: rgb(255, 164, 255);
+    }
+  }
+}
+
+.example .ivue-layout-item {
+  min-height: 40px;
+
+  span {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    display: block;
+    background: rgba(0, 0, 255, 0.2);
+  }
+}
+
+.size {
+  height: 40px;
+  &:after {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgb(0, 118, 0);
+    opacity: 0.2;
+    content: " ";
+  }
+}
+
+.response .ivue-layout-item {
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  &:after {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: purple;
+    content: " ";
+  }
+}
+
+.hide .ivue-layout-item {
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  span {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    display: block;
+    background: rgba(rgb(0, 128, 128), 0.2);
+  }
+}
+</style>
+```     
 
 API
 
@@ -57,6 +326,11 @@ ivue-hide
 
 构成应用程序的内容表面在本规范中称为材料或材料表。内容组件通常用于类似一张纸。主题任意内容将是有用的。
 
+##### 例子
+```javascript
+ <IVueContent>hello</IVueContent>    
+```    
+   
 API
 
 ##### props    
@@ -70,7 +344,85 @@ API
 
 按钮传达用户触摸它们时将发生的操作。它们可以是平坦的，凸起的，任何色彩辅助类都可以用来改变背景或文字的颜色。
 
+##### 例子
 
+```javascript
+<template>
+      <div>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <div>
+          <span>Flat</span>
+          <IVueButton @click="clickBtn">默认效果</IVueButton>
+          <IVueButton :ivueRipple="false">波纹效果关闭</IVueButton>
+          <IVueButton class="red-accent-4">Accent</IVueButton>
+          <IVueButton class="blue">Primary</IVueButton>
+          <IVueButton disabled>disabled</IVueButton>
+        </div>
+        <div>
+          <span>Raised</span>
+          <IVueButton class="ivue-raised" >默认效果</IVueButton>
+          <IVueButton class="ivue-raised" :ivueRipple="false">波纹效果关闭</IVueButton>
+          <IVueButton class="ivue-raised blue">Primary</IVueButton>
+          <IVueButton class="ivue-raised red-accent-4">Accent</IVueButton>
+          <IVueButton class="ivue-raised" disabled>disabled</IVueButton>
+        </div>
+        <div>
+          <span>no elevation</span>
+          <IVueButton class="ivue-raised-noElevation">默认效果</IVueButton>
+          <IVueButton class="ivue-raised-noElevation red-accent-4">Accent</IVueButton>
+          <IVueButton class="ivue-raised-noElevation blue">Primary</IVueButton>
+        </div>
+        <div>
+          <span>link</span>
+          <IVueButton :href="pageUrl">默认效果</IVueButton>
+          <IVueButton :href="pageUrl" class="blue">Primary</IVueButton>
+          <IVueButton :href="pageUrl" class="red-accent-4">Accent</IVueButton>
+          <IVueButton :href="pageUrl" class="ivue-raised blue">Primary</IVueButton>
+        </div>
+         <div>
+          <span>router link</span>
+          <IVueButton to="Layout">默认效果</IVueButton>
+          <IVueButton to="Layout" class="blue">Primary</IVueButton>
+          <IVueButton to="Layout" class="red-accent-4">Accent</IVueButton>
+        </div>
+        <div>
+          <span>icon</span>
+          <IVueButton class="ivue-icon-button">
+            <IVueIcon>menu</IVueIcon>
+          </IVueButton>
+
+           <IVueButton class="ivue-icon-button ivue-raised ">
+            <IVueIcon>menu</IVueIcon>
+          </IVueButton>
+
+          <IVueButton class="ivue-icon-button ivue-raised  red-accent-4">
+            <IVueIcon>menu</IVueIcon>
+          </IVueButton>
+        </div>
+      </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    pageUrl () {
+      return window.location.href
+    }
+  },
+  methods: {
+    clickBtn () {
+      console.log("click")
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+body {
+  background: #eee;
+}
+</style>
+```     
 
 API
 
@@ -111,6 +463,33 @@ API
 标可以使用图标字体或外部SVG。此外，可以接受一些大小尺寸，如 2x, 3x, 4x and 5x.
 默认情况下, ```IVueIcon``` 使用的是 [material io](https://material.io/tools/icons/?icon=mood_bad&style=baseline)图标,您必须使用下划线而不是空格来传递图标的名称。例如：```<IVueIcon>thumb_up</IVueIcon>```
 
+##### 例子
+```javascript
+<template>
+      <div>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+            <p> 图标可以使用图标字体或外部SVG。此外，可以接受一些大小尺寸，如 2x, 3x, 4x and 5x。默认情况下，IVueIcon 将假定你使用的是 <a target="_black" href="https://material.io/tools/icons/?icon=mood_bad&style=baseline">material icon</a></p>
+
+            <div>
+                  <IVueIcon>menu</IVueIcon>
+                  <IVueIcon>add</IVueIcon>
+                  <IVueIcon>thumb_up</IVueIcon>
+                  <IVueIcon>verified_user</IVueIcon>
+                  <IVueIcon>home</IVueIcon>
+            </div>
+
+             <div>
+                  <IVueIcon>menu</IVueIcon>
+                  <IVueIcon class="ivue-size-2x">add</IVueIcon>
+                  <IVueIcon class="ivue-size-3x">thumb_up</IVueIcon>
+                  <IVueIcon class="ivue-size-4x">verified_user</IVueIcon>
+                  <IVueIcon class="ivue-size-5x">home</IVueIcon>
+            </div>
+      </div>
+</template>
+```      
+
 API
 
 ##### props    
@@ -138,6 +517,45 @@ API
 组件用于显示信息，它可以包含一个头像、内容、操作、列表组标题等等。列表也可以包含子元素并在侧边栏（sidebar）使用。     
 
 列表项可以包含交互事件，例如click和mousedown事件。
+
+##### 例子     
+
+```javascript
+<template>
+      <div>
+            <IVueList>
+                  <IVueListItem>Plain Text</IVueListItem>
+                  <IVueListItem :disabled="true">button</IVueListItem>
+                  <IVueListItem @click="">button</IVueListItem>
+                  <IVueListItem href="'www.baidu.com'">link</IVueListItem>
+                  <IVueListItem to="/icon">routerLink</IVueListItem>
+            </IVueList>
+
+            <p>expand</p>
+             <IVueList :ivueExpandSingle="expandSingle">
+                  <IVueListItem ivue-expand :ivue-expanded.sync="expandNews">
+                       <span class="ivue-list-item-text">News</span>
+
+                       <IVueList slot="ivue-expand">
+                              <IVueListItem class="ivue-inset">World</IVueListItem>
+                              <IVueListItem class="ivue-inset">World</IVueListItem>
+                        </IVueList>
+                  </IVueListItem>
+            </IVueList>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  expandNews: false,
+                  expandSingle: false
+            }
+      }
+}
+</script>
+```     
 
 API
 
@@ -176,6 +594,89 @@ API
 
 常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。
 
+##### 例子           
+
+```javascript
+<template>
+      <div>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+            <p>基础用法</p>
+            <IVueCarousel v-model="value1" loop>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">1</div>
+                  </IVueCarouselItem>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">2</div>
+                  </IVueCarouselItem>
+                    <IVueCarouselItem>
+                        <div class="demo-carousel">3</div>
+                  </IVueCarouselItem>
+            </IVueCarousel>
+
+            <p>自动切换</p>
+            <IVueCarousel v-model="value1" loop autoplay>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">1</div>
+                  </IVueCarouselItem>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">2</div>
+                  </IVueCarouselItem>
+                    <IVueCarouselItem>
+                        <div class="demo-carousel">3</div>
+                  </IVueCarouselItem>
+            </IVueCarousel>
+
+            <p>综合设置</p>
+            <IVueCarousel  v-model="value1" 
+                           :autoplay="autoplay"
+                           :autoplaySpeed="autoplaySpeed"
+                           :dots="dots"
+                           :radiusDot="radiusDot"
+                           :trigger="trigger"
+                           :arrow="arrow"
+            >
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">1</div>
+                  </IVueCarouselItem>
+                  <IVueCarouselItem>
+                        <div class="demo-carousel">2</div>
+                  </IVueCarouselItem>
+                    <IVueCarouselItem>
+                        <div class="demo-carousel">3</div>
+                  </IVueCarouselItem>
+            </IVueCarousel>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  value1: 0,
+                  autoplay: true,
+                  autoplaySpeed: 10000,
+                  dots: 'inside',
+                  radiusDot: true,
+                  trigger: 'click',
+                  arrow: 'always'
+            }
+      }
+}
+</script>
+
+<style>
+.demo-carousel {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  background: #506b9e;
+}
+</style>
+```      
+
 API
 
 ##### props      
@@ -209,6 +710,58 @@ API
 
 开/关切换可切换单个设置选项的状态。    
 
+##### 例子    
+
+```javascript
+<template>
+      <div>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+          
+            <p>基础</p>
+            <IVueSwitch class="red-accent-4"></IVueSwitch>
+
+            <p>大小</p>
+            <IVueSwitch size="large"></IVueSwitch>
+            <IVueSwitch></IVueSwitch>
+            <IVueSwitch size="small"></IVueSwitch>
+
+            <p>文字图标</p>
+            <IVueSwitch>
+                  <span slot="open">开</span>
+                  <span slot="close">关</span>
+            </IVueSwitch>
+
+            <IVueSwitch >
+                  <span slot="open"><IVueIcon>check</IVueIcon></span>
+                  <span slot="close"><IVueIcon>close</IVueIcon></span>
+            </IVueSwitch>
+
+            <p>不可用</p>
+            <IVueSwitch :disabled="true" class="red-accent-4"></IVueSwitch>
+
+            <p>loading</p>
+            <IVueSwitch loading :value="true" class="red-accent-4"></IVueSwitch>
+            <IVueSwitch loading :value="true" size="large" class="red-accent-4"></IVueSwitch>
+            <IVueSwitch loading :value="true" size="small" class="red-accent-4"></IVueSwitch>
+      </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss">
+.ivue-icon {
+      font-size: 12px;
+      min-width: 12px;
+      font-weight: bold;
+}
+</style>
+```     
+ 
+
 API     
 
 ##### props      
@@ -238,7 +791,83 @@ API
 
 ### IVueBottomNav 底部导航
 
-```IVueBottomNav```组件是一个侧边栏的替代方案。它主要用于移动端，并有两个变种，图标+文本和隐藏按钮文本直到被激活。
+```IVueBottomNav```组件是一个侧边栏的替代方案。它主要用于移动端，并有两个变种，图标+文本和隐藏按钮文本直到被激活。    
+
+
+##### 例子   
+
+```javascript
+
+<template>
+     <div>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+           <p>有主题颜色</p>
+            <IVueBottomNav :value="true"  :active.sync="bottomNav1" :color="color" key="theme">
+                  <IVueButton class="shades-white">
+                        <span>Recents</span>
+                        <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+                  <IVueButton class="shades-white">
+                        <span>Recents</span>
+                        <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+            </IVueBottomNav>
+
+           <p>基础</p>
+           <IVueBottomNav :value="true" :active.sync="bottomNav2" key="base" :height="'100'">
+                  <IVueButton class="red" key="base1">
+                          <span>Recents</span>
+                          <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+                   <IVueButton class="buld" key="base2"  to="/">
+                          <span>Recents</span>
+                          <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+           </IVueBottomNav>
+
+           <p>不激活时隐藏按钮上的文字</p>
+           <IVueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
+                  <IVueButton class="red">
+                          <span>Recents</span>
+                          <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+                   <IVueButton class="buld">
+                          <span>Recents</span>
+                          <IVueIcon>history</IVueIcon>
+                  </IVueButton>
+           </IVueBottomNav>
+           <br>
+           <br>
+     </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  bottomNav1: 0,
+                  bottomNav2: 1,
+                  bottomNav3: 0
+            }
+      },
+      computed: {
+            color () {
+                  switch (this.bottomNav) {
+                        case 0: return 'red'
+                        case 1: return 'lime'
+                  }
+            }
+      },
+      methods: {
+            onChange (data) {
+                  console.log(data)
+            }
+      }
+}
+</script>
+```      
+
 
 API
 
@@ -270,35 +899,60 @@ API
 
 ### IVueBreadcrumbs面包屑
 
-```IVueBreadcrumbsItem```组件是一个页面导航辅助器。它可以接受一个Material Icons图标或字符作为分隔符。一个包含字段href，text和disabled的对象数组可以被传递给组件items。此外，还有一个常规插槽用于更多地控制面包屑使用```IVueBreadcrumbsItem```。
+```IVueBreadcrumbsItem```组件是一个页面导航辅助器。它可以接受一个Material Icons图标或字符作为分隔符。一个包含字段href，text和disabled的对象数组可以被传递给组件items。此外，还有一个常规插槽用于更多地控制面包屑使用```IVueBreadcrumbsItem```      
 
-例子
+##### 例子
 ```javascript
       <IVueBreadcrumbs>
-                        <IVueBreadcrumbsItem>
-                              <IVueIcon>home</IVueIcon>
-                              Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem >
-                              home
-                        </IVueBreadcrumbsItem>
+            <IVueBreadcrumbsItem>
+                  <IVueIcon>home</IVueIcon>
+                  Home
+            </IVueBreadcrumbsItem>
+            <IVueBreadcrumbsItem>
+                  home
+            </IVueBreadcrumbsItem>
       </IVueBreadcrumbs>
 ```
-
 
 API
 
 ##### props       
       
 | 属性          | 说明                             | 类型   | 默认值 |
-| ------------- | :------------------------------- | :----- | :----- |     
-| active    | 当前激活的导航 | Number, String | -      |     
-| height | 底部导航栏高度 | Number, String | 56    |    
-| value | 底部导航栏是否可见(注意：父级节点必须设置 overflow: hidden) | Boolean | false |      
-| color | 底部导航栏背景颜色 | String | null |     
-| position | 底部导航栏定位(```absolute``` ```fixed```) | String | null |      
-| shift | 不是激活状态时隐藏按钮上的文字 | Boolean | false |      
-        
+| ------------- | :------------------------------- | :----- | :----- |      
+| divider    | 分隔符 | String | /     |      
+| justifyCenter    | 中间对齐面包屑 | Boolean | -     |       
+| justifyEnd    | 尾部对齐面包屑 | Boolean | -     |      
+
+##### slots       
+      
+| 属性          | 说明                             |      
+| ------------- | :------------------------------- |     
+| default    | Vue默认原生插槽|      
+
+
+### IVueBreadcrumbsItem 面包屑子项
+
+用于控制面包屑使用```IVueBreadcrumbsItem```        
+
+API
+
+##### props       
+      
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |       
+| disabled    | 当前面包屑是否处于禁用状态 | Boolean | false     |     
+| tag    | ```IVueBreadcrumbsItem```渲染的标签tag | String | a     |       
+| to    | ```vue-router```导航 | String,Object | -     |       
+| href    | ```a```标签链接跳转 | String,Object | -     |      
+| target    | 用于设置```a``` 链接的 ```target``` 属性 | String | _self    |      
+| replace    | 调用 ```router.replace()``` | Boolean | -    |      
+| nuxt    | 启用nuxt.js的导航 (前提是使用了nuxt.js ) | Boolean | -    |      
+| exactActiveClass    |  当链接被精确匹配的时候应该激活的```class``` | String | -    |       
+| append    |  在当前 (相对) 路径前添加基路径 | Boolean | -    |       
+| activeClass    | 链接激活时使用的 CSS 类名  | String | -    |       
+| exact    | "是否激活" 默认类名的依据是 inclusive match (全包含匹配)。 举个例子，如果当前的路径是 /a 开头的，那么 ```<router-link to="/a">``` 也会被设置 CSS 类名。  | Boolean | -    |        
+
 ##### slots       
       
 | 属性          | 说明                             |

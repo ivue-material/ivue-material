@@ -1,7 +1,7 @@
 <template>
       <div>
             <p>基础</p>
-            <IVueBreadcrumbs>
+            <IVueBreadcrumbs justifyEnd>
                   <IVueBreadcrumbsItem>
                          <IVueIcon>home</IVueIcon>
                         Home
