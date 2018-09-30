@@ -21,7 +21,9 @@
     "url": "https://github.com/qq282126990/iVue"
   },
   "author": "qq282126990",
-  "dependencies": {},
+  "dependencies": {
+    "v-click-outside-x":"^3.2.2"
+  },
   "peerDependencies": {
     "vue": "^2.5.17"
   },

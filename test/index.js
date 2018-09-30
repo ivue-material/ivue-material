@@ -10,3 +10,4 @@ import "./components/IVueSpin.test";
 import "./components/IVueCarousel.test";
 import "./components/IVueSwitch.test";
 import "./components/IVueBottomNav.test";
+import "./components/IVueBreadcrumbs.test";

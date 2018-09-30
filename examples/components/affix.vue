@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .demo-affix {
   width: 100px;
   height: 30px;

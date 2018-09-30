@@ -9,13 +9,23 @@ $ivue-button-dense-height: 32px;
 $ivue-button-icon-size: 40px;
 // icon
 $icon-size: 24px;
-
 // color
 $primary-color: #2d8cf0;
+$divider-color: rgba(0, 0, 0, 0.38);
 $text-color:#515a6e;
-$divider-color: rgba(0,0,0,0.38);
+$text-disable-color:#c5c8ce;
+$arrow-color: #808695;
 // cursor
 $cursor-disabled: not-allowed;
-
 // size
 $font-size-small: 12px;
+// input
+$input-height-base: 32px;
+$input-placeholder-color: #c5c8ce;
+
+// background
+$background-color-select-hover: #f3f3f3;
+
+// size
+$font-small-size: 12px;
+$font-base-size: 14px;

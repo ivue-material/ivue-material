@@ -11,6 +11,8 @@ import IVueCarousel from '../components/ivueCarousel';
 import IVueSwitch from '../components/ivueSwitch';
 import IVueBottomNav from '../components/ivueBottomNav';
 import IVueBreadcrumbs from '../components/ivueBreadcrumb';
+import IVueSelect from '../components/ivueSelect';
+
 Vue.use(Router);
 
 export default new Router({
@@ -69,6 +71,11 @@ export default new Router({
       path: '/IVueBreadcrumbs',
       name: 'IVueBreadcrumbs',
       component: IVueBreadcrumbs
+    },
+    {
+      path: '/IVueSelect',
+      name: 'IVueSelect',
+      component: IVueSelect
     }
   ]
 });

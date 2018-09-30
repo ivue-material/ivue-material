@@ -98,17 +98,11 @@ export default {
       computed: {
             // class
             classes () {
-                  const absolute = `${prefixCls}--absolute`;
-                  const active = `${prefixCls}--active`;
-                  const fixed = `${prefixCls}--fixed`;
-                  const shift = `${prefixCls}--shift`;
-
                   return {
-                        prefixCls,
-                        absolute: this.position === 'absolute',
-                        active: this.value,
-                        fixed: this.position === 'fixed',
-                        shift: this.shift
+                        [`${prefixCls}--absolute`]: this.position === 'absolute',
+                        [`${prefixCls}--active`]: this.value,
+                        [`${prefixCls}--fixed`]: this.position === 'fixed',
+                        [`${prefixCls}--shift`]: this.shift
                   }
             },
             // 实时计算高度

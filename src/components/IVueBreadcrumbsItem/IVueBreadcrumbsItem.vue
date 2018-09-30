@@ -105,7 +105,7 @@ export default {
                   return [
                         prefixCls,
                         {
-                              'ivu-breadcrumb-item--disabled': this.disabled
+                              [`${prefixCls}--disabled`]: this.disabled
                         }
                   ];
             }

@@ -13,6 +13,7 @@ import IVueSwitch from './components/IVueSwitch';
 import IVueBottomNav from './components/IVueBottomNav';
 import IVueBreadcrumbs from './components/IVueBreadcrumbs';
 import IVueBreadcrumbsItem from './components/IVueBreadcrumbsItem';
+import {IVueSelect,IVueOption} from './components/IVueSelect';
 
 const components = {
   IVueAffix,
@@ -29,7 +30,9 @@ const components = {
   IVueSwitch,
   IVueBottomNav,
   IVueBreadcrumbs,
-  IVueBreadcrumbsItem
+  IVueBreadcrumbsItem,
+  IVueSelect,
+  IVueOption
 };
 
 const iVue = {

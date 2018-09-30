@@ -38,13 +38,11 @@
                   justify-content: center;
                   font-size: 12px;
                   white-space: nowrap;
-                  will-change: font-size;
                   height: 100%;
                   transition: all $ivue-transition-stand;
                   span {
                         line-height: 1;
                         transform: scale(1);
-                        will-change: transform;
                         transition: all $ivue-transition-stand;
                   }
             }
@@ -56,7 +54,6 @@
                   margin-top: 0;
                   color: inherit;
                   margin-bottom: 4px;
-                  will-change: transform;
                   transition: all $ivue-transition-stand;
 
             }
@@ -89,7 +86,6 @@
             .ivue-button {
                   min-width: 56px;
                   max-width: 96px;
-                  will-change: min-width, max-width;
                   transition: .3s $ivue-transition-default-timing;
                   transition-property: min-width, max-width;
                   will-change: min-width, max-width;
@@ -99,9 +95,6 @@
                   }
                   .ivue-button-content {
                         // font-size: 14px;
-                        .ivue-icon {
-                              will-change: transform;
-                        }
                         span {
                               will-change: transform, opacity;
                         }

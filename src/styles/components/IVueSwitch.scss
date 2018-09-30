@@ -9,7 +9,7 @@ $large-after-width: 28px;
 }
 
 
-.ivue-switch {
+.#{$name}{
       position: relative;
       display: inline-block;
       width: 44px;

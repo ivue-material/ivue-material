@@ -1,0 +1,141 @@
+$name: 'ivue-select';
+.#{$name} {
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+      vertical-align: middle;
+      color: $text-color;
+      font-size: 14px;
+      line-height: normal;
+      &-default &-selection {
+            position: relative;
+            height: $input-height-base;
+            /*输入提示*/
+            .#{$name}-placeholder {
+                  color: $input-placeholder-color;
+            }
+            .#{$name}-placeholder {
+                  display: block;
+                  height: $input-height-base - 2px;
+                  line-height: $input-height-base - 2px;
+                  font-size: $font-small-size;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  padding: 0 24px 0 8px;
+            }
+      }
+      &-selection {
+            display: block;
+            position: relative;
+            box-sizing: border-box;
+            outline: none;
+            user-select: none;
+            border-radius: 4px;
+            border: 1px solid #dcdee2;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+            &:hover {
+                  border-color: transparentize($primary-color, 0.2);
+            }
+      }
+      /*输入框箭头方向*/
+      &-arrow {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            line-height: 1;
+            margin-top: -7px;
+            font-size: $font-base-size;
+            font-weight: bold;
+            color: $arrow-color;
+            height: auto;
+            width: auto;
+            min-width: auto;
+            transition: all .2s ease-in-out;
+      }
+      &-selection-value {
+            display: block;
+            padding-left: 8px;
+            padding-right: 24px;
+            height: $input-height-base - 2px;
+            line-height: $input-height-base - 2px;
+            font-size: $font-small-size;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+      }
+      &-visible {
+            .#{$name}-selection {
+                  border-color: transparentize($primary-color, 0.2);
+                  outline: 0;
+                  box-shadow: 0 0 0 2px transparentize($primary-color, 0.8);
+            }
+            .#{$name}-arrow {
+                  transform: rotate(180deg);
+                  display: inline-block;
+            }
+      }
+      /*下拉菜单*/
+      &-dropdown {
+            position: absolute;
+            margin: 5px 0;
+            padding: 5px 0;
+            width: auto;
+            max-height: 200px;
+            overflow: auto;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 4px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+            z-index: 999;
+      }
+      /*下拉菜单列表*/
+      &-dropdown-list {
+            width: 100%;
+      }
+      /*没有数据时的提示*/
+      &-not-find {
+            text-align: center;
+            color: $text-disable-color;
+            li {
+                  margin-bottom: 0;
+            }
+      }
+      /*菜单数据列表*/
+      &-item {
+            margin: 0;
+            padding: 7px 16px;
+            clear: both;
+            line-height: normal;
+            font-size: $font-small-size;
+            white-space: nowrap;
+            list-style: none;
+            cursor: pointer;
+            color: $text-color;
+            transition: background $ivue-transition-default-timing;
+            &:hover {
+                  background: $background-color-select-hover;
+            }
+            &-focus {
+                  background: $background-color-select-hover;
+            }
+      }
+}
+
+.transition-drop-enter-active {
+      transition: all .3s ease-in-out;
+}
+
+.transition-drop-leave-active {
+      transition: all .3s ease-in-out;
+}
+
+.transition-drop-enter,
+.transition-drop-leave-to {
+      opacity: 0;
+      transform-origin: top center;
+      transform: scaleY(0.8);
+      will-change: opacity, transform;
+}
