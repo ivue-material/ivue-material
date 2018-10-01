@@ -61,7 +61,7 @@ export default {
             defaultDisplayClasses () {
                   return [
                         {
-                              [`${prefixCls}-selection-value`]: !this.showPlaceholder && !multiple,
+                              [`${prefixCls}-selection-value`]: !this.showPlaceholder && !this.multiple,
                               [`${prefixCls}-placeholder`]: this.showPlaceholder
                         }
                   ]

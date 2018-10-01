@@ -25,6 +25,7 @@
                         </ul>
                         <!-- 数据列表 -->
                         <ul :class="`${prefixCls}-dropdown-list`">
+                              <!-- 函数式组件用于提升渲染性能纯渲染组件 -->
                               <FunctionalOptions
                                     :slotOption="slotOptions"
                                     :slotUpdateHook= "updateSlotOptions"
@@ -42,6 +43,7 @@
 import { directive as clickOutside } from 'v-click-outside-x';
 import IVueSleectHead from './IVueSelectHead.vue';
 import IVueDropDown from './IVueDropDown.vue';
+// 函数式组件用于提升渲染性能纯渲染组件
 import FunctionalOptions from './FunctionalOptions.vue';
 
 const prefixCls = 'ivue-select';
@@ -184,7 +186,8 @@ export default {
             }
       },
       mounted () {
-            console.log(this)
+            // 注册参数选择事件
+            this.$on('on-select-option', this.onOptionClick);
       },
       computed: {
             // 外部样式
@@ -234,6 +237,8 @@ export default {
                         if (componentOptions && componentOptions.tag.match(optionRegexp)) {
                               let children = componentOptions.children;
 
+
+                              // option = VNode
                               children = children.map((option) => {
                                     optionCounter = optionCounter + 1;
 
@@ -241,6 +246,7 @@ export default {
                                     return this.handleOption(option);
                               });
 
+                              // 插入VNode
                               if (children.length > 0) {
                                     selectOptions.push({ ...option });
                               }
@@ -248,17 +254,20 @@ export default {
                         }
                   });
 
+                  /*
+                  * 这是一个组件数组 [components]
+                  */
                   return selectOptions;
             },
             // 显示没有数据时的文本
             showNotFindText () {
-                  console.log(this.selectOptions)
                   return this.selectOptions && this.selectOptions.length === 0;
             }
       },
       methods: {
             // 点击外部
             onClickOutside (event) {
+                  console.log(event)
                   // 判断是否显示了菜单
                   if (this.visibleMenu) {
                         if (event.type === 'mousedown') {
@@ -267,46 +276,10 @@ export default {
                         }
 
                         event.preventDefault();
+                        // 点击后隐藏菜单
                         this.hideMenu();
                   }
             },
-            // 获取选项数据
-            // getOptionData () {
-            //       const optionData = this.flatOptionsData().find(({ componentOptions }) => {
-            //             return componentOptions.propsData.value === value;
-            //       });
-            //       if (!optionData) {
-            //             return null
-            //       }
-
-            //       const label = getOptionLabel(optionData);
-
-            //       return {
-            //             value: value,
-            //             label: label
-            //       }
-            // },
-            // 获取初始值
-            // getInitialValue () {
-            //       // 初始化选中项目的 value 值
-            //       let initialValue = Array.isArray(value) ? value : [value];
-
-            //       // 不是多选 value 是 undefined 或者 value = '' value不是无穷大
-            //       if (!this.multiple && (typeof initialValue[0] === 'undefined' || (String(initialValue[0]).trim() === '' && !Number.isFinite(initialValue[0])))) {
-            //             initialValue = [];
-            //       }
-
-            //       // 不是多选 有 value
-            //       if (!this.multiple && value) {
-            //             const optionData = this.getOptionData(value);
-
-            //             this.query = optionData ? optionData.label : String(value);
-            //       }
-
-            //       return initialValue.filter((item) => {
-            //             return Boolean(item) || item === 0;
-            //       });
-            // },
             // 点击菜单
             toggleMenu (event, force) {
                   // 设置菜单状态
@@ -325,9 +298,19 @@ export default {
             },
             // 提取选项数据
             handleOption (option, values, isFocused) {
+                  // 如果选项节点没有子组件就直接返回选项节点
                   if (!option.componentOptions) {
                         return option;
                   }
+            },
+            // 选项菜单点击
+            onOptionClick (option) {
+                  // 设置需要查询的label
+                  this.query = String(option.label).trim();
+                  // 最终渲染的数据
+                  this.values = [option];
+                  // 点击后隐藏菜单
+                  this.hideMenu();
             }
       },
       components: {

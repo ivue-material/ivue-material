@@ -12,16 +12,28 @@
 </template>
 
 <script>
+import EmitterEvent from '../../utils/mixins/EmitterEvent';
 const prefixCls = 'ivue-select-item';
 
 export default {
       name: "IVueOption",
       componentName: "ivue-select-item",
+      mixins: [EmitterEvent],
       props: {
+            /*
+            * 渲染的 value
+            * 
+            * @type {String, Number}
+            */
             value: {
                   type: [String, Number],
                   required: true
             },
+            /*
+            * 渲染的 label
+            * 
+            * @type {String, Number}
+            */
             label: {
                   type: [String, Number]
             }
@@ -44,7 +56,14 @@ export default {
       methods: {
             // 点击选择选项
             selectOption () {
-                  this.$emit('onSelectOption', {
+                  // 把事件注册到 IVueSelect 组件
+                  this.dispatch('IVueSelect', 'on-select-option', {
+                        value: this.value,
+                        label: this.getLabel
+                  });
+
+                  // 注册事件
+                  this.$emit('on-select-option', {
                         value: this.value,
                         label: this.getLabel
                   })
