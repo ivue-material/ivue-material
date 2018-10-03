@@ -285,6 +285,7 @@ export default {
                   // 设置菜单状态
                   this.visibleMenu = typeof force !== 'undefined' ? force : !this.visibleMenu;
                   if (this.visibleMenu) {
+                        // 注册点击事件
                         this.$refs.ivueDropDown.$emit('on-update-drop-down');
                   }
             },

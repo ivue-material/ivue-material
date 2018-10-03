@@ -37,11 +37,12 @@ export default {
       methods: {
             // 更新数据
             update () {
+                  // 判断是否是服务器端
                   if (isServer) {
                         return;
                   }
 
-                  // 设置select的宽度为100％
+                  // 设置输入框的宽度为100％
                   if (this.$parent.$options.name === 'IVueSelect') {
                         this.width = parseInt(getStyle(this.$parent.$el, 'width'));
                   }
