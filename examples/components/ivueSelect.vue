@@ -1,8 +1,9 @@
 <template>
       <div>
-            <IVueSelect>
-                  <IVueOption v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</IVueOption>
+            <IVueSelect v-model="model1" :value="model1">
+                  <IVueOption v-for="(item,index) in cityList" :value="item.value" :key="index">{{ item.label }}</IVueOption>
             </IVueSelect>
+            <p> {{model1}}</p>
       </div>
 </template>
 
@@ -14,6 +15,10 @@ export default {
                         {
                               value: 'New York',
                               label: 'New York'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
                         },
                         {
                               value: 'London',
@@ -35,7 +40,8 @@ export default {
                               value: 'Canberra',
                               label: 'Canberra'
                         }
-                  ]
+                  ],
+                  model1: 'Canberra'
             }
       }
 }

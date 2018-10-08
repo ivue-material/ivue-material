@@ -15,6 +15,7 @@
                         ></IVueSleectHead>
                   </slot>
             </div>
+            <!-- 下拉菜单 -->
             <transition name="transition-drop">
                   <IVueDropDown ref="ivueDropDown" 
                                 v-show="visibleMenu"
@@ -40,8 +41,11 @@
 
 <script>
 // 注册外部点击事件插件
-import { directive as clickOutside } from 'v-click-outside-x';
+import { directive as clickOutside } from '../../utils/ClickOutside';
+
+// 输入框
 import IVueSleectHead from './IVueSelectHead.vue';
+// 下拉菜单
 import IVueDropDown from './IVueDropDown.vue';
 // 函数式组件用于提升渲染性能纯渲染组件
 import FunctionalOptions from './FunctionalOptions.vue';
@@ -51,7 +55,9 @@ const optionRegexp = /^ivue-option$|^IVueOption$/i;
 
 // 在vnode中查找选项
 const findOptionsInVNode = (node) => {
+
       const options = node.componentOptions;
+
       if (options && options.tag.match(optionRegexp)) {
             return [node];
       }
@@ -73,7 +79,7 @@ const extractOptions = (options) => {
       // reduce 累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
       return options.reduce((options, slotEntry) => {
             return options.concat(findOptionsInVNode(slotEntry));
-      })
+      }, [])
 
 }
 
@@ -93,18 +99,30 @@ const getOptionLabel = (option) => {
       }
 
       // 获取text内容
-      const textContent = (option.componentOptions.children || []).reduce((string, children) => {
-            return string + (children.text || ''), '';
-      });
+      const textContent = (option.componentOptions.children || []).reduce((string, children) => string + (children.text || ''), '');
 
       const innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
 
       return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
 }
 
+// 设置props
+const applyProp = (node, propName, value) => {
+      return {
+            ...node,
+            componentOptions: {
+                  ...node.componentOptions,
+                  propsData: {
+                        ...node.componentOptions.propsData,
+                        [propName]: value,
+                  }
+            }
+      };
+};
+
 export default {
       name: 'IVueSelect',
-      // 注册自定义指令
+      // 注册局部指令
       directives: { clickOutside },
       props: {
             /*
@@ -166,12 +184,6 @@ export default {
                   */
                   values: [],
                   /*
-                  * 需要查询到的值
-                  *
-                  * @type {String}
-                  */
-                  query: '',
-                  /*
                   * 是否显示菜单
                   *
                   * @type {Boolean}
@@ -182,12 +194,29 @@ export default {
                   *
                   * @type {Array}
                   */
-                  slotOptions: this.$slots.default
+                  slotOptions: this.$slots.default,
+                  /*
+                  * 焦点项
+                  *
+                  * @type {Number}
+                  */
+                  focusIndex: -1
             }
       },
       mounted () {
             // 注册参数选择事件
             this.$on('on-select-option', this.onOptionClick);
+
+            // 设置初始值
+            if (this.selectOptions.length > 0) {
+                  this.values = this.getInitialValue().map((value) => {
+                        if (typeof value === 'undefined' && !value) {
+                              return null;
+                        }
+
+                        return this.getOptionData(value);
+                  }).filter(Boolean);
+            }
       },
       computed: {
             // 外部样式
@@ -210,10 +239,10 @@ export default {
             selectValue () {
                   // 判断是否有开启返回label和value
                   if (this.labelAndValue) {
-                        return this.multiple ? this.values : this.values[0];
+                        return this.values[0];
                   }
                   else {
-                        return this.multiple ? this.values.map((option) => option.value) : (this.values[0] || {}).value;
+                        return (this.values[0] || {}).value;
                   }
             },
             // 扁平化选项数据
@@ -226,33 +255,27 @@ export default {
                   // 获取选项的列表
                   const selectOptions = [];
                   // 获取插槽选项的数据
-                  const slotOption = (this.slotOptions || []);
+                  const slotOptions = (this.slotOptions || []);
                   // 选项计数器，计算有多少个选项
                   let optionCounter = -1;
-
-                  slotOption.forEach((option) => {
+                  // 当前焦点项
+                  const currentIndex = this.focusIndex;
+                  // 选择的选项
+                  const selectedValues = this.values.filter(Boolean).map(({ value }) => value);
+                  
+                  for (let option of slotOptions) {
                         // 获取选项组件里的数据
                         let componentOptions = option.componentOptions;
 
-                        if (componentOptions && componentOptions.tag.match(optionRegexp)) {
-                              let children = componentOptions.children;
-
-
-                              // option = VNode
-                              children = children.map((option) => {
-                                    optionCounter = optionCounter + 1;
-
-                                    // 提取选项
-                                    return this.handleOption(option);
-                              });
-
-                              // 插入VNode
-                              if (children.length > 0) {
-                                    selectOptions.push({ ...option });
-                              }
-
+                        if (!componentOptions) {
+                              continue;
                         }
-                  });
+
+                        // 选项计数器
+                        optionCounter = optionCounter + 1;
+
+                        selectOptions.push(this.handleOption(option, selectedValues, optionCounter === currentIndex));
+                  }
 
                   /*
                   * 这是一个组件数组 [components]
@@ -267,7 +290,6 @@ export default {
       methods: {
             // 点击外部
             onClickOutside (event) {
-                  console.log(event)
                   // 判断是否显示了菜单
                   if (this.visibleMenu) {
                         if (event.type === 'mousedown') {
@@ -303,15 +325,130 @@ export default {
                   if (!option.componentOptions) {
                         return option;
                   }
+
+                  // 获取选项的值
+                  const optionValue = option.componentOptions.propsData.value;
+                  // console.log( option)
+
+
+
+                  // 判断是否选中当前选项
+                  const isSelect = values.includes(optionValue);
+
+                  const propsData = {
+                        ...option.componentOptions.propsData,
+                        selected: isSelect,
+                        isFocused: isFocused
+                  };
+
+                  // 设置选项组件的参数
+                  return {
+                        ...option,
+                        componentOptions: {
+                              ...option.componentOptions,
+                              propsData: propsData
+                        }
+                  };
+
             },
             // 选项菜单点击
             onOptionClick (option) {
-                  // 设置需要查询的label
-                  this.query = String(option.label).trim();
                   // 最终渲染的数据
                   this.values = [option];
                   // 点击后隐藏菜单
                   this.hideMenu();
+
+                  console.log( option)
+
+
+                  // 获取焦点项
+                  this.focusIndex = this.flatOptionsData.findIndex((opt) => {
+                        if (!opt || !opt.componentOptions) {
+                              return false;
+                        }
+
+                        return opt.componentOptions.propsData.value === option.value;
+                  });
+            },
+            // 获取选项数据
+            getOptionData (value) {
+                  const option = this.flatOptionsData.find(({ componentOptions }) => {
+                        return componentOptions.propsData.value === value
+                  });
+
+                  if (!option) {
+                        return null;
+                  }
+
+                  const label = getOptionLabel(option);
+
+
+                  // 获取焦点项
+                  this.focusIndex = this.flatOptionsData.findIndex((opt) => {
+                        if (!opt || !opt.componentOptions) {
+                              return false;
+                        }
+
+                        return opt.componentOptions.propsData.value === value;
+                  });
+
+                  return {
+                        value: value,
+                        label: label
+                  }
+            },
+            // 获取初始值value
+            getInitialValue () {
+                  const { value } = this;
+
+                  let initialValue = Array.isArray(value) ? value : [value];
+                  // 判断 值 === undefined 或者是 ''而且 参数不是无穷大
+                  if ((typeof initialValue[0] === 'undefined' || (String(initialValue[0]).trim() === '' && !Number.isFinite(initialValue[0])))) {
+                        initialValue = [];
+                  }
+                  if (this.value) {
+                        // 获取选项数据
+                        const data = this.getOptionData(value);
+                        this.query = data ? data.label : String(value);
+
+                  }
+
+                  return initialValue.filter((item) => {
+                        return Boolean(item) || item === 0;
+                  });
+            }
+      },
+      watch: {
+            // 监听选择的值
+            value (value) {
+                  const { getInitialValue, getOptionData, selectValue } = this;
+
+                  if (value === '') {
+                        this.values = [];
+                  }
+                  else if (JSON.stringify(value) !== JSON.stringify(selectValue)) {
+                        this.$nextTick(() => {
+                              this.values = getInitialValue().map(getOptionData).filter(Boolean);
+                        })
+                  }
+            },
+            // 监听最终渲染的数据的变化
+            values (newValue, oldValue) {
+                  const _newValue = JSON.stringify(newValue);
+                  const _oldValue = JSON.stringify(oldValue);
+
+                  // 设置v-model的值
+                  const vModelValue = (this.labelAndValue && this.selectValue) ? this.selectValue.value : this.selectValue;
+                  // 输入框值
+                  const emitInput = _newValue !== _oldValue && vModelValue !== this.value;
+
+                  if (emitInput) {
+                        // 更新 v-model
+                        this.$emit('input', vModelValue);
+
+                        // 选中的Option变化时触发
+                        this.$emit('on-change', this.selectValue);
+                  }
             }
       },
       components: {

@@ -90,6 +90,7 @@ $name: 'ivue-select';
             border-radius: 4px;
             box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
             z-index: 999;
+            transform-origin: center top 0px;
       }
       /*下拉菜单列表*/
       &-dropdown-list {
@@ -121,21 +122,22 @@ $name: 'ivue-select';
             &-focus {
                   background: $background-color-select-hover;
             }
+            &-selected {
+                  color: $primary-color;
+            }
       }
 }
 
 .transition-drop-enter-active {
       transition: all .3s ease-in-out;
 }
-
 .transition-drop-leave-active {
       transition: all .3s ease-in-out;
 }
-
 .transition-drop-enter,
 .transition-drop-leave-to {
       opacity: 0;
-      transform-origin: top center;
+      transform-origin: 0% 0%;
       transform: scaleY(0.8);
       will-change: opacity, transform;
 }

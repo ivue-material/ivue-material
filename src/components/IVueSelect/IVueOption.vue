@@ -3,7 +3,9 @@
           @click.stop="selectOption"  
           @touchend.stop="selectOption"  
           @mousedown.prevent
-          @touchstart.prevent
+          @touchstart="_touchstart"
+          @touchmove="_touchmove"
+          @touchend="_touchend"
       >
             <slot>
                   {{showLabel}}
@@ -36,12 +38,42 @@ export default {
             */
             label: {
                   type: [String, Number]
+            },
+            /*
+            * 是否选择当前项
+            * 
+            * @type {Boolean}
+            */
+            selected: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 是否获取到焦点
+            * 
+            * @type {Boolean}
+            */
+            isFocused: {
+                  type: Boolean,
+                  default: false
+            }
+      },
+      data () {
+            return {
+                  // 触摸开始位置
+                  touchesStart: [],
+                  // 触摸结束位置
+                  touchesEnd: []
             }
       },
       computed: {
             classes () {
                   return [
-                        prefixCls
+                        prefixCls,
+                        {
+                              [`${prefixCls}-selected`]: this.selected,
+                              [`${prefixCls}-focus`]: this.isFocused,
+                        }
                   ]
             },
             // 是否显示label
@@ -54,8 +86,25 @@ export default {
             }
       },
       methods: {
+            // 手指点击
+            _touchstart (e) {
+                  this.touchesStart = e.touches[0];
+            },
+            // 手机滑动
+            _touchmove (e) {
+                  this.touchesEnd = e.touches[0];
+            },
+            // 手指离开
+            _touchend () {
+                  this.touchesEnd = []
+            },
             // 点击选择选项
             selectOption () {
+                  // 判断移动端滑动
+                  if (!(!(this.touchesStart.length > 0) && this.touchesEnd.length === 0)) {
+                        return;
+                  }
+
                   // 把事件注册到 IVueSelect 组件
                   this.dispatch('IVueSelect', 'on-select-option', {
                         value: this.value,
