@@ -5,8 +5,7 @@
       font-size: $size;
 }
 
-.ivue-icon {
-      @include ivue-icon-size($icon-size);
+@mixin ivue-icon {
       margin: auto;
       display: inline-flex;
       user-select: none;
@@ -26,6 +25,12 @@
       white-space: nowrap;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+}
+
+.ivue-icon {
+      @include ivue-icon-size($icon-size);
+      @include ivue-icon;
+     
       &.ivue-size-2x {
             @include ivue-icon-size($icon-size * 2);
       }

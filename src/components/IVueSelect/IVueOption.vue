@@ -1,20 +1,24 @@
 <template>
-      <li :class="classes"
-          @click.stop="selectOption"  
-          @touchend.stop="selectOption"  
-          @mousedown.prevent
-          @touchstart="_touchstart"
-          @touchmove="_touchmove"
-          @touchend="_touchend"
-      >
-            <slot>
-                  {{showLabel}}
-            </slot>
-      </li>
+      <IVueRipple>
+            <li :class="classes"
+            @click.stop="selectOption"  
+            @touchend.stop="selectOption"  
+            @mousedown.prevent
+            @touchstart="_touchstart"
+            @touchmove="_touchmove"
+            @touchend="_touchend"
+            >
+                  <slot>
+                        {{showLabel}}
+                  </slot>
+            </li>
+      </IVueRipple>
 </template>
 
 <script>
 import EmitterEvent from '../../utils/mixins/EmitterEvent';
+import IVueRipple from '../IVueRipple/IVueRipple';
+
 const prefixCls = 'ivue-select-item';
 
 export default {
@@ -22,6 +26,10 @@ export default {
       componentName: "ivue-select-item",
       mixins: [EmitterEvent],
       props: {
+            ivueDisabled: {
+                  type: Boolean,
+                  default: false
+            },
             /*
             * 渲染的 value
             * 
@@ -56,6 +64,14 @@ export default {
             isFocused: {
                   type: Boolean,
                   default: false
+            },
+            /*
+            * 当前组件的key
+            * 
+            * @type {Boolean}
+            */
+            keys: {
+                  type: [String, Number]
             }
       },
       data () {
@@ -108,15 +124,20 @@ export default {
                   // 把事件注册到 IVueSelect 组件
                   this.dispatch('IVueSelect', 'on-select-option', {
                         value: this.value,
-                        label: this.getLabel
+                        label: this.getLabel,
+                        keys: this.keys
                   });
 
                   // 注册事件
                   this.$emit('on-select-option', {
                         value: this.value,
-                        label: this.getLabel
+                        label: this.getLabel,
+                        keys: this.keys
                   })
             }
+      },
+      components:{
+            IVueRipple
       }
 }
 </script>

@@ -1,7 +1,10 @@
 <template>
       <div>
-            <IVueSelect v-model="model1" :value="model1">
-                  <IVueOption v-for="(item,index) in cityList" :value="item.value" :key="index">{{ item.label }}</IVueOption>
+            <IVueSelect  :filterable="true">
+                  <IVueOption v-for="(item,index) in cityList" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                        <span style="float:right;color:#ccc">America</span>
+                  </IVueOption>
             </IVueSelect>
             <p> {{model1}}</p>
       </div>
