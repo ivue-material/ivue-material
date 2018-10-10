@@ -101,7 +101,7 @@ $name: 'ivue-select';
             outline: none;
             border: none;
             box-sizing: border-box;
-            height: $input-height-base - 2;
+            height: $input-height-base;
             line-height: 1;
             color: $text-color;
             background-color: transparent;
@@ -111,6 +111,11 @@ $name: 'ivue-select';
                   cursor: not-allowed;
                   color: #ccc;
             }
+      }
+      &-multiple &-input-filter {
+            padding: 0 0 0 4px;
+            height: $input-height-base - 3px;
+            height: $input-height-base - 2px;
       }
       /*输入框箭头方向*/
       &-arrow {

@@ -1,6 +1,6 @@
 <template>
       <div>
-            <IVueSelect  :filterable="true">
+            <IVueSelect  :filterable="true" clearable>
                   <IVueOption v-for="(item,index) in cityList" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
                         <span style="float:right;color:#ccc">America</span>

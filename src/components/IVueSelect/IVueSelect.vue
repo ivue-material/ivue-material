@@ -6,16 +6,25 @@
             <div ref="ivueSlectSelection"
                  :class="selectionClasses"
                  @click="toggleMenu"
+
+                 @mouseenter="hasMouseHover = true"
+                 @mouseleave="hasMouseHover = false"
             >
                   <slot name="input">
-                        <input type="hidden" :name="name" :value="selectValue">
+                        <input type="hidden" :value="selectValue">
                         <IVueSleectHead  
                               :values="values"
                               :multiple="multiple"
                               :multipleCloseIcon="multipleCloseIcon"
                               :arrowDownIcon="arrowDownIcon"
                               :filterable="filterable"
+                              :resetSelectIcon="resetSelectIcon"
+                              :clearable="canClearable"
+                              :filterQueryProp="filterQuery"
                               @on-filter-query-change="onFilterQueryChange"
+                              @on-input-focus="isFocused = true"
+                              @on-input-blur="isFocused = false"
+                              @on-clear="clearSingleSelect"
                         ></IVueSleectHead>
                   </slot>
             </div>
@@ -167,26 +176,41 @@ export default {
                   type: Boolean,
                   default: false
             },
-            name: {
-                  type: String
-            },
             /*
             * 多项选择关闭图标
             * 
-            * @type{Boolean}
+            * @type{String}
             */
             multipleCloseIcon: {
                   type: String,
                   default: 'close'
             },
             /*
+            * 重置选择图标
+            * 
+            * @type{String}
+            */
+            resetSelectIcon: {
+                  type: String,
+                  default: 'cancel'
+            },
+            /*
             * 下拉图标
             * 
-            * @type{Boolean}
+            * @type{String}
             */
             arrowDownIcon: {
                   type: String,
                   default: 'keyboard_arrow_down'
+            },
+            /*
+            * 是否可以清楚选择
+            * 
+            * @type{Boolean}
+            */
+            clearable: {
+                  type: Boolean,
+                  default: false
             }
       },
       data () {
@@ -221,7 +245,31 @@ export default {
                   *
                   * @type {String}
                   */
-                  filterquery: ''
+                  filterQuery: '',
+                  /*
+                  * 是否开始输入框过滤
+                  *
+                  * @type {Boolean}
+                  */
+                  filterQueryChange: false,
+                  /*
+                  * 过滤输入框焦点位置
+                  *
+                  * @type {Boolean}
+                  */
+                  caretPosition: -1,
+                  /*
+                  * 判断是否有焦点
+                  *
+                  * @type {Boolean}
+                  */
+                  isFocused: false,
+                  /*
+                  * 鼠标悬浮
+                  *
+                  * @type {Boolean}
+                  */
+                  hasMouseHover: false
             }
       },
       mounted () {
@@ -278,7 +326,7 @@ export default {
             },
             // 获取菜单选择列表
             selectOptions () {
-                  const { slotOptions, focusIndex, values, handleOption } = this;
+                  const { slotOptions, focusIndex, values, handleOption, filterQueryChange, validateOption, filterable } = this;
 
                   // 获取选项的列表
                   const selectOptions = [];
@@ -300,6 +348,14 @@ export default {
                               continue;
                         }
 
+                        //如果没有 filterQueryChange ，则忽略选项
+                        if (filterQueryChange) {
+                              const optionFilter = filterable ? validateOption(componentOptions) : option;
+                              if (!optionFilter) {
+                                    continue;
+                              }
+                        }
+
                         // 选项计数器
                         optionCounter = optionCounter + 1;
 
@@ -314,6 +370,13 @@ export default {
             // 显示没有数据时的文本
             showNotFindText () {
                   return this.selectOptions && this.selectOptions.length === 0;
+            },
+            // 是否可以显示重置选择按钮
+            canClearable () {
+                  const { hasMouseHover, clearable, multiple } = this;
+
+                  // 多选模式下无效
+                  return (hasMouseHover && clearable && !multiple);
             }
       },
       methods: {
@@ -328,9 +391,28 @@ export default {
                               return;
                         }
 
+                        if (this.filterable) {
+                              const input = this.$el.querySelector('input[type="text"]');
+                              // 第一个选定字符的索引
+                              this.caretPosition = input.selectionStart;
+
+                              this.$nextTick(() => {
+                                    const caretPosition = this.caretPosition === -1 ? input.value.length : this.caretPosition;
+
+                                    input.setSelectionRange(caretPosition, caretPosition);
+                              });
+                        }
+
+                        event.stopPropagation();
                         event.preventDefault();
                         // 点击后隐藏菜单
                         hideMenu();
+
+                        this.isFocused = true;
+                  }
+                  else {
+                        this.caretPosition = -1;
+                        this.isFocused = false;
                   }
             },
             // 点击菜单
@@ -340,6 +422,14 @@ export default {
                   if (this.visibleMenu) {
                         // 注册点击事件
                         this.$refs.ivueDropDown.$emit('on-update-drop-down');
+
+                        // 输入框获取焦点
+                        if (this.filterable) {
+                              const input = this.$el.querySelector('input[type="text"]');
+                              this.$nextTick(() => {
+                                    input.focus();
+                              });
+                        }
                   }
             },
             // 隐藏菜单
@@ -383,7 +473,7 @@ export default {
             },
             // 选项菜单点击
             onOptionClick (option) {
-                  const { hideMenu, setFocusIndex, multiple } = this;
+                  const { hideMenu, setFocusIndex, multiple, filterable } = this;
 
                   // 判断是否开启了多选
                   if (this.multiple) {
@@ -412,14 +502,39 @@ export default {
                         }
                   }
                   else {
+                        // 过滤输入框数据
+                        this.filterQuery = String(option.label).trim();
                         // 最终渲染的数据
                         this.values = [option];
                         // 点击后隐藏菜单
                         hideMenu();
                   }
 
+                  // 判断是否开启过滤
+                  if (filterable) {
+                        const input = this.$el.querySelector('input[type="text"]');
+
+                        this.$nextTick(() => {
+                              input.focus();
+                        });
+                  }
+
                   // 获取焦点项
                   this.focusIndex = setFocusIndex(option);
+                  
+                  // 判断是否进行了过滤输入
+                  if (this.filterQueryChange) {
+                        // 等菜单动画执行完再清除
+                        setTimeout(() => {
+                              this.filterQueryChange = false;
+                        }, 300);
+                  }
+                  else {
+                        // 等菜单动画执行完再清除
+                        this.$nextTick(() => {
+                              this.filterQueryChange = false;
+                        });
+                  }
             },
             // 获取选项数据
             getOptionData (value) {
@@ -459,7 +574,7 @@ export default {
                         const data = getOptionData(value);
 
                         // 过滤输入框数据
-                        this.filterquery = data ? data.label : String(value);
+                        this.filterQuery = data ? data.label : String(value);
                   }
 
                   return initialValue.filter((item) => {
@@ -485,15 +600,69 @@ export default {
                         else {
                               return opt.componentOptions.propsData.value === option;
                         }
-
                   });
             },
             // 过滤输入框输入
-            onFilterQueryChange (filterquery) {
-                  if (filterquery.length > 0 && filterquery !== this.filterquery) {
+            onFilterQueryChange (filterQuery) {
+                  // 是否显示下拉菜单
+                  if (filterQuery.length > 0 && filterQuery !== this.filterQuery) {
                         this.visibleMenu = true;
                   }
-                  this.filterquery = filterquery;
+
+                  // 输入框需要过滤的数据
+                  this.filterQuery = filterQuery;
+
+                  // 输入框过滤输入开始
+                  this.filterQueryChange = true;
+            },
+            // 过滤选项组件
+            validateOption ({ children, elm, propsData }) {
+                  // value
+                  const value = propsData.value;
+                  // label
+                  const label = propsData.label || '';
+                  // 文本内容 将数组元素计算为一个值（从左到右）
+                  const textContent = (elm && elm.textContent) || (children || []).reduce((str, node) => {
+                        const nodeText = node.elm ? node.elm.textContent : node.text;
+
+                        return `${str}${nodeText}`;
+                  }, '') || '';
+
+                  // 把数据转换成字符串
+                  const stringValues = JSON.stringify([value, label, textContent]);
+
+                  // 把输入框数据转换成小写去除前后空格
+                  const filterQuery = this.filterQuery.toLowerCase().trim();
+
+                  // 判断 stringValues 数组中是否包含 filterQuery 中的值 includes()
+                  return stringValues.toLowerCase().includes(filterQuery);
+            },
+            // 重置数据
+            resetData () {
+                  this.focusIndex = -1;
+                  this.values = [];
+
+                  // 等菜单动画消失后再清除
+                  setTimeout(() => {
+                        this.filterQuery = '';
+                        this.filterQueryChange = false;
+
+                        this.isClear = false;
+                  }, 300)
+            },
+            // 清楚单项选择数据
+            clearSingleSelect () {
+                  this.$emit('on-clear'); // API 点击清空按钮时触发
+
+                  this.isClear = true;
+
+                  // 隐藏菜单
+                  this.hideMenu();
+
+                  // 初始化数据
+                  if (this.clearable) {
+                        this.resetData();
+                  }
             }
       },
       watch: {
@@ -509,24 +678,67 @@ export default {
                               this.values = getInitialValue().map(getOptionData).filter(Boolean);
                         })
                   }
+
             },
             // 监听最终渲染的数据的变化
             values (newValue, oldValue) {
+                  const { labelAndValue, selectValue, value } = this;
+
                   const _newValue = JSON.stringify(newValue);
                   const _oldValue = JSON.stringify(oldValue);
 
                   // 设置v-model的值
-                  const vModelValue = (this.labelAndValue && this.selectValue) ? this.selectValue.value : this.selectValue;
+                  const vModelValue = (labelAndValue && selectValue) ? selectValue.value : selectValue;
                   // 输入框值
-                  const emitInput = _newValue !== _oldValue && vModelValue !== this.value;
+                  const emitInput = _newValue !== _oldValue && vModelValue !== value;
 
                   if (emitInput) {
                         // 更新 v-model
                         this.$emit('input', vModelValue);
 
-                        // 选中的Option变化时触发
-                        this.$emit('on-change', this.selectValue);
+                        // API 选中的Option变化时触发
+                        this.$emit('on-change', selectValue);
                   }
+            },
+            // 监听焦点
+            isFocused (focused) {
+                  const { filterable, values, multiple } = this;
+
+                  // 输入框获取焦点，移除焦点
+                  const el = filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
+                  el[focused ? 'focus' : 'blur']();
+
+                  // 恢复单选查询值
+                  const [option] = values;
+
+                  // 判断是否有点击删除按钮在进行还原输入框内容
+                  setTimeout(() => {
+                        if (option && filterable && !multiple && !focused && !this.isClear) {
+                              const label = String(option.label || option.value).trim();
+                              if (label && this.filterQuery !== label) {
+                                    this.filterQuery = label;
+                              }
+                        }
+                  }, 300);
+            },
+            // 监听过滤输入框输入数据
+            filterQuery (filterQuery) {
+                  // API 搜索词改变时触发 
+                  this.$emit('on-filter-query-change', filterQuery);
+            },
+            // 监听菜单显示隐藏
+            visibleMenu (state) {
+                  // API 下拉框展开或收起时触发
+                  this.$emit('on-menu-open', state);
+            },
+            // 监听菜单选择列表
+            selectOptions () {
+                  const { slotOptions } = this;
+
+                  if (slotOptions && slotOptions.length === 0) {
+                        this.filterQuery = '';
+                  }
+
             }
       },
       components: {
