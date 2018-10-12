@@ -1,5 +1,5 @@
 <template>
-      <div>
+      <div @click="onHeaderClick">
             <!-- 普通渲染 -->
             <transition name="ivue-select-fade">
                   <span :class="defaultDisplayClasses"
@@ -29,9 +29,13 @@
                    ref="input"
              />
             <!-- 下拉图标 -->
-            <IVueIcon :class="[prefixCls + '-arrow']" v-if="!resetSelect">{{arrowDownIcon}}</IVueIcon>
+            <IVueIcon :class="[`${prefixCls}-arrow`]" v-if="!resetSelect">{{arrowDownIcon}}</IVueIcon>
             <!-- 重置选择 -->
-            <IVueIcon :class="[prefixCls + '-arrow']"  v-if="resetSelect" @click.native.stop="onClear">{{resetSelectIcon}}</IVueIcon>
+            <IVueIcon :class="[`${prefixCls}-arrow`,`${prefixCls}-clear`]" 
+                      v-if="resetSelect" 
+                      @click.native.stop="onClear"
+                      @mousedown.native.stop="onClear"
+            >{{resetSelectIcon}}</IVueIcon>
       </div>
 </template>
 
@@ -53,14 +57,6 @@ export default {
             multiple: {
                   type: Boolean,
                   default: false
-            },
-            /*
-            * 初始化 Label
-            * 
-            * @type{Boolean}
-            */
-            initialLabel: {
-                  type: [String, Number, Array]
             },
             /*
             * 最终渲染的数据
@@ -149,7 +145,7 @@ export default {
                   * 
                   * @type { Number}
                   */
-                  inputLength: 32,
+                  inputLength: 20,
                   /*
                   * 输入框输入数据
                   * 
@@ -187,11 +183,11 @@ export default {
                         return '';
                   }
 
-                  return selectedSingle || placeholder;
+                  return `${selectedSingle}` || placeholder;
             },
             // 是否显示占位符
             showPlaceholder () {
-                  const { values, multiple, initialLabel } = this;
+                  const { values, multiple } = this;
 
                   let status = false;
                   if (!multiple) {
@@ -199,7 +195,7 @@ export default {
 
                         // 判断 undefined 和清除空格
                         if (typeof value === 'undefined' || String(value).trim() === '') {
-                              status = !initialLabel;
+                              status = true;
                         }
                   }
                   else {
@@ -212,10 +208,11 @@ export default {
             },
             // 选择单个选项
             selectedSingle () {
-                  const { values, initialLabel } = this;
+                  const { values } = this;
 
                   const selected = values[0];
-                  return selected ? selected.label : (initialLabel || '');
+
+                  return selected ? selected.label :  '';
             },
             // 多项选择
             selectedMultiple () {
@@ -262,6 +259,12 @@ export default {
                   if (multiple && selectedMultiple.length && filterQuery === '') {
                         removeSelectItem(selectedMultiple[selectedMultiple.length - 1]);
                   }
+            },
+            // 输入框点击
+            onHeaderClick(e){
+                if (this.filterable && e.target === this.$el){
+                    this.$refs.input.focus();
+                }
             },
             // 清楚选择
             onClear () {

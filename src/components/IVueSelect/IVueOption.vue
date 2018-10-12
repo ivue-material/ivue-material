@@ -1,8 +1,8 @@
 <template>
       <IVueRipple>
             <li :class="classes"
-            @click.stop="selectOption"  
             @touchend.stop="selectOption"  
+            @click.stop="_click"  
             @mousedown.prevent
             @touchstart="_touchstart"
             @touchmove="_touchmove"
@@ -72,6 +72,15 @@ export default {
             */
             keys: {
                   type: [String, Number]
+            },
+            /*
+            * 是否禁用选项
+            * 
+            * @type {Boolean}
+            */
+            disabled: {
+                  type: Boolean,
+                  default: false
             }
       },
       data () {
@@ -87,8 +96,9 @@ export default {
                   return [
                         prefixCls,
                         {
+                              [`${prefixCls}-disabled`]: this.disabled,
                               [`${prefixCls}-selected`]: this.selected,
-                              [`${prefixCls}-focus`]: this.isFocused,
+                              [`${prefixCls}-focus`]: this.isFocused
                         }
                   ]
             },
@@ -104,7 +114,7 @@ export default {
       methods: {
             // 手指点击
             _touchstart (e) {
-                  this.touchesStart = e.touches[0];
+                  this.touchesStart.push(e.touches[0]);
             },
             // 手机滑动
             _touchmove (e) {
@@ -114,10 +124,21 @@ export default {
             _touchend () {
                   this.touchesEnd = []
             },
+            _click () {
+                  if (this.touchesStart.length !== 0) {
+                        return;
+                  }
+
+                  this.selectOption();
+            },
             // 点击选择选项
             selectOption () {
                   // 判断移动端滑动
-                  if (!(!(this.touchesStart.length > 0) && this.touchesEnd.length === 0)) {
+                  if (((this.touchesStart.length > 0) && !(this.touchesEnd.length === 0))) {
+                        return;
+                  }
+
+                  if (this.disabled) {
                         return;
                   }
 
@@ -136,7 +157,7 @@ export default {
                   })
             }
       },
-      components:{
+      components: {
             IVueRipple
       }
 }

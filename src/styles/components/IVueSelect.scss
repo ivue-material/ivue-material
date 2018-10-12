@@ -109,7 +109,7 @@ $name: 'ivue-select';
             @include placeholder;
             &[disabled] {
                   cursor: not-allowed;
-                  color: #ccc;
+                  color: $input-disabled-color;
             }
       }
       &-multiple &-input-filter {
@@ -121,16 +121,18 @@ $name: 'ivue-select';
       &-arrow {
             position: absolute;
             top: 50%;
-            right: 8px;
+            right: 0;
             line-height: 1;
-            margin-top: -7px;
+            margin-top: -15px;
             font-size: $font-base-size;
             font-weight: bold;
             color: $arrow-color;
-            height: auto;
-            width: auto;
-            min-width: auto;
+            height: 100%;
             transition: all .2s ease-in-out;
+      }
+      /*删除图标*/
+      &-clear {
+            text-align: center;
       }
       &-selection-value {
             display: block;
@@ -151,13 +153,12 @@ $name: 'ivue-select';
             }
             .#{$name}-arrow {
                   transform: rotate(180deg);
-                  display: inline-block;
+                  transform-origin: center center;
             }
       }
       /*下拉菜单*/
       &-dropdown {
-            position: absolute;
-            margin: 5px 0;
+            position: absolute; // margin: 5px 0;
             padding: 5px 0;
             width: auto;
             max-height: 200px;
@@ -193,8 +194,10 @@ $name: 'ivue-select';
             cursor: pointer;
             color: $text-color;
             transition: background $ivue-transition-default-timing;
-            &:hover {
-                  background: $background-color-select-hover;
+            @media screen and (min-width: 800px) {
+                  &:hover {
+                        background: $background-color-select-hover;
+                  }
             }
             &-focus {
                   background: $background-color-select-hover;
@@ -211,6 +214,11 @@ $name: 'ivue-select';
                   padding: 7px 0;
                   font-size: 17px;
                   color: transparentize($primary-color, 0.1);
+            }
+            /*禁用样式*/
+            &-disabled {
+                  cursor: not-allowed;
+                  color: $input-disabled-color;
             }
       }
 }
