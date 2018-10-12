@@ -7,6 +7,18 @@ $name: 'ivue-select';
       color: $text-color;
       font-size: 14px;
       line-height: normal;
+      /*禁用样式*/
+      &-disabled {
+            .#{$name}-selection {
+                  opacity: 1;
+                  cursor: not-allowed;
+                  color: $input-disabled-color;
+                  background-color: $input-disabled-bg;
+                  &:hover {
+                        border-color: transparentize($input-disabled-color, 0.8);
+                  }
+            }
+      }
       /*默认样式*/
       &-default {
             .#{$name}-selection {
@@ -102,7 +114,7 @@ $name: 'ivue-select';
             border: none;
             box-sizing: border-box;
             height: $input-height-base;
-            line-height: 1;
+            line-height: $input-height-base;
             color: $text-color;
             background-color: transparent;
             cursor: pointer;
@@ -114,8 +126,12 @@ $name: 'ivue-select';
       }
       &-multiple &-input-filter {
             padding: 0 0 0 4px;
-            height: $input-height-base - 3px;
+            height: $input-height-base - 12px;
+            line-height: $input-height-base - 12px;
+      }
+      &-multiple &-input-filter-placeholder {
             height: $input-height-base - 2px;
+            line-height: $input-height-base - 12px;
       }
       /*输入框箭头方向*/
       &-arrow {
@@ -158,7 +174,8 @@ $name: 'ivue-select';
       }
       /*下拉菜单*/
       &-dropdown {
-            position: absolute; // margin: 5px 0;
+            position: absolute;
+            margin: 2px 0;
             padding: 5px 0;
             width: auto;
             max-height: 200px;
@@ -215,10 +232,23 @@ $name: 'ivue-select';
                   font-size: 17px;
                   color: transparentize($primary-color, 0.1);
             }
-            /*禁用样式*/
+            /*选项菜单禁用样式*/
             &-disabled {
                   cursor: not-allowed;
                   color: $input-disabled-color;
+            }
+      }
+      /*菜单数据列表group*/
+      &-group {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            &-title{
+                  padding-left: 8px;
+                  font-size: $font-small-size;
+                  color: $explanation-color;
+                  height: 30px;
+                  line-height: 30px;
             }
       }
 }

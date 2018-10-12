@@ -26,10 +26,6 @@ export default {
       componentName: "ivue-select-item",
       mixins: [EmitterEvent],
       props: {
-            ivueDisabled: {
-                  type: Boolean,
-                  default: false
-            },
             /*
             * 渲染的 value
             * 
@@ -124,11 +120,14 @@ export default {
             _touchend () {
                   this.touchesEnd = []
             },
+            // PC端点击
             _click () {
+                  // 判断是否是移动端点击
                   if (this.touchesStart.length !== 0) {
                         return;
                   }
 
+                  // 点击选择选项
                   this.selectOption();
             },
             // 点击选择选项
@@ -162,6 +161,3 @@ export default {
       }
 }
 </script>
-
-<style>
-</style>

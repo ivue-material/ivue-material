@@ -16,7 +16,7 @@
             <!-- 过滤输入框 -->
             <input type="text"
                    v-if="filterable"
-                   :class="[`${prefixCls}-input-filter`]"
+                   :class="[`${prefixCls}-input-filter`,{'ivue-select-input-filter-placeholder': showPlaceholder}]"
                    :style="inputStyle"
                    :placeholder="showPlaceholder ? placeholder : ''"
                    spellcheck="false"

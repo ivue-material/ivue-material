@@ -17,7 +17,7 @@
                   @keydown.esc="handldKeyDown"
             >
                   <slot name="input">
-                        <input type="hidden" :value="selectValue" ref="hiddenInput">
+                        <input type="hidden" :value="selectValue">
                         <IVueSleectHead  
                               :values="values"
                               :multiple="multiple"
@@ -27,6 +27,7 @@
                               :resetSelectIcon="resetSelectIcon"
                               :clearable="canClearable"
                               :filterQueryProp="filterQuery"
+                              :disabled="disabled"
                               @on-filter-query-change="onFilterQueryChange"
                               @on-input-focus="isFocused = true"
                               @on-input-blur="isFocused = false"
@@ -71,6 +72,7 @@ import FunctionalOptions from './FunctionalOptions.vue';
 
 const prefixCls = 'ivue-select';
 const optionRegexp = /^ivue-option$|^IVueOption$/i;
+const optionGroupRegexp = /^ivue-option-group$|^IVueOptionGroup$/i;
 
 // 在vnode中查找选项
 const findOptionsInVNode = (node) => {
@@ -85,9 +87,8 @@ const findOptionsInVNode = (node) => {
       }
 
       const children = [...(node.children || []), ...(options && options.children || [])];
-      const childrenOption = children.reduce((arr, el) => {
-            return [...arr, ...findOptionsInVNode(el)], []
-      }).filter(Boolean);
+
+      const childrenOption = children.reduce((arr, el) => [...arr, ...findOptionsInVNode(el)], []).filter(Boolean);
 
       return childrenOption.length > 0 ? childrenOption : [];
 }
@@ -149,15 +150,6 @@ export default {
             value: {
                   type: [String, Number, Array],
                   default: ''
-            },
-            /*
-            * 是否使用自动补全组件
-            * 
-            * @type{Boolean}
-            */
-            autoComplete: {
-                  type: Boolean,
-                  default: false
             },
             /*
             * 是否开启多选
@@ -223,11 +215,20 @@ export default {
                   default: 'keyboard_arrow_down'
             },
             /*
-            * 是否可以清楚选择
+            * 是否可以清除选择
             * 
             * @type{Boolean}
             */
             clearable: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 是否禁用选择组件
+            * 
+            * @type{Boolean}
+            */
+            disabled: {
                   type: Boolean,
                   default: false
             }
@@ -316,15 +317,15 @@ export default {
                         {
                               [`${prefixCls}-default`]: !this.multiple,
                               [`${prefixCls}-multiple`]: this.multiple,
-                              [`${prefixCls}-visible`]: this.visibleMenu
+                              [`${prefixCls}-visible`]: this.visibleMenu,
+                              [`${prefixCls}-disabled`]: this.disabled
                         }
                   ]
             },
             // 选择框样式
             selectionClasses () {
-                  return {
-                        [`${prefixCls}-selection`]: !this.autoComplete
-                  }
+                  return [`${prefixCls}-selection`]
+
             },
             // 当前选择的值
             selectValue () {
@@ -367,18 +368,43 @@ export default {
                               continue;
                         }
 
-                        //如果没有 filterQueryChange ，则忽略选项
-                        if (filterQueryChange) {
-                              const optionFilter = filterable ? validateOption(componentOptions) : option;
-                              if (!optionFilter) {
-                                    continue;
+                        // 判断是否使用了选项组
+                        if (componentOptions.tag.match(optionGroupRegexp)) {
+                              let childrenGroup = componentOptions.children;
+
+                              // 删除过滤子节点
+                              if (filterable) {
+                                    childrenGroup = childrenGroup.filter(({ componentOptions }) => validateOption(componentOptions));
                               }
+
+                              childrenGroup = childrenGroup.map((childrenGroupOption) => {
+                                    // 选项计数器
+                                    optionCounter = optionCounter + 1;
+                                    return this.handleOption(childrenGroupOption, selectedValues, null, optionCounter === currentIndex);
+                              });
+
+                              // 判断是否有子节点
+                              if (childrenGroup.length > 0) {
+                                    console.log(componentOptions)
+                                    console.log(childrenGroup)
+                                    selectOptions.push({ ...option, componentOptions: { ...componentOptions, children: childrenGroup } });
+                              }
+
                         }
+                        else {
+                              //如果没有 filterQueryChange ，则忽略选项
+                              if (filterQueryChange) {
+                                    const optionFilter = filterable ? validateOption(componentOptions) : option;
+                                    if (!optionFilter) {
+                                          continue;
+                                    }
+                              }
 
-                        // 选项计数器
-                        optionCounter = optionCounter + 1;
+                              // 选项计数器
+                              optionCounter = optionCounter + 1;
 
-                        selectOptions.push(handleOption(option, selectedValues, selectedKeys, optionCounter === currentIndex));
+                              selectOptions.push(handleOption(option, selectedValues, selectedKeys, optionCounter === currentIndex));
+                        }
                   }
 
                   /*
@@ -392,14 +418,14 @@ export default {
             },
             // 是否可以显示重置选择按钮
             canClearable () {
-                  const { hasMouseHover, clearable, multiple } = this;
+                  const { hasMouseHover, clearable, multiple, disabled } = this;
 
                   // 多选模式下无效
-                  return (hasMouseHover && clearable && !multiple);
+                  return (hasMouseHover && clearable && !multiple && !disabled);
             },
             //  tab 键顺序
             selectTabindex () {
-                  return this.filterable ? -1 : 0
+                  return this.disabled || this.filterable ? -1 : 0
             }
       },
       methods: {
@@ -442,13 +468,24 @@ export default {
             },
             // 点击菜单
             toggleMenu (event, force) {
+                  // 选择组件是否禁用
+                  if (this.disabled) {
+                        return false;
+                  }
+
                   // 设置菜单状态
                   this.visibleMenu = typeof force !== 'undefined' ? force : !this.visibleMenu;
                   if (this.visibleMenu) {
                         // 注册点击事件
                         this.$refs.ivueDropDown.$emit('on-update-drop-down');
-
-                        this.$refs.hiddenInput.focus();
+                  }
+                  // 菜单收起
+                  else {
+                        // 取消焦点
+                        if (this.filterable) {
+                              const input = this.$el.querySelector('input[type="text"]');
+                              input.blur();
+                        }
                   }
             },
             // 隐藏菜单
@@ -468,16 +505,18 @@ export default {
 
                   // 获取选项的值
                   const optionValue = option.componentOptions.propsData.value;
+                  const disabled = option.componentOptions.propsData.disabled;
                   const optionKeys = option.key;
 
                   // 判断是否选中当前选项
-                  const isSelect = optionKeys ? keys.includes(optionKeys) && values.includes(optionValue) : values.includes(optionValue);
+                  const isSelect = (optionKeys && keys) ? keys.includes(optionKeys) && values.includes(optionValue) : values.includes(optionValue);
 
                   const propsData = {
                         ...option.componentOptions.propsData,
                         selected: isSelect,
                         isFocused: isFocused,
-                        keys: option.key
+                        keys: option.key,
+                        disabled: typeof disabled === 'undefined' ? false : disabled !== false
                   };
 
                   // 设置选项组件的参数
@@ -563,8 +602,7 @@ export default {
                   const { flatOptionsData, setFocusIndex } = this;
 
                   const option = flatOptionsData.find(({ componentOptions }) => {
-
-                        if (typeof componentOptions === 'object') {
+                        if (typeof data === 'object') {
                               return ((componentOptions.propsData.value === data.value) && (componentOptions.propsData.keys === data.keys));
                         }
                         else {
@@ -580,6 +618,7 @@ export default {
 
                   // 获取焦点项
                   this.focusIndex = setFocusIndex(data);
+                  this.filterQuery = '';
 
                   return {
                         value: data.value || data,
