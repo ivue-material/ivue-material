@@ -1,5 +1,5 @@
 <template>
-      <IVueRipple>
+      <IVueRipple :ivueDisabled="!disabledRipple">
             <li :class="classes"
             @touchend.stop="selectOption"  
             @click.stop="_click"  
@@ -26,6 +26,15 @@ export default {
       componentName: "ivue-select-item",
       mixins: [EmitterEvent],
       props: {
+            /*
+            * 启用/禁用涟漪
+            * 
+            * @type {null}
+            */
+            disabledRipple: {
+                  type: Boolean,
+                  default: true
+            },
             /*
             * 渲染的 value
             * 

@@ -960,7 +960,263 @@ API
 | default    | Vue默认原生插槽|
 
 
+
+### IVueSelect选择器
+
+
+使用模拟的增强下拉选择器来代替浏览器原生的选择器。选择器支持单选、多选、搜索，以及键盘快捷操作。  ```IVueSelect```选择器应该与```IVueOption```或者```IVueOptionGroup```组件一起使用。选择将始终对```v-model``` ```prop```的变化做出反应。
+
+##### 例子
+```javascript
+<template>
+      <div>
+            <p>普通</p>
+            <IVueSelect :value="'Sydney'" clearable>
+                  <IVueOption v-for="(item,index) in cityList1" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>选中选项v-model中的内容 - 单选</p>
+            <IVueSelect :value="model1" clearable>
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>是否将label和value一起返回 - 单选</p>
+            <IVueSelect  labelAndValue clearable>
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>开启过滤筛选 - 单选</p>
+            <IVueSelect  filterable :value="model1">
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+
+            <p>多选</p>
+            <IVueSelect multiple clearable :value="['Sydney']">
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>选中选项v-model中的内容 - 多选</p>
+            <IVueSelect multiple :value="['Sydney']">
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>是否将label和value一起返回 - 多选</p>
+            <IVueSelect  labelAndValue  multiple @on-change="_input">
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>开启过滤筛选 - 多选</p>
+            <IVueSelect multiple filterable :value="['Sydney']">
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>选择组件禁用</p>
+            <IVueSelect disabled>
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>选择菜单选项禁用</p>
+            <IVueSelect >
+                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                        <span>{{ item.label }}</span>
+                  </IVueOption>
+            </IVueSelect>
+            <p>菜单选项 group - 单选</p>
+            <IVueSelect filterable>
+                  <IVueOptionGroup  :label="'one'" >
+                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                              <span>{{ item.label }}</span>
+                        </IVueOption>
+                  </IVueOptionGroup>
+                  <IVueOptionGroup  :label="'two'" >
+                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                              <span>{{ item.label }}</span>
+                        </IVueOption>
+                  </IVueOptionGroup>
+            </IVueSelect>
+             <p>菜单选项 group - 多选</p>
+            <IVueSelect  multiple filterable>
+                  <IVueOptionGroup  :label="'one'" >
+                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="item.value">
+                              <span>{{ item.label }}</span>
+                        </IVueOption>
+                  </IVueOptionGroup>
+                  <IVueOptionGroup  :label="'two'" >
+                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="item.value">
+                              <span>{{ item.label }}</span>
+                        </IVueOption>
+                  </IVueOptionGroup>
+            </IVueSelect>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  cityList1: [
+                        {
+                              value: 'New York',
+                              label: 'New'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
+                        },
+                        {
+                              value: 'Sydney',
+                              label: 'Sydney'
+                        },
+                        {
+                              value: 'Ottawa',
+                              label: 'Ottawa'
+                        },
+                        {
+                              value: 'Paris',
+                              label: 'Paris'
+                        },
+                        {
+                              value: 'Canberra',
+                              label: 'Canberra'
+                        }
+                  ],
+                  cityList2: [
+                        {
+                              value: 'New York',
+                              label: 'New York'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
+                        },
+                        {
+                              value: 'Sydney',
+                              label: 'Sydney'
+                        },
+                        {
+                              value: 'Ottawa',
+                              label: 'Ottawa'
+                        },
+                        {
+                              value: 'Paris',
+                              label: 'Paris'
+                        },
+                        {
+                              value: 'Canberra',
+                              label: 'Canberra'
+                        }
+                  ],
+                  grop1: [
+                        {
+                              value: 'New York',
+                              label: 'New York'
+                        },
+                        {
+                              value: 'London',
+                              label: 'London'
+                        },
+                        {
+                              value: 'Sydney',
+                              label: 'Sydney'
+                        }
+                  ],
+                  grop2: [
+                        {
+                              value: 'Ottawa',
+                              label: 'Ottawa'
+                        },
+                        {
+                              value: 'Paris',
+                              label: 'Paris'
+                        },
+                        {
+                              value: 'Canberra',
+                              label: 'Canberra'
+                        }
+                  ],
+                  model1: 'Canberra'
+            }
+      },
+      methods: {
+            _input (data) {
+                  console.log(data)
+            }
+      }
+}
+</script>
+```
+
+API
+
+##### props       
+      
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |      
+| value    | 指定选中选项的```value```值，可以使用```v-modul```双向绑定数据。单项选择只接受 ```String```和```Number```,多选时只接受```Array``` | String, Number, Array | -     |      
+|  multiple   | 是否开启多选 | Boolean | false    |       
+|  labelAndValue   | 在返回选项时，是否将label和value一起返回，默认只返回 value | Boolean | false    |       
+|  disabled   | 是否禁用该组件 | Boolean | false    |       
+|  clearable   | 是否可以清空选项，只在单选时有效 | Boolean | false    |       
+|  arrowDownIcon   | 下拉选项图标 | String | keyboard_arrow_down    |       
+|  filterable   | 是否开启搜索 | Boolean | false    |         
+|  resetSelectIcon   | 重置选择选项图标 | String | cancel    |         
+|  notFindText   | 选项列表没有找到数据时的提示 | String | 无匹配数据    |         
+|  multipleCloseIcon   | 多项选择选项关闭图标 | String | close    |        
+
+
+##### events      
+  
+| 事件      | 说明                     | 类型    | 返回值 |
+| --------- | :----------------------- | :------ | :----- |
+| on-menu-open | 下拉框展开或收起时触发 | Boolean | -  |
+| on-filter-query-change | 搜索词改变时触发 | String | -  |
+| on-change | 选中的Option变化时触发,如需返回```label```,请设置```labelAndValue```选项 | String | -  |
+| on-clear | 点击清空按钮时触发 | - | -  |
+
+
+##### IVueOption
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |            
+| disabledRipple    | 启用/禁用涟漪 | Booelan | true     |         
+| value| 选项值，默认根据此属性值进行筛选，必填 | String, Number | -      |        
+| label| 选择显示的内容，默认会读取 slot,无 slot 时，优先读取该 label 的值,无 label 时，读取 value。 | String, Number | -      |             
+| disabled| 是否禁用当前选项 | Boolean | false      |        
  
+
+##### IVueOptionGroup
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |            
+| label| 分组的组名 | String | -      |        
+ 
+
 # 其他
 
 ### IVueAffix 图钉

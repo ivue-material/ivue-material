@@ -64,12 +64,12 @@
             <p>菜单选项 group - 单选</p>
             <IVueSelect filterable>
                   <IVueOptionGroup  :label="'one'" >
-                        <IVueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
                         </IVueOption>
                   </IVueOptionGroup>
                   <IVueOptionGroup  :label="'two'" >
-                        <IVueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
                         </IVueOption>
                   </IVueOptionGroup>
