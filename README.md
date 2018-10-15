@@ -1174,12 +1174,12 @@ API
 |  multiple   | 是否开启多选 | Boolean | false    |       
 |  labelAndValue   | 在返回选项时，是否将label和value一起返回，默认只返回 value | Boolean | false    |       
 |  disabled   | 是否禁用该组件 | Boolean | false    |       
-|  clearable   | 是否可以清空选项，只在单选时有效 | Boolean | false    |       
-|  arrowDownIcon   | 下拉选项图标 | String | keyboard_arrow_down    |       
+|  clearable   | 是否可以清空选项，只在单选时有效 | Boolean | false    |  
+|  notFindText   | 选项列表没有找到数据时的提示 | String | 无匹配数据    |   
 |  filterable   | 是否开启搜索 | Boolean | false    |         
-|  resetSelectIcon   | 重置选择选项图标 | String | cancel    |         
-|  notFindText   | 选项列表没有找到数据时的提示 | String | 无匹配数据    |         
-|  multipleCloseIcon   | 多项选择选项关闭图标 | String | close    |        
+|  arrowDownIcon   | 下拉选项图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用 | String | keyboard_arrow_down    |       
+|  resetSelectIcon   | 重置选择选项图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用| String | cancel    |         
+|  multipleCloseIcon   | 多项选择选项关闭图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用 | String | close    |        
 
 
 ##### events      
