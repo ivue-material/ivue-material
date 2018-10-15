@@ -46,6 +46,9 @@ export default {
                   if (this.$parent.$options.name === 'IVueSelect') {
                         this.width = parseInt(getStyle(this.$parent.$el, 'width'));
                   }
+                  else if (this.$parent.$parent.$options.name === 'IVueSelect') {
+                        this.width = parseInt(getStyle(this.$parent.$parent.$el, 'width'));
+                  }
             }
       }
 }

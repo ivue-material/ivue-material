@@ -14,8 +14,10 @@ export default {
             * }
             */
             dispatch (componentName, eventName, params) {
+
                   // 获取父级组件
                   let parent = this.$parent || this.root;
+
                   // 获取父级组件名称
                   let parentName = parent.$options.name;
 

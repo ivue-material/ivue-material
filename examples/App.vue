@@ -41,6 +41,7 @@ nav {
                 <li><router-link to="/IVueBottomNav">IVueBottomNav</router-link></li>
                 <li><router-link to="/IVueBreadcrumbs">IVueBreadcrumbs</router-link></li>
                 <li><router-link to="/IVueSelect">IVueSelect</router-link></li>
+                <li><router-link to="/IVueAutoComplete">IVueAutoComplete</router-link></li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

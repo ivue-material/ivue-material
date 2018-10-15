@@ -314,7 +314,7 @@ export default {
             },
             // 监听外部过滤输入
             filterQueryProp (filterQuery) {
-                  if (filterQuery !== this.filterQuery) {
+                  if (filterQuery !== this.filterQuery && this.filterable) {
                         this.filterQuery = filterQuery;
                   }
             }

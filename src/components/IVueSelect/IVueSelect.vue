@@ -385,8 +385,6 @@ export default {
 
                               // 判断是否有子节点
                               if (childrenGroup.length > 0) {
-                                    console.log(componentOptions)
-                                    console.log(childrenGroup)
                                     selectOptions.push({ ...option, componentOptions: { ...componentOptions, children: childrenGroup } });
                               }
 

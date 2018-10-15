@@ -13,7 +13,9 @@ import IVueSwitch from './components/IVueSwitch';
 import IVueBottomNav from './components/IVueBottomNav';
 import IVueBreadcrumbs from './components/IVueBreadcrumbs';
 import IVueBreadcrumbsItem from './components/IVueBreadcrumbsItem';
-import {IVueSelect,IVueOption,IVueOptionGroup} from './components/IVueSelect';
+import { IVueSelect, IVueOption, IVueOptionGroup } from './components/IVueSelect';
+import IVueAutoComplete from './components/IVueAutoComplete';
+import IVueInput from './components/IVueInput';
 
 const components = {
   IVueAffix,
@@ -33,7 +35,9 @@ const components = {
   IVueBreadcrumbsItem,
   IVueSelect,
   IVueOption,
-  IVueOptionGroup
+  IVueOptionGroup,
+  IVueAutoComplete,
+  IVueInput
 };
 
 const iVue = {

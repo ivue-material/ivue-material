@@ -1,0 +1,23 @@
+$name: 'ivue-input';
+.#{$name}-wrapper {
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      line-height: normal;
+      width: 100%;
+      .#{$name} {
+            display: inline-block;
+            position: relative;
+            padding: 4px 7px;
+            font-size: $font-size-small;
+            border-radius: 4px;
+            color: $text-color;
+            cursor: text;
+            width: 100%;
+            height: 30px;
+            line-height: 1.5;
+            transition: border $ivue-transition-default-timing,
+                        background $ivue-transition-default-timing,
+                        box-shadow $ivue-transition-default-timing
+      }
+}
