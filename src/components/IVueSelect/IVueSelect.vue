@@ -28,6 +28,7 @@
                               :clearable="canClearable"
                               :filterQueryProp="filterQuery"
                               :disabled="disabled"
+                              :placeholder="placeholder"
                               @on-filter-query-change="onFilterQueryChange"
                               @on-input-focus="isFocused = true"
                               @on-input-blur="isFocused = false"
@@ -38,7 +39,8 @@
             <!-- 下拉菜单 -->
             <transition name="transition-drop">
                   <IVueDropDown ref="ivueDropDown" 
-                                v-show="visibleMenu"
+                                v-show="dropVisible"
+                                :class="dropdownClass"
                   >
                         <!-- 没有找到数据时的提示 -->
                         <ul :class="`${prefixCls}-not-find`" v-show="showNotFindText">
@@ -94,19 +96,21 @@ const findOptionsInVNode = (node) => {
 }
 
 // 提取选项
-const extractOptions = (options) => {
-      // reduce 累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。放入数组
-      return options.reduce((options, slotEntry) => {
+// reduce 累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。放入数组
+const extractOptions = (options) => options.reduce((options, slotEntry) => {
+      if (options && slotEntry) {
             return options.concat(findOptionsInVNode(slotEntry));
-      }, []);
-}
+      }
+}, []);
 
 // 获取嵌套属性
 const getNestedProperty = (obj, path) => {
       const keys = path.split('.');
 
       return keys.reduce((option, key) => {
-            return option && option[key] || null
+            if (option) {
+                  return option && option[key] || null
+            }
       }, obj);
 }
 
@@ -135,6 +139,20 @@ const getOptionLabel = (option) => {
       const innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
 
       return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
+}
+
+// 设置组件的prop值
+const applyProp = (node, propName, value) => {
+      return {
+            ...node,
+            componentOptions: {
+                  ...node.componentOptions,
+                  propsData: {
+                        ...node.componentOptions.propsData,
+                        [propName]: value
+                  }
+            }
+      };
 }
 
 export default {
@@ -231,6 +249,32 @@ export default {
             disabled: {
                   type: Boolean,
                   default: false
+            },
+            /*
+            * 输入提示
+            * 
+            * @type {String}
+            */
+            placeholder: {
+                  type: String,
+                  default: '请选择'
+            },
+            /*
+            * 自动完成
+            * 
+            * @type{Boolean}
+            */
+            autoComplete: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 搜索方法
+            * 
+            * @type{Function}
+            */
+            searchMethod: {
+                  type: Function
             }
       },
       data () {
@@ -289,7 +333,13 @@ export default {
                   *
                   * @type {Boolean}
                   */
-                  hasMouseHover: false
+                  hasMouseHover: false,
+                  /*
+                  * 下一个搜索请求
+                  *
+                  * @type {String}
+                  */
+                  lastSearchQuery: ''
             }
       },
       mounted () {
@@ -299,7 +349,7 @@ export default {
             this.$on('on-select-option', onOptionClick);
 
             // 设置初始值
-            if (selectOptions.length > 0) {
+            if (!this.isSearchMethod && selectOptions.length > 0) {
                   this.values = getInitialValue().map((value) => {
                         if (typeof value === 'undefined' && !value) {
                               return null;
@@ -324,8 +374,20 @@ export default {
             },
             // 选择框样式
             selectionClasses () {
-                  return [`${prefixCls}-selection`]
+                  return [
+                        `${prefixCls}-selection-default`,
+                        {
+                              [`${prefixCls}-selection`]: !this.autoComplete
 
+                        }
+                        ]
+
+            },
+            // 菜单样式
+            dropdownClass () {
+                  return {
+                        [`ivue-auto-complete`]: this.autoComplete
+                  }
             },
             // 当前选择的值
             selectValue () {
@@ -346,7 +408,7 @@ export default {
             },
             // 获取菜单选择列表
             selectOptions () {
-                  const { slotOptions, focusIndex, values, handleOption, filterQueryChange, validateOption, filterable } = this;
+                  const { slotOptions, focusIndex, values, handleOption, filterQueryChange, validateOption, filterable, autoComplete } = this;
 
                   // 获取选项的列表
                   const selectOptions = [];
@@ -359,6 +421,32 @@ export default {
                   // 选择的选项
                   const selectedValues = values.filter(Boolean).map(({ value }) => value);
                   const selectedKeys = values.filter(Boolean).map(({ keys }) => keys);
+
+                  // 判断是否有自动输入
+                  if (autoComplete) {
+                        const copyChildren = (node, fn) => {
+                              return {
+                                    ...node,
+                                    children: (node.children || []).map(fn).map((child) => copyChildren(child, fn))
+                              }
+                        }
+
+                        const autoCompleteOptions = extractOptions(slotOptionsData);
+                        const selectedSlotOption = autoCompleteOptions[currentIndex];
+
+                        return autoCompleteOptions.map((node, index) => {
+                              if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.value) {
+                                    return applyProp(node, 'isFocused', true);
+                              }
+
+                              return copyChildren(node, (child) => {
+                                    if (selectedSlotOption && child !== selectedSlotOption) {
+                                          return child;
+                                    }
+                                    return applyProp(child, 'isFocused', true);
+                              });
+                        });
+                  }
 
                   for (let option of slotOptionsData) {
                         // 获取选项组件里的数据
@@ -412,7 +500,7 @@ export default {
             },
             // 显示没有数据时的文本
             showNotFindText () {
-                  return this.selectOptions && this.selectOptions.length === 0;
+                  return this.selectOptions && this.selectOptions.length === 0 && (!this.isSearchMethod);
             },
             // 是否可以显示重置选择按钮
             canClearable () {
@@ -424,12 +512,31 @@ export default {
             //  tab 键顺序
             selectTabindex () {
                   return this.disabled || this.filterable ? -1 : 0
+            },
+            // 显示下拉菜单
+            dropVisible () {
+                  let status = true;
+                  const noSelectOptions = !this.selectOptions || this.selectOptions.length === 0;
+
+                  if (this.filterQuery === '' && noSelectOptions && this.isSearchMethod) {
+                        status = false;
+                  }
+
+                  if (this.autoComplete && noSelectOptions) {
+                        status = false;
+                  }
+
+                  return this.visibleMenu && status;
+            },
+            // 判断是是否是一个方法
+            isSearchMethod () {
+                  return typeof this.searchMethod === 'function';
             }
       },
       methods: {
             // 点击外部
             onClickOutside (event) {
-                  const { visibleMenu, hideMenu } = this;
+                  const { visibleMenu, hideMenu, filterable, autoComplete } = this;
 
                   // 判断是否显示了菜单
                   if (visibleMenu) {
@@ -438,7 +545,7 @@ export default {
                               return;
                         }
 
-                        if (this.filterable) {
+                        if (filterable) {
                               const input = this.$el.querySelector('input[type="text"]');
                               // 第一个选定字符的索引
                               this.caretPosition = input.selectionStart;
@@ -452,7 +559,9 @@ export default {
                               });
                         }
 
-                        event.stopPropagation();
+                        if (!autoComplete) {
+                              event.stopPropagation();
+                        }
                         event.preventDefault();
                         // 点击后隐藏菜单
                         hideMenu();
@@ -492,7 +601,9 @@ export default {
             },
             // 更新插槽数据
             updateSlotOptions () {
-                  this.slotOptions = this.$slots.default;
+                  if (this.$slots.default) {
+                        this.slotOptions = this.$slots.default;
+                  }
             },
             // 提取选项数据
             handleOption (option, values, keys, isFocused) {
@@ -529,10 +640,11 @@ export default {
             },
             // 选项菜单点击
             onOptionClick (option) {
-                  const { hideMenu, setFocusIndex, multiple, filterable } = this;
+                  const { hideMenu, setFocusIndex, multiple, filterable, autoComplete, isSearchMethod } = this;
 
                   // 判断是否开启了多选
                   if (this.multiple) {
+
                         const selected = this.values.find(({ value, keys }) => {
                               if (keys) {
                                     return (keys === option.keys) && (value === option.value);
@@ -541,6 +653,14 @@ export default {
                                     return value === option.value;
                               }
                         });
+
+                        // 设置搜索请求
+                        if (isSearchMethod) {
+                              this.lastSearchQuery = this.lastSearchQuery || this.filterQuery;
+                        }
+                        else {
+                              this.lastSearchQuery = '';
+                        }
 
 
                         if (selected) {
@@ -567,6 +687,8 @@ export default {
                         this.values = [option];
                         // 点击后隐藏菜单
                         hideMenu();
+                        // 搜索请求
+                        this.lastSearchQuery = '';
                   }
 
                   // 判断是否开启过滤
@@ -626,7 +748,7 @@ export default {
             },
             // 获取初始值value
             getInitialValue () {
-                  const { value, getOptionData } = this;
+                  const { value, getOptionData, multiple, isSearchMethod } = this;
 
                   let initialValue = Array.isArray(value) ? value : [value];
                   // 判断 值 === undefined 或者是 ''而且 参数不是无穷大
@@ -634,7 +756,7 @@ export default {
                         initialValue = [];
                   }
 
-                  if (value) {
+                  if (isSearchMethod && !multiple && value) {
                         // 获取选项数据
                         const data = getOptionData(value);
 
@@ -888,6 +1010,22 @@ export default {
             filterQuery (filterQuery) {
                   // API 搜索词改变时触发 
                   this.$emit('on-filter-query-change', filterQuery);
+
+                  const { searchMethod, lastSearchQuery, isSearchMethod } = this;
+
+                  // 是否是有效查询
+                  const hasValidQuery = filterQuery !== '' && (filterQuery !== lastSearchQuery || !lastSearchQuery);
+
+                  if ((searchMethod && hasValidQuery)) {
+                        this.focusIndex = -1;
+                        searchMethod(filterQuery);
+                  }
+
+                  if (filterQuery !== '' && isSearchMethod) {
+                        this.lastSearchQuery = filterQuery
+                  }
+
+
             },
             // 监听菜单显示隐藏
             visibleMenu (state) {

@@ -1,0 +1,13 @@
+.ivue-auto-complete {
+      &:hover {
+            .ivue-input {
+                  padding: 4px 24px 4px 7px;
+            }
+            .ivue-input-icon-clear {
+                  opacity: 1;
+            }
+      }
+      *:focus {
+            outline: 0;
+      }
+}

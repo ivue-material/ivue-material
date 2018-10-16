@@ -29,7 +29,7 @@ export default {
             styles () {
                   let style = {};
                   if (this.width) {
-                        style.minWidth = `${this.width}px`;
+                        style.width = `${this.width}px`;
                   }
                   return style;
             }

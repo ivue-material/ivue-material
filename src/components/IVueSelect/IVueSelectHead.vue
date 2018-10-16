@@ -74,7 +74,7 @@ export default {
             */
             placeholder: {
                   type: String,
-                  default: '请选择'
+                  default: ''
             },
             /*
             * 是否可清除

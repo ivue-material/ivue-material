@@ -12,3 +12,4 @@ import "./components/IVueSwitch.test";
 import "./components/IVueBottomNav.test";
 import "./components/IVueBreadcrumbs.test";
 import "./components/IVueSelect.test";
+import "./components/IVueAutoComplete.test";

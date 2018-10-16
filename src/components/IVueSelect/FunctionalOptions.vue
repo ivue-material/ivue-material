@@ -34,6 +34,7 @@ export default {
       // 开启函数组件
       functional: true,
       render (h, { props, parent }) {
+
             // 如果选项不等于父级插槽的值得话就查找相等的选项
             if (props.slotOption !== parent.$slots.default) {
                   props.slotUpdateHook();
