@@ -38,6 +38,7 @@ describe('IVueAutoComplete', function () {
             expect(wrapper.classes()).to.contain('ivue-auto-complete');
             wrapper.find('.ivue-select-selection-default').trigger('click');
             wrapper.find('.ivue-select-selection-default').trigger('click');
+            wrapper.find('.ivue-select-selection-default').trigger('click');
             expect(wrapper.find('.ivue-select-item').text()).to.be.equal('q');
       });
 });
