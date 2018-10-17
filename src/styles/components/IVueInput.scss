@@ -17,7 +17,7 @@ $name: 'ivue-input';
             width: 100%;
             height: 30px;
             line-height: 1.5;
-            transition: border $ivue-transition-default-timing, background $ivue-transition-default-timing, box-shadow $ivue-transition-default-timing;
+            transition: border $ivue-transition-default, background $ivue-transition-default, box-shadow $ivue-transition-default;
             &:focus {
                   outline: 0;
                   box-shadow: 0 0 0 2px transparentize($primary-color, 0.8);
@@ -26,7 +26,26 @@ $name: 'ivue-input';
             &:hover {
                   border-color: $primary-color;
             }
+            &[disabled]{
+                  background-color: $background-color-select-hover;
+                  opacity: 1;
+                  cursor: not-allowed;
+                  color: $input-disabled-color;
+                  &:hover {
+                        border-color: $border-color;
+                  }
+            }
             @include placeholder;
+      }
+      .#{$name}-textarea{
+            max-width: 100%;
+            resize: vertical;
+      }
+      .#{$name}-with-prefix {
+            padding-left: 32px;
+      }
+      .#{$name}-with-suffix {
+            padding-right: 32px;
       }
       .#{$name}-icon {
             position: absolute;
@@ -42,6 +61,39 @@ $name: 'ivue-input';
             cursor: pointer;
             &-clear {
                   opacity: 0;
+            }
+      }
+      .is-suffix {
+            right: 1px;
+            margin-top: -10px;
+            width: 32px;
+            height: 20px;
+            background-color: #fff;
+            z-index: 2;
+      }
+      .#{$name}-prefix,
+      .#{$name}-suffix {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 100%;
+            text-align: center;
+            z-index: 1;
+            i {
+                  font-size: 16px;
+                  line-height: 30px;
+                  height: 30px;
+                  color: $arrow-color;
+            }
+      }
+      .#{$name}-suffix {
+            right: 0;
+            left: auto;
+      }
+      &:hover {
+            .#{$name}-icon-clear {
+                  opacity: 1;
             }
       }
 }

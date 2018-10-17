@@ -1,38 +1,91 @@
 <template>
       <div :class="wrapClasses">
-            <input :class="inputClass"
-                   :placeholder="placeholder"
-                   :spellcheck="spellcheck"
-                   :type="type"
-                   :disabled="disabled"
-                   :autocomplete="autocomplete"
-                   :readonly="readonly"
-                   :name="name"
-                   :value="currentValue"
-                   :autofocus="autofocus"
-                   :number="number"
-                   :id="id"
-                   @input="handleInput"
-                   @focus="handleFocus"
-                   @blur="handleBlur"
-                   ref="input"
-            />
-             <!-- 重置选择 -->
-            <IVueIcon :class="[`${prefixCls}-icon`,`${prefixCls}-icon-clear`]" 
-                      v-if="clearable && currentValue" 
-                      @click.native.stop="handleClear"
-            >{{clearIcon}}</IVueIcon>
+            <template v-if="type !== 'textarea'">
+                  <!-- 首部图标 -->
+                  <span :class="[`${prefixCls}-prefix`]" v-show="showPrefix">
+                        <slot name="prefix">
+                              <i class="ivue-icon">{{prefix}}</i>
+                        </slot>
+                  </span>
+                  <input :class="inputClass"
+                        :placeholder="placeholder"
+                        :spellcheck="spellcheck"
+                        :type="type"
+                        :disabled="disabled"
+                        :autocomplete="autocomplete"
+                        :readonly="readonly"
+                        :name="name"
+                        :value="currentValue"
+                        :autofocus="autofocus"
+                        :number="number"
+                        :id="id"
+                        @keyup.enter="handleEnter"
+                        @keyup="handleKeyup"
+                        @keypress="handleKeypress"
+                        @keydown="handleKeydown"
+                        @input="handleInput"
+                        @focus="handleFocus"
+                        @blur="handleBlur"
+                        ref="input"
+                  />
+                  <!-- 尾部图标 -->
+                  <span :class="[`${prefixCls}-suffix`]" v-show="showSuffix">
+                        <slot name="suffix">
+                              <i class="ivue-icon">{{suffix}}</i>
+                        </slot>
+                  </span>
+                  <!-- 重置选择 -->
+                  <IVueIcon :class="[`${prefixCls}-icon`,`${prefixCls}-icon-clear`,showSuffix? 'is-suffix': '']" 
+                        v-if="clearable && currentValue" 
+                        @click.native.stop="handleClear"
+                  >{{clearIcon}}</IVueIcon>
+            </template>
+            <textarea   v-else
+                        :id="id"
+                        :name="name"
+                        :disabled="disabled"
+                        :class="textareaClasses"
+                        :style="textareaStyles"
+                        :value="currentValue"
+                        :placeholder="placeholder"
+                        :autofocus="autofocus"
+                        :readonly="readonly"
+                        :rows="rows"
+                        :maxlength="maxlength"
+                        :spellcheck="spellcheck"
+                        ref="textarea"
+                        @keyup.enter="handleEnter"
+                        @keyup="handleKeyup"
+                        @keypress="handleKeypress"
+                        @keydown="handleKeydown"
+                        @focus="handleFocus"
+                        @blur="handleBlur"
+                        @input="handleInput"
+            >
+            </textarea>
       </div>
 </template>
 
 <script>
 import { oneOf } from '../../utils/Assist';
+import CalcTextareaHeight from '../../utils/CalcTextareaHeight';
 
 const prefixCls = 'ivue-input';
 
 export default {
       name: 'IVueInput',
       props: {
+            /*
+            * 输入框类型，可选值为 text、password、textarea、url、email、date
+            * 
+            * @type {null}
+            */
+            type: {
+                  validator (value) {
+                        return oneOf(value, ['text', 'textarea', 'password', 'url', 'email', 'date']);
+                  },
+                  default: 'text'
+            },
             placeholder: {
                   type: String,
                   default: ''
@@ -40,12 +93,6 @@ export default {
             spellcheck: {
                   type: Boolean,
                   default: false
-            },
-            type: {
-                  validator (value) {
-                        return oneOf(value, ['text', 'password', 'url', 'email', 'date']);
-                  },
-                  default: 'text'
             },
             disabled: {
                   type: Boolean,
@@ -82,6 +129,10 @@ export default {
             id: {
                   type: String
             },
+            rows: {
+                  type: Number,
+                  default: 2
+            },
             /*
             * 是否显示清除按钮
             * 
@@ -94,18 +145,58 @@ export default {
             /*
             * 输入框清除图标
             * 
-            * @type {Boolean}
+            * @type {String}
             */
             clearIcon: {
-                  type: String
+                  type: String,
+                  default: 'cancel'
+            },
+            /*
+            * 输入框首部图标
+            * 
+            * @type {String}
+            */
+            prefix: {
+                  type: String,
+                  default: ''
+            },
+            /*
+            * 输入框尾部部图标
+            * 
+            * @type {String}
+            */
+            suffix: {
+                  type: String,
+                  default: ''
+            },
+            /*
+            * 指定最小行数和最大行数
+            * 
+            * @type {String}
+            */
+            autosize: {
+                  type: [Boolean, Object],
+                  default: false
             }
       },
       data () {
             return {
+                  prefixCls: prefixCls,
                   // 输入框value
                   currentValue: this.value,
-                  prefixCls: prefixCls
+                  // 是否显示首部图标
+                  showPrefix: false,
+                  // 是否显示尾部图标
+                  showSuffix: false,
+                  // 文本框样式
+                  textareaStyles: {}
             }
+      },
+      mounted () {
+            this.showPrefix = this.prefix !== '' || this.$slots.prefix !== undefined;
+            this.showSuffix = this.suffix !== '' || this.$slots.suffix !== undefined;
+
+            this.resizeTextarea();
       },
       computed: {
             // 外部样式
@@ -117,11 +208,39 @@ export default {
             // 输入框样式
             inputClass () {
                   return [
-                        prefixCls
+                        prefixCls,
+                        {
+                              [`${prefixCls}-with-prefix`]: this.showPrefix,
+                              [`${prefixCls}-with-suffix`]: this.showSuffix,
+                              [`${prefixCls}-disabled`]: this.disabled
+                        }
+                  ]
+            },
+            // 文本框样式
+            textareaClasses () {
+                  return [
+                        prefixCls,
+                        `${prefixCls}-textarea`,
+                        {
+                              [`${prefixCls}-disabled`]: this.disabled
+                        }
+
                   ]
             }
       },
       methods: {
+            handleEnter (event) {
+                  this.$emit('on-enter', event);
+            },
+            handleKeydown (event) {
+                  this.$emit('on-keydown', event);
+            },
+            handleKeypress (event) {
+                  this.$emit('on-keypress', event);
+            },
+            handleKeyup (event) {
+                  this.$emit('on-keyup', event);
+            },
             // 获取焦点事件
             handleFocus (event) {
                   this.$emit('on-focus', event);
@@ -153,10 +272,30 @@ export default {
                   if (value === this.currentValue) {
                         return;
                   }
+
+                  this.$nextTick(() => {
+                        this.resizeTextarea();
+                  });
+
                   this.currentValue = value;
+            },
+            // 改变文本框样式
+            resizeTextarea () {
+                  const autosize = this.autosize;
+
+                  if (!autosize && this.type !== 'textarea') {
+                        return;
+                  }
+
+                  const minRows = autosize.minRows;
+                  const maxRows = autosize.maxRows;
+
+                  // 文本框样式
+                  this.textareaStyles = CalcTextareaHeight(this.$refs.textarea, minRows, maxRows);
             }
       },
       watch: {
+            // 监听输入变化
             value (value) {
                   this.setCurrentValue(value);
             }

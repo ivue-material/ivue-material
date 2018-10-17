@@ -13,6 +13,7 @@ import IVueBottomNav from '../components/ivueBottomNav';
 import IVueBreadcrumbs from '../components/ivueBreadcrumb';
 import IVueSelect from '../components/ivueSelect';
 import IVueAutoComplete from '../components/ivueAutoComplete';
+import IVueInput from '../components/ivueInput';
 
 Vue.use(Router);
 
@@ -82,6 +83,11 @@ export default new Router({
       path: '/IVueAutoComplete',
       name: 'IVueAutoComplete',
       component: IVueAutoComplete
+    },
+    {
+      path: '/IVueInput',
+      name: 'IVueInput',
+      component: IVueInput
     }
   ]
 });
