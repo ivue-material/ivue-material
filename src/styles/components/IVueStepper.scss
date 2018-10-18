@@ -1,0 +1,150 @@
+$name: 'ivue-stepper';
+$steps: 'ivue-stepper-steps';
+.#{$name} {
+      font-size: 0;
+      width: 100%;
+      line-height: 1.5;
+      &.#{$name}-horizontal {
+            .#{$steps}-content-slot {
+                  padding-left: 35px;
+            }
+      }
+      .#{$name}-vertical {
+            .#{$name}-item {
+                  display: block;
+            }
+      }
+      .#{$name}-steps-item {
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+      }
+      .#{$name}-steps-divider {
+            position: absolute;
+            left: 0;
+            top: 13px;
+            padding: 0 10px;
+            width: 100%;
+            >i {
+                  position: relative;
+                  display: inline-block;
+                  width: 100%;
+                  height: 1px;
+                  vertical-align: top;
+                  border-radius: 1px;
+                  background: $border-multiple-color;
+                  &:after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        opacity: 0;
+                        width: 0;
+                        height: 100%;
+                        background: $border-multiple-color;
+                  }
+            }
+      }
+      .#{$steps}-header {
+            background: #fff;
+      }
+      .#{$steps}-title {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding-right: 10px;
+            font-size: $font-base-size;
+            font-weight: bold;
+            color: $steps-title-color;
+            background: #fff;
+      }
+      
+      .#{$steps}-header,
+      .#{$steps}-content {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+      }
+      .#{$steps}-content {
+            margin-top: 2.5px;
+            display: inline;
+      }
+      .#{$steps}-header-content {
+            display: block;
+            margin-right: 8px;
+            text-align: center;
+            font-size: $font-base-size;
+            border-radius: 50%;
+            border: 1px solid $steps-border-color;
+            width: 26px;
+            height: 26px;
+            line-height: 24px;
+            transition: background-color $ivue-transition-default;
+            >.#{$steps}-icon {
+                  position: relative;
+                  top: -1px;
+                  line-height: 1;
+                  &.#{$steps}-icon {
+                        font-size: 16px;
+                  }
+            }
+      }
+      .#{$steps}-content-slot {
+            font-size: $font-small-size;
+            color: #999;
+      }
+      /*等待*/
+      .#{$steps}-status-wait {
+            .#{$steps}-header-content {
+                  background-color: #fff;
+                  >.#{$steps}-icon,
+                  span {
+                        color: $steps-border-color;
+                  }
+            }
+            .#{$steps}-title {
+                  color: $steps-color;
+            }
+            .#{$steps}-content-slot {
+                  color: $steps-color;
+            }
+      }
+      /*进行中*/
+      .#{$steps}-status-process {
+            .#{$steps}-header-content {
+                  border-color: $primary-color;
+                  background-color: $primary-color;
+                  >.#{$steps}-icon,
+                  span {
+                        color: #fff;
+                  }
+            }
+            .#{$steps}-title {
+                  color: $steps-title-color;
+            }
+            .#{$steps}-content-slot {
+                  color: $steps-title-color;
+            }
+      }
+      /*完成*/
+      .#{$steps}-status-finish {
+            .#{$steps}-header-content {
+                  border-color: $primary-color;
+                  background-color: #fff;
+                  >.#{$steps}-icon,
+                  span {
+                        color: $primary-color;
+                  }
+            }
+            .#{$name}-steps-divider>i:after {
+                  opacity: 1;
+                  width: 100%;
+                  background: $primary-color;
+                  transition: all $ivue-transition-default;
+            }
+            .#{$steps}-title {
+                  color: $steps-color;
+            }
+            .#{$steps}-content-slot {
+                  color: $steps-color;
+            }
+      }
+}

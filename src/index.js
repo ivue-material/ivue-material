@@ -16,6 +16,7 @@ import IVueBreadcrumbsItem from './components/IVueBreadcrumbsItem';
 import { IVueSelect, IVueOption, IVueOptionGroup } from './components/IVueSelect';
 import IVueAutoComplete from './components/IVueAutoComplete';
 import IVueInput from './components/IVueInput';
+import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 
 const components = {
   IVueAffix,
@@ -37,7 +38,9 @@ const components = {
   IVueOption,
   IVueOptionGroup,
   IVueAutoComplete,
-  IVueInput
+  IVueInput,
+  IVueStepper,
+  IVueStepperStep
 };
 
 const iVue = {

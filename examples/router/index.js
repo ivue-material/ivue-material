@@ -14,6 +14,7 @@ import IVueBreadcrumbs from '../components/ivueBreadcrumb';
 import IVueSelect from '../components/ivueSelect';
 import IVueAutoComplete from '../components/ivueAutoComplete';
 import IVueInput from '../components/ivueInput';
+import IVueStepperStep from '../components/ivueStepperStep';
 
 Vue.use(Router);
 
@@ -88,6 +89,11 @@ export default new Router({
       path: '/IVueInput',
       name: 'IVueInput',
       component: IVueInput
+    },
+    {
+      path: '/IVueStepperStep',
+      name: 'IVueStepperStep',
+      component: IVueStepperStep
     }
   ]
 });
