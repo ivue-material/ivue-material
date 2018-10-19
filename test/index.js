@@ -14,3 +14,4 @@ import "./components/IVueBreadcrumbs.test";
 import "./components/IVueSelect.test";
 import "./components/IVueAutoComplete.test";
 import "./components/IVueInput.test";
+import "./components/IVueStepper.test";

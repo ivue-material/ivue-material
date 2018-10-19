@@ -75,6 +75,7 @@ $steps: 'ivue-stepper-steps';
             width: 26px;
             height: 26px;
             line-height: 24px;
+            user-select: none;
             transition: background-color $ivue-transition-default;
             cursor: pointer;
             >.#{$steps}-icon {
