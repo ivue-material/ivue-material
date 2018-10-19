@@ -1340,6 +1340,78 @@ API
 | on-change | 数据改变时触发 | event   |
     
 
+### IVueStepper 步骤条    
+
+组件用于显示步骤进度，引导用户按流程完成任务。       
+
+#### 例子     
+```javascript
+<template>
+      <div>
+            <IVueStepper :currentStep="0"  :direction="'vertical'">
+                  <IVueStepperStep title="已完成" content="这里是该步骤的描述信息"></IVueStepperStep>
+                  <IVueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IVueStepperStep>
+                  <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
+                  <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
+            </IVueStepper>
+
+
+            <IVueStepper :currentStep="current" >
+                  <IVueStepperStep title="步骤1" icon="account_circle" editable></IVueStepperStep>
+                  <IVueStepperStep title="步骤2" editable :status="'error'"></IVueStepperStep>
+                  <IVueStepperStep title="步骤3" editable></IVueStepperStep>
+                  <IVueStepperStep title="步骤4" editable></IVueStepperStep>
+            </IVueStepper>
+            <button @click="next">Next step</button>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  current: 0
+            }
+      },
+      methods: {
+            next () {
+                  if (this.current == 3) {
+                        this.current = 0;
+                  } else {
+                        this.current += 1;
+                  }
+            }
+      }
+}
+</script>
+```
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |         
+| currentStep    | 当前步骤,从 0 开始计数 | Number | 0      |           
+| direction    | 步骤条方向,可选值为```horizontal```（水平）或 ```vertical```（垂直） | String | horizontal      |           
+| status    | 当前步骤的状态，可选值为 ```wait```、```process```、```finish```、```error``` | String | process      |           
+
+### IVueStepperStep 步骤条子组件
+
+通常与```IVueStepper```一起使用
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| status    | 当前步骤的状态，可选值为 ```wait```、```process```、```finish```、```error``` | String | process      |           
+| title    | 标题 | String | -      |           
+| content    | 内容 | String | -      |           
+| icon    | 步骤图标 | String | -      |           
+| editable    | 当前步骤是否是否可以通过点击进行下一步 | String | -      |           
+
+
+
 # 其他
 
 ### IVueAffix 图钉

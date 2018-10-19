@@ -1,35 +1,28 @@
 <template>
       <div :class="wrapClasses" :style="styles">
             <!-- 下划线 -->
-            <div :class="[`${prefixCls}-divider`]">
-                  <i></i>
-            </div>
+            <div :class="[`${prefixCls}-divider`]"><i></i></div>
             <!-- 步骤 -->
-            <div :class="[`${prefixCls}-header`]">
+            <div :class="[`${prefixCls}-header`]" @click="nextStepper(stepNumber)">
                   <div :class="[`${prefixCls}-header-content`]">
                         <!-- 步骤数 还没完成或者没有错误显示-->
                         <span v-if="!icon && currentStatus !== 'finish' && currentStatus !== 'error'">{{stepNumber}}</span>
                         <!-- 图标 -->
-                        <i v-else :class="iconClasses">
-                              {{icon ? icon : currentStatus === 'finish' ? 'check' : currentStatus === 'error'? 'close': ''}}
-                        </i>
+                        <i v-else :class="iconClasses">{{icon ? icon : currentStatus === 'finish' ? 'check' : currentStatus === 'error'? 'close': ''}}</i>
                   </div>
             </div>
             <!-- 文字 -->
             <div :class="[`${prefixCls}-content`]">
-                  <div :class="[`${prefixCls}-title`]">
-                        {{title}}
-                  </div>
+                  <div :class="[`${prefixCls}-title`]">{{title}}</div>
                   <slot>
-                       <div :class="[`${prefixCls}-content-slot`]">
-                             {{content}}
-                        </div> 
+                       <div :class="[`${prefixCls}-content-slot`]">{{content}}</div> 
                   </slot>
             </div>
       </div>
 </template>
 
 <script>
+import { oneOf } from '../../utils/Assist';
 
 const prefixCls = 'ivue-stepper-steps';
 
@@ -65,6 +58,15 @@ export default {
             */
             icon: {
                   type: String
+            },
+            /*
+            * 当前步骤是否是否可以通过点击进行下一步
+            * 
+            * @type {Boolean}
+            */
+            editable: {
+                  type: Boolean,
+                  default: false
             }
       },
       data () {
@@ -86,11 +88,13 @@ export default {
             wrapClasses () {
                   return [
                         `${prefixCls}-item`,
-                        `${prefixCls}-status-${this.currentStatus}`
+                        `${prefixCls}-status-${this.currentStatus}`,
+                        {
+                              [`${prefixCls}-next-error`]: this.nextError
+                        }
                   ]
             },
             iconClasses () {
-                  
                   return [
                         `${prefixCls}-icon`,
                         'ivue-icon'
@@ -100,6 +104,18 @@ export default {
                   return {
                         width: `${1 / this.number * 100}%`
                   }
+            }
+      },
+      methods: {
+            // 下一步
+            nextStepper (stepNumber) {
+                  if (!this.editable) {
+                        return;
+                  }
+
+                  this.currentStatus = this.status;
+
+                  this.$parent.$emit('nextStepper', stepNumber - 1, this.status);
             }
       }
 }
