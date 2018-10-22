@@ -17,6 +17,7 @@ import { IVueSelect, IVueOption, IVueOptionGroup } from './components/IVueSelect
 import IVueAutoComplete from './components/IVueAutoComplete';
 import IVueInput from './components/IVueInput';
 import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
+import IVueUpLoad from './components/IVueUpLoad';
 
 const components = {
   IVueAffix,
@@ -40,7 +41,8 @@ const components = {
   IVueAutoComplete,
   IVueInput,
   IVueStepper,
-  IVueStepperStep
+  IVueStepperStep,
+  IVueUpLoad
 };
 
 const iVue = {

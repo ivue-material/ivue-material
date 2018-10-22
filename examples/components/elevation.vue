@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style  lass="scss"> 
+<style > 
 .elevation-demo {
   padding: 16px;
   display: flex;

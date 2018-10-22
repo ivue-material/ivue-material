@@ -101,10 +101,10 @@ $steps: 'ivue-stepper-steps';
                   }
             }
             .#{$steps}-title {
-                  color: $steps-color;
+                  color: $legend-color;
             }
             .#{$steps}-content-slot {
-                  color: $steps-color;
+                  color: $legend-color;
             }
       }
       /*进行中*/
@@ -140,10 +140,10 @@ $steps: 'ivue-stepper-steps';
                   background: $primary-color;
             }
             .#{$steps}-title {
-                  color: $steps-color;
+                  color: $legend-color;
             }
             .#{$steps}-content-slot {
-                  color: $steps-color;
+                  color: $legend-color;
             }
       }
       /*错误*/

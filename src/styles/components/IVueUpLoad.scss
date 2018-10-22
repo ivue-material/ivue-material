@@ -1,0 +1,60 @@
+$name: 'ivue-upload';
+.#{$name} {
+      input[type="file"] {
+            display: none;
+      }
+      &-select {
+            display: inline-block;
+      }
+      &-list {
+            margin-top: 8px;
+            &-status {
+                  position: relative;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 4px;
+                  color: $text-color;
+                  border-radius: 4px;
+                  font-size: $font-small-size;
+                  transition: background-color $ivue-transition-default;
+                  overflow: hidden;
+                  &>span {
+                        cursor: pointer;
+                        transition: color $ivue-transition-default;
+                        i {
+                              position: relative;
+                              top: -1px;
+                              display: inline-block;
+                              width: $font-small-size;
+                              height: 100%;
+                              font-size: $font-small-size;
+                              color: $text-color;
+                              text-align: center;
+                        }
+                  }
+                  &:hover {
+                        background-color: $input-disabled-bg;
+                        &>span {
+                              color: $primary-color;
+                        }
+                        .#{$name}-list-remove {
+                              opacity: 1;
+                        }
+                  }
+            }
+            &-remove {
+                  opacity: 0;
+                  margin-right: 4px;
+                  font-size: $font-small-size;
+                  height: 100%;
+                  cursor: pointer;
+                  float: right;
+                  color: $legend-color;
+                  transition: all $ivue-transition-default;
+                  &:hover {
+                        color: #444;
+                  }
+            }
+      }
+}
