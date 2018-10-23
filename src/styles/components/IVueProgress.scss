@@ -1,0 +1,96 @@
+$name: 'ivue-progress';
+.#{$name} {
+      display: inline-block;
+      position: relative;
+      font-size: $font-small-size;
+      width: 100%;
+      &-outer {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+      }
+      &-show-info &-outer {
+            padding-right: 55px;
+            margin-right: -55px;
+      }
+      &-inner {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            background-color: $progress-bg;
+            border-radius: 100px;
+            vertical-align: middle;
+      }
+      &-bg {
+            position: relative;
+            border-radius: 100px;
+            background-color: $primary-color;
+            transition: all $ivue-transition-default;
+      }
+      &-success-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 100px;
+            background-color: $success-color;
+            transition: all $ivue-transition-default;
+      }
+      &-text {
+            display: inline-block;
+            margin-left: 5px;
+            text-align: left;
+            vertical-align: middle;
+      }
+      &-text-inner {
+            vertical-align: middle;
+            &>i {
+                  vertical-align: initial;
+                  width: auto;
+                  height: auto;
+                  min-width: auto;
+                  font-size: $font-small-size;
+            }
+      }
+      &-wrong &-text {
+            color: $error-color;
+      }
+      &-success &-text {
+            color: $success-color;
+      }
+      &-active {
+            .#{$name}-bg:before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: #fff;
+                  border-radius: 10px;
+                  opacity: 0;
+                  animation: ivue-progress-active 2s ease-in-out infinite;
+            }
+      }
+}
+
+.progress-fade-enter-active,
+.progress-fade-leave-active {
+      transition: opacity .3s;
+}
+
+.progress-fade-enter,
+.progress-fade-leave-to {
+      opacity: 0;
+}
+
+@keyframes ivue-progress-active {
+      0% {
+            opacity: .3;
+            width: 0;
+      }
+      100% {
+            opacity: 0;
+            width: 100%;
+      }
+}

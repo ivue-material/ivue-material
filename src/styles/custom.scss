@@ -11,6 +11,7 @@ $ivue-button-icon-size: 40px;
 $icon-size: 24px;
 // color
 $primary-color: #4177F6;
+$success-color:#19be6b;
 $error-color: #ed4014;
 $divider-color: rgba(0, 0, 0, 0.38);
 $text-color:#515a6e;
@@ -31,10 +32,14 @@ $input-disabled-bg: #ededed;
 // background
 $background-color-select-hover: #f3f3f3;
 $background-color-multiple: #f7f7f7;
-
 // steps
 $steps-border-color: #ccc;
 $steps-title-color: #666;
 // size
 $font-small-size: 12px;
 $font-base-size: 14px;
+// progress
+$progress-bg: #f3f3f3;
+
+// radius
+$border-radius-small: 4px;

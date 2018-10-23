@@ -5,20 +5,34 @@
                   :key="file.uid"
             >
                   <!-- 名称 -->
-                  <span>
+                  <span @click="handleFileData(file)">
                         <IVueIcon>{{iconType(file)}}</IVueIcon>{{file.name}}
                   </span>
                   <!-- 删除按钮 -->
-                  <IVueIcon :class="`${prefixCls}-remove`">close</IVueIcon>
+                  <IVueIcon :class="`${prefixCls}-remove`"
+                            v-show="file.status === 'finished'"
+                            @click.native="handleRemove(file)"
+                            >close</IVueIcon>
+                  <!-- 进度条 -->
+                  <transition name="progress-fade">
+                        <IVueProgressLinear :height="3"
+                                            :successPercent="percentage(file.percentage)"
+                                            :status="file.status === 'finished' && file.showProgress ? 'success' :'normal'"
+                                            v-if="file.showProgress"
+                        ></IVueProgressLinear>
+                  </transition>
             </li>
       </ul>
 </template>
 
 <script>
-import IVueIcon from '../IVueIcon/IVueIcon';
+import IVueIcon from '../IVueIcon';
+import IVueProgressLinear from '../IVueProgress/IVueProgressLinear';
+
 const prefixCls = 'ivue-upload-list';
 
 export default {
+      name: "IVueUploadList",
       props: {
             /*
             * 上传的文件的列表
@@ -50,8 +64,7 @@ export default {
             iconType (file) {
                   // 获取文件名称后缀
                   const name = file.name.split('.').pop().toLocaleLowerCase() || '';
-
-                  let type;
+                  let type = 'insert_drive_file';
 
                   if (['gif', 'jpg', 'jpeg', 'png', 'bmp', 'webp'].indexOf(name) > -1) {
                         type = 'image';
@@ -78,13 +91,22 @@ export default {
 
 
                   return type;
+            },
+            percentage (value) {
+                  return parseInt(value, 10);
+            },
+            // 返回文件数据
+            handleFileData (file) {
+                  this.$emit('on-file-data', file);
+            },
+            // 点击删除按钮
+            handleRemove (file) {
+                  this.$emit('on-file-remove', file);
             }
       },
       components: {
-            IVueIcon
+            IVueIcon,
+            IVueProgressLinear
       }
 }
 </script>
-
-<style>
-</style>

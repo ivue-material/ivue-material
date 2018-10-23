@@ -9,13 +9,12 @@ $name: 'ivue-upload';
       &-list {
             margin-top: 8px;
             &-status {
-                  position: relative;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
+                  position: relative; // display: flex;
+                  // justify-content: center;
+                  // align-items: center;
                   padding: 4px;
                   color: $text-color;
-                  border-radius: 4px;
+                  border-radius: $border-radius-small;
                   font-size: $font-small-size;
                   transition: background-color $ivue-transition-default;
                   overflow: hidden;
@@ -45,6 +44,7 @@ $name: 'ivue-upload';
             }
             &-remove {
                   opacity: 0;
+                  padding: 2.5px 0;
                   margin-right: 4px;
                   font-size: $font-small-size;
                   height: 100%;
@@ -56,5 +56,21 @@ $name: 'ivue-upload';
                         color: #444;
                   }
             }
+      }
+      &-drag {
+            position: relative;
+            text-align: center;
+            border: 1px dashed $border-color;
+            border-radius: $border-radius-small;
+            background-color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .2s ease;
+            &:hover {
+                  border: 1px dashed $primary-color;
+            }
+      }
+      &-dragOver {
+            border: 2px dashed $primary-color;
       }
 }
