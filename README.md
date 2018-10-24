@@ -1411,6 +1411,43 @@ API
 | editable    | 当前步骤是否是否可以通过点击进行下一步 | String | -      |           
 
 
+### IVueUpLoad 上传
+
+文件选择上传和拖拽上传控件。
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |       
+| uploadUrl    | 文件上传地址,必填 | String | -      |                  
+| showUploadList    | 是否显示文件已上传列表 | Boolean | true      |                  
+| type    | 上传控件的类型，可选值为 ```select```（点击选择），```drag```（支持拖拽） | String | select      |                  
+| name    | 上传文件字段名 | String | file      |                  
+| multiple    | 是否支持多选文件 | Boolean | false      |                  
+| accept    | 接受上传的[文件类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept) | String | -      |                  
+| withCredentials    | 支持发送 cookie 凭证信息 | Boolean | false      |                  
+| beforeUpload    | 上传文件之前的钩子，参数为上传的文件，若返回 false 或者 Promise 则停止上传 | Function | -      |   
+| defaultFileList    | 默认已上传的文件列表 | Array | -      |                  
+| maxSize    | 文件大小限制，单位 kb | Number | -      |       
+| format    | 支持的文件类型，与 accept 不同的是，format 是识别文件的后缀名，accept 为 input 标签原生的 accept 属性，会在选择文件时过滤，可以两者结合使用	 | Array | []      |       
+| ajaxData    | 上传时附带的额外参数| Object | -      |       
+| ajaxHeaders    | 设置上传的请求头部 | Object | {}      |       
+| onProgress    | 文件上传时的钩子，返回字段为 event, file, fileList | Function | -      |                  
+| onSuccess    | 文件上传成功时的钩子，返回字段为 response, file, fileList | Function | -      |                  
+| onError    |文件上传失败时的钩子，返回字段为 error, file, fileList | Function | -      |                  
+| onFileData    | 点击已上传的文件链接时的钩子，返回字段为 file， 可以通过 file.response 拿到服务端返回数据 | Function | -      |                  
+| onRemove    | 文件列表移除文件时的钩子，返回字段为 file, fileList | Function | -      |                  
+| onExceededSize    | 文件超出指定大小限制时的钩子，返回字段为 file, fileList  | Function | -      |       
+| onFormatError    | 文件格式验证失败时的钩子，返回字段为 file, fileList | Function | -      |       
+           
+
+##### methods     
+
+| 方法名          | 说明                             |  默认值 |          
+| ------------- | :------------------------------- |  :----- |        
+| clearFiles    | 清空已上传的文件列表 | -      |      
+   
+
 
 # 其他
 

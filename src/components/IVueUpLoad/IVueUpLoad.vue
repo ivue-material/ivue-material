@@ -189,9 +189,9 @@ export default {
                   type: Number
             },
             /*
-            * 文件大小限制，单位 kb
+            * 文件超出指定大小限制时的钩子，返回字段为 file, fileList
             * 
-            * @type {Number}
+            * @type {Function}
             */
             onExceededSize: {
                   type: Function,
@@ -317,7 +317,7 @@ export default {
             post (file) {
                   // 识别文件格式
                   if (this.format.length) {
-                        const _fileFormat = file.name.splice('.').pop().toLocaleLowerCase();
+                        const _fileFormat = file.name.split('.').pop().toLocaleLowerCase();
                         const checked = this.format.some((item) => item.toLocaleLowerCase() === _fileFormat);
                         if (!checked) {
                               this.onFormatError(file, this.fileList);
