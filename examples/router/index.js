@@ -16,6 +16,7 @@ import IVueAutoComplete from '../components/ivueAutoComplete';
 import IVueInput from '../components/ivueInput';
 import IVueStepperStep from '../components/ivueStepperStep';
 import IVueUpLoad from '../components/ivueUpLoad';
+import IVueProgress from '../components/ivueProgress';
 
 Vue.use(Router);
 
@@ -100,6 +101,11 @@ export default new Router({
       path: '/IVueUpLoad',
       name: 'IVueUpLoad',
       component: IVueUpLoad
+    },
+    {
+      path: '/IVueProgress',
+      name: 'IVueProgress',
+      component: IVueProgress
     }
   ]
 });

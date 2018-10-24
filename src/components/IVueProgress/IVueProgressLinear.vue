@@ -10,7 +10,7 @@
                   </div>
             </div>
             <!-- 进度数 -->
-            <span :class="textClasses">
+            <span :class="textClasses" v-show="!hideText">
                   <slot>
                         <span v-if="progressTextStatus" :class="textInnerClasses">
                               <IVueIcon>
@@ -28,7 +28,7 @@
 import IVueIcon from '../IVueIcon';
 import { oneOf } from '../../utils/Assist';
 
-const prefixCls = 'ivue-progress';
+const prefixCls = 'ivue-progress-linear';
 
 export default {
       name: "IVueProgressLinear",

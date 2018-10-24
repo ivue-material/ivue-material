@@ -18,7 +18,7 @@ import IVueAutoComplete from './components/IVueAutoComplete';
 import IVueInput from './components/IVueInput';
 import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 import IVueUpLoad from './components/IVueUpLoad';
-import {IVueProgressLinear} from './components/IVueProgress';
+import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
 
 const components = {
   IVueAffix,
@@ -44,7 +44,8 @@ const components = {
   IVueStepper,
   IVueStepperStep,
   IVueUpLoad,
-  IVueProgressLinear
+  IVueProgressLinear,
+  IVueProgressCircular
 };
 
 const iVue = {

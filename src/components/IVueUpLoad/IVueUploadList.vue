@@ -16,7 +16,7 @@
                   <!-- 进度条 -->
                   <transition name="progress-fade">
                         <IVueProgressLinear :height="3"
-                                            :successPercent="percentage(file.percentage)"
+                                            :percent="percentage(file.percentage)"
                                             :status="file.status === 'finished' && file.showProgress ? 'success' :'normal'"
                                             v-if="file.showProgress"
                         ></IVueProgressLinear>

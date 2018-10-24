@@ -1415,6 +1415,126 @@ API
 
 文件选择上传和拖拽上传控件。
 
+#### 例子     
+```javascript
+<template>
+      <div>
+            <p>单选文件</p>
+            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
+                  <IVueButton class="upload"  :ivueRipple="false">
+                        <IVueIcon>cloud_upload</IVueIcon>上传
+                  </IVueButton>
+            </IVueUpLoad>
+
+            <p>多选文件</p>
+            <IVueUpLoad multiple :uploadUrl="'//jsonplaceholder.typicode.com/posts/'">
+                  <IVueButton class="upload"  :ivueRipple="false">
+                        <IVueIcon>cloud_upload</IVueIcon>上传
+                  </IVueButton>
+            </IVueUpLoad>
+
+            <p>手动上传</p>
+            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" :beforeUpload="handleUpload">
+                  <IVueButton class="upload"  :ivueRipple="false">
+                        <IVueIcon>cloud_upload</IVueIcon>上传
+                  </IVueButton>
+            </IVueUpLoad>
+            <div v-if="file !== null">Upload file: {{ file.name }} 
+                   <IVueButton class="upload"  :ivueRipple="false" @click="upload" :loading="loadingStatus">
+                        {{ loadingStatus ? 'Uploading' : 'Click to upload' }}
+                  </IVueButton>
+            </div>
+
+            <p>拖拽上传</p>
+            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" multiple type="drag">
+                  <div style="padding: 20px 0">
+                        <p>Click or drag files here to upload</p>
+                  </div>
+            </IVueUpLoad>
+
+            <p>自定义上传列表</p>
+            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" 
+                        multiple 
+                        :showUploadList="false"
+                        :defaultFileList="defaultList"
+                        :onSuccess="handleSuccess"
+                        :format="['jpg','jpeg','png']"
+                        :maxSize="20"
+                        :onFormatError="handleFormatError"
+                        :beforeUpload="handleBeforeUpload"
+                        type="drag"
+                        style="display: inline-block;width:58px;"
+                        ref="upload"
+            >
+                  <div style="width: 58px;height:58px;line-height: 58px;">
+                        <p>Click or drag files here to upload</p>
+                  </div>
+            </IVueUpLoad>
+            <img v-for="item in uploadList" :src="item.url" :key="item.url" v-if="item.status === 'finished'"/>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  defaultList: [
+                        {
+                              'name': '1',
+                              'url': 'https://cn.vuejs.org/images/logo.png'
+                        },
+                        {
+                              'name': '2',
+                              'url': 'https://cn.vuejs.org/images/logo.png'
+                        }
+                  ],
+                  file: null,
+                  loadingStatus: false,
+                  imgName: '',
+                  visible: false,
+                  uploadList: []
+            }
+      },
+      mounted () {
+            this.uploadList = this.$refs.upload.fileList;
+      },
+      methods: {
+            handleUpload (file) {
+                  this.file = file;
+                  return false;
+            },
+            upload () {
+                  this.loadingStatus = true;
+                  setTimeout(() => {
+                        this.file = null;
+                        this.loadingStatus = false;
+                  }, 1500);
+            },
+            handleSuccess (res, file) {
+                  file.url = 'https://cn.vuejs.org/images/logo.png';
+                  file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+            },
+            handleFormatError (file) {
+                  console.error('File format of ' + file.name + ' is incorrect, please select jpg or png.');
+            },
+            handleBeforeUpload () {
+                  const check = this.uploadList.length <= 5;
+                  if (!check) {
+                        console.error('Up to five pictures can be uploaded.');
+                  }
+                  return check;
+            }
+      }
+}
+</script>
+
+<style lang="scss">
+.upload {
+  border: 1px solid #dcdee2;
+}
+</style>
+```
+
 ##### props     
 
 | 属性          | 说明                             | 类型   | 默认值 |
@@ -1448,6 +1568,42 @@ API
 | clearFiles    | 清空已上传的文件列表 | -      |      
    
 
+
+### IVueProgress 进度条
+
+展示操作或任务的当前进度，比如上传文件。
+
+#### IVueProgressLinear 线条
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| status    | 状态，可选值为normal、active、wrong、success | String | normal      |               
+| height    | 进度条的高度，单位 px | Number | 10      |          
+| percent    | 百分比 | Number | 0      |         
+| successPercent    | 已完成的分段百分比 | Number | 0      |         
+| hideText    | 隐藏文字 | Boolean | false      |           
+
+
+#### IVueProgressCircular 圆形
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| status    | 状态，可选值为normal、active、wrong、success | String | normal      |               
+| rotate    | 旋转角度 | Number | 0      |          
+| size    | 圆圈大小，单位 px | Number | 50      |          
+| width    | 圆圈的宽度 | Number | 4      |          
+| percent    | 百分比 | Number | 0      |          
+| hideText    | 隐藏文字 | Boolean | false      |           
+| indeterminate    | 一个不确定的进度圆环永远循环动画 | Boolean | false      |           
+           
 
 # 其他
 
