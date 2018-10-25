@@ -1,0 +1,58 @@
+$name: 'ivue-notice';
+.#{$name} {
+      &-notice {
+            position: relative;
+            padding: 16px;
+            margin-bottom: 10px;
+            border-radius: $border-radius-small;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+            overflow: hidden;
+            background-color: #fff;
+            &-close {
+                  position: absolute;
+                  right: 10px;
+                  top: 15px;
+                  outline: none;
+                  color: #999;
+                  i {
+                        position: relative;
+                        top: -3px;
+                        font-size: 16px;
+                        transition: color .2s ease;
+                        width: auto;
+                        min-width: auto;
+                        height: auto;
+                        &:hover{
+                              color: #444;
+                        }
+                  }
+            }
+            &-have-desc &-close {
+                  top: 12px;
+            }
+      }
+      &-content {
+            position: relative;
+      }
+      /*标题*/
+      &-title {
+            padding-right: 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: $font-base-size;
+            line-height: $font-base-size + 3;
+            color: $title-color;
+            overflow: hidden;
+      }
+      /*描述*/
+      &-desc {
+            font-size: $font-small-size;
+            color: $text-color;
+            text-align: justify;
+            line-height: 1.5;
+      }
+      &-have-desc &-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+      }
+}

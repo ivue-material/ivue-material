@@ -19,6 +19,7 @@ import IVueInput from './components/IVueInput';
 import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 import IVueUpLoad from './components/IVueUpLoad';
 import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
+import IVueNotice from './components/IVueNotification';
 
 const components = {
   IVueAffix,
@@ -45,7 +46,8 @@ const components = {
   IVueStepperStep,
   IVueUpLoad,
   IVueProgressLinear,
-  IVueProgressCircular
+  IVueProgressCircular,
+  IVueNotice
 };
 
 const iVue = {
