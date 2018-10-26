@@ -1,9 +1,6 @@
 <template>
       <div>
-            <IVueNotice :prefixCls="'ivue-notice'"
-                        :content="content"
-                        type="notice"
-            ></IVueNotice>
+            <Button type="primary" @click="time">Open notice</Button>
       </div>
 </template>
 
@@ -15,14 +12,35 @@ const desc = 'desc';
 export default {
       data () {
             return {
-                  content: `
-            <div class="${prefixCls}-custom-content ${prefixCls}-have-desc ">
-                <div class="${prefixCls}-title">${title}</div>
-                <div class="${prefixCls}-desc">${desc}</div>
-            </div>
-        `
+
             }
-      }
+      },
+       methods: {
+            time () {
+                this.$IVueNotice.open({
+                    title: 'Notification title',
+                    desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                    duration: 0
+                });
+                 this.$IVueNotice.success({
+                    title: 'Notification title',
+                    desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                    duration: 0,
+                    render: h => {
+                        return h('span', [
+                            'This is created by ',
+                            h('a', 'render'),
+                            ' function'
+                        ])
+                    }
+                });
+                this.$IVueNotice.success({
+                    title: 'Notification title',
+                    desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                    duration: 0
+                });
+            }
+        }
 }
 </script>
 

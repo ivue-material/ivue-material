@@ -1,9 +1,16 @@
 $name: 'ivue-notice';
+$notice-width: 335px;
+$notice-padding: 16px;
+$notice-margin-bottom: 10px;
 .#{$name} {
+      position: fixed;
+      width: $notice-width;
+      margin-right: 25px;
+      z-index: 1000;
       &-notice {
             position: relative;
-            padding: 16px;
-            margin-bottom: 10px;
+            padding: $notice-padding;
+            margin-bottom: $notice-margin-bottom;
             border-radius: $border-radius-small;
             box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
             overflow: hidden;
@@ -22,7 +29,7 @@ $name: 'ivue-notice';
                         width: auto;
                         min-width: auto;
                         height: auto;
-                        &:hover{
+                        &:hover {
                               color: #444;
                         }
                   }
@@ -30,9 +37,23 @@ $name: 'ivue-notice';
             &-have-desc &-close {
                   top: 12px;
             }
+            &-content-render {
+                  .#{$name}-desc {
+                        display: none;
+                  }
+            }
       }
       &-content {
             position: relative;
+      }
+      &-content-have-icon {
+            margin-left: 51px;
+      }
+      .#{$name}-have-desc.#{$name}-have-icon &-title {
+            margin-left: 51px;
+      }
+      .#{$name}-have-desc.#{$name}-have-icon &-desc {
+            margin-left: 51px;
       }
       /*标题*/
       &-title {
@@ -54,5 +75,52 @@ $name: 'ivue-notice';
       &-have-desc &-title {
             font-weight: bold;
             margin-bottom: 8px;
+      }
+      &-icon {
+            &-success {
+                  position: absolute;
+                  top: 5px;
+                  left: 3px;
+                  font-size: 36px;
+                  color: $success-color;
+            }
+      }
+}
+
+@include move-motion(move-notice, ivuMoveNotice);
+@keyframes ivuMoveNoticeIn {
+      0% {
+            opacity: 0;
+            transform-origin: 0 0;
+            transform: translateX(100%);
+      }
+      100% {
+            opacity: 1;
+            transform-origin: 0 0;
+            transform: translateX(0%);
+      }
+}
+
+@keyframes ivuMoveNoticeOut {
+      0% {
+            transform-origin: 0 0;
+            transform: translateX(0%);
+            opacity: 1;
+      }
+      70% {
+            transform-origin: 0 0;
+            transform: translateX(100%);
+            height: auto;
+            padding: $notice-padding;
+            margin-bottom: $notice-margin-bottom;
+            opacity: 0;
+      }
+      100% {
+            transform-origin: 0 0;
+            transform: translateX(100%);
+            height: 0;
+            padding: 0;
+            margin-bottom: 0;
+            opacity: 0;
       }
 }

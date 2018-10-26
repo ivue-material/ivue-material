@@ -19,7 +19,7 @@ import IVueInput from './components/IVueInput';
 import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 import IVueUpLoad from './components/IVueUpLoad';
 import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
-import IVueNotice from './components/IVueNotification';
+import IVueNotice from './components/IVueNotice';
 
 const components = {
   IVueAffix,
@@ -67,8 +67,11 @@ const install = function (Vue, opts = {}) {
     transfer: 'transfer' in opts ? opts.transfer : ''
   };
 
-  // 注册全局 ivueSpin 组件
+  // 注册全局 IVueSpin 组件
   Vue.prototype.$IVueSpin = IVueSpin;
+
+  // 注册全局 IVueNotice 组件
+  Vue.prototype.$IVueNotice = IVueNotice;
 
 };
 

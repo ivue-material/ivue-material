@@ -57,3 +57,42 @@ $value in $colors {
             color: $color;
       }
 }
+
+@mixin move-motion($className, $keyframeName) {
+      @include make-motion($className, $keyframeName);
+      
+      .#{$className}-enter-active,
+      .#{$className}-appear {
+            opacity: 0;
+            animation-timing-function: ease-in-out;
+      }
+      .#{$className}-leave-active {
+            animation-timing-function: ease-in-out;
+      }
+}
+
+@mixin make-motion($className, $keyframeName) {
+      .#{$className}-enter-active,
+      .#{$className}-appear {
+            @include motion-common();
+            animation-play-state: paused;
+      }
+      .#{$className}-leave-active {
+            @include motion-common();
+            animation-play-state: paused;
+      }
+      .#{$className}-enter-active,
+      .#{$className}-appear {
+            animation-name:#{$keyframeName}In;
+            animation-play-state: running;
+      }
+      .#{$className}-leave-active {
+            animation-name:#{$keyframeName}Out;
+            animation-play-state: running;
+      }
+}
+
+@mixin motion-common() {
+      animation-duration: .3s;
+      animation-fill-mode: both;
+}
