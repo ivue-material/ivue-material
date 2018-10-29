@@ -16,4 +16,5 @@ import "../src/styles/index.scss";
 // import "./components/IVueInput.test";
 // import "./components/IVueStepper.test";
 // import "./components/IVueUpLoad.test";
-import "./components/IVueProgress.test";
+// import "./components/IVueProgress.test";
+import "./components/IVueNotice.test";

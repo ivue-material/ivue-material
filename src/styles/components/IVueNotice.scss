@@ -2,6 +2,7 @@ $name: 'ivue-notice';
 $notice-width: 335px;
 $notice-padding: 16px;
 $notice-margin-bottom: 10px;
+$have-icon: 51px;
 .#{$name} {
       position: fixed;
       width: $notice-width;
@@ -47,13 +48,20 @@ $notice-margin-bottom: 10px;
             position: relative;
       }
       &-content-have-icon {
-            margin-left: 51px;
+            margin-left: $have-icon;
       }
       .#{$name}-have-desc.#{$name}-have-icon &-title {
-            margin-left: 51px;
+            margin-left: $have-icon;
       }
       .#{$name}-have-desc.#{$name}-have-icon &-desc {
-            margin-left: 51px;
+            margin-left: $have-icon;
+      }
+      &-have-desc &-icon {
+            top: -2px;
+            font-size: 36px;
+      }
+      &-have-icon &-title {
+            margin-left: 26px;
       }
       /*标题*/
       &-title {
@@ -77,12 +85,23 @@ $notice-margin-bottom: 10px;
             margin-bottom: 8px;
       }
       &-icon {
+            position: absolute;
+            font-size: 17px;
+            width: auto;
+            min-width: auto;
+            height: auto;
             &-success {
-                  position: absolute;
-                  top: 5px;
-                  left: 3px;
-                  font-size: 36px;
                   color: $success-color;
+                  display: inline-block;
+            }
+            &-info {
+                  color: $primary-color;
+            }
+            &-warning {
+                  color: $warning-color;
+            }
+            &-error {
+                  color: $error-color;
             }
       }
 }

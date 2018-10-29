@@ -8,7 +8,17 @@ let defaultDuration = 4.5;
 let noticeInstance;
 
 const iconTypes = {
-      'success': 'check_circle_outline',
+      'success': 'check_circle',
+      'info': 'info',
+      'warning': 'warning',
+      'error': 'error'
+};
+
+const noTitleTypes = {
+      'success': 'check_circle',
+      'info': 'info',
+      'warning': 'warning',
+      'error': 'error'
 };
 
 function getNoticeInstance () {
@@ -57,11 +67,11 @@ function notice (type, options) {
             `
       }
       else {
-            const iconType = iconTypes[type];
+            const iconType = haveDesc === '' ? noTitleTypes[type] : iconTypes[type];
             haveIcon = true;
             content = `
                   <div class="${prefixCls}-content ${prefixCls}-have-icon ${haveDesc}">
-                        <i class="ivue-icon ${prefixCls}-icon-${type}">${iconType}</i>
+                        <i class="ivue-icon ${prefixCls}-icon ${prefixCls}-icon-${type}">${iconType}</i>
                         <div class="${prefixCls}-title">${title}</div>
                         <div class="${prefixCls}-desc">${desc}</div>
                   </div>
@@ -87,7 +97,44 @@ export default {
       open (options) {
             return notice('normal', options);
       },
+      info (options) {
+            return notice('info', options);
+      },
+      warning (options) {
+            return notice('warning', options);
+      },
       success (options) {
             return notice('success', options);
+      },
+      error (options) {
+            return notice('error', options);
+      },
+      // 全局配置
+      config (options) {
+            if (options.top) {
+                  top = options.top;
+            }
+
+            if (options.duration || options.duration === 0) {
+                  defaultDuration = options.duration;
+            }
+      },
+      // 关闭某个通知
+      close (name) {
+            if (name) {
+                  name = name.toString();
+                  if (noticeInstance) {
+                        noticeInstance.remove(name);
+                  }
+            }
+            else {
+                  return false;
+            }
+      },
+      // 销毁所有组件
+      destroy(){
+            let instance = getNoticeInstance();
+            noticeInstance = null;
+            instance.destroy('ivue-notice');
       }
 }

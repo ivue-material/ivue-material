@@ -113,7 +113,6 @@ export default {
                   this.haveDesc = desc ? desc.innerHTML !== '' : false;
             }
 
-
             this.clearCloseTimer();
 
             if (this.duration !== 0) {
