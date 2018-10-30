@@ -20,6 +20,7 @@ import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 import IVueUpLoad from './components/IVueUpLoad';
 import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
 import IVueNotice from './components/IVueNotice';
+import IVueMessage from './components/IVueMessage';
 
 const components = {
   IVueAffix,
@@ -47,7 +48,8 @@ const components = {
   IVueUpLoad,
   IVueProgressLinear,
   IVueProgressCircular,
-  IVueNotice
+  IVueNotice,
+  IVueMessage
 };
 
 const iVue = {
@@ -70,9 +72,12 @@ const install = function (Vue, opts = {}) {
   // 注册全局 IVueSpin 组件
   Vue.prototype.$IVueSpin = IVueSpin;
 
-  // 注册全局 IVueNotice 组件
+  // 注册全局 IVueNotice 通知 组件
   Vue.prototype.$IVueNotice = IVueNotice;
 
+  // 注册全局 IVueMessage 提示 组件
+  Vue.prototype.$IVueMessage = IVueMessage;
+  
 };
 
 // auto install

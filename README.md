@@ -1656,6 +1656,106 @@ API
 * 通知内容带有描述信息
 * 系统主动推送
 
+#### 例子
+
+```javascript
+<template>
+      <div>
+            <Button type="primary" @click="time">Open notice</Button>
+            <Button type="primary" @click="close">close</Button>
+            <Button type="primary" @click="destroy">destroy</Button>
+      </div>
+</template>
+
+<script>
+const prefixCls = 'ivue-notice';
+const title = 'title';
+const desc = 'desc';
+
+export default {
+    data () {
+        return {
+
+        }
+    },
+    methods: {
+        time () {
+            this.$IVueNotice.config({
+                top: 100,
+                duration: 3
+            });
+            this.$IVueNotice.open({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IVueNotice.open({
+                title: 'name : one',
+                duration: 0,
+                name: 'one'
+            });
+            this.$IVueNotice.success({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0,
+                render: h => {
+                    return h('span', [
+                        'This is created by ',
+                        h('a', 'render'),
+                        ' function'
+                    ])
+                }
+            });
+            this.$IVueNotice.success({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IVueNotice.success({
+                title: 'Notification title',
+                duration: 0
+            });
+            this.$IVueNotice.info({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IVueNotice.info({
+                title: 'Notification title',
+                duration: 0
+            });
+            this.$IVueNotice.warning({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IVueNotice.warning({
+                title: 'Notification title',
+                duration: 0
+            });
+            this.$IVueNotice.error({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IVueNotice.error({
+                title: 'Notification title',
+                duration: 0
+            });
+
+        },
+        close(){
+             this.$IVueNotice.close('one');
+        },
+        destroy(){
+             this.$IVueNotice.destroy();
+        }
+    }
+}
+</script>
+```
+
+
 API
 
 ##### instance     
@@ -1699,6 +1799,107 @@ this.$Notice.config({
 | --------- | :----------------------- | :------ | :----- |       
 | top | 通知组件距离顶端的距离，单位像素 | Number | 24  |      
 | duration | 默认自动关闭的延时，单位秒 | Number | 4.5  |      
+
+
+#### IVueMessage 全局提示
+
+轻量级的信息反馈组件，在顶部居中显示，并自动消失。有多种不同的提示状态可选择。
+
+#### 例子
+
+```javascript
+<template>
+      <div>
+            <Button type="primary" @click="click">Open notice</Button>
+            <Button type="primary" @click="destroy">Open notice</Button>
+            
+      </div>
+</template>
+
+<script>
+export default {
+      methods: {
+            click () {
+                  this.$IVueMessage.config({
+                        top: 50,
+                        duration: 0
+                  });
+                  this.$IVueMessage.success({
+                        content: 'Tips for manual closing',
+                        duration: 0,
+                        closable: true
+                  });
+                  this.$IVueMessage.success({
+                        content: 'Tips for manual closing',
+                  });
+                  this.$IVueMessage.loading({
+                        content: 'Loading...',
+                        duration: 0
+                  });
+                  this.$IVueMessage.success({
+                        content: 'Tips for manual closing',
+                        render: h => {
+                              return h('span', [
+                                    'This is created by ',
+                                    h('a', 'render'),
+                                    ' function'
+                              ])
+                        }
+                  });
+                  this.$IVueMessage.info('This is created by ');
+                  this.$IVueMessage.warning('This is created by ');
+                  this.$IVueMessage.error('This is created by ');
+            },
+            destroy () {
+                  this.$IVueMessage.destroy();
+            }
+      }
+}
+</script>
+
+```
+
+API
+
+##### instance     
+
+通过直接调用以下方法来使用组件：
+
+* ```this.$IVueMessage.info(config)```
+* ```this.$IVueMessage.success(config)```
+* ```this.$IVueMessage.warning(config)```
+* ```this.$IVueMessage.error(config)```      
+* ```this.$IVueMessage.loading(config)```      
+
+
+参数 config 为对象，具体说明如下：     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| content    | 	提示内容 | String | -      |          
+| render    | 自定义描述内容，使用 Vue 的 Render 函数 | Function | -      |          
+| duration    | 自动关闭的延时，单位秒，不关闭可以写 0 | Number | 1.5      |          
+| onClose    | 关闭时的回调 | Function | -      |              
+| closable    | 是否显示关闭按钮	 | Boolean | false      |              
+
+
+另外提供了全局配置和全局销毁的方法：        
+
+* ```this.$IVueMessage.config(options)```
+* ```this.$IVueMessage.destroy(options)```
+
+```javascript
+this.$Notice.config({
+    top: 50,
+    duration: 3
+});
+```     
+
+  
+| 属性      | 说明                     | 类型    | 默认值 |
+| --------- | :----------------------- | :------ | :----- |       
+| top | 通知组件距离顶端的距离，单位像素 | Number | 24  |      
+| duration | 默认自动关闭的延时，单位秒 | Number | 1.5  |      
     
 
 # 其他

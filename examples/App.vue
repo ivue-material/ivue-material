@@ -47,6 +47,8 @@ nav {
                 <li><router-link to="/IVueUpLoad">IVueUpLoad</router-link></li>
                 <li><router-link to="/IVueProgress">IVueProgress</router-link></li>
                 <li><router-link to="/IVueNotice">IVueNotice</router-link></li>
+                <li><router-link to="/IVueMessage">IVueMessage</router-link></li>
+          
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

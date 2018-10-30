@@ -13,6 +13,17 @@
                               <i class="ivue-icon">close</i>
                         </a>
                   </template>
+                  <template v-if="type === 'message'">
+                        <div :class="`${baseClass}-content`" ref="content">
+                              <div :class="`${baseClass}-content-text`" v-html="content"></div>
+                              <div :class="`${baseClass}-content-text`">
+                                    <Render :render="renderFunc"></Render>
+                              </div>
+                              <a :class="`${baseClass}-close`"  @click="handleClose" v-show="closable">
+                                    <i class="ivue-icon">close</i>
+                              </a>
+                        </div>
+                  </template>
             </div>
       </transition>
 </template>
@@ -96,7 +107,7 @@ export default {
                   type: String,
                   required: true
             },
-            haveIcon:{
+            haveIcon: {
                   type: Boolean
             }
       },
@@ -129,6 +140,7 @@ export default {
                   return [
                         this.baseClass,
                         {
+                              [`${this.baseClass}-closable`]: this.closable,
                               [`${this.baseClass}-have-desc`]: this.haveDesc
                         }
                   ]
@@ -143,7 +155,7 @@ export default {
             renderFunc () {
                   return this.render || function () { };
             },
-            contentHaveIcon() {
+            contentHaveIcon () {
                   return [
                         this.haveIcon ? `${this.prefixCls}-content-have-icon` : ''
                   ]

@@ -18,6 +18,7 @@ import IVueStepperStep from '../components/ivueStepperStep';
 import IVueUpLoad from '../components/ivueUpLoad';
 import IVueProgress from '../components/ivueProgress';
 import IVueNotice from '../components/ivueNotice';
+import IVueMessage from '../components/ivueMessage';
 
 Vue.use(Router);
 
@@ -112,6 +113,11 @@ export default new Router({
       path: '/IVueNotice',
       name: 'IVueNotice',
       component: IVueNotice
+    },
+    {
+      path: '/IVueMessage',
+      name: 'IVueMessage',
+      component: IVueMessage
     }
   ]
 });
