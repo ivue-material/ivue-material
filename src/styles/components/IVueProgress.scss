@@ -134,7 +134,7 @@ $circular: 'ivue-progress-circular';
             top: 50%;
             left: 50%;
             transform: translate3d(-50%, -50%, 0);
-            font-size: $font-size-small;
+            font-size: $font-small-size;
             color: currentColor;
       }
       &-success {
