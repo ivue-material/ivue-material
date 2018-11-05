@@ -1,0 +1,22 @@
+$name: 'ivue-tabs';
+.#{$name} {
+      user-select: none;
+      &-tab {
+            display: inline-block;
+            position: relative;
+            margin-right: 16px;
+            padding: 8px 16px;
+            box-sizing: border-box;
+            height: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color $ivue-transition-default;
+            &-disabled {
+                  pointer-events: none;
+                  color: $disabled-color;
+            }
+            &-active{
+                  color: $primary-color;
+            }
+      }
+}

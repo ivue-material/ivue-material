@@ -1,5 +1,6 @@
 import IVueTabs from './IVueTabs.vue';
+import IVueTab from './IVueTab.vue';
 
-export { IVueTabs };
+export { IVueTabs,IVueTab };
 
 export default IVueTabs;

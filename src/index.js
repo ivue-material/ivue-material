@@ -21,7 +21,7 @@ import IVueUpLoad from './components/IVueUpLoad';
 import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
 import IVueNotice from './components/IVueNotice';
 import IVueMessage from './components/IVueMessage';
-import {IVueTabs} from './components/IVueTabs';
+import {IVueTabs,IVueTab} from './components/IVueTabs';
 
 const components = {
   IVueAffix,
@@ -51,7 +51,8 @@ const components = {
   IVueProgressCircular,
   IVueNotice,
   IVueMessage,
-  IVueTabs
+  IVueTabs,
+  IVueTab
 };
 
 const iVue = {
