@@ -1,22 +1,39 @@
 $name: 'ivue-tabs';
 .#{$name} {
       user-select: none;
+      /*导航*/
+      &-bar {
+            position: relative;
+      }
+      &-container {
+            position: relative;
+            flex: 1 0 auto;
+            display: flex;
+            height: 50px;
+            list-style-type: none;
+            white-space: nowrap;
+            transition: transform .6s cubic-bezier(.86, 0, .07, 1);
+      }
       &-tab {
-            display: inline-block;
             position: relative;
             margin-right: 16px;
             padding: 8px 16px;
+            align-items: center;
+            display: inline-flex;
+            flex: 0 1 auto;
+            max-width: 264px;
             box-sizing: border-box;
             height: 100%;
             cursor: pointer;
             text-decoration: none;
             transition: color $ivue-transition-default;
+            color: rgba(255,255,255,.7);
             &-disabled {
                   pointer-events: none;
                   color: $disabled-color;
             }
-            &-active{
-                  color: $primary-color;
+            &-active {
+                  color: #fff;
             }
       }
 }

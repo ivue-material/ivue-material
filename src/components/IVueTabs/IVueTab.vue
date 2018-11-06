@@ -1,9 +1,3 @@
-<template>
-      <div :class="wrapClass" refs="tab" @click="handleChange">
-            <slot></slot>
-      </div>
-</template>
-
 <script>
 import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
 
@@ -12,7 +6,7 @@ const prefixCls = 'ivue-tabs-tab';
 export default {
       name: 'IVueTab',
       mixins: [
-            RegistrableInject('tabNavList','IVueTab','IVueTabs')
+            RegistrableInject('tabNavList', 'IVueTab', 'IVueTabs')
       ],
       inject: ['tabNavClick'],
       props: {
@@ -40,7 +34,6 @@ export default {
       computed: {
             wrapClass () {
                   return [
-                        prefixCls,
                         {
                               [`${prefixCls}-disabled`]: this.disabled,
                               [`${prefixCls}-active`]: this.isActive
@@ -61,6 +54,16 @@ export default {
       // 实例销毁之前调用
       beforeDestroy () {
             this.tabNavList.removeTabNav(this);
+      },
+      render (h) {
+            return h('div', {
+                  staticClass: prefixCls,
+                  class: this.wrapClass,
+                  ref: 'tab',
+                  on:{
+                        click: this.handleChange
+                  }
+            }, this.$slots.default);
       }
 }
 </script>

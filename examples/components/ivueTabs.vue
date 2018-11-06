@@ -1,6 +1,6 @@
 <template>
       <div>
-            <IVueTabs>
+            <IVueTabs color="#424242">
                   <IVueTab v-for="n in 3" :key="n" :disabled="n=== 2">Item {{ n }}</IVueTab>
             </IVueTabs>
       </div>
