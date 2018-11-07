@@ -1,5 +1,6 @@
 <script>
 import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
+import IVueRipple from '../IVueRipple/IVueRipple';
 
 const prefixCls = 'ivue-tabs-tab';
 
@@ -18,16 +19,36 @@ export default {
             disabled: {
                   type: Boolean,
                   default: false
+            },
+            /*
+            * 是否禁用涟漪效果
+            * 
+            * @type{Boolean}
+            */
+            rippleDisabled: {
+                  type: Boolean,
+                  default: false
+            },
+            /*
+            * 是否居中涟漪效果
+            * 
+            * @type{Boolean}
+            */
+            rippleCentered: {
+                  type: Boolean,
+                  default: false
             }
       },
       data () {
             return {
                   prefixCls: prefixCls,
                   isActive: false,
-                  key: this.$vnode.data.key || this._uid
+                  key: this.$vnode.data.key || this._uid,
+                  name:  null
             }
       },
       mounted () {
+            this.name = this.$vnode.data.key || this.$el.textContent;
             // 更新tab导航
             this.tabNavList.updateTabNav(this);
       },
@@ -55,15 +76,25 @@ export default {
       beforeDestroy () {
             this.tabNavList.removeTabNav(this);
       },
+      components: {
+            IVueRipple
+      },
       render (h) {
-            return h('div', {
+            return h('IVueRipple', {
                   staticClass: prefixCls,
                   class: this.wrapClass,
                   ref: 'tab',
-                  on:{
+                  props: {
+                        ivueDisabled: this.rippleDisabled,
+                        ivueCentered: this.rippleCentered
+                  },
+                  on: {
+                        click: this.handleChange
+                  },
+                  nativeOn: {
                         click: this.handleChange
                   }
-            }, this.$slots.default);
+            }, this.$slots.default)
       }
 }
 </script>

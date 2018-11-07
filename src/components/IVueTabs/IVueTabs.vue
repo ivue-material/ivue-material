@@ -1,5 +1,6 @@
 <script>
 import Colorable from '../../utils/mixins/Colorable';
+import IVueTabsSlider from './IVueTabsSlider';
 
 const prefixCls = 'ivue-tabs';
 
@@ -34,7 +35,31 @@ export default {
                   type: [String, Number],
                   default: undefined,
                   validator: v => !isNaN(parseInt(v))
-            }
+            },
+            /*
+            * 导航内容居中
+            * 
+            * @type{Boolean}
+            */
+            centered: Boolean,
+            /*
+            * 导航内容向右
+            * 
+            * @type{Boolean}
+            */
+            right: Boolean,
+            /*
+            * 滑动条颜色
+            * 
+            * @type{String}
+            */
+            sliderColor: String,
+            /*
+            * 滑动条隐藏
+            * 
+            * @type{Boolean}
+            */
+            hideSlider: Boolean
       },
       data () {
             return {
@@ -42,14 +67,23 @@ export default {
                   activeKey: this.value,
                   // 导航列表
                   tabNavList: [],
-                  transitioning: false
+                  // 判断动画是否完成
+                  transitioning: false,
+                  // 滑动条位置
+                  sliderLeft: null,
+                  // 滑动条宽度
+                  sliderWidth: null,
+                  transitionTime: 300
             }
       },
       computed: {
             // 激活的Index
             activeIndex () {
                   return this.tabNavList.findIndex((tab, index) => {
-                        return tab.key === this.activeKey.key;
+                        if (!this.activeKey) {
+                              return index === 0;
+                        }
+                        return tab.name === this.activeKey;
                   });
             },
             // 激活的tab
@@ -65,6 +99,14 @@ export default {
                   return this.height ? {
                         height: `${parseInt(this.height, 10)}px`
                   } : null
+            },
+            // 滑动条样式
+            sliderStyles () {
+                  return {
+                        left: `${this.sliderLeft}px`,
+                        transition: this.sliderLeft !== null ? null : 'none',
+                        width: `${this.sliderWidth}px`,
+                  }
             }
       },
       mounted () {
@@ -97,7 +139,9 @@ export default {
                   }
 
                   // 设置激活项
-                  this.activeKey = tab;
+                  this.activeKey = tab.name;
+
+                  this.$emit('input', tab.name);
             },
             // 更新当前选项
             updateTabs () {
@@ -119,7 +163,7 @@ export default {
 
                         if (vnode.componentOptions) {
                               switch (vnode.componentOptions.Ctor.options.name) {
-                                    case 'IVueTabsSlider': slider.push(vnode)
+                                    case 'IVueTabsSlider': slider.push(vnode);
                                           break;
                                     default: tab.push(vnode);
                               }
@@ -137,20 +181,67 @@ export default {
                         staticClass: 'ivue-tabs-bar',
                         ref: 'bar'
                   }), [
-                              this.genContainer(items)
+                              this.genWrapper(
+                                    this.genContainer(items)
+                              )
                         ]);
-
-                  console.log(items)
             },
-            genWrapper () {
-
+            // 外层
+            genWrapper (items) {
+                  return this.$createElement('div', {
+                        staticClass: 'ivue-tabs-wrapper',
+                        ref: 'wrapper'
+                  }, [items])
             },
             genContainer (items) {
                   return this.$createElement('div', {
                         staticClass: 'ivue-tabs-container',
+                        class: {
+                              'ivue-tabs-container--centered': this.centered,
+                              'ivue-tabs-container--right': this.right,
+
+                        },
                         style: this.containerStyles,
                         ref: 'container'
                   }, items);
+            },
+            // 头部滑动条
+            genSlider (items) {
+
+                  if (!items.length) {
+                        items = [this.$createElement(IVueTabsSlider, {
+                              props: {
+                                    color: this.sliderColor
+                              }
+                        })];
+                  }
+
+                  return this.$createElement('div', {
+                        staticClass: 'ivue-tabs-slider-wrapper',
+                        style: this.sliderStyles
+                  }, items);
+            },
+            // 设置滑动条
+            setSlider () {
+                  if (this.hideSlider) {
+                        return false;
+                  }
+
+                  const activeTab = this.activeTab;
+
+
+                  console.log(activeTab)
+
+                  this.$nextTick(() => {
+                        this.sliderWidth = activeTab.$el.clientWidth;
+                        this.sliderLeft = activeTab.$el.offsetLeft;
+                  });
+            },
+            onResize () {
+                  clearTimeout(this.resizeTimeout)
+                  this.resizeTimeout = setTimeout(() => {
+                        this.setSlider()
+                  }, this.transitionTime)
             }
       },
       watch: {
@@ -159,16 +250,27 @@ export default {
             },
             // 监听激活项
             activeKey (tab) {
+                  // 更新激活项
                   this.updateTabs();
+
+                  setTimeout(this.setSlider, 0);
+            },
+            // 监听导航列表 
+            tabNavList () {
+                  this.onResize();
             }
+      },
+      components: {
+            IVueTabsSlider
       },
       render (h) {
             const { tab, slider } = this.parseNodes();
 
+
             return h('div', {
                   staticClass: prefixCls
             }, [
-                        this.genBar([null, tab])
+                        this.genBar([this.hideSlider ? null : this.genSlider(slider), tab])
                   ])
       }
 }
