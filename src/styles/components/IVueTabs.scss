@@ -68,4 +68,39 @@ $name: 'ivue-tabs';
             height: 2px;
             background-color: #fff;
       }
+      &-content {
+            width: 100%;
+            transition: transform $ivue-transition-default;
+      }
+      &-items{
+            overflow: hidden;
+            position: relative;
+      }
+}
+
+.tab-reverse-transition {
+      &-enter {
+            transform: translate(-100%, 0);
+      }
+      &-leave,
+      &-leave-to {
+            top: 0;
+            position: absolute;
+            transform: translate(100%, 0);
+      }
+}
+
+.tab-transition {
+      &-enter {
+            transform: translate(100%, 0);
+      }
+      &-leave,
+      &-leave-active {
+            position: absolute;
+            top: 0;
+      }
+      &-leave-to {
+            position: absolute;
+            transform: translate(-100%, 0);
+      }
 }

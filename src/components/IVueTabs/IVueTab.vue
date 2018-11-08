@@ -50,7 +50,7 @@ export default {
       mounted () {
             this.name = this.$vnode.data.key || this.$el.textContent;
             // 更新tab导航
-            this.tabNavList.updateTabNav(this);
+            this.tabNavList.register(this);
       },
       computed: {
             wrapClass () {
@@ -74,7 +74,7 @@ export default {
       },
       // 实例销毁之前调用
       beforeDestroy () {
-            this.tabNavList.removeTabNav(this);
+            this.tabNavList.unregister(this);
       },
       components: {
             IVueRipple

@@ -18,10 +18,10 @@ import IVueAutoComplete from './components/IVueAutoComplete';
 import IVueInput from './components/IVueInput';
 import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
 import IVueUpLoad from './components/IVueUpLoad';
-import {IVueProgressLinear,IVueProgressCircular} from './components/IVueProgress';
+import { IVueProgressLinear, IVueProgressCircular } from './components/IVueProgress';
 import IVueNotice from './components/IVueNotice';
 import IVueMessage from './components/IVueMessage';
-import {IVueTabs,IVueTab} from './components/IVueTabs';
+import { IVueTabs, IVueTab, IVueTabItem } from './components/IVueTabs';
 
 const components = {
   IVueAffix,
@@ -52,7 +52,8 @@ const components = {
   IVueNotice,
   IVueMessage,
   IVueTabs,
-  IVueTab
+  IVueTab,
+  IVueTabItem
 };
 
 const iVue = {
@@ -80,7 +81,7 @@ const install = function (Vue, opts = {}) {
 
   // 注册全局 IVueMessage 提示 组件
   Vue.prototype.$IVueMessage = IVueMessage;
-  
+
 };
 
 // auto install

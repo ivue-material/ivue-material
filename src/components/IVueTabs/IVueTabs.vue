@@ -1,6 +1,8 @@
 <script>
 import Colorable from '../../utils/mixins/Colorable';
-import IVueTabsSlider from './IVueTabsSlider';
+import Resize from '../../utils/directives/Resize';
+import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
+import TabsGenerators from './mixins/tabs-generators';
 
 const prefixCls = 'ivue-tabs';
 
@@ -9,14 +11,22 @@ const transitionTime = 300;
 
 export default {
       name: 'IVueTabs',
+      directives: {
+            Resize
+      },
       mixins: [
-            Colorable
+            RegistrableProvide('tabNavList'),
+            Colorable,
+            TabsGenerators
       ],
       // 父级组件提供 tabs
       provide () {
             return {
                   tabNavList: this,
-                  tabNavClick: this.tabNavClick
+                  tabNavClick: this.tabNavClick,
+                  tabProxy: this.tabProxy,
+                  registerItems: this.registerItems,
+                  unregisterItems: this.unregisterItems
             }
       },
       props: {
@@ -67,13 +77,20 @@ export default {
                   activeKey: this.value,
                   // 导航列表
                   tabNavList: [],
-                  // 判断动画是否完成
-                  transitioning: false,
                   // 滑动条位置
                   sliderLeft: null,
                   // 滑动条宽度
                   sliderWidth: null,
-                  transitionTime: 300
+                  transitionTime: 300,
+                  // items
+                  tabItems: null,
+                  // 滚动宽度
+                  scrollOffset: 0,
+                  widths: {
+                        bar: 0,
+                        container: 0,
+                        wrapper: 0
+                  }
             }
       },
       computed: {
@@ -114,25 +131,21 @@ export default {
       },
       methods: {
             // 更新tab导航
-            updateTabNav (options) {
+            register (options) {
                   this.tabNavList.push(options);
             },
             // 清除tab导航
-            removeTabNav (tab) {
+            unregister (tab) {
                   this.tabNavList = this.tabNavList.filter(o => o !== tab);
+            },
+            registerItems (fn) {
+                  this.tabItems = fn;
+            },
+            unregisterItems () {
+                  this.tabItems = null;
             },
             // 导航点击
             tabNavClick (tab) {
-                  // 等待动画完成后才可以点击
-                  if (this.transitioning) {
-                        return;
-                  }
-                  this.transitioning = true;
-
-                  setTimeout(() => {
-                        this.transitioning = false;
-                  }, transitionTime);
-
                   // 判断禁用
                   if (tab.disabled) {
                         return;
@@ -142,12 +155,18 @@ export default {
                   this.activeKey = tab.name;
 
                   this.$emit('input', tab.name);
+
+                  this.scrollIntoView();
             },
             // 更新当前选项
             updateTabs () {
                   for (let index = this.tabNavList.length; --index >= 0;) {
                         this.tabNavList[index].toggle(this.activeTab);
                   }
+            },
+            // tap切换
+            tabProxy (val) {
+                  this.inputValue = val
             },
             // 获取节点
             parseNodes () {
@@ -165,6 +184,10 @@ export default {
                               switch (vnode.componentOptions.Ctor.options.name) {
                                     case 'IVueTabsSlider': slider.push(vnode);
                                           break;
+                                    case 'IVueTabItems': items.push(vnode);
+                                          break;
+                                    case 'IVueTabItem': item.push(vnode);
+                                          break;
                                     default: tab.push(vnode);
                               }
                         }
@@ -173,75 +196,53 @@ export default {
                         }
                   }
 
-                  return { tab, slider };
-            },
-            // 获取头部
-            genBar (items) {
-                  return this.$createElement('div', this.setBackgroundColor(this.color, {
-                        staticClass: 'ivue-tabs-bar',
-                        ref: 'bar'
-                  }), [
-                              this.genWrapper(
-                                    this.genContainer(items)
-                              )
-                        ]);
-            },
-            // 外层
-            genWrapper (items) {
-                  return this.$createElement('div', {
-                        staticClass: 'ivue-tabs-wrapper',
-                        ref: 'wrapper'
-                  }, [items])
-            },
-            genContainer (items) {
-                  return this.$createElement('div', {
-                        staticClass: 'ivue-tabs-container',
-                        class: {
-                              'ivue-tabs-container--centered': this.centered,
-                              'ivue-tabs-container--right': this.right,
-
-                        },
-                        style: this.containerStyles,
-                        ref: 'container'
-                  }, items);
-            },
-            // 头部滑动条
-            genSlider (items) {
-
-                  if (!items.length) {
-                        items = [this.$createElement(IVueTabsSlider, {
-                              props: {
-                                    color: this.sliderColor
-                              }
-                        })];
-                  }
-
-                  return this.$createElement('div', {
-                        staticClass: 'ivue-tabs-slider-wrapper',
-                        style: this.sliderStyles
-                  }, items);
+                  return { tab, slider, item, items };
             },
             // 设置滑动条
             setSlider () {
-                  if (this.hideSlider) {
+                  const { hideSlider, activeTab } = this;
+
+                  if (hideSlider || !activeTab) {
                         return false;
                   }
 
-                  const activeTab = this.activeTab;
-
-
-                  console.log(activeTab)
-
                   this.$nextTick(() => {
+                        if (!activeTab || !activeTab.$el) {
+                              return;
+                        }
                         this.sliderWidth = activeTab.$el.clientWidth;
                         this.sliderLeft = activeTab.$el.offsetLeft;
                   });
             },
+            // 监听resize
             onResize () {
                   clearTimeout(this.resizeTimeout)
                   this.resizeTimeout = setTimeout(() => {
-                        this.setSlider()
+                        this.setSlider();
+                        this.scrollIntoView();
                   }, this.transitionTime)
+            },
+            // 滚动到视图
+            scrollIntoView () {
+                  if (!this.activeTab) {
+                        return;
+                  }
+                  const totalWidth = this.widths.wrapper + this.scrollOffset
+                  const { clientWidth, offsetLeft } = this.activeTab.$el
+                  const itemOffset = clientWidth + offsetLeft
+                  let additionalOffset = clientWidth * 0.3
+                  if (this.activeIndex === this.tabNavList.length - 1) {
+                        additionalOffset = 0 // don't add an offset if selecting the last tab
+                  }
+
+                  /* istanbul ignore else */
+                  if (offsetLeft < this.scrollOffset) {
+                        this.scrollOffset = Math.max(offsetLeft - additionalOffset, 0)
+                  } else if (totalWidth < itemOffset) {
+                        this.scrollOffset -= totalWidth - itemOffset - additionalOffset
+                  }
+
+                  console.log(this.scrollOffset)
             }
       },
       watch: {
@@ -260,17 +261,23 @@ export default {
                   this.onResize();
             }
       },
-      components: {
-            IVueTabsSlider
-      },
       render (h) {
-            const { tab, slider } = this.parseNodes();
+            const { tab, slider, item, items } = this.parseNodes();
 
 
             return h('div', {
-                  staticClass: prefixCls
+                  staticClass: prefixCls,
+                  directives: [{
+                        name: 'resize',
+                        arg: 400,
+                        modifiers: {
+                              quiet: true
+                        },
+                        value: this.onResize
+                  }]
             }, [
-                        this.genBar([this.hideSlider ? null : this.genSlider(slider), tab])
+                        this.genBar([this.hideSlider ? null : this.genSlider(slider), tab]),
+                        this.genItems(items, item)
                   ])
       }
 }

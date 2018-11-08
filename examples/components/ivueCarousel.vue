@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .demo-carousel {
   height: 200px;
   line-height: 200px;
