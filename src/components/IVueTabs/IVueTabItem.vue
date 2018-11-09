@@ -1,6 +1,7 @@
 <script>
 import Bootable from '../../utils/mixins/Bootable';
 import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
+import Touch from '../../utils/directives/Touch';
 
 export default {
       name: 'IVueTabItem',
@@ -8,8 +9,10 @@ export default {
             Bootable,
             RegistrableInject('tabNavList', 'IVueTabItem', 'IVueTabsItems')
       ],
+      directives: {
+            Touch
+      },
       props: {
-            id: String,
             transition: {
                   type: [Boolean, String],
                   default: 'tab-transition'
@@ -53,9 +56,6 @@ export default {
                         name: 'show',
                         value: this.isActive
                   }],
-                  domProps: {
-                        id: this.id
-                  },
                   on: this.$listeners
             }, this.showLazyContent(this.$slots.default));
 

@@ -1,8 +1,12 @@
 <script>
 import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
+import Touch from '../../utils/directives/Touch';
 
 export default {
       name: 'IVueTabsItems',
+      directives: {
+            Touch
+      },
       mixins: [RegistrableProvide('tabNavList')],
       inject: {
             // 注册items
@@ -24,7 +28,7 @@ export default {
       data () {
             return {
                   items: [],
-                  activeValue: this.value,
+                  lazyValue: this.value,
                   reverse: false
             }
       },
@@ -35,23 +39,24 @@ export default {
             // 当前激活的位置
             activeIndex () {
                   return this.items.findIndex((item, index) => {
-                        return item.id === this.activeValue || index === this.activeValue;
+                        return item.id === this.lazyValue || index === this.lazyValue;
                   });
             },
             // 激活项
             activeItem () {
                   if (!this.items.length) {
-                        return undefined
+                        return undefined;
                   }
 
                   return this.items[this.activeIndex];
             },
+            // 修改v-model
             inputValue: {
                   get () {
-                        return this.activeValue;
+                        return this.lazyValue
                   },
                   set (val) {
-                        this.activeValue = val;
+                        this.lazyValue = val;
 
                         if (this.tabProxy) {
                               this.tabProxy(val);
@@ -65,7 +70,7 @@ export default {
       methods: {
             // 改变 input 值
             changeModel (val) {
-                  this.inputValue = val
+                  this.inputValue = val;
             },
             // 注册
             register (item) {
@@ -78,10 +83,35 @@ export default {
             // 更新激活的item
             updateItems () {
                   for (let index = this.items.length; --index >= 0;) {
+
                         this.items[index].toggle(this.activeIndex === index, this.reverse, this.isBooted)
                   }
 
                   this.isBooted = true;
+            },
+            // 下一个item
+            next () {
+                  let nextIndex = this.activeIndex - 1;
+
+                  if (!this.items[nextIndex]) {
+                        nextIndex = 0;
+                  }
+
+                  this.inputValue = nextIndex;
+            },
+            // 上一个item
+            prev () {
+                  let prevIndex = this.activeIndex + 1;
+
+                  if (!this.items[prevIndex]) {
+                        prevIndex = this.items.length - 1;
+                  }
+
+                  this.inputValue = prevIndex;
+            },
+            // 切换
+            onSwipe (status) {
+                  this[status]();
             }
       },
       beforeDestroy () {
@@ -91,17 +121,24 @@ export default {
             // 监听激活的index
             activeIndex (current, previous) {
                   this.reverse = current < previous;
+
                   // 更新激活的item
                   this.updateItems();
             },
             value (val) {
-                  this.activeValue = val;
+                  this.lazyValue = val;
             }
       },
       render (h) {
             return h('div', {
                   staticClass: 'ivue-tabs-items',
-                  directives: []
+                  directives: [{
+                        name: 'touch',
+                        value: {
+                              left: () => this.onSwipe('next'),
+                              right: () => this.onSwipe('prev')
+                        }
+                  }]
             }, this.$slots.default);
       }
 }

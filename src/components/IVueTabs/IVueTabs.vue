@@ -3,11 +3,13 @@ import Colorable from '../../utils/mixins/Colorable';
 import Resize from '../../utils/directives/Resize';
 import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
 import TabsGenerators from './mixins/tabs-generators';
+import TabsComputed from './mixins/tabs-computed';
+import TabsWatchers from './mixins/tabs-watchers';
+import TabsProps from './mixins/tabs-props';
 
 const prefixCls = 'ivue-tabs';
 
 const transitionTime = 300;
-
 
 export default {
       name: 'IVueTabs',
@@ -17,7 +19,10 @@ export default {
       mixins: [
             RegistrableProvide('tabNavList'),
             Colorable,
-            TabsGenerators
+            TabsProps,
+            TabsGenerators,
+            TabsComputed,
+            TabsWatchers
       ],
       // 父级组件提供 tabs
       provide () {
@@ -29,52 +34,10 @@ export default {
                   unregisterItems: this.unregisterItems
             }
       },
-      props: {
-            /*
-            * 当前激活 tab 面板的 name，可以使用 v-model 双向绑定数据
-            * 
-            * @type{String,Number}
-            */
-            value: [String, Number],
-            /*
-            * 导航高度
-            * 
-            * @type{String,Number}
-            */
-            height: {
-                  type: [String, Number],
-                  default: undefined,
-                  validator: v => !isNaN(parseInt(v))
-            },
-            /*
-            * 导航内容居中
-            * 
-            * @type{Boolean}
-            */
-            centered: Boolean,
-            /*
-            * 导航内容向右
-            * 
-            * @type{Boolean}
-            */
-            right: Boolean,
-            /*
-            * 滑动条颜色
-            * 
-            * @type{String}
-            */
-            sliderColor: String,
-            /*
-            * 滑动条隐藏
-            * 
-            * @type{Boolean}
-            */
-            hideSlider: Boolean
-      },
       data () {
             return {
                   // 激活的tab
-                  activeKey: this.value,
+                  lazyValue: this.value,
                   // 导航列表
                   tabNavList: [],
                   // 滑动条位置
@@ -93,42 +56,6 @@ export default {
                   }
             }
       },
-      computed: {
-            // 激活的Index
-            activeIndex () {
-                  return this.tabNavList.findIndex((tab, index) => {
-                        if (!this.activeKey) {
-                              return index === 0;
-                        }
-                        return tab.name === this.activeKey;
-                  });
-            },
-            // 激活的tab
-            activeTab () {
-                  if (!this.tabNavList.length) {
-                        return undefined;
-                  }
-
-                  return this.tabNavList[this.activeIndex];
-            },
-            // 导航样式
-            containerStyles () {
-                  return this.height ? {
-                        height: `${parseInt(this.height, 10)}px`
-                  } : null
-            },
-            // 滑动条样式
-            sliderStyles () {
-                  return {
-                        left: `${this.sliderLeft}px`,
-                        transition: this.sliderLeft !== null ? null : 'none',
-                        width: `${this.sliderWidth}px`,
-                  }
-            }
-      },
-      mounted () {
-            this.genBar();
-      },
       methods: {
             // 更新tab导航
             register (options) {
@@ -138,11 +65,17 @@ export default {
             unregister (tab) {
                   this.tabNavList = this.tabNavList.filter(o => o !== tab);
             },
+            // 注册items
             registerItems (fn) {
                   this.tabItems = fn;
             },
+            // 销毁
             unregisterItems () {
                   this.tabItems = null;
+            },
+            // tap切换
+            tabProxy (val) {
+                  this.inputValue = val
             },
             // 导航点击
             tabNavClick (tab) {
@@ -152,21 +85,13 @@ export default {
                   }
 
                   // 设置激活项
-                  this.activeKey = tab.name;
-
-                  this.$emit('input', tab.name);
-
-                  this.scrollIntoView();
+                  this.inputValue = tab.name;
             },
             // 更新当前选项
             updateTabs () {
                   for (let index = this.tabNavList.length; --index >= 0;) {
                         this.tabNavList[index].toggle(this.activeTab);
                   }
-            },
-            // tap切换
-            tabProxy (val) {
-                  this.inputValue = val
             },
             // 获取节点
             parseNodes () {
@@ -199,7 +124,7 @@ export default {
                   return { tab, slider, item, items };
             },
             // 设置滑动条
-            setSlider () {
+            callSlider () {
                   const { hideSlider, activeTab } = this;
 
                   if (hideSlider || !activeTab) {
@@ -218,44 +143,11 @@ export default {
             onResize () {
                   clearTimeout(this.resizeTimeout)
                   this.resizeTimeout = setTimeout(() => {
-                        this.setSlider();
-                        this.scrollIntoView();
+                        this.callSlider();
                   }, this.transitionTime)
-            },
-            // 滚动到视图
-            scrollIntoView () {
-                  if (!this.activeTab) {
-                        return;
-                  }
-                  const totalWidth = this.widths.wrapper + this.scrollOffset
-                  const { clientWidth, offsetLeft } = this.activeTab.$el
-                  const itemOffset = clientWidth + offsetLeft
-                  let additionalOffset = clientWidth * 0.3
-                  if (this.activeIndex === this.tabNavList.length - 1) {
-                        additionalOffset = 0 // don't add an offset if selecting the last tab
-                  }
-
-                  /* istanbul ignore else */
-                  if (offsetLeft < this.scrollOffset) {
-                        this.scrollOffset = Math.max(offsetLeft - additionalOffset, 0)
-                  } else if (totalWidth < itemOffset) {
-                        this.scrollOffset -= totalWidth - itemOffset - additionalOffset
-                  }
-
-                  console.log(this.scrollOffset)
             }
       },
       watch: {
-            value (val) {
-                  this.activeKey = val;
-            },
-            // 监听激活项
-            activeKey (tab) {
-                  // 更新激活项
-                  this.updateTabs();
-
-                  setTimeout(this.setSlider, 0);
-            },
             // 监听导航列表 
             tabNavList () {
                   this.onResize();
@@ -263,7 +155,6 @@ export default {
       },
       render (h) {
             const { tab, slider, item, items } = this.parseNodes();
-
 
             return h('div', {
                   staticClass: prefixCls,

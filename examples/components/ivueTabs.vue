@@ -1,9 +1,8 @@
 <template>
       <div>
             <IVueTabs color="#424242" v-model="active">
-                  <IVueTab v-for="n in 3" :key="n"  >Item {{ n }}</IVueTab>
-                  <IVueTabItem  v-for="n in 3"
-          :key="n">{{text}}{{n}}</IVueTabItem>
+                  <IVueTab v-for="n in 3" :key="`item${n}`"  >Item {{ n }}</IVueTab>
+                  <IVueTabItem  v-for="n in 3" :key="n + 1">{{text}}{{n}}</IVueTabItem>
             </IVueTabs>
 
             <!-- <IVueTabs color="#424242" centered>
