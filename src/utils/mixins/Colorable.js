@@ -7,7 +7,10 @@ function isCssColor (color) {
 export default Vue.extend({
       name: 'colorable',
       props: {
-            color: String
+            color: {
+                  type: String,
+                  default: '#fff'
+            }
       },
       methods: {
             // 设置背景颜色

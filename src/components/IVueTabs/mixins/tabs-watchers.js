@@ -19,6 +19,10 @@ export default {
             // 监听value值
             value (val) {
                   this.lazyValue = val;
+            },
+            // 监听导航滑动
+            scrollOffset(val){
+                  this.$refs.container.style.transform = `translateX(${-val}px)`;
             }
       }
 }

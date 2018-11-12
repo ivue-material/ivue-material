@@ -1,11 +1,14 @@
 <script>
 import Colorable from '../../utils/mixins/Colorable';
 import Resize from '../../utils/directives/Resize';
+import Touch from '../../utils/directives/Touch';
+
 import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
 import TabsGenerators from './mixins/tabs-generators';
 import TabsComputed from './mixins/tabs-computed';
 import TabsWatchers from './mixins/tabs-watchers';
 import TabsProps from './mixins/tabs-props';
+import TabsTouch from './mixins/tabs-touch';
 
 const prefixCls = 'ivue-tabs';
 
@@ -14,7 +17,8 @@ const transitionTime = 300;
 export default {
       name: 'IVueTabs',
       directives: {
-            Resize
+            Resize,
+            Touch
       },
       mixins: [
             RegistrableProvide('tabNavList'),
@@ -22,7 +26,8 @@ export default {
             TabsProps,
             TabsGenerators,
             TabsComputed,
-            TabsWatchers
+            TabsWatchers,
+            TabsTouch
       ],
       // 父级组件提供 tabs
       provide () {
@@ -47,13 +52,16 @@ export default {
                   transitionTime: 300,
                   // items
                   tabItems: null,
-                  // 滚动宽度
-                  scrollOffset: 0,
+                  // 导航栏是否需要滚动
+                  isOverflowing: false,
+                  // 导航栏宽度
                   widths: {
                         bar: 0,
                         container: 0,
                         wrapper: 0
-                  }
+                  },
+                  // 滚动位置
+                  scrollOffset: 0
             }
       },
       methods: {
@@ -86,6 +94,8 @@ export default {
 
                   // 设置激活项
                   this.inputValue = tab.name;
+
+                  this.scrollIntoView();
             },
             // 更新当前选项
             updateTabs () {
@@ -141,10 +151,63 @@ export default {
             },
             // 监听resize
             onResize () {
+                  this.setWidths();
+
                   clearTimeout(this.resizeTimeout)
                   this.resizeTimeout = setTimeout(() => {
                         this.callSlider();
+                        this.scrollIntoView();
                   }, this.transitionTime)
+            },
+            // 获取导航宽度
+            setWidths () {
+                  const bar = this.$refs.bar ? this.$refs.bar.clientWidth : 0;
+                  const container = this.$refs.container ? this.$refs.container.clientWidth : 0;
+                  const wrapper = this.$refs.wrapper ? this.$refs.wrapper.clientWidth : 0;
+
+                  this.widths = { bar, container, wrapper };
+
+                  this.setOverflow();
+            },
+            // 设置导航栏是否滚动
+            setOverflow () {
+                  this.isOverflowing = this.widths.bar < this.widths.container;
+            },
+            overflowCheck (e, fn) {
+                  this.isOverflowing && fn(e);
+            },
+            // 滚动导航栏
+            scrollIntoView () {
+                  if (!this.activeTab) {
+                        return;
+                  }
+                  if (!this.isOverflowing) {
+                        return (this.scrollOffset = 0);
+                  }
+
+                  // 导航栏总共的宽度
+                  const totalWidth = this.widths.wrapper + this.scrollOffset;
+                  const { clientWidth, offsetLeft } = this.activeTab.$el;
+                  // item宽度
+                  const itemOffset = clientWidth + offsetLeft;
+
+                  let additionalOffset = clientWidth * 0.3;
+
+                  // 如果选择最后一个选项卡，请不要添加偏移量
+                  if (this.activeIndex === this.tabNavList.length - 1) {
+                        additionalOffset === 0;
+                  }
+
+                  if (offsetLeft < this.scrollOffset) {
+                        this.scrollOffset = Math.max(offsetLeft - additionalOffset, 0);
+                  }
+                  else if (totalWidth < itemOffset) {
+                        this.scrollOffset -= totalWidth - itemOffset - additionalOffset;
+                  }
+            },
+            // 点击箭头滚动
+            scrollTo(direction){
+                  this.scrollOffset = this.newOffset(direction);
             }
       },
       watch: {

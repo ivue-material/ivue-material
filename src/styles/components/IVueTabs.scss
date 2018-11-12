@@ -8,6 +8,10 @@ $name: 'ivue-tabs';
       &-wrapper {
             overflow: hidden;
             display: flex;
+            &--show-arrow {
+                  margin-left: 40px;
+                  margin-right: 40px;
+            }
       }
       &-container {
             position: relative;
@@ -32,6 +36,9 @@ $name: 'ivue-tabs';
       }
       &-container--right &-slider-wrapper+&-tab {
             margin-left: auto;
+      }
+      &-container--overflow &-tab {
+            flex: 1 0 auto;
       }
       &-tab {
             position: relative;
@@ -66,15 +73,32 @@ $name: 'ivue-tabs';
       &-slider {
             width: 100%;
             height: 2px;
-            background-color: #fff;
+            background: currentColor;
       }
       &-content {
             width: 100%;
             transition: transform $ivue-transition-default;
       }
-      &-items{
+      &-items {
             overflow: hidden;
             position: relative;
+      }
+      &-icon {
+            position: absolute;
+            top: 0;
+            display: inline-flex;
+            align-content: center;
+            height: 100%;
+            user-select: none;
+            cursor: pointer;
+            width: 32px;
+            color: #fff;
+            &--prev {
+                  left: 4px;
+            }
+            &--next {
+                  right: 4px;
+            }
       }
 }
 

@@ -43,6 +43,10 @@ export default {
                         transition: this.sliderLeft !== null ? null : 'none',
                         width: `${this.sliderWidth}px`,
                   }
+            },
+            // 是否有箭头
+            hasArrows(){
+                  return this.showArrows && this.isOverflowing;
             }
       }
 }

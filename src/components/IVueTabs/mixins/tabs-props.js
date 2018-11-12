@@ -39,6 +39,20 @@ export default {
             * 
             * @type{Boolean}
             */
-            hideSlider: Boolean
+            hideSlider: Boolean,
+            /*
+            * 是否显示导航栏箭头
+            * 
+            * @type{Boolean}
+            */
+            showArrows: Boolean,
+            nextIcon: {
+                  type: String,
+                  default: 'chevron_right'
+            },
+            prevIcon: {
+                  type: String,
+                  default: 'chevron_left'
+            }
       }
 }
