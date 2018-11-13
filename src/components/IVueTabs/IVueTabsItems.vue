@@ -20,6 +20,9 @@ export default {
             // 移除items
             unregisterItems: {
                   default: null
+            },
+            tabNavList:{
+                  default: null
             }
       },
       props: {
@@ -121,6 +124,7 @@ export default {
             // 监听激活的index
             activeIndex (current, previous) {
                   this.reverse = current < previous;
+                        console.log(this.tabNavList.$slots)
 
                   // 更新激活的item
                   this.updateItems();

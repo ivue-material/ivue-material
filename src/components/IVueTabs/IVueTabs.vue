@@ -61,8 +61,14 @@ export default {
                         wrapper: 0
                   },
                   // 滚动位置
-                  scrollOffset: 0
+                  scrollOffset: 0,
+                  nextIconVisible: false,
+                  prevIconVisible: false,
+                  startX: 0
             }
+      },
+      mounted () {
+            this.checkIcons();
       },
       methods: {
             // 更新tab导航
@@ -100,7 +106,9 @@ export default {
             // 更新当前选项
             updateTabs () {
                   for (let index = this.tabNavList.length; --index >= 0;) {
-                        this.tabNavList[index].toggle(this.activeTab);
+                        if (!this.tabNavList[index].disabled) {
+                              this.tabNavList[index].toggle(this.activeTab);
+                        }
                   }
             },
             // 获取节点
@@ -142,11 +150,12 @@ export default {
                   }
 
                   this.$nextTick(() => {
-                        if (!activeTab || !activeTab.$el) {
+                        if (!activeTab || !activeTab.$el || activeTab.disabled) {
                               return;
                         }
-                        this.sliderWidth = activeTab.$el.clientWidth;
+
                         this.sliderLeft = activeTab.$el.offsetLeft;
+                        this.sliderWidth = activeTab.$el.clientWidth;
                   });
             },
             // 监听resize
@@ -157,6 +166,7 @@ export default {
                   this.resizeTimeout = setTimeout(() => {
                         this.callSlider();
                         this.scrollIntoView();
+                        this.checkIcons();
                   }, this.transitionTime)
             },
             // 获取导航宽度
@@ -206,8 +216,19 @@ export default {
                   }
             },
             // 点击箭头滚动
-            scrollTo(direction){
+            scrollTo (direction) {
                   this.scrollOffset = this.newOffset(direction);
+            },
+            // 检查是否有icon
+            checkIcons () {
+                  this.nextIconVisible = this.checkNextIcon();
+                  this.prevIconVisible = this.checkPrevIcon();
+            },
+            checkNextIcon () {
+                  return this.widths.container > this.scrollOffset + this.widths.wrapper;
+            },
+            checkPrevIcon () {
+                  return this.scrollOffset > 0;
             }
       },
       watch: {

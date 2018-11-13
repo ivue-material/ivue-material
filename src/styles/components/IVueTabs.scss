@@ -128,3 +128,13 @@ $name: 'ivue-tabs';
             transform: translate(-100%, 0);
       }
 }
+
+.fade-transition-enter-active,
+.fade--transition-leave-active {
+      transition: opacity .3s cubic-bezier(.25,.8,.50,1);
+}
+
+.fade-transition-enter,
+.fade-transition-leave-to {
+      opacity: 0;
+}

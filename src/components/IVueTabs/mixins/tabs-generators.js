@@ -48,7 +48,7 @@ export default {
                   }, items);
             },
             genIcon (direction) {
-                  if (!this.hasArrows) {
+                  if (!this.hasArrows || !this[`${direction}IconVisible`]) {
                         return null;
                   }
 

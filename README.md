@@ -1902,6 +1902,39 @@ this.$Notice.config({
 | duration | 默认自动关闭的延时，单位秒 | Number | 1.5  |      
     
 
+
+### Tabs 标签页
+
+组件用于隐藏可选项目后面的内容。这也可以用作页面的伪导航
+
+API
+
+##### IVueTabs props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| value    | 当前激活 tab 面板的 name，可以使用 v-model 双向绑定数据 | String,Number | 默认为第一项     |
+| height   | 导航高度  | String,Number | -    |
+| centered   | 导航内容居中  | Boolean | -    |
+| right   | 导航内容向右  | Boolean | -    |
+| sliderColor   | 滑动条颜色  | String | -    |
+| hideSlider   | 滑动条隐藏  | Boolean | -    |
+| showArrows   | 是否显示导航栏箭头  | Boolean | -    |
+| nextIcon   | 导航栏箭头右边图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用  | String | chevron_right    |
+| prevIcon   | 导航栏箭头左边图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用  | String | chevron_left    |
+
+
+##### IVueTab props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| disabled    | 是否禁用当前项 | Boolean | false      |
+| rippleDisabled    | 是否禁用涟漪效果 | Boolean | false      |
+| rippleCentered    | 是否居中涟漪效果 | Boolean | false      |
+        
+
+
+
 # 其他
 
 ### IVueAffix 图钉

@@ -1,16 +1,17 @@
 <template>
       <div>
-            <IVueTabs color="#424242" v-model="active" showArrows>
-                  <IVueTab v-for="n in 5" :key="`item${n}`"  >Item {{ n }}</IVueTab>
-                  <IVueTabItem  v-for="n in 5" :key="n">{{text}}{{n}}</IVueTabItem>
+            <IVueTabs color="#424242" v-model="active">
+                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 1" >Item {{ n }}</IVueTab>
+                  <IVueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IVueTabItem>
             </IVueTabs>
 
-            <!-- <IVueTabs color="#424242" centered>
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true">Item {{ n }}</IVueTab>
+            <!-- <IVueTabs color="#424242" centered height="100">
+                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
             </IVueTabs>
 
-             <IVueTabs color="#424242" right>
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true">Item {{ n }}</IVueTab>
+             <IVueTabs color="#424242" right sliderColor="yellow" >
+                  
+                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
             </IVueTabs> -->
       </div>
 </template>
@@ -19,7 +20,7 @@
 export default {
       data () {
             return {
-                  active: 2,
+                  active: 5,
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
             }
       }
