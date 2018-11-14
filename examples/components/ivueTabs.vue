@@ -1,18 +1,18 @@
 <template>
       <div>
             <IVueTabs color="#424242" v-model="active">
-                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 1" >Item {{ n }}</IVueTab>
+                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IVueTab>
                   <IVueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IVueTabItem>
             </IVueTabs>
 
-            <!-- <IVueTabs color="#424242" centered height="100">
+            <IVueTabs color="#424242" centered height="100">
                   <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
             </IVueTabs>
 
              <IVueTabs color="#424242" right sliderColor="yellow" >
                   
                   <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
-            </IVueTabs> -->
+            </IVueTabs>
       </div>
 </template>
 

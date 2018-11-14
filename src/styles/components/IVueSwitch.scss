@@ -39,7 +39,6 @@ $large-after-width: 28px;
             border-radius: $defailt-after-width;
             background: #fff;
             position: absolute;
-            top: 1px;
             transform: translate3d(1px, 0, 0);
             cursor: pointer;
             @include transition;

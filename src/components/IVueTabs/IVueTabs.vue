@@ -119,7 +119,6 @@ export default {
                   const tab = [];
                   const length = (this.$slots.default || []).length;
 
-
                   for (let i = 0; i < length; i++) {
                         var vnode = this.$slots.default[i];
 

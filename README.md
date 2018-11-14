@@ -1905,7 +1905,41 @@ this.$Notice.config({
 
 ### Tabs 标签页
 
-组件用于隐藏可选项目后面的内容。这也可以用作页面的伪导航
+组件用于隐藏可选项目后面的内容。这也可以用作页面的伪导航     
+
+#### 例子
+
+```javascript
+<template>
+      <div>
+            <IVueTabs color="#424242" v-model="active">
+                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IVueTab>
+                  <IVueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IVueTabItem>
+            </IVueTabs>
+
+            <IVueTabs color="#424242" centered height="100">
+                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
+            </IVueTabs>
+
+             <IVueTabs color="#424242" right sliderColor="yellow" >
+                  
+                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
+            </IVueTabs>
+      </div>
+</template>
+
+<script>
+export default {
+      data () {
+            return {
+                  active: 5,
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+            }
+      }
+}
+</script>
+
+```
 
 API
 
@@ -1931,6 +1965,19 @@ API
 | disabled    | 是否禁用当前项 | Boolean | false      |
 | rippleDisabled    | 是否禁用涟漪效果 | Boolean | false      |
 | rippleCentered    | 是否居中涟漪效果 | Boolean | false      |
+        
+
+##### IVueTabsSlider props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| color    | 滑动条颜色 | String | #fff      |
+        
+##### IVueTabItem props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| transition    | 滑动动画 | String | tab-transition      |
         
 
 

@@ -21,7 +21,7 @@ export default {
             unregisterItems: {
                   default: null
             },
-            tabNavList:{
+            tabNavList: {
                   default: null
             }
       },
@@ -86,7 +86,6 @@ export default {
             // 更新激活的item
             updateItems () {
                   for (let index = this.items.length; --index >= 0;) {
-
                         this.items[index].toggle(this.activeIndex === index, this.reverse, this.isBooted)
                   }
 
@@ -95,6 +94,16 @@ export default {
             // 下一个item
             next () {
                   let nextIndex = this.activeIndex - 1;
+
+                  const tab = this.tabNavList.parseNodes().tab;
+
+                  if ((tab[nextIndex] && tab[nextIndex].componentInstance.disabled) && (tab[nextIndex - 1] && !tab[nextIndex - 1].componentInstance.disabled)) {
+                        this.inputValue = nextIndex - 1;
+                  }
+
+                  if (tab[nextIndex] && tab[nextIndex].componentInstance.disabled) {
+                        return;
+                  }
 
                   if (!this.items[nextIndex]) {
                         nextIndex = 0;
@@ -105,6 +114,17 @@ export default {
             // 上一个item
             prev () {
                   let prevIndex = this.activeIndex + 1;
+
+                  const tab = this.tabNavList.parseNodes().tab;
+
+
+                  if ((tab[prevIndex].componentInstance && tab[prevIndex].componentInstance.disabled) && (tab[prevIndex + 1].componentInstance && !tab[prevIndex + 1].componentInstance.disabled)) {
+                        this.inputValue = prevIndex + 1;
+                  }
+
+                  if (tab[prevIndex].componentInstance && tab[prevIndex].componentInstance.disabled) {
+                        return;
+                  }
 
                   if (!this.items[prevIndex]) {
                         prevIndex = this.items.length - 1;
@@ -124,7 +144,6 @@ export default {
             // 监听激活的index
             activeIndex (current, previous) {
                   this.reverse = current < previous;
-                        console.log(this.tabNavList.$slots)
 
                   // 更新激活的item
                   this.updateItems();
