@@ -1785,7 +1785,7 @@ API
 
 * ```this.$IVueNotice.config(options)```
 * ```this.$IVueNotice.close(options)```
-* ```this.$IVueNotice.destroy(options)```
+* ```this.$IVueNotice.destroy()```
 
 ```javascript
 this.$Notice.config({
@@ -1886,7 +1886,7 @@ API
 另外提供了全局配置和全局销毁的方法：        
 
 * ```this.$IVueMessage.config(options)```
-* ```this.$IVueMessage.destroy(options)```
+* ```this.$IVueMessage.destroy()```
 
 ```javascript
 this.$Notice.config({
@@ -1981,6 +1981,50 @@ API
         
 
 
+### IVueLoadingBar 加载进度条
+
+全局创建一个显示页面加载、异步请求、文件上传等的加载进度条。
+
+API
+
+##### instance     
+
+通过直接调用以下方法来使用组件：
+
+* ```this.$IVueLoadingBar.start()```
+* ```this.$IVueLoadingBar.finish()```
+* ```this.$IVueLoadingBar.error()```
+* ```this.$IVueLoadingBar.update(percent)```
+
+具体说明如下：     
+
+| 属性          | 说明                             | 参数   |
+| ------------- | :------------------------------- | :----- | 
+| start    | 	开始从 0 显示进度条，并自动加载进度 | 无 | 
+| finish    | 	结束进度条，自动补全剩余进度 | 无 | 
+| error    | 	以错误的类型结束进度条，自动补全剩余进度 | 无 | 
+| update    | 	精确加载到指定的进度 | percent，指定的进度百分比 | 
+
+
+另外提供了全局配置和全局销毁的方法：        
+
+* ```this.$IVueLoadingBar.config(options)```
+* ```this.$IVueLoadingBar.destroy()```
+
+```javascript
+this.$IVueLoadingBar.config({
+    color: '#5cb85c',
+    failedColor: '#f0ad4e',
+    height: 5
+});
+```     
+  
+| 属性      | 说明                     | 类型    | 默认值 |
+| --------- | :----------------------- | :------ | :----- |       
+| color | 进度条的颜色 | String | primary  |      
+| failedColor | 失败时的进度条颜色 | String | error  |      
+| height | 进度条高度，单位 px | Number | 2  |      
+    
 
 # 其他
 

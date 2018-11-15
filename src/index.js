@@ -22,6 +22,7 @@ import { IVueProgressLinear, IVueProgressCircular } from './components/IVueProgr
 import IVueNotice from './components/IVueNotice';
 import IVueMessage from './components/IVueMessage';
 import { IVueTabs, IVueTab, IVueTabItem,IVueTabsSlider } from './components/IVueTabs';
+import IVueLoadingBar from './components/IVueLoadingBar';
 
 const components = {
   IVueAffix,
@@ -54,7 +55,8 @@ const components = {
   IVueTabs,
   IVueTab,
   IVueTabItem,
-  IVueTabsSlider
+  IVueTabsSlider,
+  IVueLoadingBar
 };
 
 const iVue = {
@@ -82,6 +84,9 @@ const install = function (Vue, opts = {}) {
 
   // 注册全局 IVueMessage 提示 组件
   Vue.prototype.$IVueMessage = IVueMessage;
+
+  // 注册全局 IVueLoadingBar 滚动条加载 组件
+  Vue.prototype.$IVueLoadingBar = IVueLoadingBar;
 
 };
 

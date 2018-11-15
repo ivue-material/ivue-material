@@ -18,4 +18,6 @@ import "../src/styles/index.scss";
 // import "./components/IVueUpLoad.test";
 // import "./components/IVueProgress.test";
 // import "./components/IVueNotice.test";
-import "./components/IVueMessage.test";
+// import "./components/IVueMessage.test";
+// import "./components/IVueTabs.test";
+import "./components/IVueLoadingBar.test";
