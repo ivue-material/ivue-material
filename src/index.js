@@ -23,6 +23,7 @@ import IVueNotice from './components/IVueNotice';
 import IVueMessage from './components/IVueMessage';
 import { IVueTabs, IVueTab, IVueTabItem,IVueTabsSlider } from './components/IVueTabs';
 import IVueLoadingBar from './components/IVueLoadingBar';
+import IVueBadge from './components/IVueBadge';
 
 const components = {
   IVueAffix,
@@ -56,7 +57,8 @@ const components = {
   IVueTab,
   IVueTabItem,
   IVueTabsSlider,
-  IVueLoadingBar
+  IVueLoadingBar,
+  IVueBadge
 };
 
 const iVue = {
@@ -69,12 +71,6 @@ const install = function (Vue, opts = {}) {
   Object.keys(iVue).forEach(key => {
     Vue.component(key, iVue[key]);
   });
-
-  // 获取组件参数
-  Vue.prototype.$IVUE = {
-    size: opts.size || '',
-    transfer: 'transfer' in opts ? opts.transfer : ''
-  };
 
   // 注册全局 IVueSpin 组件
   Vue.prototype.$IVueSpin = IVueSpin;

@@ -21,6 +21,7 @@ import IVueNotice from '../components/ivueNotice';
 import IVueMessage from '../components/ivueMessage';
 import IVueTabs from '../components/ivueTabs';
 import IVueLoadingBar from '../components/iVueLoadingBar';
+import IVueBadge from '../components/ivueBadge';
 
 Vue.use(Router);
 
@@ -130,6 +131,11 @@ export default new Router({
       path: '/IVueLoadingBar',
       name: 'IVueLoadingBar',
       component: IVueLoadingBar
+    },
+    {
+      path: '/IVueBadge',
+      name: 'IVueBadge',
+      component: IVueBadge
     }
   ]
 });
