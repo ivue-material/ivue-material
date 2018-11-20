@@ -20,4 +20,5 @@ import "../src/styles/index.scss";
 // import "./components/IVueNotice.test";
 // import "./components/IVueMessage.test";
 // import "./components/IVueTabs.test";
-import "./components/IVueLoadingBar.test";
+// import "./components/IVueLoadingBar.test";
+import "./components/IVueBadge.test";

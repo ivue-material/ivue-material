@@ -6,7 +6,7 @@ $name: 'ivue-badge';
       &-count {
             position: absolute;
             top: -10px;
-            right: 0;
+            right: -10px;
             padding: 0 6px;
             min-width: 20px;
             height: 20px;
@@ -17,25 +17,33 @@ $name: 'ivue-badge';
             align-items: center;
             flex-direction: row;
             flex-wrap: wrap;
-            color: #fff;
-            background-color: $error-color;
-            transform: translateX(50%);
-            transition: $ivue-transition-default;
+            color: #fff !important;
+            transition: all $ivue-transition-default;
             z-index: 10;
       }
       /*小红点*/
       &-dot {
             position: absolute;
             top: -4px;
-            right: -8px;
+            right: -4px;
             width: 8px;
             height: 8px;
             border-radius: 100%;
-            background-color: $error-color;
             box-shadow: 0 0 0 1px #fff;
-            transform: translateX(-50%);
             transform-origin: 0 center;
             transition: $ivue-transition-default;
             z-index: 10;
       }
+}
+
+
+.#{$name}-fade-enter-active,
+.#{$name}-fade-leave-active {
+      transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+
+.#{$name}-fade-enter,
+.#{$name}-fade-leave-to {
+      // opacity: 0;
+      transform: scale(0) rotate(-45deg);
 }

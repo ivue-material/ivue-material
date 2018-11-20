@@ -1,19 +1,30 @@
 <template>
-      <span v-if="dot" :class="prefixCls">
+      <span :class="classes" v-if="dot">
             <slot></slot>
-            <span :style="styles" :class="dotClasses" v-show="showBadge"></span>
+            <transition :name="`${prefixCls}-fade`">
+                  <span :style="styles" :class="dotClasses" v-show="showBadge"></span>
+            </transition>
       </span>
-      <span v-else :class="prefixCls">
+      <span :class="classes" v-else>
             <slot></slot>
-            <span :style="styles" :class="countClasses" v-show="showBadge">{{finalCount}}</span>
+            <transition :name="`${prefixCls}-fade`">
+                  <span :style="styles" :class="countClasses" v-show="showBadge">{{finalCount}}</span>
+            </transition>
       </span>
 </template>
 
 <script>
+import Colorable from '../../utils/mixins/Colorable';
+
 const prefixCls = 'ivue-badge';
+
+function isCssColor (color) {
+      return !!color && !!color.match(/^(#|(rgb|hsl)a?\()/)
+}
 
 export default {
       name: 'IVueBadge',
+      mixins: [Colorable],
       props: {
             /*
             * 显示的数字
@@ -64,6 +75,14 @@ export default {
             text: {
                   type: String,
                   default: ''
+            },
+            color: {
+                  type: String,
+                  default: '#ed4014'
+            },
+            show: {
+                  type: Boolean,
+                  default: true
             }
       },
       data () {
@@ -72,17 +91,28 @@ export default {
             }
       },
       computed: {
+            classes () {
+                  return `${prefixCls}`;
+            },
             dotClasses () {
-                  return `${prefixCls}-dot`
+                  return [
+                        `${prefixCls}-dot`,
+                        {
+                              [this.color]: !isCssColor(this.color)
+                        }
+                  ]
             },
             countClasses () {
                   return [
-                        `${prefixCls}-count`
+                        `${prefixCls}-count`,
+                        {
+                              [this.color]: !isCssColor(this.color)
+                        }
                   ]
             },
             // 判断是否显示封顶数字值
             finalCount () {
-                  const { count, overflowCount,text } = this;
+                  const { count, overflowCount, text } = this;
 
                   if (text !== '') {
                         return text;
@@ -92,9 +122,14 @@ export default {
             },
             // 是否显示数字
             showBadge () {
-                  const { count, dot, showZero,text } = this;
+                  const { count, dot, showZero, text } = this;
 
                   let status = false;
+
+
+                  if (!this.show) {
+                        return this.show
+                  }
 
                   if (count) {
                         status = !(parseInt(count) === 0);
@@ -122,6 +157,10 @@ export default {
                   if (this.offset && this.offset.length === 2) {
                         style['margin-top'] = `${this.offset[0]}px`;
                         style['margin-right'] = `${this.offset[1]}px`;
+                  }
+
+                  if (isCssColor(this.color)) {
+                        style['background-color'] = this.color;
                   }
 
                   return style;

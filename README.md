@@ -2026,6 +2026,83 @@ this.$IVueLoadingBar.config({
 | height | 进度条高度，单位 px | Number | 2  |      
     
 
+
+### IVueBadge 图钉
+
+主要用于通知未读数的角标，提醒用户点击。
+
+#### 例子
+
+```javascript
+<template>
+      <div>
+            <IVueBadge :count="3" color="#ba68c8" :show="show">
+                    <a href="#" class="demo-badge"></a>
+            </IVueBadge>
+
+             <IVueBadge :count="0" color="purple" :showZero="true">
+                    <a href="#" class="demo-badge"></a>
+            </IVueBadge>
+
+            <IVueBadge  dot color="#ba68c8" :count="0">
+                    <a href="#" class="demo-badge"></a>
+            </IVueBadge>
+
+             <IVueBadge  text="123" :offset="[10,10]">
+                    <a href="#" class="demo-badge"></a>
+            </IVueBadge>
+
+            <IVueBadge dot>
+                   <a href="#">可以是一个链接</a>
+            </IVueBadge>
+
+            <button @click="onShow">show</button>
+      </div>
+</template>
+
+<script>
+      export default {
+            data() {
+                  return {
+                        show: false
+                  }
+            },
+            methods:{
+                  onShow(){
+                        this.show = !this.show
+                  }
+            }
+      }
+</script>
+
+<style scoped>
+ .demo-badge{
+        width: 42px;
+        height: 42px;
+        background: #eee;
+        border-radius: 6px;
+        display: inline-block;
+    }
+</style>
+```
+
+API
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| count    | 显示的数字，大于overflowCount时，显示${overflowCount}+，为 0 时隐藏 | Number | -      |
+| overflowCount    | 展示封顶的数字值 | Number， String	 | 99      |
+| dot    | 不展示数字，只有一个小红点，如需隐藏 dot ，需要设置count为 0 | Boolean	 | false      |
+| offset    | 设置状态点的位置偏移，格式为 [x, y] |Array	 | -      |
+| showZero    | 当数值为 0 时，是否展示 Badge  |Boolean	 | false     |
+| text    | 自定义内容  | String	 | -     |
+| color    | 设置badge的颜色  | String	 | #ed4014     |
+| show    | 是否显示badge  | Boolean	 | true     |
+    
+
+
 # 其他
 
 ### IVueAffix 图钉
