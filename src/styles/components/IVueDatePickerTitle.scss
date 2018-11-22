@@ -1,0 +1,19 @@
+$name: 'ivue-date-picker-title';
+.#{$name} {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      flex-wrap: wrap;
+      line-height: 1;
+      color: #fff;
+      &--btn {
+            transition: $ivue-transition-default;
+      }
+      &--year {
+            align-items: center;
+            display: inline-flex;
+            font-size: $font-base-size;
+            font-weight: 500;
+            margin-bottom: 8px;
+      }
+}

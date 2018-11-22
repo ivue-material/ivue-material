@@ -24,6 +24,7 @@ import IVueMessage from './components/IVueMessage';
 import { IVueTabs, IVueTab, IVueTabItem,IVueTabsSlider } from './components/IVueTabs';
 import IVueLoadingBar from './components/IVueLoadingBar';
 import IVueBadge from './components/IVueBadge';
+import IVueDatePicker from './components/IVueDatePicker';
 
 const components = {
   IVueAffix,
@@ -58,7 +59,8 @@ const components = {
   IVueTabItem,
   IVueTabsSlider,
   IVueLoadingBar,
-  IVueBadge
+  IVueBadge,
+  IVueDatePicker
 };
 
 const iVue = {

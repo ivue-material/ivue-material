@@ -9,7 +9,7 @@ export default Vue.extend({
       props: {
             color: {
                   type: String,
-                  default: '#fff'
+                  default: ''
             }
       },
       methods: {

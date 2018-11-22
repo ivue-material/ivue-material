@@ -51,6 +51,7 @@ nav {
                 <li><router-link to="/IVueTabs">IVueTabs</router-link></li>
                 <li><router-link to="/IVueLoadingBar">IVueLoadingBar</router-link></li>
                 <li><router-link to="/IVueBadge">IVueBadge</router-link></li>
+                <li><router-link to="/IVueDatePicker">IVueDatePicker</router-link></li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

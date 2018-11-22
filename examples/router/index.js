@@ -22,6 +22,7 @@ import IVueMessage from '../components/ivueMessage';
 import IVueTabs from '../components/ivueTabs';
 import IVueLoadingBar from '../components/iVueLoadingBar';
 import IVueBadge from '../components/ivueBadge';
+import IVueDatePicker from '../components/ivueDatePicker';
 
 Vue.use(Router);
 
@@ -136,6 +137,11 @@ export default new Router({
       path: '/IVueBadge',
       name: 'IVueBadge',
       component: IVueBadge
+    },
+    {
+      path: '/IVueDatePicker',
+      name: 'IVueDatePicker',
+      component: IVueDatePicker
     }
   ]
 });

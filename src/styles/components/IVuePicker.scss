@@ -1,0 +1,28 @@
+$name:'ivue-picker';
+.#{$name} {
+      border-radius: 2px;
+      contain: layout style;
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: top;
+      &-title {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            padding: 16px;
+            color: #fff;
+      }
+}
+
+.primary {
+      background-color: $primary-color;
+      border-color: $primary-color;
+}
+
+.ivue-card {
+      position: relative;
+      display: block;
+      border-radius: 2px;
+      min-width: 0;
+      transition: $ivue-transition-default;
+      box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
