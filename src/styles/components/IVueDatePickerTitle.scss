@@ -16,4 +16,12 @@ $name: 'ivue-date-picker-title';
             font-weight: 500;
             margin-bottom: 8px;
       }
+      &--date{
+            font-size: 34px;
+            text-align: left;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 16px;
+      }
 }

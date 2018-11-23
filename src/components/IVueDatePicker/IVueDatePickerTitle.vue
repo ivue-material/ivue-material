@@ -12,22 +12,40 @@ export default {
             year: {
                   type: [Number, String],
                   default: ''
+            },
+            date: {
+                  type: String,
+                  default: ''
+            },
+            value: {
+                  type: String
             }
       },
       methods: {
-            // 获取年份
-            getYearBtn () {
+            // 渲染年份
+            genYearBtn () {
                   return this.genPickerButton('selectingYear', true, [
                         this.year
-                  ],false, `${prefixCls}--year`);
+                  ], false, `${prefixCls}--year`);
+            },
+            genTitleText () {
+                  return this.$createElement('div', {
+                        domProps: { innerHTML: this.date || '&nbsp;' },
+                        key: this.value
+                  })
+            },
+            // 渲染日期
+            genTitleDate () {
+                  return this.genPickerButton('selectingYear', false, this.genTitleText(), false, `${prefixCls}--date`);
             }
       },
       render (h) {
             return h('div', {
                   staticClass: prefixCls
-            },[
-                  this.getYearBtn()
-            ])
+            }, [
+                        this.genYearBtn(),
+                        this.genTitleDate()
+                  ])
       }
 }
 </script>

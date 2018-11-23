@@ -11,6 +11,16 @@ $name:'ivue-picker';
             padding: 16px;
             color: #fff;
       }
+      &-body {
+            height: auto;
+            overflow: hidden;
+            position: relative;
+            z-index: 0;
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+      }
 }
 
 .primary {

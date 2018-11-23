@@ -1,12 +1,16 @@
 <template>
       <div>
-            <IVueDatePicker></IVueDatePicker>
+            <IVueDatePicker :value="picker"></IVueDatePicker>
       </div>
 </template>
 
 <script>
       export default {
-            
+            data() {
+                  return {
+                        picker: new Date().toISOString().substr(0, 10),
+                  }
+            }
       }
 </script>
 
