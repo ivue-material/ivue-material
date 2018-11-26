@@ -1,7 +1,10 @@
 <script>
 import Picker from '../../utils/mixins/Picker';
 import IVueDatePickerTitle from './IVueDatePickerTitle';
+import IVueDatePickerHeader from './IVueDatePickerHeader';
+
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
+import Pad from '../../utils/Pad';
 
 export default {
       name: 'IVueDatePicker',
@@ -17,10 +20,20 @@ export default {
                   type: Function,
                   default: null
             },
+            /*
+            * 语言
+            *
+            * @type{String}
+            */
             locale: {
                   type: String,
                   default: 'zh-CN'
             },
+            /*
+            * 日期 时间
+            *
+            * @type{String}
+            */
             value: [Array, String],
             /*
             * 日历显示的类型 默认显示为日期
@@ -34,12 +47,32 @@ export default {
             },
       },
       data () {
+            const now = new Date();
+
             return {
                   // 输入年份
-                  inputYear: '2018'
+                  inputYear: null,
+                  // 当前激活的type
+                  activeType: this.type.toUpperCase(),
+                  // tableDate is a string in 'YYYY' / 'YYYY-M' format (leading zero for month is not required)
+                  tableDate: null
             }
       },
+      created () {
+            this.setInputDate();
+
+            this.tableDate = (() => {
+                  const date = this.value || `${now.getFullYear}-${now.getMonth() + 1}`
+
+                  const type = this.type === 'date' ? 'month' : 'year';
+
+                  return this.sanitizeDateString(date, type)
+            })()
+      },
       computed: {
+            computedValue () {
+                  return this.value;
+            },
             // 格式化日期
             formatters () {
                   return {
@@ -48,6 +81,14 @@ export default {
                         titleDate: this.titleDateFormat || this.defaultTitleDateFormatter
 
                   }
+            },
+            // 年份
+            tableYear () {
+                  return this.tableDate.split('-')[0] * 1;
+            },
+            // 月份
+            tableMonth(){
+                  return this.tableDate.split('-')[1] - 1;
             },
             // 默认日期格式
             defaultTitleDateFormatter () {
@@ -63,7 +104,7 @@ export default {
                         start: 0,
                         length: { date: 10, month: 7, year: 4 }[this.type]
                   });
-                  
+
                   // 日期换行
                   const landscapeFormatter = (date) => titleDateFormatter(date)
                         .replace(/([^\d\s])([\d])/g, (match, nonDigit, digit) => `${nonDigit} ${digit}`)
@@ -82,6 +123,37 @@ export default {
                         },
                         slot: 'title'
                   });
+            },
+            // 渲染内容头部
+            genTableHeader () {
+                  return this.$createElement(IVueDatePickerHeader, {
+                        props: {
+                              locale: this.locale,
+                              value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`
+                        }
+                  });
+            },
+            // 渲染内容
+            genPickerBody () {
+                  const children = [this.genTableHeader()];
+
+                  return this.$createElement('div', {
+                        key: this.activeType
+                  }, children);
+            },
+            // 设置input值
+            setInputDate () {
+                  if (this.computedValue) {
+                        const computedValue = this.computedValue.split('-')
+                        this.inputYear = parseInt(computedValue[0], 10);
+                  }
+            },
+            // Adds leading zero to month/day if necessary, returns 'YYYY' if type = 'year',
+            // 'YYYY-MM' if 'month' and 'YYYY-MM-DD' if 'date'
+            sanitizeDateString (dateString, type) {
+                  const [year, month = 1, date = 1] = dateString.split('-');
+
+                  return `${year}-${Pad(month)}-${Pad(date)}`.substr(0, { date: 10, month: 7, year: 4 }[type]);
             }
       },
       render () {

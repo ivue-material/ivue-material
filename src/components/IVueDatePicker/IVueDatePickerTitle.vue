@@ -4,6 +4,7 @@ import PickerButton from '../../utils/mixins/PickerButton';
 const prefixCls = 'ivue-date-picker-title';
 
 export default {
+      name: 'ivue-date-picker-title',
       mixins: [PickerButton],
       props: {
             // 选择年份

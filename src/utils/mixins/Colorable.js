@@ -21,7 +21,25 @@ export default Vue.extend({
                               'background-color': `${color}`,
                               'border-color': `${color}`
                         }
-                  } else if (color) {
+                  }
+                  else if (color) {
+                        data.class = {
+                              ...data.class,
+                              [color]: true
+                        }
+                  }
+
+                  return data;
+            },
+            // 设置文字颜色
+            setTextColor (color, data) {
+                  if (isCssColor(color)) {
+                        data.style = {
+                              ...data.style,
+                              'color': `${color}`
+                        }
+                  }
+                  else if (color) {
                         data.class = {
                               ...data.class,
                               [color]: true

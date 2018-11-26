@@ -38,12 +38,14 @@ export default {
                         style: this.fullWidth ? undefined : {
                               width: `${this.width}px`
                         }
-                  });
+                  }, this.$slots.default);
             },
       },
       render (h) {
             return h('div', {
-                  staticClass: `${prefixCls} ivue-card`
+                  staticClass: `${prefixCls} ivue-card`,
+                  style: this.fullWidth ? { display: 'block' } : { display: 'inline-flex' }
+
             }, [
                         this.$slots.title ? this.genTitle() : null,
                         this.genBody()
