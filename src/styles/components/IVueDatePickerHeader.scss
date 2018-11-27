@@ -20,5 +20,34 @@ $name: 'ivue-date-picker-header';
             .accent--text {
                   color: rgba(0, 0, 0, .87);
             }
+            &:hover .accent--text {
+                  color: $primary-color
+            }
       }
+}
+
+.#{$name}-transition-enter {
+      transform: translate(100%, 0);
+}
+
+.#{$name}-transition-leave,
+.#{$name}-transition-leave-active {
+      position: absolute;
+      top: 0;
+}
+
+.#{$name}-transition-leave-to {
+      position: absolute;
+      transform: translate(-100%, 0);
+}
+
+.#{$name}-reverse-transition-enter {
+      transform: translate(-100%, 0);
+}
+
+.#{$name}-reverse-transition-leave,
+.#{$name}-reverse-transition-leave-to {
+      top: 0;
+      position: absolute;
+      transform: translate(100%, 0);
 }

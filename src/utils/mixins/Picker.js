@@ -1,7 +1,9 @@
 import IVuePicker from '../../components/IVueDatePicker/IVuePicker';
+import Colorable from './Colorable'
 
 export default {
       name: 'picker',
+      mixins: [Colorable],
       props: {
             /*
             * 日历方向
@@ -12,7 +14,7 @@ export default {
       },
       methods: {
             genPickerTitle () { },
-            genPickerBody () {},
+            genPickerBody () { },
             genPicker () {
                   return this.$createElement(IVuePicker, {
 

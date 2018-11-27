@@ -2,6 +2,7 @@
 import Picker from '../../utils/mixins/Picker';
 import IVueDatePickerTitle from './IVueDatePickerTitle';
 import IVueDatePickerHeader from './IVueDatePickerHeader';
+import IVueDatePickerDate from './IVueDatePickerDate';
 
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
@@ -87,7 +88,7 @@ export default {
                   return this.tableDate.split('-')[0] * 1;
             },
             // 月份
-            tableMonth(){
+            tableMonth () {
                   return this.tableDate.split('-')[1] - 1;
             },
             // 默认日期格式
@@ -126,20 +127,32 @@ export default {
             },
             // 渲染内容头部
             genTableHeader () {
+
                   return this.$createElement(IVueDatePickerHeader, {
                         props: {
                               locale: this.locale,
                               value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`
+                        },
+                        on: {
+                              input: value => this.tableDate = value
                         }
                   });
             },
             // 渲染内容
             genPickerBody () {
-                  const children = [this.genTableHeader()];
+                  const children = this.activeType === 'YEAR' ? [] :
+                        [
+                              this.genTableHeader(),
+                              this.activeType === 'DATE' ? this.genDateTable() : ''
+                        ];
 
                   return this.$createElement('div', {
                         key: this.activeType
                   }, children);
+            },
+            // 渲染日期
+            genDateTable(){
+                  return this.$createElement(IVueDatePickerDate)
             },
             // 设置input值
             setInputDate () {
