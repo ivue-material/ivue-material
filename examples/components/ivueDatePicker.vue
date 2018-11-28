@@ -1,7 +1,7 @@
 <template>
       <div>
             <IVueDatePicker :value="picker"></IVueDatePicker>
-            <IVueDatePicker :value="picker" type="month"></IVueDatePicker>
+            <IVueDatePicker :value="picker" locale="zh-CH"></IVueDatePicker>
       </div>
 </template>
 

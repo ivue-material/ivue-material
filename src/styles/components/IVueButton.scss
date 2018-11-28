@@ -34,6 +34,7 @@
       font-size: $ivue-button-font-size;
       font-weight: 500;
       color: currentColor;
+      border: 1px solid transparent;
       &:active {
             outline: none;
       }
@@ -93,6 +94,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+      }
+      &--selected{
+            background:  $primary-color;
+            color: #fff
       }
 }
 

@@ -9,7 +9,6 @@ export function oneOf (value, validList) {
       return false
 }
 
-
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
@@ -19,6 +18,7 @@ function camelCase (name) {
             return offset ? letter.toUpperCase() : letter;
       }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
+
 // 获取样式
 export function getStyle (element, styleName) {
       if (!element || !styleName) {
@@ -38,8 +38,4 @@ export function getStyle (element, styleName) {
       catch (e) {
             return element.style[styleName];
       }
-
-
-
-
 }

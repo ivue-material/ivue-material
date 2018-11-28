@@ -27,7 +27,7 @@ export default {
             */
             locale: {
                   type: String,
-                  default: 'zh-CN'
+                  default: 'en-us'
             },
             nextIcon: {
                   type: String,
