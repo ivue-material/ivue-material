@@ -1,6 +1,6 @@
 <template>
       <div>
-            <IVueDatePicker :value="picker"></IVueDatePicker>
+            <IVueDatePicker v-model="picker"></IVueDatePicker>
             <IVueDatePicker :value="picker" locale="zh-CH"></IVueDatePicker>
       </div>
 </template>

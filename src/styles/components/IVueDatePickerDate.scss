@@ -7,7 +7,7 @@ $name: 'ivue-date-picker-date';
       table {
             table-layout: fixed;
             width: 100%;
-            transition: $ivue-transition-default;
+            transition: .3s cubic-bezier(.25, .8, .5, 1);
       }
       &-table {
             th {
@@ -19,9 +19,9 @@ $name: 'ivue-date-picker-date';
                   text-align: center;
                   width: 45px;
                   button {
-                        height: 34px;
-                        width: 34px;
-                        min-width: 34px;
+                        height: 33px;
+                        width: 33px;
+                        min-width: 33px;
                         margin: 0;
                   }
             }

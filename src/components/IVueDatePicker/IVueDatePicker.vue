@@ -60,8 +60,12 @@ export default {
     const now = new Date();
 
     return {
+      // 日期
+      inputDay: null,
       // 输入年份
       inputYear: null,
+      // 输入月份
+      inputMonth: null,
       // 当前激活的type
       activeType: this.type.toUpperCase(),
       // tableDate is a string in 'YYYY' / 'YYYY-M' format (leading zero for month is not required)
@@ -100,6 +104,12 @@ export default {
     tableMonth () {
       return this.tableDate.split('-')[1] - 1;
     },
+    // 选择的日期
+    inputDate () {
+      return this.type === 'date' ?
+        `${this.inputYear}-${Pad(this.inputMonth + 1)}-${Pad(this.inputDay)}` :
+        `${this.inputYear}-${Pad(this.inputMonth + 1)}`
+    },
     // 默认日期格式
     defaultTitleDateFormatter () {
       // 标题格式
@@ -124,6 +134,12 @@ export default {
     }
   },
   methods: {
+    // 点击日期事件
+    emitInput (newInput) {
+      console.log(newInput);
+      
+      this.$emit('input', newInput)
+    },
     // 渲染标题内容
     genPickerTitle () {
       return this.$createElement(IVueDatePickerTitle, {
@@ -167,8 +183,8 @@ export default {
           locale: this.locale,
           firstDayOfWeek: this.firstDayOfWeek
         },
-        on:{
-              input: this.dateClick
+        on: {
+          input: this.dateClick
         }
       });
     },
@@ -187,8 +203,12 @@ export default {
       return `${year}-${Pad(month)}-${Pad(date)}`.substr(0, { date: 10, month: 7, year: 4 }[type]);
     },
     // 日期点击事件
-    dateClick(value){
-          this.inputYear = parseInt(value.split('-')[0], 10);
+    dateClick (value) {
+      this.inputYear = parseInt(value.split('-')[0], 10);
+      this.inputMonth = parseInt(value.split('-')[1], 10) - 1;
+      this.inputDay = parseInt(value.split('-')[2], 10);
+
+      this.emitInput(this.inputDate);
     }
   },
   render () {

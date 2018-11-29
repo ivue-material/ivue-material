@@ -1,4 +1,4 @@
-import IVueButton from '../../components/IVueButton/IVueButton';
+import IVueRipple from '../../components/IVueRipple/IVueRipple';
 
 const prefixCls = 'ivue-date-picker-date';
 
@@ -67,8 +67,8 @@ export default {
             genButton (value) {
                   const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1);
 
-                  return this.$createElement(IVueButton, {
-                        staticClass: 'ivue-icon-button',
+                  return this.$createElement('button', {
+                        staticClass: 'ivue-button ivue-icon-button ',
                         class: this.genButtonClasses(isSelected),
                         on: {
                               click: () => this.$emit('input', value)
