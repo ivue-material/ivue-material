@@ -16,7 +16,7 @@ $name: 'ivue-date-picker-title';
             font-weight: 500;
             margin-bottom: 8px;
       }
-      &--date{
+      &--date {
             font-size: 34px;
             text-align: left;
             font-weight: 500;
@@ -24,4 +24,48 @@ $name: 'ivue-date-picker-title';
             overflow: hidden;
             padding-bottom: 16px;
       }
+}
+
+.picker-transition-enter-active,
+.picker-transition-leave-active,
+.picker-reverse-transition-enter-active,
+.picker-reverse-transition-leave-active {
+      transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.picker-transition-enter,
+.picker-transition-leave-to,
+.picker-reverse-transition-enter,
+.picker-reverse-transition-leave-to {
+      opacity: 0;
+}
+
+.picker-transition-enter-to,
+.picker-reverse-transition-enter-to {
+      transform: translate(0, 0);
+}
+
+.picker-transition-leave,
+.picker-transition-leave-active,
+.picker-transition-leave-to,
+.picker-reverse-transition-leave,
+.picker-reverse-transition-leave-active,
+.picker-reverse-transition-leave-to {
+      position: absolute !important;
+}
+
+.picker-transition-enter {
+      transform: translate(0, 100%);
+}
+
+.picker-transition-leave-to {
+      transform: translate(0, -100%);
+}
+
+.picker-reverse-transition-enter {
+      transform: translate(0, -100%);
+}
+
+.picker-reverse-transition-leave-to {
+      transform: translate(0, 100%);
 }

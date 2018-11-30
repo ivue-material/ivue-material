@@ -8,6 +8,7 @@ const prefixCls = 'ivue-date-picker-date';
 
 export default {
   mixins: [DatePickerTable],
+  name: 'IVueDatePickerDate',
   props: {
     /*
     * 一周的第一天
@@ -35,14 +36,13 @@ export default {
     },
     // 日期格式
     formatter () {
-      return CreateNativeLocaleFormatter(this.locale, { day: 'numeric', timeZone: 'UTC' }, { start: 0, length: 2 });
+      return CreateNativeLocaleFormatter(this.locale, { day: 'numeric', timeZone: 'UTC' }, { start: 8, length: 2 });
     }
   },
   methods: {
     // 日期头部
     genTHead () {
       const days = this.weekDays.map((day) => this.$createElement('th', day));
-
 
       return this.$createElement('thead', this.genTR(days));
     },
@@ -66,7 +66,7 @@ export default {
         const date = `${this.displayedYear}-${Pad(this.displayedMonth + 1)}-${Pad(day)}`;
 
         rows.push(this.$createElement('td', [
-          this.genButton(date)
+          this.genButton(date, 'ivue-icon-button')
         ]));
 
         // 一行7个      
@@ -89,7 +89,7 @@ export default {
     // 返回从firstDayOfWeek到当月第一天的天数
     weekDaysBeforeFirstDayOfTheMonth () {
       // 本月的第一天
-      const firstDayOfTheMonth = new Date(`${this.displayedYear}-${this.displayedMonth + 1}-01T00:00:00+00:00`);
+      const firstDayOfTheMonth = new Date(`${this.displayedYear}-${Pad(this.displayedMonth + 1)}-01T00:00:00+00:00`);
 
       const weekDay = firstDayOfTheMonth.getUTCDay();
 
@@ -97,7 +97,7 @@ export default {
     }
   },
   render () {
-    return this.genTable(`${prefixCls} ${prefixCls}-table`, [
+    return this.genTable(`${prefixCls} ${prefixCls}--table`, [
       this.genTHead(),
       this.genTBody()
     ])

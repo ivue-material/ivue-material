@@ -33,3 +33,31 @@ body {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
 }
+
+
+
+.tab-transition-enter {
+      transform: translate(100%, 0);
+}
+
+.tab-transition-leave,
+.tab-transition-leave-active {
+      position: absolute;
+      top: 0;
+}
+
+.tab-transition-leave-to {
+      position: absolute;
+      transform: translate(-100%, 0);
+}
+
+.tab-reverse-transition-enter {
+      transform: translate(-100%, 0);
+}
+
+.tab-reverse-transition-leave,
+.tab-reverse-transition-leave-to {
+      top: 0;
+      position: absolute;
+      transform: translate(100%, 0);
+}

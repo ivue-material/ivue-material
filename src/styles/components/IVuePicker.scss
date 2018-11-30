@@ -19,7 +19,7 @@ $name:'ivue-picker';
             display: flex;
             flex-direction: column;
             align-items: center;
-            > div{
+            >div {
                   width: 100%;
             }
       }
@@ -36,4 +36,15 @@ $name:'ivue-picker';
 .primary {
       background-color: $primary-color;
       border-color: $primary-color;
+}
+
+.#{$name}-fade-enter-active,
+.#{$name}-fade-leave-active {
+      transition: opacity $ivue-transition-default;
+}
+
+.#{$name}-fade-enter,
+.#{$name}-fade-leave-to {
+      position: absolute;
+      opacity: 0;
 }

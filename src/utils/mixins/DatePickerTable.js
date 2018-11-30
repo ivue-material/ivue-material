@@ -1,5 +1,3 @@
-import IVueRipple from '../../components/IVueRipple/IVueRipple';
-
 const prefixCls = 'ivue-date-picker-date';
 
 export default {
@@ -53,7 +51,7 @@ export default {
             genTable (staticClass, children) {
                   const transition = this.$createElement('transition', {
                         props: {
-                              name: this.isReversing ? `${prefixCls}-reverse-transition` : `${prefixCls}-transition`
+                              name: this.isReversing ? `tab-reverse-transition` : `tab-transition`
                         }
                   }, [this.$createElement('table', {
                         key: this.tableDate
@@ -64,11 +62,11 @@ export default {
                   }, [transition])
             },
             // 按钮
-            genButton (value) {
+            genButton (value, staticClass) {
                   const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1);
 
                   return this.$createElement('button', {
-                        staticClass: 'ivue-button ivue-icon-button ',
+                        staticClass: `ivue-button ${staticClass}`,
                         class: this.genButtonClasses(isSelected),
                         on: {
                               click: () => this.$emit('input', value)

@@ -3,6 +3,7 @@ import Picker from '../../utils/mixins/Picker';
 import IVueDatePickerTitle from './IVueDatePickerTitle';
 import IVueDatePickerHeader from './IVueDatePickerHeader';
 import IVueDatePickerDate from './IVueDatePickerDate';
+import IVueDatePickerMonth from './IVueDatePickerMonth';
 
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
@@ -131,13 +132,20 @@ export default {
         .replace(', ', ',<br>');
 
       return this.landscape ? landscapeFormatter : titleDateFormatter;
+    },
+    // 选择的日期
+    selectedMonths () {
+      if (!this.value || !this.value.length || this.type === 'month') {
+        return this.value;
+      }
+      else {
+        return this.value.substr(0, 7);
+      }
     }
   },
   methods: {
     // 点击日期事件
     emitInput (newInput) {
-      console.log(newInput);
-      
       this.$emit('input', newInput)
     },
     // 渲染标题内容
@@ -145,7 +153,8 @@ export default {
       return this.$createElement(IVueDatePickerTitle, {
         props: {
           date: this.value ? this.formatters.titleDate(this.value) : '',
-          year: this.formatters.year(`${this.inputYear}`)
+          year: this.formatters.year(`${this.inputYear}`),
+          value: this.value
         },
         slot: 'title'
       });
@@ -158,7 +167,8 @@ export default {
           value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`
         },
         on: {
-          input: value => this.tableDate = value
+          input: value => this.tableDate = value,
+          toggle: () => this.activeType = (this.activeType === 'DATE' ? 'MONTH' : 'YEAR')
         }
       });
     },
@@ -167,7 +177,7 @@ export default {
       const children = this.activeType === 'YEAR' ? [] :
         [
           this.genTableHeader(),
-          this.activeType === 'DATE' ? this.genDateTable() : ''
+          this.activeType === 'DATE' ? this.genDateTable() : this.genMonthTable()
         ];
 
       return this.$createElement('div', {
@@ -185,6 +195,19 @@ export default {
         },
         on: {
           input: this.dateClick
+        }
+      });
+    },
+    // 渲染月
+    genMonthTable () {
+      return this.$createElement(IVueDatePickerMonth, {
+        props: {
+          tableDate: `${this.tableYear}`,
+          locale: this.locale,
+          value: this.selectedMonths
+        },
+        on: {
+          input: this.monthClick
         }
       });
     },
@@ -209,6 +232,24 @@ export default {
       this.inputDay = parseInt(value.split('-')[2], 10);
 
       this.emitInput(this.inputDate);
+    },
+    // 月期点击事件
+    monthClick (value) {
+      this.inputYear = parseInt(value.split('-')[0], 10);
+      this.inputMonth = parseInt(value.split('-')[1], 10) - 1;
+
+      if (this.type === 'date') {
+        this.tableDate = value;
+        this.activeType = 'DATE';
+
+
+        // this.$emit('input', this.inputDate);
+
+      }
+      else {
+        this.emitInput(this.inputDate);
+      }
+
     }
   },
   render () {
