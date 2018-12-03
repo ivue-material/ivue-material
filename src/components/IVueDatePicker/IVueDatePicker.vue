@@ -4,7 +4,9 @@ import IVueDatePickerTitle from './IVueDatePickerTitle';
 import IVueDatePickerHeader from './IVueDatePickerHeader';
 import IVueDatePickerDate from './IVueDatePickerDate';
 import IVueDatePickerMonth from './IVueDatePickerMonth';
+import IVueDatePickerYears from './IVueDatePickerYears';
 
+import isDateAllowed from '../../utils/IsDateAllowed';
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
 
@@ -55,7 +57,40 @@ export default {
     firstDayOfWeek: {
       type: [String, Number],
       default: 0
-    }
+    },
+    /*
+    * 最小年份或月份
+    *
+    * @type{String}
+    */
+    min: String,
+    /*
+    * 最大年份或月份
+    *
+    * @type{String}
+    */
+    max: String,
+    /*
+    * 是否显示当前日期
+    *
+    * @type{String}
+    */
+    showCurrent: {
+      type: [Boolean, String],
+      default: true
+    },
+    /*
+    * 点击月份或者年份时日期月份或年份是否跟随改变
+    *
+    * @type{String}
+    */
+    reactive: Boolean,
+    /*
+    * 设置允许选择日期函数
+    *
+    * @type{Function}
+    */
+    allowedDates: Function,
   },
   data () {
     const now = new Date();
@@ -70,7 +105,9 @@ export default {
       // 当前激活的type
       activeType: this.type.toUpperCase(),
       // tableDate is a string in 'YYYY' / 'YYYY-M' format (leading zero for month is not required)
-      tableDate: null
+      tableDate: null,
+      // 当前时间
+      now: now
     }
   },
   created () {
@@ -141,6 +178,31 @@ export default {
       else {
         return this.value.substr(0, 7);
       }
+    },
+    // 最小月份
+    minMonth () {
+      return this.min ? this.sanitizeDateString(this.min, 'month') : null;
+    },
+    // 最大月份
+    maxMonth () {
+      return this.max ? this.sanitizeDateString(this.max, 'month') : null;
+    },
+    // 最小年份
+    minYear () {
+      return this.min ? this.sanitizeDateString(this.min, 'year') : null;
+    },
+    // 最大年份
+    maxYear () {
+      return this.max ? this.sanitizeDateString(this.max, 'year') : null;
+    },
+    // 当前日期
+    current () {
+      if (this.showCurrent) {
+        return this.sanitizeDateString(`${this.now.getFullYear()}-${this.now.getMonth() + 1}-${this.now.getDate()}`, this.type);
+      }
+      else {
+        return this.showCurrent || null
+      }
     }
   },
   methods: {
@@ -154,9 +216,13 @@ export default {
         props: {
           date: this.value ? this.formatters.titleDate(this.value) : '',
           year: this.formatters.year(`${this.inputYear}`),
-          value: this.value
+          value: this.value,
+          selectingYear: this.activeType === 'YEAR'
         },
-        slot: 'title'
+        slot: 'title',
+        on: {
+          'update:selectingYear' : value => this.activeType = value ? 'YEAR' : this.type.toUpperCase()
+        }
       });
     },
     // 渲染内容头部
@@ -164,7 +230,9 @@ export default {
       return this.$createElement(IVueDatePickerHeader, {
         props: {
           locale: this.locale,
-          value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`
+          value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`,
+          max: this.activeType === 'DATE' ? this.maxMonth : this.maxYear,
+          min: this.activeType === 'DATE' ? this.minMonth : this.minYear
         },
         on: {
           input: value => this.tableDate = value,
@@ -174,7 +242,7 @@ export default {
     },
     // 渲染内容
     genPickerBody () {
-      const children = this.activeType === 'YEAR' ? [] :
+      const children = this.activeType === 'YEAR' ? [this.genYears()] :
         [
           this.genTableHeader(),
           this.activeType === 'DATE' ? this.genDateTable() : this.genMonthTable()
@@ -191,7 +259,10 @@ export default {
           tableDate: `${this.tableYear}-${Pad(this.tableMonth + 1)}`,
           value: this.value,
           locale: this.locale,
-          firstDayOfWeek: this.firstDayOfWeek
+          firstDayOfWeek: this.firstDayOfWeek,
+          max: this.max,
+          min: this.min,
+          current: this.current
         },
         on: {
           input: this.dateClick
@@ -202,12 +273,30 @@ export default {
     genMonthTable () {
       return this.$createElement(IVueDatePickerMonth, {
         props: {
+          color: this.color,
           tableDate: `${this.tableYear}`,
           locale: this.locale,
-          value: this.selectedMonths
+          value: this.selectedMonths,
+          max: this.maxMonth,
+          min: this.minMonth,
         },
         on: {
           input: this.monthClick
+        }
+      });
+    },
+    // 渲染年
+    genYears () {
+      return this.$createElement(IVueDatePickerYears, {
+        props: {
+          color: this.color,
+          max: this.maxYear,
+          min: this.minYear,
+          locale: this.locale,
+          value: `${this.tableYear}`
+        },
+        on: {
+          input: this.yearClick
         }
       });
     },
@@ -216,7 +305,18 @@ export default {
       if (this.computedValue) {
         const computedValue = this.computedValue.split('-')
         this.inputYear = parseInt(computedValue[0], 10);
+        this.inputMonth = parseInt(computedValue[1], 10) - 1;
+
+        if (this.type === 'date') {
+          this.inputDay = parseInt(computedValue[2], 10)
+        }
       }
+      else {
+        this.inputYear = this.inputYear || this.now.getFullYear();
+        this.inputMonth = this.inputMonth == null ? this.inputMonth : this.now.getMonth();
+        this.inputDay = this.inputDay || this.now.getDate();
+      }
+
     },
     // Adds leading zero to month/day if necessary, returns 'YYYY' if type = 'year',
     // 'YYYY-MM' if 'month' and 'YYYY-MM-DD' if 'date'
@@ -242,13 +342,26 @@ export default {
         this.tableDate = value;
         this.activeType = 'DATE';
 
-
-        // this.$emit('input', this.inputDate);
+        this.reactive && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
 
       }
       else {
         this.emitInput(this.inputDate);
       }
+
+    },
+    // 年份点击事件
+    yearClick (value) {
+      this.inputYear = value;
+      if (this.type === 'month') {
+        this.tableDate = `${value}`;
+      }
+      else {
+        this.tableDate = `${value}-${Pad(this.tableMonth + 1)}`;
+      }
+
+      this.activeType = 'MONTH';
+      this.reactive && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
 
     }
   },

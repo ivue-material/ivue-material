@@ -37,10 +37,18 @@ export default {
       type: String,
       default: 'chevron_left'
     },
-    // 最小年份
+    /*
+    * 最小年份或月份
+    *
+    * @type{String}
+    */
     min: String,
-    // 最大年份
-    max: String
+    /*
+    * 最大年份或月份
+    *
+    * @type{String}
+    */
+    max: String,
   },
   data () {
     return {
@@ -63,16 +71,17 @@ export default {
   methods: {
     genBtn (change) {
 
-      const disabled = (change < 0 && this.min && this.calculateChange(change) < this.min) ||
+        const disabled = this.disabled ||
+        (change < 0 && this.min && this.calculateChange(change) < this.min) ||
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
 
       return this.$createElement(IVueButton, {
-        staticClass: 'ivue-icon-button',
-        props: {
+        staticClass: 'ivue-button ivue-icon-button',
+        domProps: {
           disabled
         },
-        nativeOn: {
+        on: {
           click: e => {
             e.stopPropagation();
 

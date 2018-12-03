@@ -15,6 +15,11 @@ $name: 'ivue-date-picker-title';
             font-size: $font-base-size;
             font-weight: 500;
             margin-bottom: 8px;
+            cursor: pointer;
+            transition: $ivue-transition-default;
+            &:hover{
+                  color: rgba($color: #fff, $alpha: 0.6);
+            }
       }
       &--date {
             font-size: 34px;

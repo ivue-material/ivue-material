@@ -39,6 +39,7 @@
             outline: none;
       }
       &[disabled] {
+            color: rgba(0,0,0,.26);
             pointer-events: none;
       }
       &:not([disabled]) {
@@ -98,6 +99,9 @@
       &--selected{
             background:  $primary-color;
             color: #fff !important
+      }
+      &--current{
+            border-color: $primary-color;
       }
 }
 

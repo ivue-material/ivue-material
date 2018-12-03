@@ -1,3 +1,5 @@
+import isDateAllowed from '../IsDateAllowed';
+
 const prefixCls = 'ivue-date-picker-date';
 
 export default {
@@ -25,7 +27,31 @@ export default {
             locale: {
                   type: String,
                   default: 'en-us'
-            }
+            },
+            /*
+            * 最小年份或月份
+            *
+            * @type{String}
+            */
+            min: String,
+            /*
+            * 最大年份或月份
+            *
+            * @type{String}
+            */
+            max: String,
+            /*
+            * 设置允许选择日期函数
+            *
+            * @type{Function}
+            */
+            allowedDates: Function,
+            /*
+            * 当前日期
+            *
+            * @type{String}
+            */
+            current: String
       },
       data () {
             return {
@@ -43,9 +69,10 @@ export default {
             }
       },
       methods: {
-            genButtonClasses (isSelected) {
+            genButtonClasses (isSelected,isCurrent) {
                   return {
                         'ivue-button--selected': isSelected,
+                        'ivue-button--current': isCurrent,
                   }
             },
             genTable (staticClass, children) {
@@ -63,11 +90,19 @@ export default {
             },
             // 按钮
             genButton (value, staticClass) {
+                  // 是否选中
                   const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1);
+                  // 是否允许选择
+                  const isAllowed = isDateAllowed(value, this.min, this.max, this.allowedDates);
+                  // 是否有显示当前日期
+                  const isCurrent = value === this.current;
 
                   return this.$createElement('button', {
                         staticClass: `ivue-button ${staticClass}`,
-                        class: this.genButtonClasses(isSelected),
+                        class: this.genButtonClasses(isSelected, isCurrent),
+                        domProps: {
+                              disabled: !isAllowed
+                        },
                         on: {
                               click: () => this.$emit('input', value)
                         }

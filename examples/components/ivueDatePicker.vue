@@ -1,6 +1,9 @@
 <template>
       <div>
-            <IVueDatePicker v-model="picker"></IVueDatePicker>
+            <IVueDatePicker v-model="picker"
+             :max="new Date().toISOString().substr(0, 10)"
+             reactive
+             ></IVueDatePicker>
             <!-- <IVueDatePicker :value="picker" locale="zh-CH"></IVueDatePicker> -->
       </div>
 </template>
