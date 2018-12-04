@@ -12,17 +12,18 @@ $name: 'ivue-date-picker-years';
       li {
             cursor: pointer;
             padding: 8px 0;
-            transition: none;
+            transition: $ivue-transition-default;
             &.active {
                   font-size: 26px;
                   font-weight: 500;
                   padding: 10px 0;
+                  background: none;
             }
             &.primary--text {
                   color: $primary-color;
-                  &:hover {
-                        background: rgba(0, 0, 0, .12);
-                  }
+            }
+            &:hover {
+                  background: rgba(0, 0, 0, .12);
             }
       }
 }

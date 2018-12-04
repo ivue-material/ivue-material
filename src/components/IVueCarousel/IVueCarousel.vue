@@ -1,7 +1,7 @@
 <template>
       <div :class="classes">
             <!-- 左按钮 -->
-            <IVueButton :class="arrowClasses" class="left ivue-icon-button" @click="arrowEvent(-1)">
+            <IVueButton :class="arrowClasses" class="left ivue-icon-button" @click="arrowEvent(-1)" flat>
                   <IVueIcon>{{leftArrow}}</IVueIcon>
             </IVueButton>
             <!-- 内容 -->
@@ -13,7 +13,7 @@
                   <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
             <!-- 右按钮 -->
-            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)">
+            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)" flat>
                   <IVueIcon>{{rightArrow}}</IVueIcon>
             </IVueButton>
             <!-- 导航器 -->

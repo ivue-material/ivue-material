@@ -69,7 +69,7 @@ export default {
             }
       },
       methods: {
-            genButtonClasses (isSelected,isCurrent) {
+            genButtonClasses (isSelected, isCurrent) {
                   return {
                         'ivue-button--selected': isSelected,
                         'ivue-button--current': isCurrent,
@@ -97,7 +97,11 @@ export default {
                   // 是否有显示当前日期
                   const isCurrent = value === this.current;
 
-                  return this.$createElement('button', {
+                  const setColor = isSelected ? this.setBackgroundColor : this.setTextColor
+
+                  const color = (isSelected || isCurrent) && (this.color || 'primary');
+
+                  return this.$createElement('button', setColor(color, {
                         staticClass: `ivue-button ${staticClass}`,
                         class: this.genButtonClasses(isSelected, isCurrent),
                         domProps: {
@@ -106,7 +110,7 @@ export default {
                         on: {
                               click: () => this.$emit('input', value)
                         }
-                  }, this.formatter(value));
+                  }), this.formatter(value));
             }
       },
       watch: {

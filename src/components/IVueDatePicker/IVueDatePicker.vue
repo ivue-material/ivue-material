@@ -232,7 +232,8 @@ export default {
           locale: this.locale,
           value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`,
           max: this.activeType === 'DATE' ? this.maxMonth : this.maxYear,
-          min: this.activeType === 'DATE' ? this.minMonth : this.minYear
+          min: this.activeType === 'DATE' ? this.minMonth : this.minYear,
+          color: this.color
         },
         on: {
           input: value => this.tableDate = value,
@@ -262,7 +263,8 @@ export default {
           firstDayOfWeek: this.firstDayOfWeek,
           max: this.max,
           min: this.min,
-          current: this.current
+          current: this.current,
+          color: this.color
         },
         on: {
           input: this.dateClick

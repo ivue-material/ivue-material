@@ -3,6 +3,8 @@
             <IVueDatePicker v-model="picker"
              :max="new Date().toISOString().substr(0, 10)"
              reactive
+             headerColor="red"
+             color="green"
              ></IVueDatePicker>
             <!-- <IVueDatePicker :value="picker" locale="zh-CH"></IVueDatePicker> -->
       </div>

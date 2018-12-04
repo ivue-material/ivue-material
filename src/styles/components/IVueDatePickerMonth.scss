@@ -6,7 +6,7 @@ $name: 'ivue-date-picker-month';
       table {
             table-layout: fixed;
             width: 100%;
-            transition: .3s cubic-bezier(.25, .8, .5, 1);
+            transition: $ivue-transition-default;
       }
       &--table {
             td {

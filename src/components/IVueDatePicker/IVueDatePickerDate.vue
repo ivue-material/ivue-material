@@ -2,12 +2,13 @@
 import DatePickerTable from '../../utils/mixins/DatePickerTable';
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
+import Colorable from '../../utils/mixins/Colorable';
 import { createRange } from '../../utils/Helpers';
 
 const prefixCls = 'ivue-date-picker-date';
 
 export default {
-  mixins: [DatePickerTable],
+  mixins: [DatePickerTable, Colorable],
   name: 'IVueDatePickerDate',
   props: {
     /*
@@ -66,7 +67,7 @@ export default {
         const date = `${this.displayedYear}-${Pad(this.displayedMonth + 1)}-${Pad(day)}`;
 
         rows.push(this.$createElement('td', [
-          this.genButton(date, 'ivue-icon-button')
+          this.genButton(date, 'ivue-button--icon')
         ]));
 
         // 一行7个      

@@ -9,24 +9,30 @@ $value in $colors {
       $rgb in map-get($colors, $key) {
             @if ($colorName=="base") {
                   .#{$key} {
-                        background: $rgb;
-                        color: $rgb !important;
-                        &.ivue-raised.#{$key}:not([disabled]),
-                        &.ivue-raised-noElevation.#{$key}:not([disabled]) {
+                        border-color: $rgb !important;
+                        background: $rgb !important;
+                        &.ivue-button--raised.#{$key}:not([disabled]) {
                               color: #fff !important;
                               background: $rgb;
                         }
                   }
+                  .#{$key}--text {
+                        color: $rgb !important;
+                        caret-color: $rgb !important;
+                  }
             }
             @else {
                   .#{$key}-#{$colorName} {
-                        background: $rgb;
-                        color: $rgb !important;
-                        &.ivue-raised.#{$key}-#{$colorName}:not([disabled]),
-                        &.ivue-raised-noElevation.#{$key}-#{$colorName}:not([disabled]) {
+                        background-color: $rgb !important;
+                        border-color: $rgb !important;
+                        &.ivue-button--raised.#{$key}-#{$colorName}:not([disabled]) {
                               color: #fff !important;
                               background: $rgb;
                         }
+                  }
+                  .#{$key}-#{$colorName}--text {
+                        color: $rgb !important;
+                        caret-color: $rgb !important;
                   }
             }
       }
@@ -60,7 +66,6 @@ $value in $colors {
 
 @mixin move-motion($className, $keyframeName) {
       @include make-motion($className, $keyframeName);
-      
       .#{$className}-enter-active,
       .#{$className}-appear {
             opacity: 0;

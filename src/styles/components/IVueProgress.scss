@@ -6,7 +6,7 @@ $circular: 'ivue-progress-circular';
       font-size: $font-small-size;
       width: 100%;
       color: $primary-color;
-      background: none;
+      background: none !important;
       &-outer {
             display: inline-block;
             padding: 0;
@@ -91,7 +91,7 @@ $circular: 'ivue-progress-circular';
       position: relative;
       display: inline-block;
       vertical-align: middle;
-      background: none;
+      background: none !important;
       color: $primary-color;
       svg {
             position: absolute;

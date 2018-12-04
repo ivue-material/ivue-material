@@ -40,10 +40,13 @@ export default Vue.extend({
                         }
                   }
                   else if (color) {
+                        const [colorName] = color.toString().trim().split(' ', 2);
+                        
                         data.class = {
                               ...data.class,
-                              [color]: true
+                              [colorName + '--text']: true
                         }
+                        
                   }
 
                   return data;

@@ -1,6 +1,7 @@
 @import "../../styles/animation/variables";
 @import "../../components/IVueElevation/mixins";
-.ivue-button-clean {
+$name: 'ivue-button';
+.#{$name}-clean {
       margin: 0;
       padding: 0;
       display: inline-block;
@@ -24,7 +25,7 @@
       }
 }
 
-.ivue-button {
+.#{$name} {
       @extend .ivue-button-clean;
       min-width: $ivue-button-min-width;
       height: $ivue-button-height;
@@ -34,12 +35,11 @@
       font-size: $ivue-button-font-size;
       font-weight: 500;
       color: currentColor;
-      border: 1px solid transparent;
       &:active {
             outline: none;
       }
       &[disabled] {
-            color: rgba(0,0,0,.26);
+            color: rgba(0, 0, 0, .26);
             pointer-events: none;
       }
       &:not([disabled]) {
@@ -74,17 +74,15 @@
             will-change: background-color, opacity;
             content: " ";
       }
-      &.ivue-raised:not([disabled]) {
+      &.#{$name}--raised:not(.#{$name}--depressed):not(.#{$name}--flat):not([disabled]) {
+            will-change: box-shadow;
             @include ivue-elevation(2);
             &:active {
                   @include ivue-elevation(8);
             }
       }
-      &.ivue-raised-noElevation:not([disabled]) {
-           background: #fff;
-      }
-      
-      &.ivue-raised[disabled],&.ivue-raised-noElevation {
+      &.ivue-button--raised[disabled],
+            {
             background-color: rgba(0, 0, 0, .12);
       }
       +.ivue-button {
@@ -96,12 +94,17 @@
             justify-content: center;
             align-items: center;
       }
-      &--selected{
-            background:  $primary-color;
-            color: #fff !important
+      &--selected {
+            color: #fff !important;
+            background: currentColor;
       }
-      &--current{
-            border-color: $primary-color;
+      &--current {
+            border-color: currentColor !important;
+      }
+      &--outline {
+            border: 1px solid currentColor;
+            background: transparent !important;
+            box-shadow: none;
       }
 }
 
@@ -110,7 +113,7 @@
 }
 
 // icon
-.ivue-icon-button {
+.#{$name}--icon {
       width: $ivue-button-icon-size;
       min-width: $ivue-button-icon-size;
       height: $ivue-button-icon-size;

@@ -12,16 +12,18 @@ $name: 'ivue-date-picker-header';
             overflow: hidden;
             strong {
                   cursor: pointer;
-                  transition: .3s cubic-bezier(.25, .8, .5, 1);
+                  transition: $ivue-transition-default;
                   display: block;
                   width: 100%;
                   font-size: $font-base-size;
-            }
-            .accent--text {
-                  color: rgba(0, 0, 0, .87);
-            }
-            &:hover .accent--text {
-                  color: $primary-color
+                  &:not(:hover) {
+                        color: rgba(0, 0, 0, .87) !important;
+                        background: none;
+                  }
+                  &:hover {
+                        color: $primary-color;
+                        background: none;
+                  }
             }
       }
 }

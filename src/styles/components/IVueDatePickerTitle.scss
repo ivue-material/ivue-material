@@ -35,7 +35,7 @@ $name: 'ivue-date-picker-title';
 .picker-transition-leave-active,
 .picker-reverse-transition-enter-active,
 .picker-reverse-transition-leave-active {
-      transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: $ivue-transition-default;
 }
 
 .picker-transition-enter,

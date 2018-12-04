@@ -71,13 +71,17 @@ export default {
   methods: {
     genBtn (change) {
 
-        const disabled = this.disabled ||
+      const disabled = this.disabled ||
         (change < 0 && this.min && this.calculateChange(change) < this.min) ||
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
 
       return this.$createElement(IVueButton, {
         staticClass: 'ivue-button ivue-icon-button',
+        props: {
+          flat: true,
+          icon: true
+        },
         domProps: {
           disabled
         },
@@ -104,7 +108,7 @@ export default {
       }
     },
     genHeader () {
-      const color = this.color || 'accent--text';
+      const color = this.color;
 
       const header = this.$createElement('strong', this.setTextColor(color, {
         key: String(this.value),
