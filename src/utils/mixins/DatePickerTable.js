@@ -91,7 +91,8 @@ export default {
             // 按钮
             genButton (value, staticClass) {
                   // 是否选中
-                  const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1);
+                  const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1)
+
                   // 是否允许选择
                   const isAllowed = isDateAllowed(value, this.min, this.max, this.allowedDates);
                   // 是否有显示当前日期
@@ -107,7 +108,7 @@ export default {
                         domProps: {
                               disabled: !isAllowed
                         },
-                        on: {
+                        on: (this.disabled || !isAllowed) ? {} : {
                               click: () => this.$emit('input', value)
                         }
                   }), this.formatter(value));

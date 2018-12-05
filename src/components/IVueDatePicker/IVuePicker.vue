@@ -26,13 +26,22 @@ export default {
     transition: {
       type: String,
       default: 'ivue-picker-fade'
-    }
+    },
+    /*
+    * 日历方向
+    * 
+    * @type {Boolean}
+    */
+    landscape: Boolean
   },
   methods: {
     // 渲染标题
     genTitle () {
       return this.$createElement('div', this.setBackgroundColor(this.color || 'primary', {
-        staticClass: `${prefixCls}-title`
+        staticClass: `${prefixCls}-title`,
+        class:{
+          [`${prefixCls}-title--landscape`]: this.landscape
+        }
       }), this.$slots.title);
     },
     genBodyTransition () {
@@ -50,14 +59,17 @@ export default {
           width: `${this.width}px`
         }
       }, [
-            this.genBodyTransition()
-      ]);
+          this.genBodyTransition()
+        ]);
     },
   },
   render (h) {
     return h('div', {
       staticClass: `${prefixCls} ivue-card`,
-      style: this.fullWidth ? { display: 'block' } : { display: 'inline-flex' }
+      style: this.fullWidth ? { display: 'block' } : { display: 'inline-flex' },
+      class: {
+        [`${prefixCls}--landscape`]: this.landscape
+      }
 
     }, [
         this.$slots.title ? this.genTitle() : null,

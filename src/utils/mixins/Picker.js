@@ -16,15 +16,36 @@ export default {
             * 
             * @type {String}
             */
-            headerColor: String
+            headerColor: String,
+            /*
+            * 选择框宽度
+            * 
+            * @type {Boolean}
+            */
+            width: {
+                  type: [Number, String],
+                  default: 290,
+                  validator: value => parseInt(value, 10) > 0
+            },
+            /*
+            * 强制100％宽度
+            * 
+            * @type {Boolean}
+            */
+            fullWidth: Boolean
       },
       methods: {
             genPickerTitle () { },
             genPickerBody () { },
-            genPicker () {
+            genPicker (staticClass) {
                   return this.$createElement(IVuePicker, {
-                        props:{
-                              color: this.headerColor || this.color
+                        staticClass,
+                        class: this.fullWidth ? ['ivue-picker--fullWidth'] : [],
+                        props: {
+                              color: this.headerColor || this.color,
+                              landscape: this.landscape,
+                              width: this.width,
+                              fullWidth: this.fullWidth
                         }
                   }, [
                               this.genPickerTitle(),

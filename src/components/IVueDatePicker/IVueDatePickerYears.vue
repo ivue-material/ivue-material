@@ -59,7 +59,7 @@ export default {
       const formatter = this.formatter(`${year}`);
       // 是否选择当前项
       const active = parseInt(this.value, 10) === year;
-      const color = active && (this.color || 'primary--text');
+      const color = active && (this.color || 'primary');
 
       return this.$createElement('li', this.setTextColor(color, {
         key: year,

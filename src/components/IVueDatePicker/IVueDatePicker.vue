@@ -91,6 +91,12 @@ export default {
     * @type{Function}
     */
     allowedDates: Function,
+    /*
+    * 是否支持日期多选
+    *
+    * @type{Function}
+    */
+    multiple: Boolean
   },
   data () {
     const now = new Date();
@@ -114,7 +120,8 @@ export default {
     this.setInputDate();
 
     this.tableDate = (() => {
-      const date = this.value || `${now.getFullYear}-${now.getMonth() + 1}`
+      const date = (this.multiple ? this.value[this.value.length - 1] : this.value) ||
+        `${now.getFullYear}-${now.getMonth() + 1}`
 
       const type = this.type === 'date' ? 'month' : 'year';
 
@@ -123,15 +130,14 @@ export default {
   },
   computed: {
     computedValue () {
-      return this.value;
+      return this.multiple ? this.value[this.value.length - 1] : this.value;
     },
     // 格式化日期
     formatters () {
       return {
         // UTC时区
         year: this.yearFormat || CreateNativeLocaleFormatter(this.locale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 }),
-        titleDate: this.titleDateFormat || this.defaultTitleDateFormatter
-
+        titleDate: this.titleDateFormat || (this.multiple ? this.defaultTitleMultipleDateFormatter : this.defaultTitleDateFormatter)
       }
     },
     // 年份
@@ -170,10 +176,21 @@ export default {
 
       return this.landscape ? landscapeFormatter : titleDateFormatter;
     },
+    // 默认格式化日期多选
+    defaultTitleMultipleDateFormatter () {
+      if (this.value.length < 2) {
+        return (dates) => dates.length ? this.defaultTitleDateFormatter(dates[0]) : '0 selected';
+      }
+
+      return (dates) => `${dates.length} selected`;
+    },
     // 选择的日期
     selectedMonths () {
       if (!this.value || !this.value.length || this.type === 'month') {
         return this.value;
+      }
+      else if (this.multiple) {
+        return this.value.map(val => val.substr(0, 7));
       }
       else {
         return this.value.substr(0, 7);
@@ -208,7 +225,16 @@ export default {
   methods: {
     // 点击日期事件
     emitInput (newInput) {
-      this.$emit('input', newInput)
+      const output = this.multiple
+        ? (
+          this.value.indexOf(newInput) === -1
+            ? this.value.concat([newInput])
+            : this.value.filter(x => x !== newInput)
+        )
+        : newInput;
+
+      this.$emit('input', output);
+      this.multiple || this.$emit('change', newInput)
     },
     // 渲染标题内容
     genPickerTitle () {
@@ -216,12 +242,12 @@ export default {
         props: {
           date: this.value ? this.formatters.titleDate(this.value) : '',
           year: this.formatters.year(`${this.inputYear}`),
-          value: this.value,
+          value: this.multiple ? this.value[0] : this.value,
           selectingYear: this.activeType === 'YEAR'
         },
         slot: 'title',
         on: {
-          'update:selectingYear' : value => this.activeType = value ? 'YEAR' : this.type.toUpperCase()
+          'update:selectingYear': value => this.activeType = value ? 'YEAR' : this.type.toUpperCase()
         }
       });
     },
@@ -264,10 +290,12 @@ export default {
           max: this.max,
           min: this.min,
           current: this.current,
-          color: this.color
+          color: this.color,
+          allowedDates: this.allowedDates
         },
         on: {
-          input: this.dateClick
+          input: this.dateClick,
+          tableDate: value => this.tableDate = value
         }
       });
     },
@@ -281,9 +309,11 @@ export default {
           value: this.selectedMonths,
           max: this.maxMonth,
           min: this.minMonth,
+          allowedDates: this.type === 'month' ? this.allowedDates : null
         },
         on: {
-          input: this.monthClick
+          input: this.monthClick,
+          tableDate: value => this.tableDate = value
         }
       });
     },
@@ -344,7 +374,7 @@ export default {
         this.tableDate = value;
         this.activeType = 'DATE';
 
-        this.reactive && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
+        this.reactive && !this.multiple && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
 
       }
       else {
@@ -363,7 +393,14 @@ export default {
       }
 
       this.activeType = 'MONTH';
-      this.reactive && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
+      this.reactive && !this.multiple && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
+
+    }
+  },
+  watch: {
+    value (newValue, oldValue) {
+
+      this.setInputDate();
 
     }
   },

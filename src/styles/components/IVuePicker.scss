@@ -23,6 +23,25 @@ $name:'ivue-picker';
                   width: 100%;
             }
       }
+      &--fullWidth {
+            display: flex;
+      }
+      /*横向*/
+      &--landscape {
+            .#{$name}-title {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  height: 100%;
+                  z-index: 1;
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  width: 170px;
+            }
+            .#{$name}-body {
+                  margin-left: 170px;
+            }
+      }
 }
 
 .ivue-card {
