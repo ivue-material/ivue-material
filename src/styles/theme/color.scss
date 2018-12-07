@@ -315,6 +315,14 @@ $shades :(
   "transparent":  transparent
 );
 
+$primary: (
+  "base": $primary-color
+);
+
+$warning:(
+  "base": $warning-color
+);
+
 $colors :(
   "red": $red,
   "pink": $pink,
@@ -335,5 +343,7 @@ $colors :(
   "brown": $brown,
   "blue-grey": $blue-grey,
   "grey": $grey,
-  "shades": $shades
+  "shades": $shades,
+  "primary": $primary,
+  "warning": $warning
 );

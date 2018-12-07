@@ -106,6 +106,9 @@ $name: 'ivue-button';
             background: transparent !important;
             box-shadow: none;
       }
+      &--readonly {
+            background-color: rgba(0, 0, 0, 0.12) !important;
+      }
 }
 
 .ivue-button-spaced .ivue-ripple {

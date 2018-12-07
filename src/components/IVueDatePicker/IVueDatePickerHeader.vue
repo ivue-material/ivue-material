@@ -49,6 +49,7 @@ export default {
     * @type{String}
     */
     max: String,
+    readonly: Boolean
   },
   data () {
     return {
@@ -71,7 +72,7 @@ export default {
   methods: {
     genBtn (change) {
 
-      const disabled = this.disabled ||
+      const disabled = this.readonly ||
         (change < 0 && this.min && this.calculateChange(change) < this.min) ||
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
@@ -80,7 +81,7 @@ export default {
         staticClass: 'ivue-button ivue-icon-button',
         props: {
           flat: true,
-          icon: true
+          icon: true,
         },
         domProps: {
           disabled
@@ -108,12 +109,12 @@ export default {
       }
     },
     genHeader () {
-      const color = this.color;
+      const color = !this.disabled && this.color;
 
       const header = this.$createElement('strong', this.setTextColor(color, {
         key: String(this.value),
         on: {
-          click: () => this.$emit('toggle')
+          click: () => !this.disabled && this.$emit('toggle')
         }
       }), [this.$slots.default || this.formatter(String(this.value))]);
 
@@ -124,7 +125,10 @@ export default {
       }, [header])
 
       return this.$createElement('div', {
-        staticClass: `${prefixCls}--value`
+        staticClass: `${prefixCls}--value`,
+        class: {
+          [`${prefixCls}--disabled`]:  this.disabled
+        }
       }, [transition])
     }
   },

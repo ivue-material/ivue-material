@@ -20,6 +20,9 @@ $name: 'ivue-date-picker-title';
             &:hover{
                   color: rgba($color: #fff, $alpha: 0.6);
             }
+            i{
+                  margin: initial
+            }
       }
       &--date {
             font-size: 34px;

@@ -11,11 +11,15 @@ $name: 'ivue-date-picker-header';
             position: relative;
             overflow: hidden;
             strong {
-                  cursor: pointer;
                   transition: $ivue-transition-default;
                   display: block;
                   width: 100%;
                   font-size: $font-base-size;
+            }
+      }
+      &--value:not(.ivue-date-picker-header--disabled) {
+            cursor: pointer;
+            strong {
                   &:not(:hover) {
                         color: rgba(0, 0, 0, .87) !important;
                         background: none;
@@ -24,6 +28,12 @@ $name: 'ivue-date-picker-header';
                         color: $primary-color;
                         background: none;
                   }
+            }
+      }
+      &--disabled {
+            user-select: none;
+            strong {
+                  color: $disabled-color;
             }
       }
       .ivue-button--icon {

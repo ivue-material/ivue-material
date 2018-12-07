@@ -19,6 +19,24 @@ export default {
     firstDayOfWeek: {
       type: [String, Number],
       default: 0
+    },
+    /*
+    * 便签用于标记需要注意的日期
+    *
+    * @type{Array, Object, Function}
+    */
+    note: {
+      type: [Array, Object, Function],
+      default: null
+    },
+    /*
+    * 便签用于标记需要注意的日期的颜色
+    *
+    * @type{String, Function, Object}
+    */
+    noteColor: {
+      type: [String, Function, Object],
+      default: 'warning'
     }
   },
   computed: {
@@ -67,7 +85,8 @@ export default {
         const date = `${this.displayedYear}-${Pad(this.displayedMonth + 1)}-${Pad(day)}`;
 
         rows.push(this.$createElement('td', [
-          this.genButton(date, 'ivue-button--icon')
+          this.genButton(date, 'ivue-button--icon'),
+          this.isNote(date) ? this.genNote(date) : null
         ]));
 
         // 一行7个      
@@ -95,6 +114,37 @@ export default {
       const weekDay = firstDayOfTheMonth.getUTCDay();
 
       return (weekDay - parseInt(this.firstDayOfWeek) + 7) % 7;
+    },
+    // 渲染便签
+    genNote (date) {
+      let noteColor;
+
+      if (typeof this.noteColor === 'string') {
+        noteColor = this.noteColor;
+      }
+      else if (typeof this.noteColor === 'function') {
+        noteColor = this.noteColor(date);
+      }
+      else {
+        noteColor = this.noteColor[date];
+      }
+
+      return this.$createElement('div', this.setBackgroundColor(noteColor || this.color || 'warning', {
+        staticClass: `${prefixCls}--note`
+      }));
+    },
+    // 是否有便签
+    isNote (date) {
+
+      if (Array.isArray(this.note)) {
+        return this.note.indexOf(date) > -1;
+      }
+      else if (this.note instanceof Function) {
+        return this.note(date);
+      }
+      else {
+        return false
+      }
     }
   },
   render () {

@@ -51,7 +51,8 @@ export default {
             *
             * @type{String}
             */
-            current: String
+            current: String,
+            readonly: Boolean
       },
       data () {
             return {
@@ -69,10 +70,11 @@ export default {
             }
       },
       methods: {
-            genButtonClasses (isSelected, isCurrent) {
+            genButtonClasses (isSelected, isCurrent, isAllowed) {
                   return {
                         'ivue-button--selected': isSelected,
                         'ivue-button--current': isCurrent,
+                        'ivue-button--readonly': (this.readonly && isSelected)
                   }
             },
             genTable (staticClass, children) {
@@ -92,7 +94,6 @@ export default {
             genButton (value, staticClass) {
                   // 是否选中
                   const isSelected = value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1)
-
                   // 是否允许选择
                   const isAllowed = isDateAllowed(value, this.min, this.max, this.allowedDates);
                   // 是否有显示当前日期
@@ -102,9 +103,11 @@ export default {
 
                   const color = (isSelected || isCurrent) && (this.color || 'primary');
 
+                  const _staticClass = staticClass ? staticClass : '';
+
                   return this.$createElement('button', setColor(color, {
-                        staticClass: `ivue-button ${staticClass}`,
-                        class: this.genButtonClasses(isSelected, isCurrent),
+                        staticClass: `ivue-button ${_staticClass}`,
+                        class: this.genButtonClasses(isSelected, isCurrent, isAllowed),
                         domProps: {
                               disabled: !isAllowed
                         },

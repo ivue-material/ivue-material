@@ -96,7 +96,42 @@ export default {
     *
     * @type{Function}
     */
-    multiple: Boolean
+    multiple: Boolean,
+    /*
+    * 便签用于标记需要注意的日期
+    *
+    * @type{Array,Object,Function}
+    */
+    note: {
+      type: [Array, Object, Function],
+      default: null
+    },
+    /*
+    * 便签用于标记需要注意的日期的颜色
+    *
+    * @type{String, Function, Object}
+    */
+    noteColor: {
+      type: [String, Function, Object],
+      default: 'warning'
+    },
+    /*
+    * 是否只读
+    *
+    * @type{Boolean}
+    */
+    readonly: Boolean,
+    nextIcon: {
+      type: String,
+      default: 'chevron_right'
+    },
+    prevIcon: {
+      type: String,
+      default: 'chevron_left'
+    },
+    yearIcon: {
+      type: String
+    }
   },
   data () {
     const now = new Date();
@@ -243,9 +278,13 @@ export default {
           date: this.value ? this.formatters.titleDate(this.value) : '',
           year: this.formatters.year(`${this.inputYear}`),
           value: this.multiple ? this.value[0] : this.value,
-          selectingYear: this.activeType === 'YEAR'
+          selectingYear: this.activeType === 'YEAR',
+          yearIcon: this.yearIcon
         },
         slot: 'title',
+        style: this.readonly ? {
+          'pointer-events': 'none'
+        } : undefined,
         on: {
           'update:selectingYear': value => this.activeType = value ? 'YEAR' : this.type.toUpperCase()
         }
@@ -259,7 +298,10 @@ export default {
           value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`,
           max: this.activeType === 'DATE' ? this.maxMonth : this.maxYear,
           min: this.activeType === 'DATE' ? this.minMonth : this.minYear,
-          color: this.color
+          color: this.color,
+          nextIcon: this.nextIcon,
+          prevIcon: this.prevIcon,
+          readonly: this.readonly
         },
         on: {
           input: value => this.tableDate = value,
@@ -276,7 +318,10 @@ export default {
         ];
 
       return this.$createElement('div', {
-        key: this.activeType
+        key: this.activeType,
+        style: this.readonly ? {
+          'pointer-events': 'none'
+        } : undefined
       }, children);
     },
     // 渲染日期
@@ -291,7 +336,10 @@ export default {
           min: this.min,
           current: this.current,
           color: this.color,
-          allowedDates: this.allowedDates
+          allowedDates: this.allowedDates,
+          note: this.note,
+          noteColor: this.noteColor,
+          readonly: this.readonly
         },
         on: {
           input: this.dateClick,
@@ -309,7 +357,8 @@ export default {
           value: this.selectedMonths,
           max: this.maxMonth,
           min: this.minMonth,
-          allowedDates: this.type === 'month' ? this.allowedDates : null
+          allowedDates: this.type === 'month' ? this.allowedDates : null,
+          readonly: this.readonly
         },
         on: {
           input: this.monthClick,
