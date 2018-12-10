@@ -1,12 +1,13 @@
 <script>
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Colorable from '../../utils/mixins/Colorable';
+import DatePickerTable from '../../utils/mixins/DatePickerTable';
 
 const prefixCls = 'ivue-date-picker-years';
 
 export default {
   name: 'IVueDatePickerYears',
-  mixins: [Colorable],
+  mixins: [DatePickerTable, Colorable],
   props: {
     /*
     * 语言
@@ -37,7 +38,13 @@ export default {
     value: {
       type: [Number, String],
       required: true
-    }
+    },
+    /*
+    * 当前激活的type
+    *
+    * @type{String}
+    */
+    activeType: String
   },
   computed: {
     formatter () {
@@ -45,48 +52,86 @@ export default {
     }
   },
   mounted () {
-    const activeItem = this.$el.getElementsByClassName('active')[0];
+    // const activeItem = this.$el.getElementsByClassName('active')[0];
 
-    if (activeItem) {
-      this.$el.scrollTop = activeItem.offsetTop - this.$el.offsetHeight / 2 + activeItem.offsetHeight / 2
-    } else {
-      this.$el.scrollTop = this.$el.scrollHeight / 2 - this.$el.offsetHeight / 2
-    }
+    // if (activeItem) {
+    //   this.$el.scrollTop = activeItem.offsetTop - this.$el.offsetHeight / 2 + activeItem.offsetHeight / 2
+    // } else {
+    //   this.$el.scrollTop = this.$el.scrollHeight / 2 - this.$el.offsetHeight / 2
+    // }
 
   },
   methods: {
-    genYearItem (year) {
-      const formatter = this.formatter(`${year}`);
-      // 是否选择当前项
-      const active = parseInt(this.value, 10) === year;
-      const color = active && (this.color || 'primary');
+    // genYearItem (year) {
+    //   const formatter = this.formatter(`${year}`);
+    //   // 是否选择当前项
+    //   const active = parseInt(this.value, 10) === year;
+    //   const color = active && (this.color || 'primary');
 
-      return this.$createElement('li', this.setTextColor(color, {
-        key: year,
-        'class': { active },
-        on: {
-          click: () => this.$emit('input', year)
+    //   return this.$createElement('li', this.setTextColor(color, {
+    //     key: year,
+    //     'class': { active },
+    //     on: {
+    //       click: () => this.$emit('input', year)
+    //     }
+    //   }), formatter);
+    // },
+    // // 年份选项
+    // genYearItems () {
+    //   const children = [];
+    //   const selectYear = this.value ? parseInt(this.value, 10) : new Date().getFullYear();
+    //   const maxYear = this.max ? parseInt(this.max, 10) : (selectYear + 100);
+    //   const minYear = Math.min(maxYear, this.min ? parseInt(this.min, 10) : (selectYear - 100));
+
+    //   for (let year = maxYear; year >= minYear; year--) {
+    //     children.push(this.genYearItem(year));
+    //   }
+
+    //   return children;
+    // },
+    genTBody () {
+      let children = [];
+      // 一行3个
+      const cols = Array(3).fill(null);
+      // 4 行
+      const rows = 12 / cols.length;
+
+      // 开始年份
+      let startYear = Math.floor(this.displayedYear / 10) * 10;
+
+      for (let row = 0; row < rows; row++) {
+        const tds = cols.map((_, col) => {
+          const _number = row * cols.length + col;
+
+          return this.$createElement('td', {
+            key: this.formatter(`${startYear + _number}`)
+          }, [
+              this.genButton(`${this.formatter(`${startYear + _number}`)}`)
+            ]);
+        });
+
+        // 删除多余年份
+        if (row === 3) {
+          tds.splice(1);
         }
-      }), formatter);
-    },
-    // 年份选项
-    genYearItems () {
-      const children = [];
-      const selectYear = this.value ? parseInt(this.value, 10) : new Date().getFullYear();
-      const maxYear = this.max ? parseInt(this.max, 10) : (selectYear + 100);
-      const minYear = Math.min(maxYear, this.min ? parseInt(this.min, 10) : (selectYear - 100));
 
-      for (let year = maxYear; year >= minYear; year--) {
-        children.push(this.genYearItem(year));
+        children.push(this.$createElement('tr', {
+          key: row
+        }, tds));
       }
 
-      return children;
+      return this.$createElement('tbody', children);
+
     }
   },
   render () {
-    return this.$createElement('ul', {
-      staticClass: prefixCls
-    }, this.genYearItems());
+
+    return this.genTable(`${prefixCls} ${prefixCls}--table`, [
+      this.genTBody()
+    ])
+    // return this.$createElement('ul', {
+    //   staticClass: prefixCls
+    // }, this.genYearItems());
   }
 }
 </script>

@@ -49,7 +49,13 @@ export default {
     * @type{String}
     */
     max: String,
-    readonly: Boolean
+    readonly: Boolean,
+    /*
+     * 当前激活的type
+     *
+     * @type{String}
+     */
+    activeType: String
   },
   data () {
     return {
@@ -71,7 +77,6 @@ export default {
   },
   methods: {
     genBtn (change) {
-
       const disabled = this.readonly ||
         (change < 0 && this.min && this.calculateChange(change) < this.min) ||
         (change > 0 && this.max && this.calculateChange(change) > this.max)
@@ -127,7 +132,7 @@ export default {
       return this.$createElement('div', {
         staticClass: `${prefixCls}--value`,
         class: {
-          [`${prefixCls}--disabled`]:  this.disabled
+          [`${prefixCls}--disabled`]: this.disabled
         }
       }, [transition])
     }
@@ -138,12 +143,20 @@ export default {
     }
   },
   render () {
+    let everyClick;
+    if (this.activeType === 'YEAR') {
+      everyClick = 10
+    }
+    else {
+      everyClick = 1
+    }
+
     return this.$createElement('div', {
       staticClass: prefixCls
     }, [
-        this.genBtn(-1),
+        this.genBtn(-everyClick),
         this.genHeader(),
-        this.genBtn(1)
+        this.genBtn(everyClick)
       ]);
   }
 }

@@ -32,7 +32,13 @@ export default {
             * 
             * @type {Boolean}
             */
-            fullWidth: Boolean
+            fullWidth: Boolean,
+            /*
+            * 隐藏日历头部
+            * 
+            * @type {Boolean}
+            */
+            noTitle: Boolean
       },
       methods: {
             genPickerTitle () { },
@@ -48,7 +54,7 @@ export default {
                               fullWidth: this.fullWidth
                         }
                   }, [
-                              this.genPickerTitle(),
+                              this.noTitle ? null : this.genPickerTitle(),
                               this.genPickerBody()
                         ]);
             }

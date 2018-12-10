@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>日历变为横向 设置为多选 宽度百分百</h1>
-    <IVueDatePicker v-model="dates" reactive headerColor="red" landscape fullWidth multiple></IVueDatePicker>
+    <!-- <h1>日历变为横向 设置为多选 宽度百分百</h1> -->
+    <!-- <IVueDatePicker v-model="dates" reactive headerColor="red" landscape fullWidth multiple></IVueDatePicker> -->
 
     <h1>一开始显示为月份</h1>
-    <IVueDatePicker v-model="picker" locale="zh-CH" type="month"></IVueDatePicker>
+    <IVueDatePicker v-model="picker"  type="month"></IVueDatePicker>
 
-    <h1>语言</h1>
+    <!-- <h1>语言</h1>
     <IVueDatePicker v-model="picker" locale="zh-CH"></IVueDatePicker>
 
     <h1>设置允许选择日期</h1>
@@ -23,10 +23,21 @@
     <IVueDatePicker :value="picker" firstDayOfWeek="0"></IVueDatePicker>
     <IVueDatePicker :value="picker" firstDayOfWeek="1"></IVueDatePicker>
     <h1>图标设置</h1>
-    <IVueDatePicker :value="picker" nextIcon="arrow_right" prevIcon="arrow_left" yearIcon="event_note"></IVueDatePicker>
+    <IVueDatePicker
+      :value="picker"
+      nextIcon="arrow_right"
+      prevIcon="arrow_left"
+      yearIcon="event_note"
+    ></IVueDatePicker>
     <h1>只读</h1>
     <IVueDatePicker v-model="picker" readonly></IVueDatePicker>
     <IVueDatePicker v-model="picker" type="month" readonly></IVueDatePicker>
+    <h1>noTitle</h1>
+    <IVueDatePicker v-model="picker" noTitle @input="handleInput"></IVueDatePicker>
+    <h1>width</h1>
+    <IVueDatePicker v-model="picker" width="500"></IVueDatePicker>
+    <h1>multiple</h1> -->
+    <!-- <IVueDatePicker v-model="months" type="month" multiple></IVueDatePicker> -->
   </div>
 </template>
 
@@ -36,7 +47,8 @@ export default {
     return {
       picker: new Date().toISOString().substr(0, 7),
       dates: ['2018-09-15', '2018-09-20'],
-      arrayEvents: null
+      arrayEvents: null,
+      months: ['2018-09', '2018-10']
     }
   },
   mounted () {
@@ -48,7 +60,10 @@ export default {
     })
   },
   methods: {
-    allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0
+    allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
+    handleInput (value) {
+      console.log(value)
+    }
   }
 }
 </script>

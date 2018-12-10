@@ -99,6 +99,7 @@ $name: 'ivue-button';
             background: currentColor;
       }
       &--current {
+            border: 1px solid;
             border-color: currentColor !important;
       }
       &--outline {

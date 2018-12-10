@@ -1,26 +1,27 @@
 $name: 'ivue-date-picker-years';
 .#{$name} {
-      font-size: 16px;
-      font-weight: 400;
-      height: 292px;
-      list-style-type: none;
-      overflow: auto;
-      padding: 0;
-      text-align: center;
-      user-select: none;
-      color: rgba(0, 0, 0, 0.87);
-      li {
-            cursor: pointer;
-            padding: 8px 0;
+      position: relative;
+      padding: 0 12px 12px 12px;
+      height: 248px;
+      table {
+            table-layout: fixed;
+            width: 100%;
             transition: $ivue-transition-default;
-            &.active {
-                  font-size: 26px;
-                  font-weight: 500;
-                  padding: 10px 0;
-                  background: none;
-            }
-            &:hover {
-                  background: rgba(0, 0, 0, .12);
+      }
+      &--table {
+            td {
+                  position: relative; 
+                  /* width: 33.333333%;*/
+                  height: 56px;
+                  vertical-align: middle;
+                  text-align: center;
+                  button {
+                        margin: 0 auto;
+                        max-width: 160px;
+                        min-width: 40px;
+                        width: 100%;
+                        color: rgba(0, 0, 0, 0.87);
+                  }
             }
       }
 }

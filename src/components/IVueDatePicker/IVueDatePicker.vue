@@ -301,7 +301,8 @@ export default {
           color: this.color,
           nextIcon: this.nextIcon,
           prevIcon: this.prevIcon,
-          readonly: this.readonly
+          readonly: this.readonly,
+          activeType: this.activeType
         },
         on: {
           input: value => this.tableDate = value,
@@ -311,7 +312,10 @@ export default {
     },
     // 渲染内容
     genPickerBody () {
-      const children = this.activeType === 'YEAR' ? [this.genYears()] :
+      const children = this.activeType === 'YEAR' ? [
+        this.genTableHeader(),
+        this.genYears()
+      ] :
         [
           this.genTableHeader(),
           this.activeType === 'DATE' ? this.genDateTable() : this.genMonthTable()
@@ -358,7 +362,8 @@ export default {
           max: this.maxMonth,
           min: this.minMonth,
           allowedDates: this.type === 'month' ? this.allowedDates : null,
-          readonly: this.readonly
+          readonly: this.readonly,
+          current: this.current
         },
         on: {
           input: this.monthClick,
@@ -370,11 +375,14 @@ export default {
     genYears () {
       return this.$createElement(IVueDatePickerYears, {
         props: {
+          tableDate: `${this.tableYear}`,
           color: this.color,
           max: this.maxYear,
           min: this.minYear,
           locale: this.locale,
-          value: `${this.tableYear}`
+          value: `${this.tableYear}`,
+          current: this.current,
+          activeType: this.activeType
         },
         on: {
           input: this.yearClick

@@ -2100,7 +2100,26 @@ API
 | text    | 自定义内容  | String	 | -     |
 | color    | 设置badge的颜色  | String	 | #ed4014     |
 | show    | 是否显示badge  | Boolean	 | true     |
+
+
+### IVueDatePicker 日期/月份选择器
+
+选择日期，支持年、月、日期类型，直观表示。
     
+
+##### props     
+
+| 属性          | 说明                             | 类型   | 默认值 |
+| ------------- | :------------------------------- | :----- | :----- |
+| landscape    | 日历方向,纵向（默认）和 横向 | Boolean | false     |
+| fullWidth    | 指定```IVueDatePicker```的宽度是否为 100% | Boolean | false     |
+| width    | 指定```IVueDatePicker```的宽度，默认为 290 | Boolean | false     |
+| multiple    | 可以选择多个月或者多个日,使用```multiple```那么 ```v-modul``` 或者 ```value``` 必须为数组 | Boolean | false     |
+| type    | 日历显示的类型,```date```(默认日期) 和 ```month```(月期)| Boolean | false     |
+| value    | 设置需要显示的日期或者月期 | Array, String | -     |
+| locale    | 指定BCP 47语言标记 | String | en-us   |
+| min    | 设置最小可选择日期 | String | -   |
+| max    | 设置最大可选择日期 | String | -   |
 
 
 # 其他

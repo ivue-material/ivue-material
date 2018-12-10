@@ -39,7 +39,7 @@ export default {
     genTitle () {
       return this.$createElement('div', this.setBackgroundColor(this.color || 'primary', {
         staticClass: `${prefixCls}-title`,
-        class:{
+        class: {
           [`${prefixCls}-title--landscape`]: this.landscape
         }
       }), this.$slots.title);
