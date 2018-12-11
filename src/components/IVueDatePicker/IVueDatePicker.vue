@@ -100,10 +100,10 @@ export default {
     /*
     * 便签用于标记需要注意的日期
     *
-    * @type{Array,Object,Function}
+    * @type{Array,Function}
     */
     note: {
-      type: [Array, Object, Function],
+      type: [Array, Function],
       default: null
     },
     /*
@@ -131,7 +131,13 @@ export default {
     },
     yearIcon: {
       type: String
-    }
+    },
+    /*
+    * 用于监听月份或者年份的变化
+    *
+    * @type{Boolean}
+    */
+    pickerDate: String
   },
   data () {
     const now = new Date();
@@ -152,16 +158,27 @@ export default {
     }
   },
   created () {
+    this.checkMultipleProp();
+
     this.setInputDate();
 
     this.tableDate = (() => {
+      if (this.pickerDate) {
+        return this.pickerDate;
+      }
+
       const date = (this.multiple ? this.value[this.value.length - 1] : this.value) ||
         `${now.getFullYear}-${now.getMonth() + 1}`
 
       const type = this.type === 'date' ? 'month' : 'year';
 
       return this.sanitizeDateString(date, type)
-    })()
+    })();
+
+
+    if (this.pickerDate !== this.tableDate) {
+      this.$emit('update:pickerDate', this.tableDate)
+    }
   },
   computed: {
     computedValue () {
@@ -177,11 +194,11 @@ export default {
     },
     // 年份
     tableYear () {
-      return this.tableDate.split('-')[0] * 1;
+      return (this.pickerDate || this.tableDate).split('-')[0] * 1;
     },
     // 月份
     tableMonth () {
-      return this.tableDate.split('-')[1] - 1;
+      return (this.pickerDate || this.tableDate).split('-')[1] - 1;
     },
     // 选择的日期
     inputDate () {
@@ -208,6 +225,7 @@ export default {
       const landscapeFormatter = (date) => titleDateFormatter(date)
         .replace(/([^\d\s])([\d])/g, (match, nonDigit, digit) => `${nonDigit} ${digit}`)
         .replace(', ', ',<br>');
+        console.log(titleDateFormatter)
 
       return this.landscape ? landscapeFormatter : titleDateFormatter;
     },
@@ -270,6 +288,15 @@ export default {
 
       this.$emit('input', output);
       this.multiple || this.$emit('change', newInput)
+    },
+    // 检查设置为多选后value值是否正确
+    checkMultipleProp () {
+      if (this.value == null) return
+      const valueType = this.value.constructor.name
+      const expected = this.multiple ? 'Array' : 'String'
+      if (valueType !== expected) {
+        console.warn(`Value must be ${this.multiple ? 'an' : 'a'} ${expected}, got ${valueType}`, this)
+      }
     },
     // 渲染标题内容
     genPickerTitle () {
@@ -363,7 +390,8 @@ export default {
           min: this.minMonth,
           allowedDates: this.type === 'month' ? this.allowedDates : null,
           readonly: this.readonly,
-          current: this.current
+          current: this.current ? this.sanitizeDateString(this.current, 'month') : null,
+          activeType: this.activeType
         },
         on: {
           input: this.monthClick,
@@ -382,14 +410,15 @@ export default {
           locale: this.locale,
           value: `${this.tableYear}`,
           current: this.current,
-          activeType: this.activeType
+          activeType: this.activeType,
+          year: `${this.inputYear}`
         },
         on: {
           input: this.yearClick
         }
       });
     },
-    // 设置input值
+    // 设置年，月，日值
     setInputDate () {
       if (this.computedValue) {
         const computedValue = this.computedValue.split('-')
@@ -431,7 +460,7 @@ export default {
         this.tableDate = value;
         this.activeType = 'DATE';
 
-        this.reactive && !this.multiple && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
+        this.reactive && !this.multiple && this.isDateAllowed(this.inputDate) && this.$emit('input', this.inputDate);
 
       }
       else {
@@ -450,15 +479,50 @@ export default {
       }
 
       this.activeType = 'MONTH';
-      this.reactive && !this.multiple && isDateAllowed(this.inputDate, this.min, this.max, this.allowedDates) && this.$emit('input', this.inputDate);
 
-    }
+      this.reactive && !this.multiple && this.isDateAllowed(this.inputDate) && this.$emit('input', this.inputDate);
+    },
+    isDateAllowed (value) {
+      return isDateAllowed(value, this.min, this.max, this.allowedDates)
+    },
   },
   watch: {
+    tableDate (val, prev) {
+      // 发送月份或年份改变事件
+      this.$emit('update:pickerDate', val)
+    },
     value (newValue, oldValue) {
-
+      this.checkMultipleProp();
       this.setInputDate();
 
+      if (!this.multiple && this.value && !this.pickerDate) {
+        this.tableDate = this.sanitizeDateString(this.inputDate, this.type === 'month' ? 'year' : 'month')
+      } else if (this.multiple && this.value.length && !oldValue.length && !this.pickerDate) {
+        this.tableDate = this.sanitizeDateString(this.inputDate, this.type === 'month' ? 'year' : 'month')
+      }
+
+    },
+    // 监听月份或者年份的变化
+    pickerDate (value) {
+      if (value) {
+        this.tableDate = value;
+      } else if (this.computedValue && this.type === 'date') {
+        this.tableDate = this.sanitizeDateString(this.computedValue, 'month');
+      } else if (this.computedValue && this.type === 'month') {
+        this.tableDate = this.sanitizeDateString(this.computedValue, 'year');
+      }
+    },
+    // 监听日历类型变化
+    type (type) {
+      this.activePicker = type.toUpperCase();
+
+      if (this.value && this.value.length) {
+        const output = (this.multiple ? this.value : [this.value])
+          .map(val => this.sanitizeDateString(val, type))
+          .filter(this.isDateAllowed);
+
+        this.$emit('input', this.multiple ? output : output[0])
+      }
     }
   },
   render () {

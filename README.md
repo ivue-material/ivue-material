@@ -2113,14 +2113,27 @@ API
 | ------------- | :------------------------------- | :----- | :----- |
 | landscape    | 日历方向,纵向（默认）和 横向 | Boolean | false     |
 | fullWidth    | 指定```IVueDatePicker```的宽度是否为 100% | Boolean | false     |
-| width    | 指定```IVueDatePicker```的宽度，默认为 290 | Boolean | false     |
+| width    | 指定```IVueDatePicker```的宽度 | Number, String | 290     |
 | multiple    | 可以选择多个月或者多个日,使用```multiple```那么 ```v-modul``` 或者 ```value``` 必须为数组 | Boolean | false     |
-| type    | 日历显示的类型,```date```(默认日期) 和 ```month```(月期)| Boolean | false     |
+| type    | 日历显示的类型,```date```(默认日期) 和 ```month```(月期)| String | date     |
 | value    | 设置需要显示的日期或者月期 | Array, String | -     |
 | locale    | 指定BCP 47语言标记 | String | en-us   |
 | min    | 设置最小可选择日期 | String | -   |
 | max    | 设置最大可选择日期 | String | -   |
-
+| allowedDates    | 使用函数指定允许选择的日期 | Function | -   |
+| showCurrent    | 是否显示当前日期 | Boolean, String | true   |
+| note    |用于标记需要注意的日期 | Array, Function | -   |
+| noteColor    | 改变标记需要注意的日期的颜色 | String, Function, Object | warning   |
+| firstDayOfWeek    | 设置日历一周的第一天 | String, Number | 0   |
+| yearIcon    | 为年份标题添加图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用 | Strin | -   |
+| prevIcon    | 为月份选择按钮(左侧按钮)设置图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用| String | chevron_left  |
+| nextIcon    | 为月份选择按钮(右侧按钮)设置图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用| String | chevron_right  |
+| readonly    | 设置日历是否只读，设置后所有操作将禁用 | Boolean | -   |
+| reactive    | 点击月份或者年份时月份或年份是否跟随改变 | Boolean | -   |
+| pickerDate    | 您可以观察```pickerDate```，它是显示的月/年（取决于选择器类型和活动视图），以便在更改时执行某些操作 | String | -   |
+| headerColor    | 设置头部标签颜色 | String | -   |
+| color    | 设置其他区域(日期，月份，年份)选择颜色 | String | -   |
+| noTitle    | 设置是否隐藏日历头部 | Boolean | -   |
 
 # 其他
 

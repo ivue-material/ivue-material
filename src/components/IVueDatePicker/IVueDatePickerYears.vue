@@ -39,12 +39,11 @@ export default {
       type: [Number, String],
       required: true
     },
-    /*
-    * 当前激活的type
-    *
-    * @type{String}
-    */
-    activeType: String
+    // 当前年份
+    year: {
+      type: [Number, String],
+      default: ''
+    }
   },
   computed: {
     formatter () {
@@ -106,7 +105,7 @@ export default {
           return this.$createElement('td', {
             key: this.formatter(`${startYear + _number}`)
           }, [
-              this.genButton(`${this.formatter(`${startYear + _number}`)}`)
+              this.genButton(`${startYear + _number}`)
             ]);
         });
 

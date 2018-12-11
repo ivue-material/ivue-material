@@ -99,19 +99,26 @@ export default {
             // 按钮
             genButton (value, staticClass) {
                   // 是否选中
-                  const isSelected = this.activeType !== 'YEAR' && value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1)
+                  const isSelected = this.activeType === 'YEAR' ? this.year === value : value === this.value || (Array.isArray(this.value) && this.value.indexOf(value) !== -1)
                   // 是否允许选择
                   const isAllowed = isDateAllowed(value, this.min, this.max, this.allowedDates);
+
                   // 是否有显示当前日期
-                  const isCurrent = value === this.current || this.activeType === 'YEAR' ? `${new Date().getFullYear()}` === value : null;
+                  let isCurrent;
+                  if (this.activeType && this.current) {
+                        isCurrent = this.activeType === 'YEAR' ? `${new Date().getFullYear()}` === value : null ||
+                              this.activeType === 'MONTH' ? `${new Date().getFullYear()}-${new Date().getMonth() + 1}` === value : null;
+                  }
+                  else {
+                        isCurrent = value === this.current;
+                  }
+
 
                   const setColor = isSelected ? this.setBackgroundColor : this.setTextColor
 
                   const color = (isSelected || isCurrent) && (this.color || 'primary');
 
                   const _staticClass = staticClass ? staticClass : '';
-
-                  console.log(this.displayedYear )
 
                   return this.$createElement('button', setColor(color, {
                         staticClass: `ivue-button ${_staticClass}`,

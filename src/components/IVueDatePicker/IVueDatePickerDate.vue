@@ -23,10 +23,10 @@ export default {
     /*
     * 便签用于标记需要注意的日期
     *
-    * @type{Array, Object, Function}
+    * @type{Array, Function}
     */
     note: {
-      type: [Array, Object, Function],
+      type: [Array, Function],
       default: null
     },
     /*
