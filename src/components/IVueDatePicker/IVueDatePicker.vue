@@ -15,12 +15,27 @@ export default {
   mixins: [Picker],
   props: {
     // Function formatting the year in table header and pickup title
-    yearFormat: {
+    titleYearFormat: {
       type: Function,
       default: null
     },
     // Function formatting currently selected date in the picker title
     titleDateFormat: {
+      type: Function,
+      default: null
+    },
+    // Function formatting the day in date picker table
+    dayFormat: {
+      type: Function,
+      default: null
+    },
+    // Function formatting month in the months table
+    monthFormat: {
+      type: Function,
+      default: null
+    },
+    // Function formatting the tableDate in the day/month table header
+    headerDateFormat: {
       type: Function,
       default: null
     },
@@ -188,7 +203,7 @@ export default {
     formatters () {
       return {
         // UTC时区
-        year: this.yearFormat || CreateNativeLocaleFormatter(this.locale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 }),
+        titleYear: this.titleYearFormat || CreateNativeLocaleFormatter(this.locale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 }),
         titleDate: this.titleDateFormat || (this.multiple ? this.defaultTitleMultipleDateFormatter : this.defaultTitleDateFormatter)
       }
     },
@@ -225,7 +240,6 @@ export default {
       const landscapeFormatter = (date) => titleDateFormatter(date)
         .replace(/([^\d\s])([\d])/g, (match, nonDigit, digit) => `${nonDigit} ${digit}`)
         .replace(', ', ',<br>');
-        console.log(titleDateFormatter)
 
       return this.landscape ? landscapeFormatter : titleDateFormatter;
     },
@@ -303,7 +317,7 @@ export default {
       return this.$createElement(IVueDatePickerTitle, {
         props: {
           date: this.value ? this.formatters.titleDate(this.value) : '',
-          year: this.formatters.year(`${this.inputYear}`),
+          year: this.formatters.titleYear(`${this.inputYear}`),
           value: this.multiple ? this.value[0] : this.value,
           selectingYear: this.activeType === 'YEAR',
           yearIcon: this.yearIcon
@@ -329,7 +343,8 @@ export default {
           nextIcon: this.nextIcon,
           prevIcon: this.prevIcon,
           readonly: this.readonly,
-          activeType: this.activeType
+          activeType: this.activeType,
+          format: this.headerDateFormat
         },
         on: {
           input: value => this.tableDate = value,
@@ -370,7 +385,8 @@ export default {
           allowedDates: this.allowedDates,
           note: this.note,
           noteColor: this.noteColor,
-          readonly: this.readonly
+          readonly: this.readonly,
+          format: this.dayFormat
         },
         on: {
           input: this.dateClick,
@@ -391,7 +407,8 @@ export default {
           allowedDates: this.type === 'month' ? this.allowedDates : null,
           readonly: this.readonly,
           current: this.current ? this.sanitizeDateString(this.current, 'month') : null,
-          activeType: this.activeType
+          activeType: this.activeType,
+          format: this.monthFormat
         },
         on: {
           input: this.monthClick,

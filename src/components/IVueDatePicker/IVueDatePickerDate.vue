@@ -55,7 +55,7 @@ export default {
     },
     // 日期格式
     formatter () {
-      return CreateNativeLocaleFormatter(this.locale, { day: 'numeric', timeZone: 'UTC' }, { start: 8, length: 2 });
+      return this.format || CreateNativeLocaleFormatter(this.locale, { day: 'numeric', timeZone: 'UTC' }, { start: 8, length: 2 });
     }
   },
   methods: {

@@ -55,7 +55,11 @@ export default {
      *
      * @type{String}
      */
-    activeType: String
+    activeType: String,
+    format: {
+      type: Function,
+      default: null
+    }
   },
   data () {
     return {
@@ -65,8 +69,11 @@ export default {
   },
   computed: {
     formatter () {
+      if (this.format) {
+        return this.format;
+      }
       // 日期
-      if (String(this.value).split('-')[1]) {
+      else if (String(this.value).split('-')[1]) {
         return CreateNativeLocaleFormatter(this.locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }, { length: 7 })
       }
       // 年份

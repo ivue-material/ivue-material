@@ -4,7 +4,7 @@
     <IVueDatePicker v-model="dates" headerColor="red" color="blue" landscape fullWidth multiple></IVueDatePicker>
 
     <h1>一开始显示为月份</h1>
-    <IVueDatePicker v-model="picker" type="month" ></IVueDatePicker>
+    <IVueDatePicker v-model="picker" type="month"></IVueDatePicker>
 
     <h1>语言</h1>
     <IVueDatePicker v-model="picker" locale="zh-CH" :showCurrent="false"></IVueDatePicker>
@@ -33,7 +33,7 @@
       prevIcon="arrow_left"
       yearIcon="event_note"
     ></IVueDatePicker>
-    
+
     <h1>只读</h1>
     <IVueDatePicker v-model="picker" readonly></IVueDatePicker>
     <IVueDatePicker v-model="picker" type="month" readonly></IVueDatePicker>
@@ -52,14 +52,40 @@
 
     <h1>reactive</h1>
     <IVueDatePicker v-model="picker" reactive></IVueDatePicker>
-    <IVueDatePicker v-model="picker"  locale="zh-CH"  reactive :showCurrent="false"></IVueDatePicker>
+    <IVueDatePicker v-model="picker" locale="zh-CH" reactive :showCurrent="false"></IVueDatePicker>
 
     <h1>pickerDate</h1>
     <IVueDatePicker v-model="picker" :pickerDate.sync="pickerDate"></IVueDatePicker>
 
-    <h1>titleDateFormat<h1>
-    <IVueDatePicker v-model="picker" ></IVueDatePicker>
+    <h1>titleDateFormat</h1>
+    <IVueDatePicker
+      v-model="picker"
+      :titleDateFormat="format('zh-CN',{ weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })"
+    ></IVueDatePicker>
 
+    <h1>titleYearFormat</h1>
+    <IVueDatePicker
+      v-model="picker"
+      :titleYearFormat="titleYearFormat('zh-CN',{ year: 'numeric', timeZone: 'UTC' })"
+    ></IVueDatePicker>
+
+    <h1>dayFormat</h1>
+    <IVueDatePicker
+      v-model="picker"
+      :dayFormat="format('zh-CN',{ day: 'numeric', timeZone: 'UTC' })"
+    ></IVueDatePicker>
+
+    <h1>monthFormat</h1>
+    <IVueDatePicker
+      v-model="picker"
+      :monthFormat="format('zh-CN',{ month: 'short', timeZone: 'UTC' })"
+    ></IVueDatePicker>
+
+    <h1>headerDateFormat</h1>
+    <IVueDatePicker
+      v-model="picker"
+      :headerDateFormat="format('zh-CN',{ month: 'long', year: 'numeric', timeZone: 'UTC' })"
+    ></IVueDatePicker>
   </div>
 </template>
 
@@ -90,29 +116,71 @@ export default {
     titleDateFormat (locale, options, { start, length } = { start: 0, length: 0 }) {
       // 适配IOS
       const makeIsoString = (dateString) => {
-            const [year, month, date] = dateString.trim().split(' ')[0].split('-');
+        const [year, month, date] = dateString.trim().split(' ')[0].split('-');
 
-            return [year, 1, 1].join('-');
-      }
-      try {
-            // 初始化 根据语言来格式化日期和时间的对象
-            const intlFormatter = new Intl.DateTimeFormat(locale || undefined, options);
 
-            return (dateString) =>{
-                 return intlFormatter.format(new Date(`${makeIsoString(dateString)}T00:00:00+00:00`))
-            }
+        return [year, month, date].join('-');
       }
-      catch (e) {
-            return (start || length) ? dateString => makeIsoString(dateString).substr(start, length) : null;
+      // 初始化 根据语言来格式化日期和时间的对象
+      const intlFormatter = new Intl.DateTimeFormat(locale || undefined, options);
+
+      return (dateString) => {
+        return '12月12日周三'
       }
+
+    },
+    titleYearFormat (locale, options) {
+      // 适配IOS
+      const makeIsoString = (dateString) => {
+        const [year, month, date] = dateString.trim().split(' ')[0].split('-');
+
+
+        return [year, month, date].join('-');
+      }
+      // 初始化 根据语言来格式化日期和时间的对象
+      const intlFormatter = new Intl.DateTimeFormat(locale || undefined, options);
+
+      return (dateString) => {
+        return '12月12日周三'
+      }
+
+    },
+    format (locale, options) {
+      // 适配IOS
+      const makeIsoString = (dateString) => {
+        const [year, month, date] = dateString.trim().split(' ')[0].split('-');
+
+        return [year, this.padStart(month || 1,2,0), this.padStart(date || 1,2,0)].join('-');
+      }
+      // 初始化 根据语言来格式化日期和时间的对象
+      const intlFormatter = new Intl.DateTimeFormat(locale || undefined, options);
+
+      return (dateString) => {
+        return intlFormatter.format(new Date(`${makeIsoString(dateString)}T00:00:00+00:00`))
+      }
+
+    },
+    padStart (string, targetLength, padString) {
+      targetLength = targetLength >> 0;
+      string = String(string);
+      padString = String(padString);
+      if (string.length > targetLength) {
+        return String(string);
+      }
+
+      targetLength = targetLength - string.length;
+
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length);
+      }
+
+      return padString.slice(0, targetLength) + String(string);
     }
   },
-  watch:{
-    pickerDate(val){
+  watch: {
+    pickerDate (val) {
+      console.log(val)
     }
   }
 }
 </script>
-
-<style scoped>
-</style>

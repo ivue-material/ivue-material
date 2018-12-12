@@ -58,7 +58,16 @@ export default {
             *
             * @type{String}
             */
-            activeType: String
+            activeType: String,
+            /*
+            * 格式化函数
+            *
+            * @type{String}
+            */
+            format: {
+                  type: Function,
+                  default: null
+            }
       },
       data () {
             return {

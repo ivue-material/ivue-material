@@ -11,7 +11,7 @@ export default {
   mixins: [DatePickerTable, Colorable],
   computed: {
     formatter () {
-      return CreateNativeLocaleFormatter(this.locale, { month: 'short', timeZone: 'UTC' }, { start: 5, length: 2 });
+      return this.format || CreateNativeLocaleFormatter(this.locale, { month: 'short', timeZone: 'UTC' }, { start: 5, length: 2 });
     }
   },
   methods: {
