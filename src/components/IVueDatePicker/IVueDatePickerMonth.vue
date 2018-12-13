@@ -15,6 +15,10 @@ export default {
     }
   },
   methods: {
+    // 计算表日期
+    calculateTableDate (dates) {
+      return `${parseInt(this.tableDate, 10) + Math.sign(dates || 1)}`;
+    },
     genTBody () {
       const children = [];
       // 一行3个

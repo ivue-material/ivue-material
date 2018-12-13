@@ -14,7 +14,7 @@ describe('IVueBadge', function () {
                         IVueBadge
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.vm.$children[0].count).to.be.equal(3);
@@ -32,7 +32,7 @@ describe('IVueBadge', function () {
                         IVueBadge
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
            expect(wrapper.vm.$children[0].$children[0].$el.innerText).to.be.equal('99+');
@@ -50,7 +50,7 @@ describe('IVueBadge', function () {
                         IVueBadge
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
            expect(wrapper.vm.$children[0].showZero).to.be.equal(true);

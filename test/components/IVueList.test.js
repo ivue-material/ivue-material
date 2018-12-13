@@ -11,7 +11,7 @@ describe('IVueList', function () {
                         IVueList
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-list');

@@ -2,6 +2,7 @@
 import DatePickerTable from '../../utils/mixins/DatePickerTable';
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
+import MonthChange from '../../utils/MonthChange';
 import Colorable from '../../utils/mixins/Colorable';
 import { createRange } from '../../utils/Helpers';
 
@@ -59,6 +60,11 @@ export default {
     }
   },
   methods: {
+    // 计算表日期
+    calculateTableDate (dates) {
+      // Math.sign 返回一个数字的符号，表示该数字是正数，负数还是零
+      return MonthChange(this.tableDate, Math.sign(dates || 1));;
+    },
     // 日期头部
     genTHead () {
       const days = this.weekDays.map((day) => this.$createElement('th', day));

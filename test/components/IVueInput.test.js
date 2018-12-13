@@ -13,7 +13,7 @@ describe('IVueInput', function () {
                         IVueInput
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-input-wrapper');
@@ -31,7 +31,7 @@ describe('IVueInput', function () {
                         IVueInput
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-input-wrapper');

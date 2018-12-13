@@ -80,7 +80,7 @@ describe('IVueNotice', function () {
                         }
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(Vue.prototype.$IVueNotice).to.contain(Object);

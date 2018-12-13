@@ -11,7 +11,6 @@ describe('IVueListItem', function () {
                         IVueSwitch
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('red-accent-4');
@@ -26,7 +25,6 @@ describe('IVueListItem', function () {
                         IVueSwitch
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('ivue-switch-disabled');
@@ -41,7 +39,6 @@ describe('IVueListItem', function () {
                         IVueSwitch
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('red-accent-4');
@@ -60,7 +57,6 @@ describe('IVueListItem', function () {
                         IVueSwitch
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.text()).to.be.equal('关');

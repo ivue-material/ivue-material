@@ -1,8 +1,10 @@
 import isDateAllowed from '../IsDateAllowed';
+import Touch from '../directives/Touch';
 
 const prefixCls = 'ivue-date-picker-date';
 
 export default {
+      directives: { Touch },
       props: {
             /*
             * 日期 时间
@@ -85,6 +87,9 @@ export default {
             }
       },
       methods: {
+            touch (value) {
+                  this.$emit('tableDate', this.calculateTableDate(value));
+            },
             genButtonClasses (isSelected, isCurrent, isAllowed) {
                   return {
                         'ivue-button--selected': isSelected,
@@ -102,7 +107,16 @@ export default {
                   }, [children])])
 
                   return this.$createElement('div', {
-                        staticClass
+                        staticClass,
+                        directives: [
+                              {
+                                    name: 'touch',
+                                    value: {
+                                          left: e => (e.offsetX < -15) && this.touch(1),
+                                          right: e => (e.offsetX > 15) && this.touch(-1)
+                                    }
+                              }
+                        ]
                   }, [transition])
             },
             // 按钮

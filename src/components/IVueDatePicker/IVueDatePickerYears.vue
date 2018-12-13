@@ -88,6 +88,18 @@ export default {
 
     //   return children;
     // },
+    // 计算表日期
+    calculateTableDate (value) {
+      let _value = value;
+      if (value > 0) {
+        _value = value + 9
+      }
+      else {
+        _value = value - 9
+      }
+
+      return `${parseInt(this.tableDate) + parseInt(_value)}`;
+    },
     genTBody () {
       let children = [];
       // 一行3个

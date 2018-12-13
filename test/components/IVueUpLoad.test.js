@@ -26,9 +26,7 @@ describe('IVueUpLoad', function () {
                   components: {
                         IVueUpLoad
                   }
-            }, {
-                        attachToDocument: true
-                  });
+            });
 
             expect(wrapper.find('input').attributes('type')).to.be.equal('file');
             expect(wrapper.find('.ivue-upload-list').vnode.children.length).to.be.equal(2);

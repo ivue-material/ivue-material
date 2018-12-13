@@ -21,7 +21,7 @@ describe('IVueBreadcrumbs', function () {
                         IVueBreadcrumbsItem
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -48,7 +48,7 @@ describe('IVueBreadcrumbs', function () {
                         IVueBreadcrumbsItem
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -75,7 +75,7 @@ describe('IVueBreadcrumbs', function () {
                         IVueBreadcrumbsItem
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -104,7 +104,7 @@ describe('IVueBreadcrumbs', function () {
                         IVueBreadcrumbsItem
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -135,7 +135,7 @@ describe('IVueBreadcrumbs', function () {
                         IVueIcon
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 

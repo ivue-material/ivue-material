@@ -30,7 +30,7 @@ describe('IVueBottomNav', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -64,7 +64,7 @@ describe('IVueBottomNav', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-bottom-nav');
@@ -97,7 +97,7 @@ describe('IVueBottomNav', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-bottom-nav');
@@ -130,7 +130,7 @@ describe('IVueBottomNav', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-bottom-nav');
@@ -163,7 +163,7 @@ describe('IVueBottomNav', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-bottom-nav');

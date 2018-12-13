@@ -33,7 +33,7 @@ describe('IVueMessage', function () {
                         }
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(Vue.prototype.$IVueLoadingBar).to.contain(Object);

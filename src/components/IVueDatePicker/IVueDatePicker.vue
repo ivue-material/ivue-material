@@ -300,6 +300,7 @@ export default {
         )
         : newInput;
 
+
       this.$emit('input', output);
       this.multiple || this.$emit('change', newInput)
     },
@@ -431,7 +432,8 @@ export default {
           year: `${this.inputYear}`
         },
         on: {
-          input: this.yearClick
+          input: this.yearClick,
+          tableDate: value => this.tableDate = value
         }
       });
     },
@@ -505,6 +507,7 @@ export default {
   },
   watch: {
     tableDate (val, prev) {
+
       // 发送月份或年份改变事件
       this.$emit('update:pickerDate', val)
     },
@@ -531,7 +534,7 @@ export default {
     },
     // 监听日历类型变化
     type (type) {
-      this.activePicker = type.toUpperCase();
+      this.activeType = type.toUpperCase();
 
       if (this.value && this.value.length) {
         const output = (this.multiple ? this.value : [this.value])

@@ -8,7 +8,6 @@ const Component = (items = ['foo', 'bar']) => {
             render (h) {
                   return h(IVueTabs, {
                         attrs: this.$attrs,
-                        attachToDocument: true
                   }, [
                               items.map(item => h(IVueTab, {
                                     props: { href: `#${item}` }
@@ -41,7 +40,6 @@ describe('IVueTabs', function () {
                         IVueTabItem
                   }
             }, {
-                        attachToDocument: true
                   });
 
             const tab = wrapper.find(IVueTab)
@@ -80,7 +78,6 @@ describe('IVueTabs', function () {
 
       it('should change tab and content when model changes', async () => {
             const wrapper = mount(Component(), {
-                  attachToDocument: true
             });
 
             const tabs = wrapper.find(IVueTabs);
@@ -95,7 +92,7 @@ describe('IVueTabs', function () {
 
       it('should reset offset on resize', async () => {
             const wrapper = mount(Component(), {
-                  attachToDocument: true
+                   
             });
             const tabs = wrapper.find(IVueTabs);
 

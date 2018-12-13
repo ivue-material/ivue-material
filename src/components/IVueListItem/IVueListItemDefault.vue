@@ -14,7 +14,3 @@ export default {
       mixins: [IVueListItemMixin]
 }
 </script>
-
-<style>
-
-</style>

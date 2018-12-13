@@ -18,7 +18,7 @@ describe('IVueProgress', function () {
                         IVueProgressLinear
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -44,7 +44,7 @@ describe('IVueProgress', function () {
                         IVueProgressCircular
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
                   expect(wrapper.find('.red-accent-4').find('.ivue-progress-circular-text').html().indexOf('20%') > -1).to.be.equal(true);

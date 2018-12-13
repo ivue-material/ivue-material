@@ -13,7 +13,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('red-accent-4');
@@ -38,7 +37,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -60,7 +58,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('ivue-button');
@@ -78,7 +75,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -107,7 +103,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true,
                         localVue,
                         router
                   });
@@ -121,7 +116,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true,
                         localVue,
                         router
                   });
@@ -147,7 +141,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -167,7 +160,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('ivue-button');
@@ -186,7 +178,6 @@ describe('IVueButton', function () {
                         IVueButton
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('ivue-button');

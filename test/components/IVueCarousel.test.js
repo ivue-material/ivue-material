@@ -44,7 +44,7 @@ describe('IVueCarousel', function () {
                         IVueCarouselItem
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(wrapper.classes()).to.contain('ivue-carousel');

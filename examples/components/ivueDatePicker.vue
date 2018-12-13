@@ -7,7 +7,7 @@
     <IVueDatePicker v-model="picker" type="month"></IVueDatePicker>
 
     <h1>语言</h1>
-    <IVueDatePicker v-model="picker" locale="zh-CH" :showCurrent="false"></IVueDatePicker>
+    <IVueDatePicker :value="picker" locale="zh-CH" :showCurrent="false"></IVueDatePicker>
 
     <h1>设置允许选择日期</h1>
     <IVueDatePicker v-model="picker" locale="zh-CH" :allowedDates="allowedDates"></IVueDatePicker>

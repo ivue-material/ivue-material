@@ -17,7 +17,6 @@ describe('IVueList', function () {
                         IVueStepperStep
                   }
             }, {
-                        attachToDocument: true
                   });
 
             
@@ -25,7 +24,7 @@ describe('IVueList', function () {
             expect(wrapper.element.children.length).to.be.equal(4);
       });
 
-      it('should render the vertical IVueStepper', async () => {
+      it('should render the horizontal IVueStepper ', async () => {
             const wrapper = mount({
                   template: `
                   <IVueStepper :currentStep="0"  :direction="'horizontal'">
@@ -40,7 +39,6 @@ describe('IVueList', function () {
                         IVueStepperStep
                   }
             }, {
-                        attachToDocument: true
                   });
 
             

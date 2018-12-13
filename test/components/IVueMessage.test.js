@@ -47,7 +47,7 @@ describe('IVueMessage', function () {
                         }
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
             expect(Vue.prototype.$IVueMessage).to.contain(Object);

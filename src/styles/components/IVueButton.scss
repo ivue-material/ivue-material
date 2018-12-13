@@ -108,6 +108,7 @@ $name: 'ivue-button';
             box-shadow: none;
       }
       &--readonly {
+            border-color: transparent !important;
             background-color: rgba(0, 0, 0, 0.12) !important;
       }
 }

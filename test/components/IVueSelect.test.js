@@ -50,7 +50,7 @@ describe('IVueSelect', function () {
                         IVueOption
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -113,7 +113,7 @@ describe('IVueSelect', function () {
                         IVueOption
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 
@@ -176,7 +176,7 @@ describe('IVueSelect', function () {
                         IVueOption
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 

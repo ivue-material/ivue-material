@@ -16,7 +16,6 @@ describe('IVueIcon', function () {
                         IVueIcon
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.element.children[1].className.indexOf('ivue-icon-font') >= 0).to.be.equal(true);
@@ -39,7 +38,6 @@ describe('IVueIcon', function () {
                         IVueIcon
                   }
             }, {
-                        attachToDocument: true,
                         propsData: {
                               testSvg: testSvg
                         }

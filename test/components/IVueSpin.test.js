@@ -12,7 +12,6 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -28,7 +27,6 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -44,7 +42,6 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.classes()).to.contain('ivue-spin-large');
@@ -66,10 +63,8 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
-            console.log()
 
             expect(wrapper.element.children[0].className.indexOf('ivue-spin-fix') >= 0).to.be.equal(true);
       });
@@ -89,7 +84,6 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
 
@@ -115,7 +109,6 @@ describe('IVueSpin', function () {
                         IVueIcon
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.text()).to.be.equal('donut_large Loading');
@@ -142,7 +135,6 @@ describe('IVueSpin', function () {
                         IVueSpin
                   }
             }, {
-                        attachToDocument: true
                   });
 
             expect(wrapper.findAll('svg').length).to.be.at.least(1);

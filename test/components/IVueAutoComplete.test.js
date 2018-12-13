@@ -31,7 +31,7 @@ describe('IVueAutoComplete', function () {
                         IVueAutoComplete
                   }
             }, {
-                        attachToDocument: true
+                         
                   });
 
 

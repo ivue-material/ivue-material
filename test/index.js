@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import "../src/styles/index.scss";
+// import "../src/styles/index.scss";
 // import "./components/IVueButton.test";
 // import "./components/IVueIcon.test";
 // import "./components/IVueList.test";
@@ -21,4 +21,6 @@ import "../src/styles/index.scss";
 // import "./components/IVueMessage.test";
 // import "./components/IVueTabs.test";
 // import "./components/IVueLoadingBar.test";
-import "./components/IVueBadge.test";
+// import "./components/IVueBadge.test";
+// import "./components/IVueBadge.test";
+import "./components/IVueDatePicker/index";
