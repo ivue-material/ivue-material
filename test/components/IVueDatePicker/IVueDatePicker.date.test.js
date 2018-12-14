@@ -178,7 +178,7 @@ describe('IVueDatePicker', function () {
                         value: '2018-09-13',
                         pickerDate: '2017-11'
                   }
-            })
+            });
 
             let input;
             wrapper.vm.$on('update:pickerDate', function (msg) {
@@ -193,5 +193,39 @@ describe('IVueDatePicker', function () {
 
             await wrapper.vm.$nextTick()
             expect(input).to.be.equal('2018-09');
+      });
+
+      it('should not emit @input and not emit @change when month is clicked (lazy picker)', async () => {
+            const wrapper = mount(IVueDatePicker, {
+                  propsData: {
+                        value: '2018-05-13'
+                  },
+                  data () {
+                        return {
+                              activeType: 'MONth'
+                        }
+                  }
+            });
+
+            let input;
+            wrapper.vm.$on('input', function (msg) {
+                  console.log(msg)
+                  input = msg;
+            });
+
+            let change;
+            wrapper.vm.$on('change', function (msg) {
+                  console.log(msg)
+                  change = msg;
+            });
+
+            wrapper.find('tbody tr td button').trigger('click');
+            wrapper.vm.$nextTick();
+
+
+            expect(input).to.be.equal(undefined);
+            expect(change).to.be.equal(undefined);
+
+
       });
 });

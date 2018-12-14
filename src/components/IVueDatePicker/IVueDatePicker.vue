@@ -183,13 +183,12 @@ export default {
       }
 
       const date = (this.multiple ? this.value[this.value.length - 1] : this.value) ||
-        `${now.getFullYear}-${now.getMonth() + 1}`
+        `${this.now.getFullYear()}-${this.now.getMonth() + 1}`
 
       const type = this.type === 'date' ? 'month' : 'year';
 
       return this.sanitizeDateString(date, type)
     })();
-
 
     if (this.pickerDate !== this.tableDate) {
       this.$emit('update:pickerDate', this.tableDate)
@@ -300,7 +299,6 @@ export default {
         )
         : newInput;
 
-
       this.$emit('input', output);
       this.multiple || this.$emit('change', newInput)
     },
@@ -392,7 +390,8 @@ export default {
         on: {
           input: this.dateClick,
           tableDate: value => this.tableDate = value
-        }
+        },
+        ref: 'table'
       });
     },
     // 渲染月
@@ -414,7 +413,8 @@ export default {
         on: {
           input: this.monthClick,
           tableDate: value => this.tableDate = value
-        }
+        },
+        ref: 'table'
       });
     },
     // 渲染年
