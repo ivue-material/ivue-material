@@ -84,6 +84,9 @@ export default {
             // 显示的年份
             displayedYear () {
                   return this.tableDate.split('-')[0] * 1;
+            },
+            computedTransition () {
+                  return this.isReversing ? `tab-reverse-transition` : `tab-transition`;
             }
       },
       methods: {
@@ -100,7 +103,7 @@ export default {
             genTable (staticClass, children) {
                   const transition = this.$createElement('transition', {
                         props: {
-                              name: this.isReversing ? `tab-reverse-transition` : `tab-transition`
+                              name: this.computedTransition
                         }
                   }, [this.$createElement('table', {
                         key: this.tableDate

@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .demo-spin-container {
   display: inline-block;
   width: 200px;

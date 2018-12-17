@@ -7,7 +7,7 @@ const Component = (items = ['foo', 'bar']) => {
 
             render (h) {
                   return h(IVueTabs, {
-                        attrs: this.$attrs,
+                        attrs: this.,
                   }, [
                               items.map(item => h(IVueTab, {
                                     props: { href: `#${item}` }

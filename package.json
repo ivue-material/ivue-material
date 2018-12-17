@@ -1,6 +1,6 @@
 {
-  "name": "ivue",
-  "version": "1.0.0",
+  "name": "ivue-material",
+  "version": "0.1.0",
   "description": "A high quality UI components Library with Vue.js",
   "main": "dist/ivue.js",
   "files": [
@@ -89,7 +89,8 @@
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^3.0.5",
     "@vue/test-utils": "^1.0.0-beta.13",
-    "babel-plugin-istanbul": "^5.1.0"
+    "babel-plugin-istanbul": "^5.1.0",
+    "ivue-material": "^0.1.0"
   },
   "engines": {
     "node": ">=8.9.1",

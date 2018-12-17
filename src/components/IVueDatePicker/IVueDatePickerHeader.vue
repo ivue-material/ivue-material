@@ -126,7 +126,11 @@ export default {
       const header = this.$createElement('strong', this.setTextColor(color, {
         key: String(this.value),
         on: {
-          click: () => !this.disabled && this.$emit('toggle')
+          click: () => {
+            if (!this.disabled) {
+              this.$emit('toggle');
+            }
+          }
         }
       }), [this.$slots.default || this.formatter(String(this.value))]);
 

@@ -150,7 +150,7 @@ export default {
       const makeIsoString = (dateString) => {
         const [year, month, date] = dateString.trim().split(' ')[0].split('-');
 
-        return [year, this.padStart(month || 1,2,0), this.padStart(date || 1,2,0)].join('-');
+        return [year, this.padStart(month || 1, 2, 0), this.padStart(date || 1, 2, 0)].join('-');
       }
       // 初始化 根据语言来格式化日期和时间的对象
       const intlFormatter = new Intl.DateTimeFormat(locale || undefined, options);

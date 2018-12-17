@@ -101,7 +101,6 @@ export default {
       if (this.isActive) {
         return `${prefixCls}--active`;
       }
-      return;
     },
     classes () {
       return {
