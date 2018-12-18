@@ -231,7 +231,7 @@ exports.default = function (obj, key, value) {
 /* 3 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.0' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2006,6 +2006,9 @@ exports.default = {
             },
             displayedYear: function displayedYear() {
                   return this.tableDate.split('-')[0] * 1;
+            },
+            computedTransition: function computedTransition() {
+                  return this.isReversing ? 'tab-reverse-transition' : 'tab-transition';
             }
       },
       methods: {
@@ -2024,7 +2027,7 @@ exports.default = {
 
                   var transition = this.$createElement('transition', {
                         props: {
-                              name: this.isReversing ? 'tab-reverse-transition' : 'tab-transition'
+                              name: this.computedTransition
                         }
                   }, [this.$createElement('table', {
                         key: this.tableDate
@@ -2836,7 +2839,6 @@ exports.default = {
       if (this.isActive) {
         return prefixCls + "--active";
       }
-      return;
     },
     classes: function classes() {
       var _ref;
@@ -10150,7 +10152,7 @@ exports.default = {
         return this.pickerDate;
       }
 
-      var date = (this.multiple ? this.value[this.value.length - 1] : this.value) || String(now.getFullYear) + '-' + String(now.getMonth() + 1);
+      var date = (this.multiple ? this.value[this.value.length - 1] : this.value) || String(this.now.getFullYear()) + '-' + String(this.now.getMonth() + 1);
 
       var type = this.type === 'date' ? 'month' : 'year';
 
@@ -10360,7 +10362,8 @@ exports.default = {
             (0, _newArrowCheck3.default)(this, _this8);
             return this.tableDate = value;
           }.bind(this)
-        }
+        },
+        ref: 'table'
       });
     },
     genMonthTable: function genMonthTable() {
@@ -10386,7 +10389,8 @@ exports.default = {
             (0, _newArrowCheck3.default)(this, _this9);
             return this.tableDate = value;
           }.bind(this)
-        }
+        },
+        ref: 'table'
       });
     },
     genYears: function genYears() {
@@ -10501,7 +10505,7 @@ exports.default = {
     type: function type(_type) {
       var _this11 = this;
 
-      this.activePicker = _type.toUpperCase();
+      this.activeType = _type.toUpperCase();
 
       if (this.value && this.value.length) {
         var output = (this.multiple ? this.value : [this.value]).map(function (val) {
@@ -10832,7 +10836,10 @@ exports.default = {
         on: {
           click: function click() {
             (0, _newArrowCheck3.default)(this, _this3);
-            return !this.disabled && this.$emit('toggle');
+
+            if (!this.disabled) {
+              this.$emit('toggle');
+            }
           }.bind(this)
         }
       }), [this.$slots.default || this.formatter(String(this.value))]);
@@ -11464,8 +11471,7 @@ var components = {
   IVueTabItem: _IVueTabs.IVueTabItem,
   IVueTabsSlider: _IVueTabs.IVueTabsSlider,
   IVueLoadingBar: _IVueLoadingBar2.default,
-  IVueBadge: _IVueBadge2.default,
-  IVueDatePicker: _IVueDatePicker2.default
+  IVueBadge: _IVueBadge2.default
 };
 
 var iVue = (0, _extends3.default)({}, components);
@@ -11497,7 +11503,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '1.0.0',
+  version: '0.1.1',
   install: install
 }, components);
 
@@ -14315,7 +14321,7 @@ var render = function render() {
         }, "mouseover": function mouseover($event) {
           _vm.dotsEvent('hover', index - 1);
         } } }, [_c('button', { class: [_vm.radiusDot ? 'radius' : ''], attrs: { "type": "button" } })]);
-  }))], 1);
+  }), 0)], 1);
 };
 var staticRenderFns = [];
 exports.render = render;
@@ -15437,8 +15443,8 @@ var render = function render() {
     return _c('div', { key: index, class: [_vm.prefixCls + "-selection-multiple"] }, [_c('span', [_vm._v(_vm._s(item.label))]), _vm._v(" "), _c('IVueIcon', { class: [_vm.prefixCls + "-selection-multiple-close"], nativeOn: { "click": function click($event) {
           $event.stopPropagation();_vm.removeSelectItem(item);
         } } }, [_vm._v(_vm._s(_vm.multipleCloseIcon))])], 1);
-  })) : _vm._e(), _vm._v(" "), _vm.filterable ? _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.filterQuery, expression: "filterQuery" }], ref: "input", class: [_vm.prefixCls + "-input-filter", { 'ivue-select-input-filter-placeholder': _vm.showPlaceholder }], style: _vm.inputStyle, attrs: { "type": "text", "placeholder": _vm.showPlaceholder ? _vm.placeholder : '', "spellcheck": "false", "autocomplete": "off" }, domProps: { "value": _vm.filterQuery }, on: { "focus": _vm.onInputFocus, "blur": _vm.onInputFocus, "keydown": [_vm.resetInputState, function ($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "delete", [8, 46], $event.key, ["Backspace", "Delete"])) {
+  }), 0) : _vm._e(), _vm._v(" "), _vm.filterable ? _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.filterQuery, expression: "filterQuery" }], ref: "input", class: [_vm.prefixCls + "-input-filter", { 'ivue-select-input-filter-placeholder': _vm.showPlaceholder }], style: _vm.inputStyle, attrs: { "type": "text", "placeholder": _vm.showPlaceholder ? _vm.placeholder : '', "spellcheck": "false", "autocomplete": "off" }, domProps: { "value": _vm.filterQuery }, on: { "focus": _vm.onInputFocus, "blur": _vm.onInputFocus, "keydown": [_vm.resetInputState, function ($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "delete", [8, 46], $event.key, ["Backspace", "Delete", "Del"])) {
           return null;
         }return _vm.handleInputDelete($event);
       }], "input": function input($event) {
@@ -15576,7 +15582,7 @@ var render = function render() {
           return null;
         }return _vm.handldKeyDown($event);
       }, function ($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "esc", 27, $event.key, "Escape")) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])) {
           return null;
         }return _vm.handldKeyDown($event);
       }] } }, [_vm._t("input", [_c('input', { attrs: { "type": "hidden" }, domProps: { "value": _vm.selectValue } }), _vm._v(" "), _c('IVueSleectHead', { attrs: { "values": _vm.values, "multiple": _vm.multiple, "multipleCloseIcon": _vm.multipleCloseIcon, "arrowDownIcon": _vm.arrowDownIcon, "filterable": _vm.filterable, "resetSelectIcon": _vm.resetSelectIcon, "clearable": _vm.canClearable, "filterQueryProp": _vm.filterQuery, "disabled": _vm.disabled, "placeholder": _vm.placeholder }, on: { "on-filter-query-change": _vm.onFilterQueryChange, "on-input-focus": function onInputFocus($event) {
@@ -16281,7 +16287,7 @@ var render = function render() {
         } } }, [_c('IVueIcon', [_vm._v(_vm._s(_vm.iconType(file)))]), _vm._v(_vm._s(file.name) + "\n            ")], 1), _vm._v(" "), _c('IVueIcon', { directives: [{ name: "show", rawName: "v-show", value: file.status === 'finished', expression: "file.status === 'finished'" }], class: _vm.prefixCls + "-remove", nativeOn: { "click": function click($event) {
           _vm.handleRemove(file);
         } } }, [_vm._v("close")]), _vm._v(" "), _c('transition', { attrs: { "name": "progress-fade" } }, [file.showProgress ? _c('IVueProgressLinear', { attrs: { "height": 3, "percent": _vm.percentage(file.percentage), "status": file.status === 'finished' && file.showProgress ? 'success' : 'normal' } }) : _vm._e()], 1)], 1);
-  }));
+  }), 0);
 };
 var staticRenderFns = [];
 exports.render = render;
@@ -16773,7 +16779,7 @@ Object.defineProperty(exports, "__esModule", {
 var render = function render() {
   var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { class: _vm.classes, style: _vm.styles }, _vm._l(_vm.noticesList, function (notice) {
     return _c('IVueNotice', { key: notice.name, attrs: { "prefixCls": notice.prefixCls, "content": notice.content, "type": notice.type, "styles": notice.styles, "render": notice.render, "transitionName": notice.transitionName, "onClose": notice.onClose, "duration": notice.duration, "closable": notice.closable, "name": notice.name, "haveIcon": notice.haveIcon } });
-  }));
+  }), 1);
 };
 var staticRenderFns = [];
 exports.render = render;

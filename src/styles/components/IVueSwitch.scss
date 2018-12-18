@@ -2,14 +2,12 @@ $name: 'ivue-switch';
 $defailt-after-width: 20px;
 $small-after-width: 14px;
 $large-after-width: 28px;
-
 @mixin transition() {
-      transition: transform .2s ease-in-out 0s, width .2s ease-in-out 0s;
+      transition: transform .2s ease-in-out 0s, width .25s ease-in-out 0s;
       will-change: transform, width;
 }
 
-
-.#{$name}{
+.#{$name} {
       position: relative;
       display: inline-block;
       width: 44px;
@@ -39,7 +37,6 @@ $large-after-width: 28px;
             border-radius: $defailt-after-width;
             background: #fff;
             position: absolute;
-            transform: translate3d(1px, 0, 0);
             cursor: pointer;
             @include transition;
       }
@@ -84,8 +81,8 @@ $large-after-width: 28px;
       /*禁用*/
       &-disabled {
             cursor: $cursor-disabled;
-            border-color: #f3f3f3;
-            background-color: #f3f3f3;
+            border-color: #f3f3f3 !important;
+            background-color: #f3f3f3 !important;
             &:after {
                   background: #ccc;
                   cursor: $cursor-disabled;
@@ -102,15 +99,15 @@ $large-after-width: 28px;
             }
             &:active:after {
                   width: $defailt-after-width;
-                  transform: translate3d(23px, 0, 0) !important;
+                  transform: translate3d(22px, 0, 0) !important;
             }
             &.#{$name}-small:active:after {
                   width: $small-after-width;
-                  transform: translate3d(13px, 0, 0) !important;
+                  transform: translate3d(12px, 0, 0) !important;
             }
             &.#{$name}-large:active:after {
                   width: $large-after-width;
-                  transform: translate3d(27px, 0, 0) !important;
+                  transform: translate3d(26px, 0, 0) !important;
             }
       }
       /*小*/
@@ -132,17 +129,17 @@ $large-after-width: 28px;
                   transform: translate3d(2px, 0, 0);
             }
             &.#{$name}-checked:after {
-                  transform: translate3d(13px, 0, 0);
+                  transform: translate3d($small-after-width - 2, 0, 0);
             }
             &.#{$name}-checked:before {
-                  left:  $small-after-width;
+                  left: $small-after-width;
                   width: 10px;
                   height: 10px;
             }
       }
       &-small:active {
             &.#{$name}-checked:after {
-                  transform: translate3d(11px, 0, 0);
+                  transform: translate3d(10px, 0, 0);
             }
       }
       /*大*/
@@ -158,7 +155,7 @@ $large-after-width: 28px;
                   height: $large-after-width;
             }
             &.#{$name}-checked:after {
-                  transform: translate3d(27px, 0, 0);
+                  transform: translate3d($large-after-width - 2, 0, 0);
             }
             &.#{$name}-checked:before {
                   left: $large-after-width;
@@ -168,7 +165,7 @@ $large-after-width: 28px;
       }
       &-large:active {
             &.#{$name}-checked:after {
-                  transform: translate3d(19px, 0, 0);
+                  transform: translate3d(18px, 0, 0);
             }
       }
       /*检查*/
@@ -179,13 +176,13 @@ $large-after-width: 28px;
                   transform: translate3d(7px, 0, 0);
             }
             &:after {
-                  transform: translate3d(23px, 0, 0);
+                  transform: translate3d($defailt-after-width + 2, 0, 0);
             }
             &:before {
                   left: 24px;
             }
             &:active:after {
-                  transform: translate3d(15px, 0, 0);
+                  transform: translate3d(14px, 0, 0);
             }
       }
 }

@@ -27,7 +27,7 @@
       <IVueButton outline>默认效果</IVueButton>
       <IVueButton outline color="red-accent-4">Accent</IVueButton>
     </div>
-    <!-- <div>
+    <div>
       <span>link</span>
       <IVueButton :href="pageUrl">默认效果</IVueButton>
       <IVueButton :href="pageUrl" class="blue">Primary</IVueButton>
@@ -36,10 +36,10 @@
     </div>
     <div>
       <span>router link</span>
-      <IVueButton to="Layout">默认效果</IVueButton>
+      <IVueButton to="Layout" tag="div">默认效果</IVueButton>
       <IVueButton to="Layout" class="blue">Primary</IVueButton>
       <IVueButton to="Layout" class="red-accent-4">Accent</IVueButton>
-    </div> -->
+    </div>
     <div>
       <span>icon</span>
       <IVueButton icon>

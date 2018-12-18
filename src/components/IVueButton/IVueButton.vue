@@ -1,13 +1,18 @@
 <script>
 import IVueButtonContent from "./IVueButtonContent";
-import IVueRouterLinkProps from "../../utils/IVueRouterLinkProps";
+import IVueRouterLinkProps from "../../utils/mixins/IVueRouterLinkProps";
 import Colorable from '../../utils/mixins/Colorable';
+import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
 
 const prefixCls = 'ivue-button';
 
 export default {
   name: "IVueButton",
-  mixins: [Colorable],
+  mixins: [
+    Colorable,
+    IVueRouterLinkProps,
+    RegistrableInject('buttonGroup')
+  ],
   data () {
     return {
       /*
@@ -92,6 +97,16 @@ export default {
     */
     outline: Boolean
   },
+  mounted () {
+    if (this.buttonGroup) {
+      this.buttonGroup.register(this)
+    }
+  },
+  beforeDestroy () {
+    if (this.buttonGroup) {
+      this.buttonGroup.unregister(this)
+    }
+  },
   computed: {
     rippleWorks () {
       return !this.disabled;
@@ -147,7 +162,11 @@ export default {
         disabled: this.disabled,
         type: !this.href && (this.type || 'button')
       },
-      [this.to ? 'nativeOn' : 'on']: {
+      on: {}
+    }
+
+    if (!this.to) {
+      buttonAttrs.on = {
         ...this.$listeners,
         touchstart: (event) => {
           if (this.rippleWorks) {
@@ -164,38 +183,40 @@ export default {
           this.$listeners.touchmove && this.$listeners.touchmove(event);
 
         },
-        mousedown: (event) => {
+        click: (event) => {
           if (this.rippleWorks) {
             this.rippleActive = event;
           }
-          this.$listeners.mousedown && this.$listeners.mousedown(event);
+          this.$listeners.click && this.$listeners.click(event);
 
-          this.$emit('mousedown', this);
+          this.$emit('click', this);
         }
       }
     }
 
-    let tag = 'button';
+    let _tag = 'button';
 
     if (this.href) {
-      tag = 'a'
+      _tag = 'a'
     }
-    else if (this.$router && this.to) {
-      this.$options.props = IVueRouterLinkProps(this, this.$options.props);
+    else if (this.to) {
+      const { tag, data } = this.generateRouteLink();
 
-      tag = 'router-link';
+      // this.$options.props = data.props;
+
+      _tag = 'router-link';
 
       buttonAttrs.props = this.$props;
 
-      delete buttonAttrs.props.type;
-      delete buttonAttrs.attrs.type;
-      delete buttonAttrs.props.href;
-      delete buttonAttrs.attrs.href;
+      // delete buttonAttrs.props.type;
+      // delete buttonAttrs.attrs.type;
+      // delete buttonAttrs.props.href;
+      // delete buttonAttrs.attrs.href;
     }
 
     const setColor = (!this.outline && !this.flat) ? this.setBackgroundColor : this.setTextColor;
 
-    return createElement(tag, setColor(this.color, buttonAttrs), [buttonContent]);
+    return createElement(_tag, setColor(this.color, buttonAttrs), [buttonContent]);
   }
 }
 </script>

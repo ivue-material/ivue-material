@@ -1,6 +1,5 @@
 <script>
 import InteractionEvents from '../../utils/InteractionEvents';
-import IVueRouterLinkProps from '../../utils/IVueRouterLinkProps';
 import IVueListItemDefault from './IVueListItemDefault';
 import IVueListItemButton from './IVueListItemButton';
 import IVueListItemLink from './IVueListItemLink';
@@ -22,7 +21,6 @@ function resolvescopedSlots (props, children) {
       }
 }
 
-
 // 判断是否有事件渲染按钮
 function shouldRenderButtonWithListener (listeners) {
       // 获取事件名称
@@ -38,7 +36,6 @@ function shouldRenderButtonWithListener (listeners) {
       });
 
       return shouldRender;
-
 }
 
 
@@ -70,16 +67,11 @@ function createListComponent (props, parent, listeners) {
             return IVueListItemButton;
       }
 
-
-
       // 判断是否是 router link 渲染成 router-link
       if (isRouterLink(parent, props)) {
-            IVueListItemRouter.props = IVueRouterLinkProps(parent, {
-                  target: String
-            });
-
+           
             delete IVueListItemRouter.props.href;
-
+            
             return IVueListItemRouter;
       }
 
@@ -102,7 +94,7 @@ export default {
       // listeners  一个包含了所有在父组件上注册的事件侦听器的对象
       // data 传递给组件的数据对象，作为 createElement 的第二个参数传入组件
       // slots 返回所有插槽的对象的函数
-      render (createElement, { parent, props, listeners, data, slots }) {
+      render (createElement, { parent, props, listeners, data, slots}) {
             let children = slots();
             // 获取列表组件
             let listComponent = createListComponent(props, parent, listeners);
