@@ -99,9 +99,7 @@ export default {
           disabled
         },
         on: {
-          click: e => {
-            e.stopPropagation();
-
+          click: (e) => {
             this.$emit('input', this.calculateChange(change))
           }
         }

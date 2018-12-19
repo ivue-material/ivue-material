@@ -39,7 +39,7 @@
       }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
  .demo-badge{
         width: 42px;
         height: 42px;

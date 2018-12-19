@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <p>有主题颜色</p>
-    <!-- <IVueBottomNav :value="true" :active.sync="bottomNav" :color="color" key="theme">
+    <IVueBottomNav :value="true" :active.sync="bottomNav" :color="color" key="theme">
       <IVueButton flat color="red-accent-4">
         <span>Recents</span>
         <IVueIcon>history</IVueIcon>
@@ -12,19 +12,19 @@
         <span>Recents</span>
         <IVueIcon>history</IVueIcon>
       </IVueButton>
-    </IVueBottomNav>-->
+    </IVueBottomNav>
     <p>基础</p>
     <IVueBottomNav :value="true" :active.sync="bottomNav" key="base" :height="'100'">
       <IVueButton flat color="red-accent-4" key="base1" to="/IVueBottomNav">
         <span>Recents</span>
         <IVueIcon>history</IVueIcon>
       </IVueButton>
-      <IVueButton flat color="blue" key="base2" to="/IVueBottomNav?q=q">
+      <IVueButton flat color="blue" key="base2" to="/IVueBottomNav?q=q" tag="div">
         <span>Recents</span>
         <IVueIcon>history</IVueIcon>
       </IVueButton>
     </IVueBottomNav>
-    
+
     <p>不激活时隐藏按钮上的文字</p>
     <IVueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
       <IVueButton flat color="red-accent-4">

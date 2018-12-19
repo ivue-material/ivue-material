@@ -172,7 +172,7 @@ export default {
           if (this.rippleWorks) {
             this.rippleActive = event;
           }
-          this.$listeners.touchstart && this.$listeners.touchstart(event);
+          // this.$listeners.touchstart && this.$listeners.touchstart(event);
 
           this.mobile = true;
         },
@@ -180,14 +180,14 @@ export default {
           if (this.rippleWorks) {
             this.rippleActive = event;
           }
-          this.$listeners.touchmove && this.$listeners.touchmove(event);
+          // this.$listeners.touchmove && this.$listeners.touchmove(event);
 
         },
         click: (event) => {
           if (this.rippleWorks) {
             this.rippleActive = event;
           }
-          this.$listeners.click && this.$listeners.click(event);
+          // this.$listeners.click && this.$listeners.click(event);
 
           this.$emit('click', this);
         }
@@ -202,16 +202,9 @@ export default {
     else if (this.to) {
       const { tag, data } = this.generateRouteLink();
 
-      // this.$options.props = data.props;
-
-      _tag = 'router-link';
+      _tag = tag;
 
       buttonAttrs.props = this.$props;
-
-      // delete buttonAttrs.props.type;
-      // delete buttonAttrs.attrs.type;
-      // delete buttonAttrs.props.href;
-      // delete buttonAttrs.attrs.href;
     }
 
     const setColor = (!this.outline && !this.flat) ? this.setBackgroundColor : this.setTextColor;

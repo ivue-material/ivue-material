@@ -5,10 +5,10 @@
             <p>基础用法</p>
             <IVueCarousel v-model="value1" loop>
                   <IVueCarouselItem>
-                        <div class="demo-carousel">1</div>
+                        <div class="demo-carousel" style="background:red">1</div>
                   </IVueCarouselItem>
                   <IVueCarouselItem>
-                        <div class="demo-carousel">2</div>
+                        <div class="demo-carousel" style="background:yellow">2</div>
                   </IVueCarouselItem>
                     <IVueCarouselItem>
                         <div class="demo-carousel">3</div>

@@ -1,7 +1,10 @@
 <template>
-      <div :class="classes">
+      <div :class="classes" v-touch="{
+                                          left: e => (e.offsetX < -15) && arrowEvent(1),
+                                          right: e => (e.offsetX > 15) && arrowEvent(-1)
+                                    }">
             <!-- 左按钮 -->
-            <IVueButton :class="arrowClasses" class="left ivue-icon-button" @click="arrowEvent(-1)" flat>
+            <IVueButton :class="arrowClasses" class="left ivue-icon-button" flat icon>
                   <IVueIcon>{{leftArrow}}</IVueIcon>
             </IVueButton>
             <!-- 内容 -->
@@ -13,7 +16,7 @@
                   <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
             <!-- 右按钮 -->
-            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)" flat>
+            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)" flat icon>
                   <IVueIcon>{{rightArrow}}</IVueIcon>
             </IVueButton>
             <!-- 导航器 -->
@@ -35,11 +38,13 @@ import { getStyle, oneOf } from '../../utils/Assist';
 import { on, off } from '../../utils/Dom';
 import IVueIcon from '../IVueIcon/IVueIcon';
 import IVueButton from '../IVueButton/IVueButton';
+import Touch from '../../utils/directives/Touch';
 
 const prefixCls = 'ivue-carousel';
 
 export default {
       name: 'IVueCarousel',
+      directives: {Touch},
       props: {
             /*
             * 切换箭头显示时机

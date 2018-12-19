@@ -16,7 +16,7 @@
                   <span slot="close">关</span>
             </IVueSwitch>
 
-            <IVueSwitch >
+            <IVueSwitch  class="red-accent-4">
                   <span slot="open"><IVueIcon>check</IVueIcon></span>
                   <span slot="close"><IVueIcon>close</IVueIcon></span>
             </IVueSwitch>

@@ -85,6 +85,7 @@ function createHandlers (value) {
 // 指令定义
 function inserted (el, binding, vnode) {
       const value = binding.value;
+
       const target = value.parent ? el.parentElement : el;
       const options = value.options || { passive: true };
 

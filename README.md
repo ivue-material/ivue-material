@@ -348,58 +348,62 @@ API
 
 ```javascript
 <template>
-      <div>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <div>
-          <span>Flat</span>
-          <IVueButton @click="clickBtn">默认效果</IVueButton>
-          <IVueButton :ivueRipple="false">波纹效果关闭</IVueButton>
-          <IVueButton class="red-accent-4">Accent</IVueButton>
-          <IVueButton class="blue">Primary</IVueButton>
-          <IVueButton disabled>disabled</IVueButton>
-        </div>
-        <div>
-          <span>Raised</span>
-          <IVueButton class="ivue-raised" >默认效果</IVueButton>
-          <IVueButton class="ivue-raised" :ivueRipple="false">波纹效果关闭</IVueButton>
-          <IVueButton class="ivue-raised blue">Primary</IVueButton>
-          <IVueButton class="ivue-raised red-accent-4">Accent</IVueButton>
-          <IVueButton class="ivue-raised" disabled>disabled</IVueButton>
-        </div>
-        <div>
-          <span>no elevation</span>
-          <IVueButton class="ivue-raised-noElevation">默认效果</IVueButton>
-          <IVueButton class="ivue-raised-noElevation red-accent-4">Accent</IVueButton>
-          <IVueButton class="ivue-raised-noElevation blue">Primary</IVueButton>
-        </div>
-        <div>
-          <span>link</span>
-          <IVueButton :href="pageUrl">默认效果</IVueButton>
-          <IVueButton :href="pageUrl" class="blue">Primary</IVueButton>
-          <IVueButton :href="pageUrl" class="red-accent-4">Accent</IVueButton>
-          <IVueButton :href="pageUrl" class="ivue-raised blue">Primary</IVueButton>
-        </div>
-         <div>
-          <span>router link</span>
-          <IVueButton to="Layout">默认效果</IVueButton>
-          <IVueButton to="Layout" class="blue">Primary</IVueButton>
-          <IVueButton to="Layout" class="red-accent-4">Accent</IVueButton>
-        </div>
-        <div>
-          <span>icon</span>
-          <IVueButton class="ivue-icon-button">
-            <IVueIcon>menu</IVueIcon>
-          </IVueButton>
+  <div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div>
+      <span>Flat</span>
+      <IVueButton flat @click="clickBtn">默认效果</IVueButton>
+      <IVueButton flat :ivueRipple="false">波纹效果关闭</IVueButton>
+      <IVueButton flat color="red-accent-4">Accent</IVueButton>
+      <IVueButton flat color="blue">Primary</IVueButton>
+      <IVueButton flat disabled>disabled</IVueButton>
+    </div>
+    <div>
+      <span>Raised</span>
+      <IVueButton>默认效果</IVueButton>
+      <IVueButton :ivueRipple="false">波纹效果关闭</IVueButton>
+      <IVueButton color="blue">Primary</IVueButton>
+      <IVueButton color="red-accent-4">Accent</IVueButton>
+      <IVueButton disabled>disabled</IVueButton>
+    </div>
+    <div>
+      <span>depressed</span>
+      <IVueButton depressed>默认效果</IVueButton>
+      <IVueButton depressed color="red-accent-4">Accent</IVueButton>
+    </div>
+     <div>
+      <span>outline</span>
+      <IVueButton outline>默认效果</IVueButton>
+      <IVueButton outline color="red-accent-4">Accent</IVueButton>
+    </div>
+    <div>
+      <span>link</span>
+      <IVueButton :href="pageUrl">默认效果</IVueButton>
+      <IVueButton :href="pageUrl" class="blue">Primary</IVueButton>
+      <IVueButton :href="pageUrl" class="red-accent-4">Accent</IVueButton>
+      <IVueButton :href="pageUrl" class="ivue-raised blue">Primary</IVueButton>
+    </div>
+    <div>
+      <span>router link</span>
+      <IVueButton to="Layout" tag="div">默认效果</IVueButton>
+      <IVueButton to="Layout" class="blue">Primary</IVueButton>
+      <IVueButton to="Layout" class="red-accent-4">Accent</IVueButton>
+    </div>
+    <div>
+      <span>icon</span>
+      <IVueButton icon>
+        <IVueIcon>menu</IVueIcon>
+      </IVueButton>
 
-           <IVueButton class="ivue-icon-button ivue-raised ">
-            <IVueIcon>menu</IVueIcon>
-          </IVueButton>
+      <IVueButton icon flat>
+        <IVueIcon>menu</IVueIcon>
+      </IVueButton>
 
-          <IVueButton class="ivue-icon-button ivue-raised  red-accent-4">
-            <IVueIcon>menu</IVueIcon>
-          </IVueButton>
-        </div>
-      </div>
+      <IVueButton icon color="red-accent-4">
+        <IVueIcon>menu</IVueIcon>
+      </IVueButton>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -411,7 +415,7 @@ export default {
   },
   methods: {
     clickBtn () {
-      console.log("click")
+      console.log("..")
     }
   }
 }
@@ -434,7 +438,23 @@ API
 | type        | 将类型应用于按钮 - 它不会影响链接                             | String  | button |
 | disabled    | 禁用该按钮并阻止其操作                                        | Boolean | false  |
 | ivue-ripple | 启用/禁用涟漪效应                                             | Boolean | false  |
-| to          | router-link                                                   | String | null   |
+| color       |     定义按钮颜色                                               | String | null   |
+| flat        |     是否扁平按钮                                               | Boolean | -   |
+| depressed   |     凹陷的按钮依然保持其背景色，但没有框阴影                     | Boolean | -   |
+| icon   |     按钮显示为圆形图标                     | Boolean | -   |
+| outline   |     轮廓按钮从当前色彩应用继承他们的边框颜色                     | Boolean | -   |
+| to          | router-link                                                   | String,Object | -   |
+| replace     | router-link                                                   | Boolean | -   |
+| append     | router-link                                                   | Boolean | -   |
+| tag     | router-link                                                   | String | -   |
+| activeClass     | router-link                                                   | String | -   |
+| exact     | router-link                                                   | Boolean | undefined   |
+| event     | router-link                                                   | String, Array | -   |
+| exactActiveClass     | router-link                                                   | String | -   |
+| href     | router-link                                                   | String, Object | -   |
+| disabled     | router-link                                                   | Boolean | -   |
+| nuxt     | router-link                                                   | Boolean | -   |
+| target     | router-link                                                   | String | -   |
 
 ##### class
 

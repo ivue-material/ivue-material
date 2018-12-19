@@ -17,7 +17,16 @@ export default {
             href: [String, Object],
             disabled: Boolean,
             nuxt: Boolean,
-            target: String
+            target: String,
+            /*
+            * 将类型应用于按钮 - 它不会影响链接
+            * 
+            * @type {String}
+            */
+            type: {
+                  type: String,
+                  default: 'button'
+            },
       },
       methods: {
             click (e) {

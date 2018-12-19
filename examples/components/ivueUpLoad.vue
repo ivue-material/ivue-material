@@ -51,7 +51,7 @@
                         <p>Click or drag files here to upload</p>
                   </div>
             </IVueUpLoad>
-            <img v-for="item in uploadList" :src="item.url" :key="item.url" v-if="item.status === 'finished'"/>
+            <img v-for="(item,index) in uploadList" :src="item.url" :key="index" v-if="item.status === 'finished'"/>
       </div>
 </template>
 

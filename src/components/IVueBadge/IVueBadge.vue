@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import Colorable from '../../utils/mixins/Colorable';
-
 const prefixCls = 'ivue-badge';
 
 function isCssColor (color) {
@@ -24,7 +22,6 @@ function isCssColor (color) {
 
 export default {
       name: 'IVueBadge',
-      mixins: [Colorable],
       props: {
             /*
             * 显示的数字

@@ -60,7 +60,7 @@ const components = {
   IVueTabsSlider,
   IVueLoadingBar,
   IVueBadge,
-  // IVueDatePicker
+  IVueDatePicker
 };
 
 const iVue = {
