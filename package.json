@@ -1,6 +1,6 @@
 {
   "name": "ivue-material",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A high quality UI components Library with Vue.js",
   "main": "dist/ivue.js",
   "files": [
@@ -8,13 +8,13 @@
     "src"
   ],
   "scripts": {
-    "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 3003  --config build/webpack.dev.config.js",
-    "dist:style": "gulp --gulpfile build/build-style.js",
-    "dist:dev": "webpack --config build/webpack.dist.dev.config.js",
-    "dist:prod": "webpack --coe && npm run dist:dev && npm run dist:prod",
-    "unit": "cross-env BABELnfig build/webpack.dist.prod.config.js",
-    "dist": "npm run dist:styl_ENV=test karma start test/karma.conf.js",
-    "test": "npm run unit"
+    "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 3003  --config build/webpack.dev.config.js",	   
+     "dist:style": "gulp --gulpfile build/build-style.js",	   
+     "dist:dev": "webpack --config build/webpack.dist.dev.config.js",	    
+     "dist:prod": "webpack --config build/webpack.dist.prod.config.js",	   
+     "dist": "npm run dist:style && npm run dist:dev && npm run dist:prod",	     
+     "unit": "cross-env BABEL_ENV=test karma start test/karma.conf.js",	   
+     "test": "npm run unit"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,4 @@
 <style lang="scss">
-@import "../src/styles/index.scss";
 </style>
 <style lang="scss" scoped>
 nav {

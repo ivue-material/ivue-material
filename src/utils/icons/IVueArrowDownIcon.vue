@@ -18,6 +18,3 @@ export default {
 }
 </script>
 
-<style lass="scss">
-
-</style>

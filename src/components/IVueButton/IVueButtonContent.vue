@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ivue-button-content {
   position: relative;
   z-index: 2;
