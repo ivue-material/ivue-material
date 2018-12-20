@@ -1,17 +1,17 @@
 <template>
   <router-link class="ivue-list-item-router" v-bind="routerProps">
-    <IVueListItemContent :ivueDisabled="isDisabled">
+    <IvueListItemContent :ivueDisabled="isDisabled">
       <slot></slot>
-    </IVueListItemContent>
+    </IvueListItemContent>
   </router-link>
 </template>
 
 <script>
-import IVueListItemMixin from './IVueListItemMixin';
+import IvueListItemMixin from './IvueListItemMixin';
 
 export default {
-  name: 'IVueListItemRouter',
-  mixins: [IVueListItemMixin],
+  name: 'ivue-list-item-router',
+  mixins: [IvueListItemMixin],
   props: {
     to: [String, Object],
     replace: Boolean,

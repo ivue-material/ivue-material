@@ -15,7 +15,7 @@ const prefixCls = 'ivue-tabs';
 const transitionTime = 300;
 
 export default {
-      name: 'IVueTabs',
+      name: prefixCls,
       directives: {
             Resize,
             Touch
@@ -124,11 +124,11 @@ export default {
 
                         if (vnode.componentOptions) {
                               switch (vnode.componentOptions.Ctor.options.name) {
-                                    case 'IVueTabsSlider': slider.push(vnode);
+                                    case 'ivue-tabs-slider': slider.push(vnode);
                                           break;
-                                    case 'IVueTabItems': items.push(vnode);
+                                    case 'ivue-tabs-items': items.push(vnode);
                                           break;
-                                    case 'IVueTabItem': item.push(vnode);
+                                    case 'ivue-tab-item': item.push(vnode);
                                           break;
                                     default: tab.push(vnode);
                               }

@@ -5,24 +5,24 @@ import Elevation from '../components/elevation';
 import Layout from '../components/layout';
 import Button from '../components/button';
 import Icon from '../components/icon';
-import IVueList from '../components/ivueList';
-import IVueSpin from '../components/ivueSpin';
-import IVueCarousel from '../components/ivueCarousel';
-import IVueSwitch from '../components/ivueSwitch';
-import IVueBottomNav from '../components/ivueBottomNav';
-import IVueBreadcrumbs from '../components/ivueBreadcrumb';
-import IVueSelect from '../components/ivueSelect';
-import IVueAutoComplete from '../components/ivueAutoComplete';
-import IVueInput from '../components/ivueInput';
-import IVueStepperStep from '../components/ivueStepperStep';
-import IVueUpLoad from '../components/ivueUpLoad';
-import IVueProgress from '../components/ivueProgress';
-import IVueNotice from '../components/ivueNotice';
-import IVueMessage from '../components/ivueMessage';
-import IVueTabs from '../components/ivueTabs';
-import IVueLoadingBar from '../components/iVueLoadingBar';
-import IVueBadge from '../components/ivueBadge';
-import IVueDatePicker from '../components/ivueDatePicker';
+import IvueList from '../components/ivueList';
+import IvueSpin from '../components/ivueSpin';
+import IvueCarousel from '../components/ivueCarousel';
+import IvueSwitch from '../components/ivueSwitch';
+import IvueBottomNav from '../components/ivueBottomNav';
+import IvueBreadcrumbs from '../components/ivueBreadcrumb';
+import IvueSelect from '../components/ivueSelect';
+import IvueAutoComplete from '../components/ivueAutoComplete';
+import IvueInput from '../components/ivueInput';
+import IvueStepperStep from '../components/ivueStepperStep';
+import IvueUpLoad from '../components/ivueUpLoad';
+import IvueProgress from '../components/ivueProgress';
+import IvueNotice from '../components/ivueNotice';
+import IvueMessage from '../components/ivueMessage';
+import IvueTabs from '../components/ivueTabs';
+import IvueLoadingBar from '../components/iVueLoadingBar';
+import IvueBadge from '../components/ivueBadge';
+import IvueDatePicker from '../components/ivueDatePicker';
 
 Vue.use(Router);
 
@@ -54,94 +54,94 @@ export default new Router({
       component: Icon
     },
     {
-      path: '/IVueList',
-      name: 'IVueList',
-      component: IVueList
+      path: '/IvueList',
+      name: 'IvueList',
+      component: IvueList
     },
     {
-      path: '/IVueSpin',
-      name: 'IVueSpin',
-      component: IVueSpin
+      path: '/IvueSpin',
+      name: 'IvueSpin',
+      component: IvueSpin
     },
     {
-      path: '/IVueCarousel',
-      name: 'IVueCarousel',
-      component: IVueCarousel
+      path: '/IvueCarousel',
+      name: 'IvueCarousel',
+      component: IvueCarousel
     },
     {
-      path: '/IVueSwitch',
-      name: 'IVueSwitch',
-      component: IVueSwitch
+      path: '/IvueSwitch',
+      name: 'IvueSwitch',
+      component: IvueSwitch
     },
     {
-      path: '/IVueBottomNav',
-      name: 'IVueBottomNav',
-      component: IVueBottomNav
+      path: '/IvueBottomNav',
+      name: 'IvueBottomNav',
+      component: IvueBottomNav
     },
     {
-      path: '/IVueBreadcrumbs',
-      name: 'IVueBreadcrumbs',
-      component: IVueBreadcrumbs
+      path: '/IvueBreadcrumbs',
+      name: 'IvueBreadcrumbs',
+      component: IvueBreadcrumbs
     },
     {
-      path: '/IVueSelect',
-      name: 'IVueSelect',
-      component: IVueSelect
+      path: '/IvueSelect',
+      name: 'IvueSelect',
+      component: IvueSelect
     },
     {
-      path: '/IVueAutoComplete',
-      name: 'IVueAutoComplete',
-      component: IVueAutoComplete
+      path: '/IvueAutoComplete',
+      name: 'IvueAutoComplete',
+      component: IvueAutoComplete
     },
     {
-      path: '/IVueInput',
-      name: 'IVueInput',
-      component: IVueInput
+      path: '/IvueInput',
+      name: 'IvueInput',
+      component: IvueInput
     },
     {
-      path: '/IVueStepperStep',
-      name: 'IVueStepperStep',
-      component: IVueStepperStep
+      path: '/IvueStepperStep',
+      name: 'IvueStepperStep',
+      component: IvueStepperStep
     },
     {
-      path: '/IVueUpLoad',
-      name: 'IVueUpLoad',
-      component: IVueUpLoad
+      path: '/IvueUpLoad',
+      name: 'IvueUpLoad',
+      component: IvueUpLoad
     },
     {
-      path: '/IVueProgress',
-      name: 'IVueProgress',
-      component: IVueProgress
+      path: '/IvueProgress',
+      name: 'IvueProgress',
+      component: IvueProgress
     },
     {
-      path: '/IVueNotice',
-      name: 'IVueNotice',
-      component: IVueNotice
+      path: '/IvueNotice',
+      name: 'IvueNotice',
+      component: IvueNotice
     },
     {
-      path: '/IVueMessage',
-      name: 'IVueMessage',
-      component: IVueMessage
+      path: '/IvueMessage',
+      name: 'IvueMessage',
+      component: IvueMessage
     },
     {
-      path: '/IVueTabs',
-      name: 'IVueTabs',
-      component: IVueTabs
+      path: '/IvueTabs',
+      name: 'IvueTabs',
+      component: IvueTabs
     },
     {
-      path: '/IVueLoadingBar',
-      name: 'IVueLoadingBar',
-      component: IVueLoadingBar
+      path: '/IvueLoadingBar',
+      name: 'IvueLoadingBar',
+      component: IvueLoadingBar
     },
     {
-      path: '/IVueBadge',
-      name: 'IVueBadge',
-      component: IVueBadge
+      path: '/IvueBadge',
+      name: 'IvueBadge',
+      component: IvueBadge
     },
     {
-      path: '/IVueDatePicker',
-      name: 'IVueDatePicker',
-      component: IVueDatePicker
+      path: '/IvueDatePicker',
+      name: 'IvueDatePicker',
+      component: IvueDatePicker
     }
   ]
 });

@@ -29,16 +29,16 @@
                         ref="input"
                   />
                   <!-- 尾部图标 -->
-                  <span :class="[`${prefixCls}-suffix`]" v-show="showSuffix">
+                  <span :class="[`${prefixCls}-suffix`]" v-show="showSuffix" @click.stop="handleSuffix">
                         <slot name="suffix">
                               <i class="ivue-icon">{{suffix}}</i>
                         </slot>
                   </span>
                   <!-- 重置选择 -->
-                  <IVueIcon :class="[`${prefixCls}-icon`,`${prefixCls}-icon-clear`,showSuffix? 'is-suffix': '']" 
+                  <IvueIcon :class="[`${prefixCls}-icon`,`${prefixCls}-icon-clear`,showSuffix? 'is-suffix': '']" 
                         v-if="clearable && currentValue" 
                         @click.native.stop="handleClear"
-                  >{{clearIcon}}</IVueIcon>
+                  >{{clearIcon}}</IvueIcon>
             </template>
             <textarea   v-else
                         :id="id"
@@ -73,7 +73,7 @@ import CalcTextareaHeight from '../../utils/CalcTextareaHeight';
 const prefixCls = 'ivue-input';
 
 export default {
-      name: 'IVueInput',
+      name: prefixCls,
       props: {
             /*
             * 输入框类型，可选值为 text、password、textarea、url、email、date
@@ -248,6 +248,10 @@ export default {
             // 失去焦点事件
             handleBlur (event) {
                   this.$emit('on-blur', event);
+            },
+            // 尾部图标点击事件
+            handleSuffix(event){
+                 this.$emit('handleSuffix', event);
             },
             // 输入事件
             handleInput (event) {

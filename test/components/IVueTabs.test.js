@@ -1,4 +1,4 @@
-import { IVueTabs, IVueTab, IVueTabItem, IVueTabsItems, IVueTabsSlider } from '../../src/components/IVueTabs';
+import { IvueTabs, IvueTab, IvueTabItem, IvueTabsItems, IvueTabsSlider } from '../../src/components/IvueTabs';
 import { mount } from '@vue/test-utils';
 
 const Component = (items = ['foo', 'bar']) => {
@@ -6,13 +6,12 @@ const Component = (items = ['foo', 'bar']) => {
             inheritAttrs: false,
 
             render (h) {
-                  return h(IVueTabs, {
-                        attrs: this.,
+                  return h(IvueTabs, {
                   }, [
-                              items.map(item => h(IVueTab, {
+                              items.map(item => h(IvueTab, {
                                     props: { href: `#${item}` }
                               })),
-                              h(IVueTabsItems, items.map(item => h(IVueTabItem, {
+                              h(IvueTabsItems, items.map(item => h(IvueTabItem, {
                                     props: { id: item }
                               })))
                         ])
@@ -22,33 +21,33 @@ const Component = (items = ['foo', 'bar']) => {
 
 
 
-describe('IVueTabs', function () {
+describe('IvueTabs', function () {
       it('should provide', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueTabs color="#424242">
-                        <IVueTab>foo</IVueTab>
-                        <IVueTab>bar</IVueTab>
-                        <IVueTabItem>foo</IVueTabItem>
-                        <IVueTabItem>bar</IVueTabItem>
-                  </IVueTabs>
+                  <IvueTabs color="#424242">
+                        <IvueTab>foo</IvueTab>
+                        <IvueTab>bar</IvueTab>
+                        <IvueTabItem>foo</IvueTabItem>
+                        <IvueTabItem>bar</IvueTabItem>
+                  </IvueTabs>
 
                   `,
                   components: {
-                        IVueTabs,
-                        IVueTab,
-                        IVueTabItem
+                        IvueTabs,
+                        IvueTab,
+                        IvueTabItem
                   }
             }, {
                   });
 
-            const tab = wrapper.find(IVueTab)
+            const tab = wrapper.find(IvueTab)
 
             expect(typeof tab.vm.tabNavClick).to.be.equal('function');
             expect(typeof tab.vm.tabNavList.register).to.be.equal('function');
             expect(typeof tab.vm.tabNavList.unregister).to.be.equal('function');
 
-            const items = wrapper.find(IVueTabItem);
+            const items = wrapper.find(IvueTabItem);
 
             expect(typeof items.vm.$parent.tabProxy).to.be.equal('function');
             expect(typeof items.vm.$parent.registerItems).to.be.equal('function');
@@ -57,18 +56,18 @@ describe('IVueTabs', function () {
 
 
       it('should register tabs and items', async () => {
-            const wrapper = mount(IVueTabs, {
+            const wrapper = mount(IvueTabs, {
                   slots: {
-                        default: [IVueTab, IVueTabsItems]
+                        default: [IvueTab, IvueTabsItems]
                   }
             });
 
-            const tab = wrapper.find(IVueTab);
+            const tab = wrapper.find(IvueTab);
             expect(wrapper.vm.tabNavList.length).to.be.equal(1);
             tab.destroy();
             expect(wrapper.vm.tabNavList.length).to.be.equal(0);
 
-            const items = wrapper.find(IVueTabsItems);
+            const items = wrapper.find(IvueTabsItems);
             expect(typeof items.vm.changeModel).to.be.equal('function');
             items.destroy();
             expect(wrapper.vm.tabItems).to.be.equal(null);
@@ -80,9 +79,9 @@ describe('IVueTabs', function () {
             const wrapper = mount(Component(), {
             });
 
-            const tabs = wrapper.find(IVueTabs);
-            const tab = wrapper.find(IVueTab);
-            const item = wrapper.find(IVueTabItem);
+            const tabs = wrapper.find(IvueTabs);
+            const tab = wrapper.find(IvueTab);
+            const item = wrapper.find(IvueTabItem);
 
             expect(tabs.vm.activeIndex).to.be.equal(0);
             expect(tab.vm.isActive).to.be.equal(false);
@@ -94,7 +93,7 @@ describe('IVueTabs', function () {
             const wrapper = mount(Component(), {
                    
             });
-            const tabs = wrapper.find(IVueTabs);
+            const tabs = wrapper.find(IvueTabs);
 
             tabs.setData({ scrollOffset: 1 });
             tabs.vm.onResize();
@@ -113,7 +112,7 @@ describe('IVueTabs', function () {
 
 
       it('should validate height prop', async () => {
-            const wrapper = mount(IVueTabs, {
+            const wrapper = mount(IvueTabs, {
                   propsData: { height: '0' }
             })
 

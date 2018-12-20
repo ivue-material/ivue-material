@@ -1,13 +1,13 @@
 <script>
 import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 const prefixCls = 'ivue-tabs-tab';
 
 export default {
-      name: 'IVueTab',
+      name: 'ivue-tab',
       mixins: [
-            RegistrableInject('tabNavList', 'IVueTab', 'IVueTabs')
+            RegistrableInject('tabNavList', 'ivue-tab', 'ivue-tabs')
       ],
       inject: ['tabNavClick'],
       props: {
@@ -77,10 +77,10 @@ export default {
             this.tabNavList.unregister(this);
       },
       components: {
-            IVueRipple
+            IvueRipple
       },
       render (h) {
-            return h('IVueRipple', {
+            return h('IvueRipple', {
                   staticClass: prefixCls,
                   class: this.wrapClass,
                   ref: 'tab',

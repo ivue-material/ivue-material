@@ -6,7 +6,7 @@ import DatePickerTable from '../../utils/mixins/DatePickerTable';
 const prefixCls = 'ivue-date-picker-years';
 
 export default {
-  name: 'IVueDatePickerYears',
+  name: prefixCls,
   mixins: [DatePickerTable, Colorable],
   props: {
     /*

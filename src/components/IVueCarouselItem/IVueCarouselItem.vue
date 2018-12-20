@@ -8,7 +8,7 @@
 const prefixCls = 'ivue-carousel-item';
 
 export default {
-      name: 'IVueCarouselItem',
+      name: prefixCls,
       componentName: 'ivue-carousel-item',
       data () {
             return {

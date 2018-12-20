@@ -1,4 +1,4 @@
-import IVueNotification from '../IVueNotification';
+import IvueNotification from '../IvueNotification';
 
 const prefixCls = 'ivue-notice';
 const prefixKey = 'ivue_notice_key_';
@@ -22,7 +22,7 @@ const noTitleTypes = {
 };
 
 function getNoticeInstance () {
-      noticeInstance = noticeInstance || IVueNotification.newInstance({
+      noticeInstance = noticeInstance || IvueNotification.newInstance({
             prefixCls: prefixCls,
             styles: {
                   top: `${top}px`,

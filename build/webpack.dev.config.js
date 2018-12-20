@@ -12,7 +12,7 @@ const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config');
 // 识别某些类型的webpack错误
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-
+ 
 module.exports = merge(webpackBaseConfig, {
       // 每个模块使用 eval() 执行，并且 source map 转换为 DataUrl 后添加到 eval() 中。
       // 初始化 source map 时比较慢，但是会在重新构建时提供比较快的速度，并且生成实际的文件。

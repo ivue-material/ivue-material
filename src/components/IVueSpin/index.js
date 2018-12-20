@@ -1,10 +1,10 @@
-import IVueSpin from './IVueSpin.js'
+import IvueSpin from './IvueSpin.js'
 
 let ivueSpinInstance;
 
 // 获取组件
-function getIVueSpinInstance (render = undefined) {
-      ivueSpinInstance = ivueSpinInstance || IVueSpin.newInstance({
+function getIvueSpinInstance (render = undefined) {
+      ivueSpinInstance = ivueSpinInstance || IvueSpin.newInstance({
             render: render
       });
 
@@ -13,25 +13,25 @@ function getIVueSpinInstance (render = undefined) {
 
 function loading (option) {
       const render = ('render' in option) ? option.render : undefined;
-      let instance = getIVueSpinInstance(render);
+      let instance = getIvueSpinInstance(render);
 
       instance.show(option);
 }
 
-IVueSpin.show = function (props = {}) {
+IvueSpin.show = function (props = {}) {
       return loading(props);
 }
 
-IVueSpin.hide = function () {
+IvueSpin.hide = function () {
       if (!ivueSpinInstance) {
             return false;
       }
 
-      const instance = getIVueSpinInstance();
+      const instance = getIvueSpinInstance();
 
       instance.remove(() => {
             ivueSpinInstance = null;
       });
 }
 
-export default IVueSpin;
+export default IvueSpin;

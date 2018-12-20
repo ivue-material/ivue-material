@@ -7,7 +7,7 @@ import Pad from '../../utils/Pad';
 const prefixCls = 'ivue-date-picker-month';
 
 export default {
-  name: 'IVueDatePickerMonth',
+  name: prefixCls,
   mixins: [DatePickerTable, Colorable],
   computed: {
     formatter () {

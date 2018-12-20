@@ -1,14 +1,14 @@
-import IVueSwitch from '../../src/components/IVueSwitch';
+import IvueSwitch from '../../src/components/IvueSwitch';
 import { mount } from '@vue/test-utils';
 
-describe('IVueListItem', function () {
+describe('IvueListItem', function () {
       it('should render the switch theme', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueSwitch class="red-accent-4" :value="true" ></IVueSwitch>
+                        <IvueSwitch class="red-accent-4" :value="true" ></IvueSwitch>
                   `,
                   components: {
-                        IVueSwitch
+                        IvueSwitch
                   }
             }, {
                   });
@@ -19,10 +19,10 @@ describe('IVueListItem', function () {
       it('should render the switch disabled', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueSwitch :disabled="true"></IVueSwitch>
+                        <IvueSwitch :disabled="true"></IvueSwitch>
                   `,
                   components: {
-                        IVueSwitch
+                        IvueSwitch
                   }
             }, {
                   });
@@ -33,10 +33,10 @@ describe('IVueListItem', function () {
       it('should render the switch loading theme', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueSwitch loading :value="true" class="red-accent-4"></IVueSwitch>
+                        <IvueSwitch loading :value="true" class="red-accent-4"></IvueSwitch>
                   `,
                   components: {
-                        IVueSwitch
+                        IvueSwitch
                   }
             }, {
                   });
@@ -48,13 +48,13 @@ describe('IVueListItem', function () {
       it('should render the switch text', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueSwitch>
+                        <IvueSwitch>
                               <span slot="open">开</span>
                               <span slot="close">关</span>
-                        </IVueSwitch>
+                        </IvueSwitch>
                   `,
                   components: {
-                        IVueSwitch
+                        IvueSwitch
                   }
             }, {
                   });

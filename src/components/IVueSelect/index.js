@@ -1,7 +1,7 @@
-import IVueSelect from './IVueSelect.vue';
-import IVueOption from './IVueOption.vue';
-import IVueOptionGroup from './IVueOptionGroup.vue';
+import IvueSelect from './IvueSelect.vue';
+import IvueOption from './IvueOption.vue';
+import IvueOptionGroup from './IvueOptionGroup.vue';
 
-export { IVueSelect, IVueOption,IVueOptionGroup }
+export { IvueSelect, IvueOption,IvueOptionGroup }
 
-export default IVueSelect;
+export default IvueSelect;

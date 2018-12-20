@@ -3,39 +3,39 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <p>有主题颜色</p>
-    <IVueBottomNav :value="true" :active.sync="bottomNav" :color="color" key="theme">
-      <IVueButton flat color="red-accent-4">
+    <IvueBottomNav :value="true" :active.sync="bottomNav" :color="color" key="theme">
+      <IvueButton flat color="red-accent-4">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-      <IVueButton flat color="blue">
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+      <IvueButton flat color="blue">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-    </IVueBottomNav>
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+    </IvueBottomNav>
     <p>基础</p>
-    <IVueBottomNav :value="true" :active.sync="bottomNav" key="base" :height="'100'">
-      <IVueButton flat color="red-accent-4" key="base1" to="/IVueBottomNav">
+    <IvueBottomNav :value="true" :active.sync="bottomNav" key="base" :height="'100'">
+      <IvueButton flat color="red-accent-4" key="base1" to="/IvueBottomNav">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-      <IVueButton flat color="blue" key="base2" to="/IVueBottomNav?q=q" tag="div">
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+      <IvueButton flat color="blue" key="base2" to="/IvueBottomNav?q=q" tag="div">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-    </IVueBottomNav>
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+    </IvueBottomNav>
 
     <p>不激活时隐藏按钮上的文字</p>
-    <IVueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
-      <IVueButton flat color="red-accent-4">
+    <IvueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
+      <IvueButton flat color="red-accent-4">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-      <IVueButton flat color="buld">
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+      <IvueButton flat color="buld">
         <span>Recents</span>
-        <IVueIcon>history</IVueIcon>
-      </IVueButton>
-    </IVueBottomNav>
+        <IvueIcon>history</IvueIcon>
+      </IvueButton>
+    </IvueBottomNav>
   </div>
 </template>
 

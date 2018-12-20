@@ -1,11 +1,11 @@
 <script>
 import PickerButton from '../../utils/mixins/PickerButton';
-import IVueIcon from '../IVueIcon/IVueIcon';
+import IvueIcon from '../IvueIcon/IvueIcon';
 
 const prefixCls = 'ivue-date-picker-title';
 
 export default {
-  name: 'IVueDatePickerTitle',
+  name: prefixCls,
   mixins: [PickerButton],
   props: {
     // 选择年份
@@ -56,7 +56,7 @@ export default {
       return this.genPickerButton('selectingYear', false, this.genTitleText(), false, `${prefixCls}--date`);
     },
     genYearIcon () {
-      return this.$createElement(IVueIcon, this.yearIcon)
+      return this.$createElement(IvueIcon, this.yearIcon)
     }
   },
   watch: {

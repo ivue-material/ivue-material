@@ -1,9 +1,9 @@
-import IVueDatePickerMonth from '../../../src/components/IVueDatePicker/IVueDatePickerMonth';
+import IvueDatePickerMonth from '../../../src/components/IvueDatePicker/IvueDatePickerMonth';
 import { mount } from '@vue/test-utils';
 
-describe('IVueDatePickerMonth', function () {
+describe('IvueDatePickerMonth', function () {
       it('should emit event when month button is clicked', () => {
-            const wrapper = mount(IVueDatePickerMonth, {
+            const wrapper = mount(IvueDatePickerMonth, {
                   propsData: {
                         tableDate: '2017',
                         current: '2017-05',
@@ -21,7 +21,7 @@ describe('IVueDatePickerMonth', function () {
       });
 
       it('should not emit event when disabled month button is clicked', () => {
-            const wrapper = mount(IVueDatePickerMonth, {
+            const wrapper = mount(IvueDatePickerMonth, {
                   propsData: {
                         tableDate: '2017',
                         current: '2017-05',
@@ -40,7 +40,7 @@ describe('IVueDatePickerMonth', function () {
       });
 
       it('should change tableDate when touch is called', () => {
-            const wrapper = mount(IVueDatePickerMonth, {
+            const wrapper = mount(IvueDatePickerMonth, {
                   propsData: {
                         tableDate: '2017'
                   }

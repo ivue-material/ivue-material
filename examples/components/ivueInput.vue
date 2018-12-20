@@ -3,30 +3,30 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
             <p>基本用法，可以使用 v-model 实现数据的双向绑定。可以直接设置 style 来改变输入框的宽度，默认 100%。</p>
-            <IVueInput v-model="baseInput" placeholder="someing messasge" @on-enter="enter"></IVueInput>
+            <IvueInput v-model="baseInput" placeholder="someing messasge" @on-enter="enter"></IvueInput>
             <p>{{baseInput}}</p>
             <p>开启属性 clearable 可显示清空按钮。</p>
-            <IVueInput v-model="clearableInput" placeholder="someing messasge" clearable></IVueInput>
+            <IvueInput v-model="clearableInput" placeholder="someing messasge" clearable></IvueInput>
             <p>{{clearableInput}}</p>
             <p>输入框图标 属性方式</p>
-            <IVueInput  placeholder="someing messasge" prefix="face"  clearable></IVueInput>
-            <IVueInput  placeholder="someing messasge"  suffix="visibility" clearable></IVueInput>
+            <IvueInput  placeholder="someing messasge" prefix="face"  ></IvueInput>
+            <IvueInput  placeholder="someing messasge"  suffix="visibility"></IvueInput>
             <p>输入框图标 slot方式</p>
-            <IVueInput  placeholder="someing messasge"  clearable number>
-                        <IVueIcon slot="prefix">face</IVueIcon>
-            </IVueInput>
-            <IVueInput  placeholder="someing messasge"  clearable>
-                        <IVueIcon slot="suffix">visibility</IVueIcon>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  clearable number>
+                        <IvueIcon slot="prefix">face</IvueIcon>
+            </IvueInput>
+            <IvueInput  placeholder="someing messasge"   @handleSuffix="clickVisiblity">
+                        <IvueIcon slot="suffix">visibility</IvueIcon>
+            </IvueInput>
             <p>input disabled</p>
-            <IVueInput  placeholder="someing messasge"  disabled>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  disabled>
+            </IvueInput>
             <p>textarea</p>
-            <IVueInput  placeholder="someing messasge"  type="textarea" :autosize="{minRows: 2,maxRows: 5}">
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  type="textarea" :autosize="{minRows: 2,maxRows: 5}">
+            </IvueInput>
             <p>textarea disabled</p>
-            <IVueInput  placeholder="someing messasge"  type="textarea" disabled>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  type="textarea" disabled>
+            </IvueInput>
       </div>
 </template>
 
@@ -41,6 +41,9 @@ export default {
       methods:{
             enter (event) {
                   console.log(event)
+            },
+            clickVisiblity(){
+                  console.log('?111?')
             }
       }
 }

@@ -21,7 +21,7 @@ function isCssColor (color) {
 }
 
 export default {
-      name: 'IVueBadge',
+      name: prefixCls,
       props: {
             /*
             * 显示的数字

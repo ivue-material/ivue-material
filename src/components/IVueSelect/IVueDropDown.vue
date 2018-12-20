@@ -10,7 +10,7 @@ import { getStyle } from '../../utils/Assist';
 const isServer = Vue.prototype.$isServer;
 
 export default {
-      name: 'IVueSelectDropDown',
+      name: 'ivue-select-dropdown',
       props: {
             className: {
                   type: String
@@ -43,10 +43,10 @@ export default {
                   }
 
                   // 设置输入框的宽度为100％
-                  if (this.$parent.$options.name === 'IVueSelect') {
+                  if (this.$parent.$options.name === 'ivue-select') {
                         this.width = parseInt(getStyle(this.$parent.$el, 'width'));
                   }
-                  else if (this.$parent.$parent.$options.name === 'IVueSelect') {
+                  else if (this.$parent.$parent.$options.name === 'ivue-select') {
                         this.width = parseInt(getStyle(this.$parent.$parent.$el, 'width'));
                   }
             }

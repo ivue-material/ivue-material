@@ -12,10 +12,10 @@
         :key="item.label"
       >
         <span>{{item.label}}</span>
-        <IVueIcon
+        <IvueIcon
           :class="[`${prefixCls}-selection-multiple-close`]"
           @click.native.stop="removeSelectItem(item)"
-        >{{multipleCloseIcon}}</IVueIcon>
+        >{{multipleCloseIcon}}</IvueIcon>
       </div>
     </transition-group>
     <!-- 过滤输入框 -->
@@ -35,25 +35,25 @@
       ref="input"
     >
     <!-- 下拉图标 -->
-    <IVueIcon :class="[`${prefixCls}-arrow`]" v-if="!resetSelect">{{arrowDownIcon}}</IVueIcon>
+    <IvueIcon :class="[`${prefixCls}-arrow`]" v-if="!resetSelect">{{arrowDownIcon}}</IvueIcon>
     <!-- 重置选择 -->
-    <IVueIcon
+    <IvueIcon
       :class="[`${prefixCls}-arrow`,`${prefixCls}-clear`]"
       v-if="resetSelect"
       @click.native.stop="onClear"
       @mousedown.native.stop="onClear"
-    >{{resetSelectIcon}}</IVueIcon>
+    >{{resetSelectIcon}}</IvueIcon>
   </div>
 </template>
 
 <script>
 import EmitterEvent from '../../utils/mixins/EmitterEvent';
-import IVueIcon from '../IVueIcon';
+import IvueIcon from '../IvueIcon';
 
 const prefixCls = 'ivue-select';
 
 export default {
-  name: 'IVueSelectHead',
+  name: 'ivue-select-head',
   mixins: [EmitterEvent],
   props: {
     /*
@@ -248,8 +248,8 @@ export default {
   methods: {
     // 删除选择选项
     removeSelectItem (value) {
-      // 把事件注册到 IVueSelect 组件
-      this.dispatch('IVueSelect', 'on-select-option', value);
+      // 把事件注册到 IvueSelect 组件
+      this.dispatch('IvueSelect', 'on-select-option', value);
     },
     // 判断焦点发送事件
     onInputFocus (e) {
@@ -327,7 +327,7 @@ export default {
     }
   },
   components: {
-    IVueIcon
+    IvueIcon
   }
 }
 </script>

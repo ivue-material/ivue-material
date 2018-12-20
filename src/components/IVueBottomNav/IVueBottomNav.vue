@@ -5,7 +5,7 @@ import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
 const prefixCls = 'ivue-bottom-nav';
 
 export default {
-  name: 'IVueBottomNav',
+  name: prefixCls,
   mixins: [Colorable, RegistrableProvide('buttonGroup')],
   props: {
     /*

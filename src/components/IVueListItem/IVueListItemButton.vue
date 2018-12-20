@@ -1,17 +1,17 @@
 <template>
       <button type="button" class="ivue-list-item-button"  :disabled="disabled">
-             <IVueListItemContent :ivueDisabled="isDisabled">
+             <IvueListItemContent :ivueDisabled="isDisabled">
                   <slot></slot>
-            </IVueListItemContent> 
+            </IvueListItemContent> 
       </button>
 </template>
 
 <script>
-import IVueListItemMixin from './IVueListItemMixin';
+import IvueListItemMixin from './IvueListItemMixin';
 
 export default {
-      name: 'IVueListItemButton',
-      mixins: [IVueListItemMixin]
+      name: 'ivue-list-item-button',
+      mixins: [IvueListItemMixin]
 }
 </script>
 

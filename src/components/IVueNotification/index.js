@@ -1,13 +1,13 @@
-import IVueNotification from './IVueNotification.vue';
+import IvueNotification from './IvueNotification.vue';
 import Vue from 'vue';
 
 // 创建新实例
-IVueNotification.newInstance = (property) => {
+IvueNotification.newInstance = (property) => {
       const _props = property || {};
 
       const Instance = new Vue({
             render (h) {
-                  return h(IVueNotification, {
+                  return h(IvueNotification, {
                         props: _props
                   });
             }
@@ -39,4 +39,4 @@ IVueNotification.newInstance = (property) => {
 
 
 
-export default IVueNotification;
+export default IvueNotification;

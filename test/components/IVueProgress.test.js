@@ -1,21 +1,21 @@
-import {IVueProgressLinear,IVueProgressCircular} from '../../src/components/IVueProgress';
+import {IvueProgressLinear,IvueProgressCircular} from '../../src/components/IvueProgress';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueProgress', function () {
-      it('should render the IVueProgressLinear', async () => {
+describe('IvueProgress', function () {
+      it('should render the IvueProgressLinear', async () => {
             const wrapper = mount({
                   template: `
                         <div>
-                              <IVueProgressLinear :percent="40" class="red-accent-4" ></IVueProgressLinear>
-                              <IVueProgressLinear :percent="40"  status="active" ></IVueProgressLinear>
-                              <IVueProgressLinear :percent="65"  status="wrong"></IVueProgressLinear>
-                              <IVueProgressLinear :percent="80"  hideText></IVueProgressLinear>
-                              <IVueProgressLinear :percent="100"  ><span>成功</span></IVueProgressLinear>
+                              <IvueProgressLinear :percent="40" class="red-accent-4" ></IvueProgressLinear>
+                              <IvueProgressLinear :percent="40"  status="active" ></IvueProgressLinear>
+                              <IvueProgressLinear :percent="65"  status="wrong"></IvueProgressLinear>
+                              <IvueProgressLinear :percent="80"  hideText></IvueProgressLinear>
+                              <IvueProgressLinear :percent="100"  ><span>成功</span></IvueProgressLinear>
                         </div>
                   `,
                   components: {
-                        IVueProgressLinear
+                        IvueProgressLinear
                   }
             }, {
                          
@@ -30,18 +30,18 @@ describe('IVueProgress', function () {
       });
 
 
-      it('should render the IVueProgressCircular', async () => {
+      it('should render the IvueProgressCircular', async () => {
             const wrapper = mount({
                   template: `
                         <div>
-                              <IVueProgressCircular :percent="20" class="red-accent-4"></IVueProgressCircular>
-                              <IVueProgressCircular :percent="60" status="wrong">60</IVueProgressCircular>
-                              <IVueProgressCircular :percent="100"></IVueProgressCircular>
-                              <IVueProgressCircular :percent="20" indeterminate></IVueProgressCircular>
+                              <IvueProgressCircular :percent="20" class="red-accent-4"></IvueProgressCircular>
+                              <IvueProgressCircular :percent="60" status="wrong">60</IvueProgressCircular>
+                              <IvueProgressCircular :percent="100"></IvueProgressCircular>
+                              <IvueProgressCircular :percent="20" indeterminate></IvueProgressCircular>
                         </div>
                   `,
                   components: {
-                        IVueProgressCircular
+                        IvueProgressCircular
                   }
             }, {
                          

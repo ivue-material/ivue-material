@@ -32,7 +32,7 @@
 import Render from '../../utils/Render';
 
 export default {
-      name: 'IVueNotice',
+      name: 'ivue-notice',
       props: {
             prefixCls: {
                   type: String,

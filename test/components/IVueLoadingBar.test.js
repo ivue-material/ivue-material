@@ -1,10 +1,10 @@
-import IVueLoadingBar from '../../src/components/IVueLoadingBar';
+import IvueLoadingBar from '../../src/components/IvueLoadingBar';
 import Vue from 'vue';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueMessage', function () {
-      it('should render the register the global IVueMessage component', async () => {
+describe('IvueMessage', function () {
+      it('should render the register the global IvueMessage component', async () => {
             const wrapper = mount({
                   template: `
                         <div>
@@ -15,27 +15,27 @@ describe('IVueMessage', function () {
                         </div>      
                   `,
                   mounted () {
-                        // 注册全局 IVueMessage 组件
-                        Vue.prototype.$IVueLoadingBar = IVueLoadingBar;
+                        // 注册全局 IvueMessage 组件
+                        Vue.prototype.$IvueLoadingBar = IvueLoadingBar;
                   },
                   methods: {
                         start () {
-                              this.$IVueLoadingBar.start();
+                              this.$IvueLoadingBar.start();
                         },
                         finish () {
-                              this.$IVueLoadingBar.finish();
+                              this.$IvueLoadingBar.finish();
                         },
                         error () {
-                              this.$IVueLoadingBar.error();
+                              this.$IvueLoadingBar.error();
                         },
                         update(){
-                              this.$IVueLoadingBar.update(50);
+                              this.$IvueLoadingBar.update(50);
                         }
                   }
             }, {
                          
                   });
 
-            expect(Vue.prototype.$IVueLoadingBar).to.contain(Object);
+            expect(Vue.prototype.$IvueLoadingBar).to.contain(Object);
       });
 });

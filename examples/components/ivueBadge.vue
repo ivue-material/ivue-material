@@ -1,24 +1,24 @@
 <template>
       <div>
-            <IVueBadge :count="3" color="#ba68c8" :show="show">
+            <IvueBadge :count="3" color="#ba68c8" :show="show">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-             <IVueBadge :count="0" color="purple" :showZero="true">
+             <IvueBadge :count="0" color="purple" :showZero="true">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-            <IVueBadge  dot color="#ba68c8" :count="0">
+            <IvueBadge  dot color="#ba68c8" :count="0">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-             <IVueBadge  text="123" :offset="[10,10]">
+             <IvueBadge  text="123" :offset="[10,10]">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-            <IVueBadge dot>
+            <IvueBadge dot>
                    <a href="#">可以是一个链接</a>
-            </IVueBadge>
+            </IvueBadge>
 
             <button @click="onShow">show</button>
       </div>

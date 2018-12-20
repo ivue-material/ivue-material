@@ -1,3 +1,3 @@
-import IVueUpLoad from './IVueUpLoad.vue';
+import IvueUpLoad from './IvueUpLoad.vue';
 
-export default IVueUpLoad;
+export default IvueUpLoad;

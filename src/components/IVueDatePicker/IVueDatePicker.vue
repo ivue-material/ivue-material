@@ -1,17 +1,17 @@
 <script>
 import Picker from '../../utils/mixins/Picker';
-import IVueDatePickerTitle from './IVueDatePickerTitle';
-import IVueDatePickerHeader from './IVueDatePickerHeader';
-import IVueDatePickerDate from './IVueDatePickerDate';
-import IVueDatePickerMonth from './IVueDatePickerMonth';
-import IVueDatePickerYears from './IVueDatePickerYears';
+import IvueDatePickerTitle from './IvueDatePickerTitle';
+import IvueDatePickerHeader from './IvueDatePickerHeader';
+import IvueDatePickerDate from './IvueDatePickerDate';
+import IvueDatePickerMonth from './IvueDatePickerMonth';
+import IvueDatePickerYears from './IvueDatePickerYears';
 
 import isDateAllowed from '../../utils/IsDateAllowed';
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
 import Pad from '../../utils/Pad';
 
 export default {
-  name: 'IVueDatePicker',
+  name: 'ivue-date-picker',
   mixins: [Picker],
   props: {
     // Function formatting the year in table header and pickup title
@@ -313,7 +313,7 @@ export default {
     },
     // 渲染标题内容
     genPickerTitle () {
-      return this.$createElement(IVueDatePickerTitle, {
+      return this.$createElement(IvueDatePickerTitle, {
         props: {
           date: this.value ? this.formatters.titleDate(this.value) : '',
           year: this.formatters.titleYear(`${this.inputYear}`),
@@ -332,7 +332,7 @@ export default {
     },
     // 渲染内容头部
     genTableHeader () {
-      return this.$createElement(IVueDatePickerHeader, {
+      return this.$createElement(IvueDatePickerHeader, {
         props: {
           locale: this.locale,
           value: this.activeType === 'DATE' ? `${this.tableYear}-${Pad(this.tableMonth + 1)}` : `${this.tableYear}`,
@@ -371,7 +371,7 @@ export default {
     },
     // 渲染日期
     genDateTable () {
-      return this.$createElement(IVueDatePickerDate, {
+      return this.$createElement(IvueDatePickerDate, {
         props: {
           tableDate: `${this.tableYear}-${Pad(this.tableMonth + 1)}`,
           value: this.value,
@@ -396,7 +396,7 @@ export default {
     },
     // 渲染月
     genMonthTable () {
-      return this.$createElement(IVueDatePickerMonth, {
+      return this.$createElement(IvueDatePickerMonth, {
         props: {
           color: this.color,
           tableDate: `${this.tableYear}`,
@@ -419,7 +419,7 @@ export default {
     },
     // 渲染年
     genYears () {
-      return this.$createElement(IVueDatePickerYears, {
+      return this.$createElement(IvueDatePickerYears, {
         props: {
           tableDate: `${this.tableYear}`,
           color: this.color,

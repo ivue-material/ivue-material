@@ -1,3 +1,3 @@
-import IVueCarousel from './IVueCarousel.vue';
+import IvueCarousel from './IvueCarousel.vue';
 
-export default IVueCarousel;
+export default IvueCarousel;

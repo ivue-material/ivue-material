@@ -1,16 +1,16 @@
 <template>
       <div class="ivue-list-item-default">
-            <IVueListItemContent ivueDisabled>
+            <IvueListItemContent ivueDisabled>
                   <slot></slot>
-            </IVueListItemContent>
+            </IvueListItemContent>
       </div>
 </template>
 
 <script>
-import IVueListItemMixin from './IVueListItemMixin';
+import IvueListItemMixin from './IvueListItemMixin';
 
 export default {
-      name: 'IVueListItemDefault',
-      mixins: [IVueListItemMixin]
+      name: 'ivue-list-item-default',
+      mixins: [IvueListItemMixin]
 }
 </script>

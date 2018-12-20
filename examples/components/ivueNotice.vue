@@ -19,21 +19,21 @@ export default {
     },
     methods: {
         time () {
-            this.$IVueNotice.config({
+            this.$IvueNotice.config({
                 top: 100,
                 duration: 3
             });
-            this.$IVueNotice.open({
+            this.$IvueNotice.open({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.open({
+            this.$IvueNotice.open({
                 title: 'name : one',
                 duration: 0,
                 name: 'one'
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0,
@@ -45,49 +45,49 @@ export default {
                     ])
                 }
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 duration: 0
             });
-            this.$IVueNotice.info({
-                title: 'Notification title',
-                desc: 'This notification does not automatically close, and you need to click the close button to close.',
-                duration: 0
-            });
-            this.$IVueNotice.info({
-                title: 'Notification title',
-                duration: 0
-            });
-            this.$IVueNotice.warning({
+            this.$IvueNotice.info({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.warning({
+            this.$IvueNotice.info({
                 title: 'Notification title',
                 duration: 0
             });
-            this.$IVueNotice.error({
+            this.$IvueNotice.warning({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.error({
+            this.$IvueNotice.warning({
+                title: 'Notification title',
+                duration: 0
+            });
+            this.$IvueNotice.error({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IvueNotice.error({
                 title: 'Notification title',
                 duration: 0
             });
 
         },
         close(){
-             this.$IVueNotice.close('one');
+             this.$IvueNotice.close('one');
         },
         destroy(){
-             this.$IVueNotice.destroy();
+             this.$IvueNotice.destroy();
         }
     }
 }

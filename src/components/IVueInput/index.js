@@ -1,3 +1,3 @@
-import IVueInput from './IVueInput.vue';
+import IvueInput from './IvueInput.vue';
 
-export default IVueInput;
+export default IvueInput;

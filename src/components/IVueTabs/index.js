@@ -1,9 +1,9 @@
-import IVueTabs from './IVueTabs.vue';
-import IVueTab from './IVueTab.vue';
-import IVueTabItem from './IVueTabItem.vue';
-import IVueTabsItems from './IVueTabsItems.vue';
-import IVueTabsSlider from './IVueTabsSlider.vue';
+import IvueTabs from './IvueTabs.vue';
+import IvueTab from './IvueTab.vue';
+import IvueTabItem from './IvueTabItem.vue';
+import IvueTabsItems from './IvueTabsItems.vue';
+import IvueTabsSlider from './IvueTabsSlider.vue';
 
-export { IVueTabs, IVueTab, IVueTabItem, IVueTabsItems, IVueTabsSlider };
+export { IvueTabs, IvueTab, IvueTabItem, IvueTabsItems, IvueTabsSlider };
 
-export default IVueTabs;
+export default IvueTabs;

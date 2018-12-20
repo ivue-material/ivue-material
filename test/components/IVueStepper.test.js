@@ -1,20 +1,20 @@
-import {IVueStepper,IVueStepperStep} from '../../src/components/IVueStepper';
+import {IvueStepper,IvueStepperStep} from '../../src/components/IvueStepper';
 import { mount } from '@vue/test-utils';
 
-describe('IVueList', function () {
-      it('should render the vertical IVueStepper', async () => {
+describe('IvueList', function () {
+      it('should render the vertical IvueStepper', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueStepper :currentStep="0"  :direction="'vertical'">
-                        <IVueStepperStep title="已完成" content="这里是该步骤的描述信息"></IVueStepperStep>
-                        <IVueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IVueStepperStep>
-                        <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-                        <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-                  </IVueStepper>
+                  <IvueStepper :currentStep="0"  :direction="'vertical'">
+                        <IvueStepperStep title="已完成" content="这里是该步骤的描述信息"></IvueStepperStep>
+                        <IvueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IvueStepperStep>
+                        <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+                        <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+                  </IvueStepper>
                   `,
                   components: {
-                        IVueStepper,
-                        IVueStepperStep
+                        IvueStepper,
+                        IvueStepperStep
                   }
             }, {
                   });
@@ -24,19 +24,19 @@ describe('IVueList', function () {
             expect(wrapper.element.children.length).to.be.equal(4);
       });
 
-      it('should render the horizontal IVueStepper ', async () => {
+      it('should render the horizontal IvueStepper ', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueStepper :currentStep="0"  :direction="'horizontal'">
-                        <IVueStepperStep title="已完成" content="这里是该步骤的描述信息"></IVueStepperStep>
-                        <IVueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IVueStepperStep>
-                        <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-                        <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-                  </IVueStepper>
+                  <IvueStepper :currentStep="0"  :direction="'horizontal'">
+                        <IvueStepperStep title="已完成" content="这里是该步骤的描述信息"></IvueStepperStep>
+                        <IvueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IvueStepperStep>
+                        <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+                        <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+                  </IvueStepper>
                   `,
                   components: {
-                        IVueStepper,
-                        IVueStepperStep
+                        IvueStepper,
+                        IvueStepperStep
                   }
             }, {
                   });

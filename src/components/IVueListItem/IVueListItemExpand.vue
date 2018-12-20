@@ -1,9 +1,9 @@
 <template>
       <div class="ivue-list-item-expand" :class="expandClass">
-            <IVueListItemContent :ivueDisabled="isDisabled" @click.native="toggleExpand">
+            <IvueListItemContent :ivueDisabled="isDisabled" @click.native="toggleExpand">
                   <slot></slot>
-                  <IVueArrowDownIcon class="ivue-list-expand-icon"></IVueArrowDownIcon>
-            </IVueListItemContent>
+                  <IvueArrowDownIcon class="ivue-list-expand-icon"></IvueArrowDownIcon>
+            </IvueListItemContent>
 
             <div class="ivue-list-expand" ref="listExpand" :style="expandStyles">
                   <slot name="ivue-expand"></slot>
@@ -13,14 +13,14 @@
 
 <script>
 import raf from 'raf';
-import IVueListItemMixin from './IVueListItemMixin';
-import IVueArrowDownIcon from '../../utils/icons/IVueArrowDownIcon';
+import IvueListItemMixin from './IvueListItemMixin';
+import IvueArrowDownIcon from '../../utils/icons/IvueArrowDownIcon';
 
 export default {
-      name: 'IVueListItemExpand',
-      mixins: [IVueListItemMixin],
+      name: 'ivue-list-item-expand',
+      mixins: [IvueListItemMixin],
       // 一个字符串数组，或 一个对象，对象的 key 是本地的绑定名
-      inject: ['IVueList'],
+      inject: ['IvueList'],
       data () {
             return {
                   /*
@@ -44,7 +44,7 @@ export default {
             }
       },
       created () {
-            this.IVueList.pushExpandable(this);
+            this.IvueList.pushExpandable(this);
       },
       mounted () {
             if (this.ivueExpanded) {
@@ -113,10 +113,10 @@ export default {
             }
       },
       beforeDestroy () {
-            this.IVueList.removeExpandable(this)
+            this.IvueList.removeExpandable(this)
       },
       components: {
-            IVueArrowDownIcon
+            IvueArrowDownIcon
       },
       watch: {
             ivueExpanded () {
@@ -133,7 +133,7 @@ export default {
                   this.$nextTick(() => this.$emit(showContent ? 'ivue-expanded' : 'ivue-collapsed'));
 
                   if (showContent) {
-                        this.IVueList.expandATab(this);
+                        this.IvueList.expandATab(this);
                   }
             }
       }

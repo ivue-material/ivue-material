@@ -16,23 +16,23 @@
                          />
                   <slot></slot>
             </div>
-            <IVueUpLoadList :files="fileList"
+            <IvueUpLoadList :files="fileList"
                             @on-file-data="handleFileData"
                             @on-file-remove="handleRemove"
                             v-show="showUploadList"
-            ></IVueUpLoadList>
+            ></IvueUpLoadList>
       </div>
 </template>
 
 <script>
-import IVueUpLoadList from './IVueUpLoadList';
+import IvueUpLoadList from './IvueUpLoadList';
 import { oneOf } from '../../utils/Assist';
 import ajax from './ajax';
 
 const prefixCls = 'ivue-upload';
 
 export default {
-      name: "IVueUpLoad",
+      name: prefixCls,
       props: {
             /*
             * 文件上传地址
@@ -462,7 +462,7 @@ export default {
             }
       },
       components: {
-            IVueUpLoadList
+            IvueUpLoadList
       }
 }
 </script>

@@ -1,7 +1,7 @@
 import Pad from '../../../../src/utils/Pad';
 
 
-describe('IVueDatePicker/util/Pad', function () {
+describe('IvueDatePicker/util/Pad', function () {
       it('should pad 1-digit numbers',  () => {
             expect(Pad(0)).to.be.equal('00');
             expect(Pad('3', 3)).to.be.equal('003');

@@ -1,14 +1,14 @@
 <template>
-      <IVueRipple class="ivue-list-item-content" :ivueDisabled="ivueDisabled">
+      <IvueRipple class="ivue-list-item-content" :ivueDisabled="ivueDisabled">
             <slot></slot>
-      </IVueRipple>
+      </IvueRipple>
 </template>
 
 <script>
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 export default {
-      name: 'IVueListItemContent',
+      name: 'ivue-list-item-content',
       props: {
             ivueDisabled: {
                   type: Boolean,
@@ -16,7 +16,7 @@ export default {
             }
       },
       components: {
-            IVueRipple
+            IvueRipple
       }
 }
 </script>

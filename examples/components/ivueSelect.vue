@@ -1,92 +1,92 @@
 <template>
       <div>
             <p>普通</p>
-            <IVueSelect :value="'Sydney'" clearable>
-                  <IVueOption v-for="(item,index) in cityList1" :value="item.value" :key="index">
+            <IvueSelect :value="'Sydney'" clearable>
+                  <IvueOption v-for="(item,index) in cityList1" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选中选项v-model中的内容 - 单选</p>
-            <IVueSelect :value="model1" clearable>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect :value="model1" clearable>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>是否将label和value一起返回 - 单选</p>
-            <IVueSelect  labelAndValue clearable>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  labelAndValue clearable>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>开启过滤筛选 - 单选</p>
-            <IVueSelect  filterable :value="model1">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  filterable :value="model1">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
 
             <p>多选</p>
-            <IVueSelect multiple clearable :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple clearable :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选中选项v-model中的内容 - 多选</p>
-            <IVueSelect multiple :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>是否将label和value一起返回 - 多选</p>
-            <IVueSelect  labelAndValue  multiple @on-change="_input">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  labelAndValue  multiple @on-change="_input">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>开启过滤筛选 - 多选</p>
-            <IVueSelect multiple filterable :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple filterable :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选择组件禁用</p>
-            <IVueSelect disabled>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect disabled>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选择菜单选项禁用</p>
-            <IVueSelect >
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+            <IvueSelect >
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>菜单选项 group - 单选</p>
-            <IVueSelect filterable>
-                  <IVueOptionGroup  :label="'one'" >
-                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+            <IvueSelect filterable>
+                  <IvueOptionGroup  :label="'one'" >
+                        <IvueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-                  <IVueOptionGroup  :label="'two'" >
-                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                        </IvueOption>
+                  </IvueOptionGroup>
+                  <IvueOptionGroup  :label="'two'" >
+                        <IvueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-            </IVueSelect>
+                        </IvueOption>
+                  </IvueOptionGroup>
+            </IvueSelect>
              <p>菜单选项 group - 多选</p>
-            <IVueSelect  multiple filterable>
-                  <IVueOptionGroup  :label="'one'" >
-                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="item.value">
+            <IvueSelect  multiple filterable>
+                  <IvueOptionGroup  :label="'one'" >
+                        <IvueOption v-for="(item) in grop1" :value="item.value" :label="item.label" :key="item.value">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-                  <IVueOptionGroup  :label="'two'" >
-                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="item.value">
+                        </IvueOption>
+                  </IvueOptionGroup>
+                  <IvueOptionGroup  :label="'two'" >
+                        <IvueOption v-for="(item) in grop2" :value="item.value" :label="item.label" :key="item.value">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-            </IVueSelect>
+                        </IvueOption>
+                  </IvueOptionGroup>
+            </IvueSelect>
       </div>
 </template>
 

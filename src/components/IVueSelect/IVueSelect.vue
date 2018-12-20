@@ -17,7 +17,7 @@
     >
       <slot name="input">
         <input type="hidden" :value="selectValue">
-        <IVueSleectHead
+        <IvueSleectHead
           :values="values"
           :multiple="multiple"
           :multipleCloseIcon="multipleCloseIcon"
@@ -32,12 +32,12 @@
           @on-input-focus="isFocused = true"
           @on-input-blur="isFocused = false"
           @on-clear="clearSingleSelect"
-        ></IVueSleectHead>
+        ></IvueSleectHead>
       </slot>
     </div>
     <!-- 下拉菜单 -->
     <transition name="transition-drop">
-      <IVueDropDown ref="ivueDropDown" v-show="dropVisible" :class="dropdownClass">
+      <IvueDropDown ref="ivueDropDown" v-show="dropVisible" :class="dropdownClass">
         <!-- 没有找到数据时的提示 -->
         <ul :class="`${prefixCls}-not-find`" v-show="showNotFindText">
           <li>{{notFindText}}</li>
@@ -51,7 +51,7 @@
             :options="selectOptions"
           ></FunctionalOptions>
         </ul>
-      </IVueDropDown>
+      </IvueDropDown>
     </transition>
   </div>
 </template>
@@ -61,15 +61,15 @@
 import { directive as clickOutside } from '../../utils/ClickOutside';
 
 // 输入框
-import IVueSleectHead from './IVueSelectHead.vue';
+import IvueSleectHead from './IvueSelectHead.vue';
 // 下拉菜单
-import IVueDropDown from './IVueDropDown.vue';
+import IvueDropDown from './IvueDropDown.vue';
 // 函数式组件用于提升渲染性能纯渲染组件
 import FunctionalOptions from './FunctionalOptions.vue';
 
 const prefixCls = 'ivue-select';
-const optionRegexp = /^ivue-option$|^IVueOption$/i;
-const optionGroupRegexp = /^ivue-option-group$|^IVueOptionGroup$/i;
+const optionRegexp = /^ivue-option$|^IvueOption$/i;
+const optionGroupRegexp = /^ivue-option-group$|^IvueOptionGroup$/i;
 
 // 在vnode中查找选项
 const findOptionsInVNode = (node) => {
@@ -151,7 +151,7 @@ const applyProp = (node, propName, value) => {
 }
 
 export default {
-  name: 'IVueSelect',
+  name: prefixCls,
   // 注册局部指令
   directives: { clickOutside },
   props: {
@@ -1038,8 +1038,8 @@ export default {
     }
   },
   components: {
-    IVueSleectHead,
-    IVueDropDown,
+    IvueSleectHead,
+    IvueDropDown,
     FunctionalOptions
   }
 }

@@ -1,6 +1,6 @@
-import IVueStepper from './IVueStepper.vue';
-import IVueStepperStep from './IVueStepperStep.vue';
+import IvueStepper from './IvueStepper.vue';
+import IvueStepperStep from './IvueStepperStep.vue';
 
-export { IVueStepper,IVueStepperStep }
+export { IvueStepper,IvueStepperStep }
 
-export default IVueStepper;
+export default IvueStepper;

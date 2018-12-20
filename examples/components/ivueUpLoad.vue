@@ -1,40 +1,40 @@
 <template>
       <div>
             <p>单选文件</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
 
             <p>多选文件</p>
-            <IVueUpLoad multiple :uploadUrl="'//jsonplaceholder.typicode.com/posts/'">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad multiple :uploadUrl="'//jsonplaceholder.typicode.com/posts/'">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
 
             <p>手动上传</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" :beforeUpload="handleUpload">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" :beforeUpload="handleUpload">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
             <div v-if="file !== null">Upload file: {{ file.name }} 
-                   <IVueButton class="upload"  :ivueRipple="false" @click="upload" :loading="loadingStatus">
+                   <IvueButton class="upload"  :ivueRipple="false" @click="upload" :loading="loadingStatus">
                         {{ loadingStatus ? 'Uploading' : 'Click to upload' }}
-                  </IVueButton>
+                  </IvueButton>
             </div>
 
             <p>拖拽上传</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" multiple type="drag">
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" multiple type="drag">
                   <div style="padding: 20px 0">
                         <p>Click or drag files here to upload</p>
                   </div>
-            </IVueUpLoad>
+            </IvueUpLoad>
 
             <p>自定义上传列表</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" 
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" 
                         multiple 
                         :showUploadList="false"
                         :defaultFileList="defaultList"
@@ -50,7 +50,7 @@
                   <div style="width: 58px;height:58px;line-height: 58px;">
                         <p>Click or drag files here to upload</p>
                   </div>
-            </IVueUpLoad>
+            </IvueUpLoad>
             <img v-for="(item,index) in uploadList" :src="item.url" :key="index" v-if="item.status === 'finished'"/>
       </div>
 </template>

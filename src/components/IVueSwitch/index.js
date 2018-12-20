@@ -1,3 +1,3 @@
-import IVueSwitch from './IVueSwitch.vue'
+import IvueSwitch from './IvueSwitch.vue'
 
-export default IVueSwitch;
+export default IvueSwitch;

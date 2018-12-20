@@ -1,5 +1,5 @@
 @import "../../styles/animation/variables";
-@import "../../components/IVueElevation/mixins";
+@import "../../components/IvueElevation/mixins";
 $name: 'ivue-button';
 .#{$name}-clean {
       margin: 0;
@@ -35,6 +35,10 @@ $name: 'ivue-button';
       font-size: $ivue-button-font-size;
       font-weight: 500;
       color: currentColor;
+      &-content {
+            position: relative;
+            z-index: 2;
+      }
       &:active {
             outline: none;
       }

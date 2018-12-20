@@ -4,7 +4,7 @@ import Colorable from '../../utils/mixins/Colorable';
 const prefixCls = 'ivue-picker';
 
 export default {
-  name: 'IVuePicker',
+  name: prefixCls,
   mixins: [Colorable],
   props: {
     /*

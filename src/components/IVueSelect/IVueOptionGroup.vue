@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 const prefixCls = 'ivue-select-group';
 
 export default {
-      name: 'IVueOptionGroup',
+      name: 'ivue-option-group',
       props: {
             /*
             * 选项grop标题
@@ -58,7 +58,7 @@ export default {
             }
       },
       components: {
-            IVueRipple
+            IvueRipple
       }
 }
 </script>

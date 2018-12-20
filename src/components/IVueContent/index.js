@@ -1,3 +1,3 @@
-import IVueContent from './IVueContent.vue'
+import IvueContent from './IvueContent.vue'
 
-export default IVueContent;
+export default IvueContent;

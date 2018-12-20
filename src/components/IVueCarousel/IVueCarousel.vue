@@ -4,9 +4,9 @@
                                           right: e => (e.offsetX > 15) && arrowEvent(-1)
                                     }">
             <!-- 左按钮 -->
-            <IVueButton :class="arrowClasses" class="left ivue-icon-button" flat icon>
-                  <IVueIcon>{{leftArrow}}</IVueIcon>
-            </IVueButton>
+            <IvueButton :class="arrowClasses" class="left ivue-icon-button" flat icon>
+                  <IvueIcon>{{leftArrow}}</IvueIcon>
+            </IvueButton>
             <!-- 内容 -->
             <div :class="[prefixCls + '-list']">
                   <div :class="[prefixCls + '-track', showCopyTrack ? '' : 'higher']" :style="trackStyles" ref="originTrack">
@@ -16,9 +16,9 @@
                   <div :class="[prefixCls + '-track', showCopyTrack ? 'higher' : '']"  :style="copyTrackStyles" ref="copyTrack" v-if="loop"></div>
             </div>
             <!-- 右按钮 -->
-            <IVueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)" flat icon>
-                  <IVueIcon>{{rightArrow}}</IVueIcon>
-            </IVueButton>
+            <IvueButton :class="arrowClasses" class="right ivue-icon-button" @click="arrowEvent(1)" flat icon>
+                  <IvueIcon>{{rightArrow}}</IvueIcon>
+            </IvueButton>
             <!-- 导航器 -->
             <ul :class="dotsClasses">
                   <li   v-for="index in slides.length" 
@@ -36,14 +36,14 @@
 <script>
 import { getStyle, oneOf } from '../../utils/Assist';
 import { on, off } from '../../utils/Dom';
-import IVueIcon from '../IVueIcon/IVueIcon';
-import IVueButton from '../IVueButton/IVueButton';
+import IvueIcon from '../IvueIcon/IvueIcon';
+import IvueButton from '../IvueButton/IvueButton';
 import Touch from '../../utils/directives/Touch';
 
 const prefixCls = 'ivue-carousel';
 
 export default {
-      name: 'IVueCarousel',
+      name: prefixCls,
       directives: {Touch},
       props: {
             /*
@@ -524,8 +524,8 @@ export default {
             }
       },
       components: {
-            IVueIcon,
-            IVueButton
+            IvueIcon,
+            IvueButton
       }
 }
 </script>

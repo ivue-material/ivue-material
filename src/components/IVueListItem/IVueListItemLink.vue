@@ -1,17 +1,17 @@
 <template>
       <a class="ivue-list-item-link" v-bind="$props">
-            <IVueListItemContent :ivueDisabled="isDisabled">
+            <IvueListItemContent :ivueDisabled="isDisabled">
                   <slot></slot>
-            </IVueListItemContent>
+            </IvueListItemContent>
       </a>
 </template>
 
 <script>
-import IVueListItemMixin from './IVueListItemMixin';
+import IvueListItemMixin from './IvueListItemMixin';
 
 export default {
-      name: 'IVueListItemLink',
-      mixins: [IVueListItemMixin],
+      name: 'ivue-list-item-link',
+      mixins: [IvueListItemMixin],
       props: {
             download: {
                   type: String,

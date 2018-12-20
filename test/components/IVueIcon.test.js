@@ -1,19 +1,19 @@
-import IVueIcon from '../../src/components/IVueIcon';
+import IvueIcon from '../../src/components/IvueIcon';
 import { mount } from '@vue/test-utils';
 import testSvg from './test.svg';
 
-describe('IVueIcon', function () {
+describe('IvueIcon', function () {
       it('should accept icon as ligature', function () {
             const wrapper = mount({
                   template: `
                   <div>
                         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-                        <IVueIcon>menu</IVueIcon>
+                        <IvueIcon>menu</IvueIcon>
                   </div>
                   `,
                   components: {
-                        IVueIcon
+                        IvueIcon
                   }
             }, {
                   });
@@ -27,7 +27,7 @@ describe('IVueIcon', function () {
 
             const wrapper = mount({
                   template: `
-                        <IVueIcon :svgSrc="testSvg"></IVueIcon>
+                        <IvueIcon :svgSrc="testSvg"></IvueIcon>
                   `,
                   data () {
                         return {
@@ -35,7 +35,7 @@ describe('IVueIcon', function () {
                         }
                   },
                   components: {
-                        IVueIcon
+                        IvueIcon
                   }
             }, {
                         propsData: {

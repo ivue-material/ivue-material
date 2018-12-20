@@ -1,17 +1,17 @@
-import IVueBadge from '../../src/components/IVueBadge';
+import IvueBadge from '../../src/components/IvueBadge';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueBadge', function () {
-      it('should render the base IVueBadge', async () => {
+describe('IvueBadge', function () {
+      it('should render the base IvueBadge', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBadge :count="3" >
+                        <IvueBadge :count="3" >
                               hello
-                        </IVueBadge>
+                        </IvueBadge>
                   `,
                   components: {
-                        IVueBadge
+                        IvueBadge
                   }
             }, {
                          
@@ -24,12 +24,12 @@ describe('IVueBadge', function () {
       it('should render the max count', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBadge :count="9999" >
+                        <IvueBadge :count="9999" >
                               hello
-                        </IVueBadge>
+                        </IvueBadge>
                   `,
                   components: {
-                        IVueBadge
+                        IvueBadge
                   }
             }, {
                          
@@ -42,12 +42,12 @@ describe('IVueBadge', function () {
       it('should render the showZero', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBadge  :count="0" :showZero="true">
+                        <IvueBadge  :count="0" :showZero="true">
                               hello
-                        </IVueBadge>
+                        </IvueBadge>
                   `,
                   components: {
-                        IVueBadge
+                        IvueBadge
                   }
             }, {
                          

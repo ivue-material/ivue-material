@@ -1,14 +1,14 @@
-import IVueList from '../../src/components/IVueList';
+import IvueList from '../../src/components/IvueList';
 import { mount } from '@vue/test-utils';
 
-describe('IVueList', function () {
+describe('IvueList', function () {
       it('should render the list', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueList>list</IVueList>
+                        <IvueList>list</IvueList>
                   `,
                   components: {
-                        IVueList
+                        IvueList
                   }
             }, {
                          

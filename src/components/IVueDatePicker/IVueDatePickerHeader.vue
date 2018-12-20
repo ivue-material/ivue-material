@@ -1,14 +1,14 @@
 <script>
 import Colorable from '../../utils/mixins/Colorable';
 import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter';
-import IVueButton from '../IVueButton/IVueButton';
-import IVueIcon from '../IVueIcon/IVueIcon';
+import IvueButton from '../IvueButton/IvueButton';
+import IvueIcon from '../IvueIcon/IvueIcon';
 import MonthChange from '../../utils/MonthChange';
 
 const prefixCls = 'ivue-date-picker-header';
 
 export default {
-  name: 'IVueDatePickerHeader',
+  name: prefixCls,
   mixins: [Colorable],
   props: {
     /*
@@ -89,7 +89,7 @@ export default {
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
 
-      return this.$createElement(IVueButton, {
+      return this.$createElement(IvueButton, {
         staticClass: 'ivue-button ivue-icon-button',
         props: {
           flat: true,
@@ -104,7 +104,7 @@ export default {
           }
         }
       }, [
-          this.$createElement(IVueIcon, change < 0 ? this.prevIcon : this.nextIcon)
+          this.$createElement(IvueIcon, change < 0 ? this.prevIcon : this.nextIcon)
         ]);
     },
     // 设置value值

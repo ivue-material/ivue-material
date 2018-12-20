@@ -1,91 +1,91 @@
 <template>
   <div>
     <h1>日历变为横向 设置为多选 宽度百分百</h1>
-    <IVueDatePicker v-model="dates" headerColor="red" color="blue" landscape fullWidth multiple></IVueDatePicker>
+    <IvueDatePicker v-model="dates" headerColor="red" color="blue" landscape fullWidth multiple></IvueDatePicker>
 
     <h1>一开始显示为月份</h1>
-    <IVueDatePicker v-model="picker" type="month"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" type="month"></IvueDatePicker>
 
     <h1>语言</h1>
-    <IVueDatePicker :value="picker" locale="zh-CH" :showCurrent="false"></IVueDatePicker>
+    <IvueDatePicker :value="picker" locale="zh-CH" :showCurrent="false"></IvueDatePicker>
 
     <h1>设置允许选择日期</h1>
-    <IVueDatePicker v-model="picker" locale="zh-CH" :allowedDates="allowedDates"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" locale="zh-CH" :allowedDates="allowedDates"></IvueDatePicker>
 
     <h1>便签</h1>
     <p>function</p>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :note="arrayEvents"
       :noteColor="date => date[9] % 2 ? 'red' : 'yellow'"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
     <p>array</p>
-    <IVueDatePicker v-model="picker" :note="['2018-12-10']" :noteColor="'red'"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" :note="['2018-12-10']" :noteColor="'red'"></IvueDatePicker>
 
     <h1>一周的第一天</h1>
-    <IVueDatePicker :value="picker" firstDayOfWeek="0"></IVueDatePicker>
-    <IVueDatePicker :value="picker" firstDayOfWeek="1"></IVueDatePicker>
+    <IvueDatePicker :value="picker" firstDayOfWeek="0"></IvueDatePicker>
+    <IvueDatePicker :value="picker" firstDayOfWeek="1"></IvueDatePicker>
 
     <h1>图标设置</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       :value="picker"
       nextIcon="arrow_right"
       prevIcon="arrow_left"
       yearIcon="event_note"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>只读</h1>
-    <IVueDatePicker v-model="picker" readonly></IVueDatePicker>
-    <IVueDatePicker v-model="picker" type="month" readonly></IVueDatePicker>
+    <IvueDatePicker v-model="picker" readonly></IvueDatePicker>
+    <IvueDatePicker v-model="picker" type="month" readonly></IvueDatePicker>
 
     <h1>noTitle</h1>
-    <IVueDatePicker v-model="picker" noTitle @input="handleInput"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" noTitle @input="handleInput"></IvueDatePicker>
 
     <h1>width</h1>
-    <IVueDatePicker v-model="picker" width="500"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" width="500"></IvueDatePicker>
 
     <h1>multiple</h1>
-    <IVueDatePicker v-model="months" type="month" multiple></IVueDatePicker>
+    <IvueDatePicker v-model="months" type="month" multiple></IvueDatePicker>
 
     <h1>max min</h1>
-    <IVueDatePicker v-model="picker" min="2016-06-15" max="2018-03-20"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" min="2016-06-15" max="2018-03-20"></IvueDatePicker>
 
     <h1>reactive</h1>
-    <IVueDatePicker v-model="picker" reactive></IVueDatePicker>
-    <IVueDatePicker v-model="picker" locale="zh-CH" reactive :showCurrent="false"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" reactive></IvueDatePicker>
+    <IvueDatePicker v-model="picker" locale="zh-CH" reactive :showCurrent="false"></IvueDatePicker>
 
     <h1>pickerDate</h1>
-    <IVueDatePicker v-model="picker" :pickerDate.sync="pickerDate"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" :pickerDate.sync="pickerDate"></IvueDatePicker>
 
     <h1>titleDateFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :titleDateFormat="format('zh-CN',{ weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>titleYearFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :titleYearFormat="titleYearFormat('zh-CN',{ year: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>dayFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :dayFormat="format('zh-CN',{ day: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>monthFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :monthFormat="format('zh-CN',{ month: 'short', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>headerDateFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :headerDateFormat="format('zh-CN',{ month: 'long', year: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
   </div>
 </template>
 

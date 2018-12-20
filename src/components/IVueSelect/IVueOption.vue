@@ -1,5 +1,5 @@
 <template>
-      <IVueRipple :ivueDisabled="!disabledRipple">
+      <IvueRipple :ivueDisabled="!disabledRipple">
             <li :class="classes"
             @touchend.stop="selectOption"  
             @click.stop="_click"  
@@ -12,17 +12,17 @@
                         {{showLabel}}
                   </slot>
             </li>
-      </IVueRipple>
+      </IvueRipple>
 </template>
 
 <script>
 import EmitterEvent from '../../utils/mixins/EmitterEvent';
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 const prefixCls = 'ivue-select-item';
 
 export default {
-      name: "IVueOption",
+      name: "ivue-option",
       componentName: "ivue-select-item",
       mixins: [EmitterEvent],
       props: {
@@ -150,8 +150,8 @@ export default {
                         return;
                   }
 
-                  // 把事件注册到 IVueSelect 组件
-                  this.dispatch('IVueSelect', 'on-select-option', {
+                  // 把事件注册到 IvueSelect 组件
+                  this.dispatch('ivue-select', 'on-select-option', {
                         value: this.value,
                         label: this.getLabel,
                         keys: this.keys
@@ -166,7 +166,7 @@ export default {
             }
       },
       components: {
-            IVueRipple
+            IvueRipple
       }
 }
 </script>

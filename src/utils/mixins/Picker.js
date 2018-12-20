@@ -1,4 +1,4 @@
-import IVuePicker from '../../components/IVueDatePicker/IVuePicker';
+import IvuePicker from '../../components/IvueDatePicker/IvuePicker';
 import Colorable from './Colorable'
 
 export default {
@@ -44,7 +44,7 @@ export default {
             genPickerTitle () { },
             genPickerBody () { },
             genPicker (staticClass) {
-                  return this.$createElement(IVuePicker, {
+                  return this.$createElement(IvuePicker, {
                         staticClass,
                         class: this.fullWidth ? ['ivue-picker--fullWidth'] : [],
                         props: {

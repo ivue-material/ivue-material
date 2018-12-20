@@ -1,9 +1,9 @@
-import IVueDatePickerTitle from '../../../src/components/IVueDatePicker/IVueDatePickerTitle';
+import IvueDatePickerTitle from '../../../src/components/IvueDatePicker/IvueDatePickerTitle';
 import { mount } from '@vue/test-utils';
 
-describe('IVueDatePickerTitle', function () {
+describe('IvueDatePickerTitle', function () {
       it('should emit input event on year/date click', () => {
-            const wrapper = mount(IVueDatePickerTitle, {
+            const wrapper = mount(IvueDatePickerTitle, {
                   propsData: {
                         year: '1234',
                         yearIcon: 'year',
@@ -27,7 +27,7 @@ describe('IVueDatePickerTitle', function () {
 
 
       it('should have the correct transition', () => {
-            const wrapper = mount(IVueDatePickerTitle, {
+            const wrapper = mount(IvueDatePickerTitle, {
                   propsData: {
                         year: '2018',
                         date: 'Tue, Mar 3',

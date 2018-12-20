@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 // 判断是否是服务器端
-const isServer = Vue.prototype.$isServer;
+const isServer = Vue && Vue.prototype.$isServer;
 
 /* istanbul ignore next */
 // 注册事件

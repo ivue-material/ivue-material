@@ -1,3 +1,3 @@
-import IVueBottomNav from './IVueBottomNav.vue';
+import IvueBottomNav from './IvueBottomNav.vue';
 
-export default IVueBottomNav;
+export default IvueBottomNav;

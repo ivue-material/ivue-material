@@ -6,33 +6,33 @@
             >
                   <!-- 名称 -->
                   <span @click="handleFileData(file)">
-                        <IVueIcon>{{iconType(file)}}</IVueIcon>{{file.name}}
+                        <IvueIcon>{{iconType(file)}}</IvueIcon>{{file.name}}
                   </span>
                   <!-- 删除按钮 -->
-                  <IVueIcon :class="`${prefixCls}-remove`"
+                  <IvueIcon :class="`${prefixCls}-remove`"
                             v-show="file.status === 'finished'"
                             @click.native="handleRemove(file)"
-                            >close</IVueIcon>
+                            >close</IvueIcon>
                   <!-- 进度条 -->
                   <transition name="progress-fade">
-                        <IVueProgressLinear :height="3"
+                        <IvueProgressLinear :height="3"
                                             :percent="percentage(file.percentage)"
                                             :status="file.status === 'finished' && file.showProgress ? 'success' :'normal'"
                                             v-if="file.showProgress"
-                        ></IVueProgressLinear>
+                        ></IvueProgressLinear>
                   </transition>
             </li>
       </ul>
 </template>
 
 <script>
-import IVueIcon from '../IVueIcon';
-import IVueProgressLinear from '../IVueProgress/IVueProgressLinear';
+import IvueIcon from '../IvueIcon';
+import IvueProgressLinear from '../IvueProgress/IvueProgressLinear';
 
 const prefixCls = 'ivue-upload-list';
 
 export default {
-      name: "IVueUploadList",
+      name: prefixCls,
       props: {
             /*
             * 上传的文件的列表
@@ -105,8 +105,8 @@ export default {
             }
       },
       components: {
-            IVueIcon,
-            IVueProgressLinear
+            IvueIcon,
+            IvueProgressLinear
       }
 }
 </script>

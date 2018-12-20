@@ -1,10 +1,10 @@
 import './util/CreateNativeLocaleFormatter.test';
 import './util/MonthChange.test';
 import './util/Pad.test';
-import './IVueDatePicker.date.test';
-import './IVueDatePicker.month.test';
-import './IVueDatePickerDateTable.test'
-import './IVueDatePickerHeader.test';
-import './IVueDatePickerMonth.test';
-import './IVueDatePickerTitle.test';
-import './IVueDatePickerYears.test';
+import './IvueDatePicker.date.test';
+import './IvueDatePicker.month.test';
+import './IvueDatePickerDateTable.test'
+import './IvueDatePickerHeader.test';
+import './IvueDatePickerMonth.test';
+import './IvueDatePickerTitle.test';
+import './IvueDatePickerYears.test';

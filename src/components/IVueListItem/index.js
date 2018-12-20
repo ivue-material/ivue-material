@@ -1,3 +1,3 @@
-import IVueListItem from './IVueListItem.vue'
+import IvueListItem from './IvueListItem.vue'
 
-export default IVueListItem;
+export default IvueListItem;

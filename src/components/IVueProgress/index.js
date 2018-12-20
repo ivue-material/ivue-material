@@ -1,4 +1,4 @@
-import IVueProgressLinear from './IVueProgressLinear.vue';
-import IVueProgressCircular from './IVueProgressCircular.vue';
+import IvueProgressLinear from './IvueProgressLinear.vue';
+import IvueProgressCircular from './IvueProgressCircular.vue';
 
-export {IVueProgressLinear,IVueProgressCircular};
+export {IvueProgressLinear,IvueProgressCircular};

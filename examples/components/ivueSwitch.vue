@@ -3,31 +3,31 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           
             <p>基础</p>
-            <IVueSwitch class="red-accent-4"></IVueSwitch>
+            <IvueSwitch class="red-accent-4"></IvueSwitch>
 
             <p>大小</p>
-            <IVueSwitch size="large"></IVueSwitch>
-            <IVueSwitch></IVueSwitch>
-            <IVueSwitch size="small"></IVueSwitch>
+            <IvueSwitch size="large"></IvueSwitch>
+            <IvueSwitch></IvueSwitch>
+            <IvueSwitch size="small"></IvueSwitch>
 
             <p>文字图标</p>
-            <IVueSwitch>
+            <IvueSwitch>
                   <span slot="open">开</span>
                   <span slot="close">关</span>
-            </IVueSwitch>
+            </IvueSwitch>
 
-            <IVueSwitch  class="red-accent-4">
-                  <span slot="open"><IVueIcon>check</IVueIcon></span>
-                  <span slot="close"><IVueIcon>close</IVueIcon></span>
-            </IVueSwitch>
+            <IvueSwitch  class="red-accent-4">
+                  <span slot="open"><IvueIcon>check</IvueIcon></span>
+                  <span slot="close"><IvueIcon>close</IvueIcon></span>
+            </IvueSwitch>
 
             <p>不可用</p>
-            <IVueSwitch :disabled="true" class="red-accent-4"></IVueSwitch>
+            <IvueSwitch :disabled="true" class="red-accent-4"></IvueSwitch>
 
             <p>loading</p>
-            <IVueSwitch loading :value="true" class="red-accent-4"></IVueSwitch>
-            <IVueSwitch loading :value="true" size="large" class="red-accent-4"></IVueSwitch>
-            <IVueSwitch loading :value="true" size="small" class="red-accent-4"></IVueSwitch>
+            <IvueSwitch loading :value="true" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch loading :value="true" size="large" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch loading :value="true" size="small" class="red-accent-4"></IvueSwitch>
       </div>
 </template>
 

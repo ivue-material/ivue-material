@@ -1,16 +1,16 @@
-import IVueAutoComplete from '../../src/components/IVueAutoComplete';
+import IvueAutoComplete from '../../src/components/IvueAutoComplete';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueAutoComplete', function () {
+describe('IvueAutoComplete', function () {
       it('should render the base auto complete data source via data setting', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueAutoComplete v-model="value"
+                        <IvueAutoComplete v-model="value"
                                           :data="data"
                                           @on-search="handleSearch"
                               >
-                        </IVueAutoComplete>
+                        </IvueAutoComplete>
                   `,
                   data () {
                         return {
@@ -28,7 +28,7 @@ describe('IVueAutoComplete', function () {
                         }
                   },
                   components: {
-                        IVueAutoComplete
+                        IvueAutoComplete
                   }
             }, {
                          

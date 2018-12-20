@@ -4,10 +4,10 @@ import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
 import Touch from '../../utils/directives/Touch';
 
 export default {
-      name: 'IVueTabItem',
+      name: 'ivue-tab-item',
       mixins: [
             Bootable,
-            RegistrableInject('tabNavList', 'IVueTabItem', 'IVueTabsItems')
+            RegistrableInject('tabNavList', 'ivue-tab-item', 'ivue-tabs-items')
       ],
       directives: {
             Touch

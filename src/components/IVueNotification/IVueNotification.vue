@@ -1,6 +1,6 @@
 <template>
       <div :class="classes" :style="styles">
-            <IVueNotice v-for="notice in noticesList"
+            <IvueNotice v-for="notice in noticesList"
                         :key="notice.name"
                         :prefixCls="notice.prefixCls"
                         :content="notice.content"
@@ -14,23 +14,23 @@
                         :name="notice.name"
                         :haveIcon="notice.haveIcon"
 
-            ></IVueNotice>
+            ></IvueNotice>
       </div>
 </template>
 
 <script>
-import IVueNotice from './IVueNotice';
+import IvueNotice from './IvueNotice';
 
 let seed = 0;
 const now = Date.now();
 const prefixCls = 'ivue-notification';
 
 function getUuid () {
-      return 'IVueNotification' + now + '_' + (seed++);
+      return 'IvueNotification' + now + '_' + (seed++);
 }
 
 export default {
-      name: 'IVueNotification',
+      name: prefixCls,
       props: {
             prefixCls: {
                   type: String,
@@ -104,7 +104,7 @@ export default {
             }
       },
       components: {
-            IVueNotice
+            IvueNotice
       }
 }
 </script>

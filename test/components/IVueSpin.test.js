@@ -1,15 +1,15 @@
-import IVueSpin from '../../src/components/IVueSpin';
-import IVueIcon from '../../src/components/IVueIcon';
+import IvueSpin from '../../src/components/IvueSpin';
+import IvueIcon from '../../src/components/IvueIcon';
 import { mount } from '@vue/test-utils';
 
-describe('IVueSpin', function () {
+describe('IvueSpin', function () {
       it('should render the spin size small', async () => {
             const wrapper = mount({
                   template: `
-                         <IVueSpin size="small"></IVueSpin> 
+                         <IvueSpin size="small"></IvueSpin> 
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });
@@ -21,10 +21,10 @@ describe('IVueSpin', function () {
       it('should render the spin size default', async () => {
             const wrapper = mount({
                   template: `
-                         <IVueSpin></IVueSpin> 
+                         <IvueSpin></IvueSpin> 
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });
@@ -36,10 +36,10 @@ describe('IVueSpin', function () {
       it('should render the spin size large ', async () => {
             const wrapper = mount({
                   template: `
-                         <IVueSpin size="large"></IVueSpin> 
+                         <IvueSpin size="large"></IvueSpin> 
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });
@@ -56,11 +56,11 @@ describe('IVueSpin', function () {
                                     position: relative;
                                     border: 1px solid #000;"
                         >
-                              <IVueSpin fix></IVueSpin> 
+                              <IvueSpin fix></IvueSpin> 
                         </div>
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });
@@ -77,11 +77,11 @@ describe('IVueSpin', function () {
                                     position: relative;
                                     border: 1px solid #eee;"
                         >
-                              <IVueSpin fix>加载中...</IVueSpin> 
+                              <IvueSpin fix>加载中...</IvueSpin> 
                         </div>
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });
@@ -98,15 +98,15 @@ describe('IVueSpin', function () {
                                     position: relative;
                                     border: 1px solid #eee;"
                         >
-                              <IVueSpin fix>
-                                    <IVueIcon>donut_large</IVueIcon>
+                              <IvueSpin fix>
+                                    <IvueIcon>donut_large</IvueIcon>
                                     <div>Loading</div>
-                              </IVueSpin> 
+                              </IvueSpin> 
                         </div>
                   `,
                   components: {
-                        IVueSpin,
-                        IVueIcon
+                        IvueSpin,
+                        IvueIcon
                   }
             }, {
                   });
@@ -122,17 +122,17 @@ describe('IVueSpin', function () {
                                     position: relative;
                                     border: 1px solid #eee;"
                         >
-                              <IVueSpin fix>
+                              <IvueSpin fix>
                                     <div class="loader">
                                           <svg class="circular" viewBox="25 25 50 50">
                                                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
                                           </svg>
                                     </div>
-                              </IVueSpin> 
+                              </IvueSpin> 
                         </div>
                   `,
                   components: {
-                        IVueSpin
+                        IvueSpin
                   }
             }, {
                   });

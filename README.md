@@ -2,7 +2,7 @@
 
 
 # UI 元素
-### IVueElevation 深度
+### IvueElevation 深度
 
 从一个表面的前面到另一个表面的前面测量，元素的高度表示表面之间的距离和阴影的深度。
 
@@ -14,11 +14,11 @@ elevation等级从0px到24px深度。您可以在任何HTML标记上添加此类
 
 <template>
       <div class="elevation-demo">
-            <IVueContent :class="`ivue-elevation-${index}`" 
+            <IvueContent :class="`ivue-elevation-${index}`" 
                         v-for="(item,index) in length"
                         :key="index">
                   {{index}}
-            </IVueContent>
+            </IvueContent>
       </div>
 </template>
 
@@ -58,7 +58,7 @@ API
 | ---------------------- | :------------------------------------------------------------- |
 | ivue-elevation- [size] | 向目标元素添加elevation,大小可以是1到24.例如：ivue-elevation-4 |
 
-### IVueLayout 布局
+### IvueLayout 布局
 
 布局系统使用行和列的概念。您可以创建大小的列。您将能够为每个列设置大小，即使在嵌套列上也是如此。
 
@@ -322,13 +322,13 @@ ivue-hide
 
 # 组件    
 
-### IVueContent 内容
+### IvueContent 内容
 
 构成应用程序的内容表面在本规范中称为材料或材料表。内容组件通常用于类似一张纸。主题任意内容将是有用的。
 
 ##### 例子
 ```javascript
- <IVueContent>hello</IVueContent>    
+ <IvueContent>hello</IvueContent>    
 ```    
    
 API
@@ -340,7 +340,7 @@ API
 | iVueTag | 输出标签。例如，当你想创建一个部分而不是div时很有用 | String | div  |
  
 
-### IVueButton 按钮
+### IvueButton 按钮
 
 按钮传达用户触摸它们时将发生的操作。它们可以是平坦的，凸起的，任何色彩辅助类都可以用来改变背景或文字的颜色。
 
@@ -352,56 +352,56 @@ API
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div>
       <span>Flat</span>
-      <IVueButton flat @click="clickBtn">默认效果</IVueButton>
-      <IVueButton flat :ivueRipple="false">波纹效果关闭</IVueButton>
-      <IVueButton flat color="red-accent-4">Accent</IVueButton>
-      <IVueButton flat color="blue">Primary</IVueButton>
-      <IVueButton flat disabled>disabled</IVueButton>
+      <IvueButton flat @click="clickBtn">默认效果</IvueButton>
+      <IvueButton flat :ivueRipple="false">波纹效果关闭</IvueButton>
+      <IvueButton flat color="red-accent-4">Accent</IvueButton>
+      <IvueButton flat color="blue">Primary</IvueButton>
+      <IvueButton flat disabled>disabled</IvueButton>
     </div>
     <div>
       <span>Raised</span>
-      <IVueButton>默认效果</IVueButton>
-      <IVueButton :ivueRipple="false">波纹效果关闭</IVueButton>
-      <IVueButton color="blue">Primary</IVueButton>
-      <IVueButton color="red-accent-4">Accent</IVueButton>
-      <IVueButton disabled>disabled</IVueButton>
+      <IvueButton>默认效果</IvueButton>
+      <IvueButton :ivueRipple="false">波纹效果关闭</IvueButton>
+      <IvueButton color="blue">Primary</IvueButton>
+      <IvueButton color="red-accent-4">Accent</IvueButton>
+      <IvueButton disabled>disabled</IvueButton>
     </div>
     <div>
       <span>depressed</span>
-      <IVueButton depressed>默认效果</IVueButton>
-      <IVueButton depressed color="red-accent-4">Accent</IVueButton>
+      <IvueButton depressed>默认效果</IvueButton>
+      <IvueButton depressed color="red-accent-4">Accent</IvueButton>
     </div>
      <div>
       <span>outline</span>
-      <IVueButton outline>默认效果</IVueButton>
-      <IVueButton outline color="red-accent-4">Accent</IVueButton>
+      <IvueButton outline>默认效果</IvueButton>
+      <IvueButton outline color="red-accent-4">Accent</IvueButton>
     </div>
     <div>
       <span>link</span>
-      <IVueButton :href="pageUrl">默认效果</IVueButton>
-      <IVueButton :href="pageUrl" class="blue">Primary</IVueButton>
-      <IVueButton :href="pageUrl" class="red-accent-4">Accent</IVueButton>
-      <IVueButton :href="pageUrl" class="ivue-raised blue">Primary</IVueButton>
+      <IvueButton :href="pageUrl">默认效果</IvueButton>
+      <IvueButton :href="pageUrl" class="blue">Primary</IvueButton>
+      <IvueButton :href="pageUrl" class="red-accent-4">Accent</IvueButton>
+      <IvueButton :href="pageUrl" class="ivue-raised blue">Primary</IvueButton>
     </div>
     <div>
       <span>router link</span>
-      <IVueButton to="Layout" tag="div">默认效果</IVueButton>
-      <IVueButton to="Layout" class="blue">Primary</IVueButton>
-      <IVueButton to="Layout" class="red-accent-4">Accent</IVueButton>
+      <IvueButton to="Layout" tag="div">默认效果</IvueButton>
+      <IvueButton to="Layout" class="blue">Primary</IvueButton>
+      <IvueButton to="Layout" class="red-accent-4">Accent</IvueButton>
     </div>
     <div>
       <span>icon</span>
-      <IVueButton icon>
-        <IVueIcon>menu</IVueIcon>
-      </IVueButton>
+      <IvueButton icon>
+        <IvueIcon>menu</IvueIcon>
+      </IvueButton>
 
-      <IVueButton icon flat>
-        <IVueIcon>menu</IVueIcon>
-      </IVueButton>
+      <IvueButton icon flat>
+        <IvueIcon>menu</IvueIcon>
+      </IvueButton>
 
-      <IVueButton icon color="red-accent-4">
-        <IVueIcon>menu</IVueIcon>
-      </IVueButton>
+      <IvueButton icon color="red-accent-4">
+        <IvueIcon>menu</IvueIcon>
+      </IvueButton>
     </div>
   </div>
 </template>
@@ -478,10 +478,10 @@ API
 | ivue-icon | 添加图标 |
 
 
-### IVueIcon 图标字体
+### IvueIcon 图标字体
 
 标可以使用图标字体或外部SVG。此外，可以接受一些大小尺寸，如 2x, 3x, 4x and 5x.
-默认情况下, ```IVueIcon``` 使用的是 [material io](https://material.io/tools/icons/?icon=mood_bad&style=baseline)图标,您必须使用下划线而不是空格来传递图标的名称。例如：```<IVueIcon>thumb_up</IVueIcon>```
+默认情况下, ```IvueIcon``` 使用的是 [material io](https://material.io/tools/icons/?icon=mood_bad&style=baseline)图标,您必须使用下划线而不是空格来传递图标的名称。例如：```<IvueIcon>thumb_up</IvueIcon>```
 
 ##### 例子
 ```javascript
@@ -489,22 +489,22 @@ API
       <div>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-            <p> 图标可以使用图标字体或外部SVG。此外，可以接受一些大小尺寸，如 2x, 3x, 4x and 5x。默认情况下，IVueIcon 将假定你使用的是 <a target="_black" href="https://material.io/tools/icons/?icon=mood_bad&style=baseline">material icon</a></p>
+            <p> 图标可以使用图标字体或外部SVG。此外，可以接受一些大小尺寸，如 2x, 3x, 4x and 5x。默认情况下，IvueIcon 将假定你使用的是 <a target="_black" href="https://material.io/tools/icons/?icon=mood_bad&style=baseline">material icon</a></p>
 
             <div>
-                  <IVueIcon>menu</IVueIcon>
-                  <IVueIcon>add</IVueIcon>
-                  <IVueIcon>thumb_up</IVueIcon>
-                  <IVueIcon>verified_user</IVueIcon>
-                  <IVueIcon>home</IVueIcon>
+                  <IvueIcon>menu</IvueIcon>
+                  <IvueIcon>add</IvueIcon>
+                  <IvueIcon>thumb_up</IvueIcon>
+                  <IvueIcon>verified_user</IvueIcon>
+                  <IvueIcon>home</IvueIcon>
             </div>
 
              <div>
-                  <IVueIcon>menu</IVueIcon>
-                  <IVueIcon class="ivue-size-2x">add</IVueIcon>
-                  <IVueIcon class="ivue-size-3x">thumb_up</IVueIcon>
-                  <IVueIcon class="ivue-size-4x">verified_user</IVueIcon>
-                  <IVueIcon class="ivue-size-5x">home</IVueIcon>
+                  <IvueIcon>menu</IvueIcon>
+                  <IvueIcon class="ivue-size-2x">add</IvueIcon>
+                  <IvueIcon class="ivue-size-3x">thumb_up</IvueIcon>
+                  <IvueIcon class="ivue-size-4x">verified_user</IvueIcon>
+                  <IvueIcon class="ivue-size-5x">home</IvueIcon>
             </div>
       </div>
 </template>
@@ -532,7 +532,7 @@ API
 | ivue-loaded | 在获取SVG图标后立即触发 | null  |
 
 
-### IVueList 列表
+### IvueList 列表
 
 组件用于显示信息，它可以包含一个头像、内容、操作、列表组标题等等。列表也可以包含子元素并在侧边栏（sidebar）使用。     
 
@@ -543,25 +543,25 @@ API
 ```javascript
 <template>
       <div>
-            <IVueList>
-                  <IVueListItem>Plain Text</IVueListItem>
-                  <IVueListItem :disabled="true">button</IVueListItem>
-                  <IVueListItem @click="">button</IVueListItem>
-                  <IVueListItem href="'www.baidu.com'">link</IVueListItem>
-                  <IVueListItem to="/icon">routerLink</IVueListItem>
-            </IVueList>
+            <IvueList>
+                  <IvueListItem>Plain Text</IvueListItem>
+                  <IvueListItem :disabled="true">button</IvueListItem>
+                  <IvueListItem @click="">button</IvueListItem>
+                  <IvueListItem href="'www.baidu.com'">link</IvueListItem>
+                  <IvueListItem to="/icon">routerLink</IvueListItem>
+            </IvueList>
 
             <p>expand</p>
-             <IVueList :ivueExpandSingle="expandSingle">
-                  <IVueListItem ivue-expand :ivue-expanded.sync="expandNews">
+             <IvueList :ivueExpandSingle="expandSingle">
+                  <IvueListItem ivue-expand :ivue-expanded.sync="expandNews">
                        <span class="ivue-list-item-text">News</span>
 
-                       <IVueList slot="ivue-expand">
-                              <IVueListItem class="ivue-inset">World</IVueListItem>
-                              <IVueListItem class="ivue-inset">World</IVueListItem>
-                        </IVueList>
-                  </IVueListItem>
-            </IVueList>
+                       <IvueList slot="ivue-expand">
+                              <IvueListItem class="ivue-inset">World</IvueListItem>
+                              <IvueListItem class="ivue-inset">World</IvueListItem>
+                        </IvueList>
+                  </IvueListItem>
+            </IvueList>
       </div>
 </template>
 
@@ -583,10 +583,10 @@ API
 
 | 名称             | 说明                                                                                                                          | 类型    | 默认  |
 | ---------------- | :---------------------------------------------------------------------------------------------------------------------------- | ------- | :---- |
-| ivueExpandSingle | 如果设置为true,则一次最多可扩展一个扩展列表项。扩展后的列表将在展开另一个列表时折叠，前提是 IVueListItem 开启了 ivue-expand | Boolean | false |
+| ivueExpandSingle | 如果设置为true,则一次最多可扩展一个扩展列表项。扩展后的列表将在展开另一个列表时折叠，前提是 IvueListItem 开启了 ivue-expand | Boolean | false |
 
 
-### IVueListItem 列表项
+### IvueListItem 列表项
 
 列表项将根据给定的交互类型呈现不同的标记。      
 
@@ -610,7 +610,7 @@ API
 | ivue-expanded | 显示/隐藏扩展面板的道具。应与```.sync```修饰符一起使用 | Boolean | false |
 
 
-### IVueCarousel 走马灯
+### IvueCarousel 走马灯
 
 常用于一组图片或卡片轮播，当内容空间不足时，可以用走马灯的形式进行收纳，进行轮播展现。
 
@@ -622,33 +622,33 @@ API
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
             <p>基础用法</p>
-            <IVueCarousel v-model="value1" loop>
-                  <IVueCarouselItem>
+            <IvueCarousel v-model="value1" loop>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
 
             <p>自动切换</p>
-            <IVueCarousel v-model="value1" loop autoplay>
-                  <IVueCarouselItem>
+            <IvueCarousel v-model="value1" loop autoplay>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
 
             <p>综合设置</p>
-            <IVueCarousel  v-model="value1" 
+            <IvueCarousel  v-model="value1" 
                            :autoplay="autoplay"
                            :autoplaySpeed="autoplaySpeed"
                            :dots="dots"
@@ -656,16 +656,16 @@ API
                            :trigger="trigger"
                            :arrow="arrow"
             >
-                  <IVueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
       </div>
 </template>
 
@@ -726,7 +726,7 @@ API
 
 
 
-### IVueSwitch 开关
+### IvueSwitch 开关
 
 开/关切换可切换单个设置选项的状态。    
 
@@ -738,31 +738,31 @@ API
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           
             <p>基础</p>
-            <IVueSwitch class="red-accent-4"></IVueSwitch>
+            <IvueSwitch class="red-accent-4"></IvueSwitch>
 
             <p>大小</p>
-            <IVueSwitch size="large"></IVueSwitch>
-            <IVueSwitch></IVueSwitch>
-            <IVueSwitch size="small"></IVueSwitch>
+            <IvueSwitch size="large"></IvueSwitch>
+            <IvueSwitch></IvueSwitch>
+            <IvueSwitch size="small"></IvueSwitch>
 
             <p>文字图标</p>
-            <IVueSwitch>
+            <IvueSwitch>
                   <span slot="open">开</span>
                   <span slot="close">关</span>
-            </IVueSwitch>
+            </IvueSwitch>
 
-            <IVueSwitch >
-                  <span slot="open"><IVueIcon>check</IVueIcon></span>
-                  <span slot="close"><IVueIcon>close</IVueIcon></span>
-            </IVueSwitch>
+            <IvueSwitch >
+                  <span slot="open"><IvueIcon>check</IvueIcon></span>
+                  <span slot="close"><IvueIcon>close</IvueIcon></span>
+            </IvueSwitch>
 
             <p>不可用</p>
-            <IVueSwitch :disabled="true" class="red-accent-4"></IVueSwitch>
+            <IvueSwitch :disabled="true" class="red-accent-4"></IvueSwitch>
 
             <p>loading</p>
-            <IVueSwitch loading :value="true" class="red-accent-4"></IVueSwitch>
-            <IVueSwitch loading :value="true" size="large" class="red-accent-4"></IVueSwitch>
-            <IVueSwitch loading :value="true" size="small" class="red-accent-4"></IVueSwitch>
+            <IvueSwitch loading :value="true" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch loading :value="true" size="large" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch loading :value="true" size="small" class="red-accent-4"></IvueSwitch>
       </div>
 </template>
 
@@ -809,9 +809,9 @@ API
 | open   | 自定义显示打开时的内容          |          
 | close   | 自定义显示关闭时的内容          |   
 
-### IVueBottomNav 底部导航
+### IvueBottomNav 底部导航
 
-```IVueBottomNav```组件是一个侧边栏的替代方案。它主要用于移动端，并有两个变种，图标+文本和隐藏按钮文本直到被激活。    
+```IvueBottomNav```组件是一个侧边栏的替代方案。它主要用于移动端，并有两个变种，图标+文本和隐藏按钮文本直到被激活。    
 
 
 ##### 例子   
@@ -823,40 +823,40 @@ API
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
            <p>有主题颜色</p>
-            <IVueBottomNav :value="true"  :active.sync="bottomNav1" :color="color" key="theme">
-                  <IVueButton class="shades-white">
+            <IvueBottomNav :value="true"  :active.sync="bottomNav1" :color="color" key="theme">
+                  <IvueButton class="shades-white">
                         <span>Recents</span>
-                        <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-                  <IVueButton class="shades-white">
+                        <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+                  <IvueButton class="shades-white">
                         <span>Recents</span>
-                        <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-            </IVueBottomNav>
+                        <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+            </IvueBottomNav>
 
            <p>基础</p>
-           <IVueBottomNav :value="true" :active.sync="bottomNav2" key="base" :height="'100'">
-                  <IVueButton class="red" key="base1">
+           <IvueBottomNav :value="true" :active.sync="bottomNav2" key="base" :height="'100'">
+                  <IvueButton class="red" key="base1">
                           <span>Recents</span>
-                          <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-                   <IVueButton class="buld" key="base2"  to="/">
+                          <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+                   <IvueButton class="buld" key="base2"  to="/">
                           <span>Recents</span>
-                          <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-           </IVueBottomNav>
+                          <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+           </IvueBottomNav>
 
            <p>不激活时隐藏按钮上的文字</p>
-           <IVueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
-                  <IVueButton class="red">
+           <IvueBottomNav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
+                  <IvueButton class="red">
                           <span>Recents</span>
-                          <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-                   <IVueButton class="buld">
+                          <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+                   <IvueButton class="buld">
                           <span>Recents</span>
-                          <IVueIcon>history</IVueIcon>
-                  </IVueButton>
-           </IVueBottomNav>
+                          <IvueIcon>history</IvueIcon>
+                  </IvueButton>
+           </IvueBottomNav>
            <br>
            <br>
      </div>
@@ -917,21 +917,21 @@ API
 
 
 
-### IVueBreadcrumbs面包屑
+### IvueBreadcrumbs面包屑
 
-```IVueBreadcrumbsItem```组件是一个页面导航辅助器。它可以接受一个Material Icons图标或字符作为分隔符。一个包含字段href，text和disabled的对象数组可以被传递给组件items。此外，还有一个常规插槽用于更多地控制面包屑使用```IVueBreadcrumbsItem```      
+```IvueBreadcrumbsItem```组件是一个页面导航辅助器。它可以接受一个Material Icons图标或字符作为分隔符。一个包含字段href，text和disabled的对象数组可以被传递给组件items。此外，还有一个常规插槽用于更多地控制面包屑使用```IvueBreadcrumbsItem```      
 
 ##### 例子
 ```javascript
-      <IVueBreadcrumbs>
-            <IVueBreadcrumbsItem>
-                  <IVueIcon>home</IVueIcon>
+      <IvueBreadcrumbs>
+            <IvueBreadcrumbsItem>
+                  <IvueIcon>home</IvueIcon>
                   Home
-            </IVueBreadcrumbsItem>
-            <IVueBreadcrumbsItem>
+            </IvueBreadcrumbsItem>
+            <IvueBreadcrumbsItem>
                   home
-            </IVueBreadcrumbsItem>
-      </IVueBreadcrumbs>
+            </IvueBreadcrumbsItem>
+      </IvueBreadcrumbs>
 ```
 
 API
@@ -951,9 +951,9 @@ API
 | default    | Vue默认原生插槽|      
 
 
-### IVueBreadcrumbsItem 面包屑子项
+### IvueBreadcrumbsItem 面包屑子项
 
-用于控制面包屑使用```IVueBreadcrumbsItem```        
+用于控制面包屑使用```IvueBreadcrumbsItem```        
 
 API
 
@@ -962,7 +962,7 @@ API
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |       
 | disabled    | 当前面包屑是否处于禁用状态 | Boolean | false     |     
-| tag    | ```IVueBreadcrumbsItem```渲染的标签tag | String | a     |       
+| tag    | ```IvueBreadcrumbsItem```渲染的标签tag | String | a     |       
 | to    | ```vue-router```导航 | String,Object | -     |       
 | href    | ```a```标签链接跳转 | String,Object | -     |      
 | target    | 用于设置```a``` 链接的 ```target``` 属性 | String | _self    |      
@@ -981,102 +981,102 @@ API
 
 
 
-### IVueSelect选择器
+### IvueSelect选择器
 
 
-使用模拟的增强下拉选择器来代替浏览器原生的选择器。选择器支持单选、多选、搜索，以及键盘快捷操作。  ```IVueSelect```选择器应该与```IVueOption```或者```IVueOptionGroup```组件一起使用。选择将始终对```v-model``` ```prop```的变化做出反应。
+使用模拟的增强下拉选择器来代替浏览器原生的选择器。选择器支持单选、多选、搜索，以及键盘快捷操作。  ```IvueSelect```选择器应该与```IvueOption```或者```IvueOptionGroup```组件一起使用。选择将始终对```v-model``` ```prop```的变化做出反应。
 
 ##### 例子
 ```javascript
 <template>
       <div>
             <p>普通</p>
-            <IVueSelect :value="'Sydney'" clearable>
-                  <IVueOption v-for="(item,index) in cityList1" :value="item.value" :key="index">
+            <IvueSelect :value="'Sydney'" clearable>
+                  <IvueOption v-for="(item,index) in cityList1" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选中选项v-model中的内容 - 单选</p>
-            <IVueSelect :value="model1" clearable>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect :value="model1" clearable>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>是否将label和value一起返回 - 单选</p>
-            <IVueSelect  labelAndValue clearable>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  labelAndValue clearable>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>开启过滤筛选 - 单选</p>
-            <IVueSelect  filterable :value="model1">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  filterable :value="model1">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
 
             <p>多选</p>
-            <IVueSelect multiple clearable :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple clearable :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选中选项v-model中的内容 - 多选</p>
-            <IVueSelect multiple :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>是否将label和value一起返回 - 多选</p>
-            <IVueSelect  labelAndValue  multiple @on-change="_input">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect  labelAndValue  multiple @on-change="_input">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>开启过滤筛选 - 多选</p>
-            <IVueSelect multiple filterable :value="['Sydney']">
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect multiple filterable :value="['Sydney']">
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选择组件禁用</p>
-            <IVueSelect disabled>
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
+            <IvueSelect disabled>
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :key="index">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>选择菜单选项禁用</p>
-            <IVueSelect >
-                  <IVueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+            <IvueSelect >
+                  <IvueOption v-for="(item,index) in cityList2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                         <span>{{ item.label }}</span>
-                  </IVueOption>
-            </IVueSelect>
+                  </IvueOption>
+            </IvueSelect>
             <p>菜单选项 group - 单选</p>
-            <IVueSelect filterable>
-                  <IVueOptionGroup  :label="'one'" >
-                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+            <IvueSelect filterable>
+                  <IvueOptionGroup  :label="'one'" >
+                        <IvueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-                  <IVueOptionGroup  :label="'two'" >
-                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
+                        </IvueOption>
+                  </IvueOptionGroup>
+                  <IvueOptionGroup  :label="'two'" >
+                        <IvueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="index" :disabled="index === 2">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-            </IVueSelect>
+                        </IvueOption>
+                  </IvueOptionGroup>
+            </IvueSelect>
              <p>菜单选项 group - 多选</p>
-            <IVueSelect  multiple filterable>
-                  <IVueOptionGroup  :label="'one'" >
-                        <IVueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="item.value">
+            <IvueSelect  multiple filterable>
+                  <IvueOptionGroup  :label="'one'" >
+                        <IvueOption v-for="(item,index) in grop1" :value="item.value" :label="item.label" :key="item.value">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-                  <IVueOptionGroup  :label="'two'" >
-                        <IVueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="item.value">
+                        </IvueOption>
+                  </IvueOptionGroup>
+                  <IvueOptionGroup  :label="'two'" >
+                        <IvueOption v-for="(item,index) in grop2" :value="item.value" :label="item.label" :key="item.value">
                               <span>{{ item.label }}</span>
-                        </IVueOption>
-                  </IVueOptionGroup>
-            </IVueSelect>
+                        </IvueOption>
+                  </IvueOptionGroup>
+            </IvueSelect>
       </div>
 </template>
 
@@ -1212,7 +1212,7 @@ API
 | on-clear | 点击清空按钮时触发 | - | -  |
 
 
-##### IVueOption
+##### IvueOption
 
 API
 
@@ -1226,7 +1226,7 @@ API
 | disabled| 是否禁用当前选项 | Boolean | false      |        
  
 
-##### IVueOptionGroup
+##### IvueOptionGroup
 
 API
 
@@ -1237,9 +1237,9 @@ API
 | label| 分组的组名 | String | -      |        
  
 
-### IVueAutoComplete 输入框自动完成功能
+### IvueAutoComplete 输入框自动完成功能
 
-该```IVueAutoComplete```组件提供简单灵活的预先输入功能。这在搜索大型数据集或甚至从API动态请求信息时非常有用。
+该```IvueAutoComplete```组件提供简单灵活的预先输入功能。这在搜索大型数据集或甚至从API动态请求信息时非常有用。
 
 API
 
@@ -1266,7 +1266,7 @@ API
 | on-change | 选中 ```option```，或 ```input``` 的 value 变化时，调用此函数 |  value  |
     
 
-### IVueInput 基本表单组件
+### IvueInput 基本表单组件
 
 基本表单组件，支持 input 和 textarea，并在原生控件基础上进行了功能扩展，可以组合使用。
 
@@ -1278,30 +1278,30 @@ API
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
             <p>基本用法，可以使用 v-model 实现数据的双向绑定。可以直接设置 style 来改变输入框的宽度，默认 100%。</p>
-            <IVueInput v-model="baseInput" placeholder="someing messasge" @on-enter="enter"></IVueInput>
+            <IvueInput v-model="baseInput" placeholder="someing messasge" @on-enter="enter"></IvueInput>
             <p>{{baseInput}}</p>
             <p>开启属性 clearable 可显示清空按钮。</p>
-            <IVueInput v-model="clearableInput" placeholder="someing messasge" clearable></IVueInput>
+            <IvueInput v-model="clearableInput" placeholder="someing messasge" clearable></IvueInput>
             <p>{{clearableInput}}</p>
             <p>输入框图标 属性方式</p>
-            <IVueInput  placeholder="someing messasge" prefix="face"  clearable></IVueInput>
-            <IVueInput  placeholder="someing messasge"  suffix="visibility" clearable></IVueInput>
+            <IvueInput  placeholder="someing messasge" prefix="face"  clearable></IvueInput>
+            <IvueInput  placeholder="someing messasge"  suffix="visibility" clearable></IvueInput>
             <p>输入框图标 slot方式</p>
-            <IVueInput  placeholder="someing messasge"  clearable number>
-                        <IVueIcon slot="prefix">face</IVueIcon>
-            </IVueInput>
-            <IVueInput  placeholder="someing messasge"  clearable>
-                        <IVueIcon slot="suffix">visibility</IVueIcon>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  clearable number>
+                        <IvueIcon slot="prefix">face</IvueIcon>
+            </IvueInput>
+            <IvueInput  placeholder="someing messasge"  clearable>
+                        <IvueIcon slot="suffix">visibility</IvueIcon>
+            </IvueInput>
             <p>input disabled</p>
-            <IVueInput  placeholder="someing messasge"  disabled>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  disabled>
+            </IvueInput>
             <p>textarea</p>
-            <IVueInput  placeholder="someing messasge"  type="textarea" :autosize="{minRows: 2,maxRows: 5}">
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  type="textarea" :autosize="{minRows: 2,maxRows: 5}">
+            </IvueInput>
             <p>textarea disabled</p>
-            <IVueInput  placeholder="someing messasge"  type="textarea" disabled>
-            </IVueInput>
+            <IvueInput  placeholder="someing messasge"  type="textarea" disabled>
+            </IvueInput>
       </div>
 </template>
 
@@ -1360,7 +1360,7 @@ API
 | on-change | 数据改变时触发 | event   |
     
 
-### IVueStepper 步骤条    
+### IvueStepper 步骤条    
 
 组件用于显示步骤进度，引导用户按流程完成任务。       
 
@@ -1368,20 +1368,20 @@ API
 ```javascript
 <template>
       <div>
-            <IVueStepper :currentStep="0"  :direction="'vertical'">
-                  <IVueStepperStep title="已完成" content="这里是该步骤的描述信息"></IVueStepperStep>
-                  <IVueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IVueStepperStep>
-                  <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-                  <IVueStepperStep title="待进行" content="这里是该步骤的描述信息"></IVueStepperStep>
-            </IVueStepper>
+            <IvueStepper :currentStep="0"  :direction="'vertical'">
+                  <IvueStepperStep title="已完成" content="这里是该步骤的描述信息"></IvueStepperStep>
+                  <IvueStepperStep title="进行中" content="这里是该步骤的描述信息" :status="'error'"></IvueStepperStep>
+                  <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+                  <IvueStepperStep title="待进行" content="这里是该步骤的描述信息"></IvueStepperStep>
+            </IvueStepper>
 
 
-            <IVueStepper :currentStep="current" >
-                  <IVueStepperStep title="步骤1" icon="account_circle" editable></IVueStepperStep>
-                  <IVueStepperStep title="步骤2" editable :status="'error'"></IVueStepperStep>
-                  <IVueStepperStep title="步骤3" editable></IVueStepperStep>
-                  <IVueStepperStep title="步骤4" editable></IVueStepperStep>
-            </IVueStepper>
+            <IvueStepper :currentStep="current" >
+                  <IvueStepperStep title="步骤1" icon="account_circle" editable></IvueStepperStep>
+                  <IvueStepperStep title="步骤2" editable :status="'error'"></IvueStepperStep>
+                  <IvueStepperStep title="步骤3" editable></IvueStepperStep>
+                  <IvueStepperStep title="步骤4" editable></IvueStepperStep>
+            </IvueStepper>
             <button @click="next">Next step</button>
       </div>
 </template>
@@ -1416,9 +1416,9 @@ API
 | direction    | 步骤条方向,可选值为```horizontal```（水平）或 ```vertical```（垂直） | String | horizontal      |           
 | status    | 当前步骤的状态，可选值为 ```wait```、```process```、```finish```、```error``` | String | process      |           
 
-### IVueStepperStep 步骤条子组件
+### IvueStepperStep 步骤条子组件
 
-通常与```IVueStepper```一起使用
+通常与```IvueStepper```一起使用
 
 ##### props     
 
@@ -1431,7 +1431,7 @@ API
 | editable    | 当前步骤是否是否可以通过点击进行下一步 | String | -      |           
 
 
-### IVueUpLoad 上传
+### IvueUpLoad 上传
 
 文件选择上传和拖拽上传控件。
 
@@ -1440,40 +1440,40 @@ API
 <template>
       <div>
             <p>单选文件</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
 
             <p>多选文件</p>
-            <IVueUpLoad multiple :uploadUrl="'//jsonplaceholder.typicode.com/posts/'">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad multiple :uploadUrl="'//jsonplaceholder.typicode.com/posts/'">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
 
             <p>手动上传</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" :beforeUpload="handleUpload">
-                  <IVueButton class="upload"  :ivueRipple="false">
-                        <IVueIcon>cloud_upload</IVueIcon>上传
-                  </IVueButton>
-            </IVueUpLoad>
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" :beforeUpload="handleUpload">
+                  <IvueButton class="upload"  :ivueRipple="false">
+                        <IvueIcon>cloud_upload</IvueIcon>上传
+                  </IvueButton>
+            </IvueUpLoad>
             <div v-if="file !== null">Upload file: {{ file.name }} 
-                   <IVueButton class="upload"  :ivueRipple="false" @click="upload" :loading="loadingStatus">
+                   <IvueButton class="upload"  :ivueRipple="false" @click="upload" :loading="loadingStatus">
                         {{ loadingStatus ? 'Uploading' : 'Click to upload' }}
-                  </IVueButton>
+                  </IvueButton>
             </div>
 
             <p>拖拽上传</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" multiple type="drag">
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" multiple type="drag">
                   <div style="padding: 20px 0">
                         <p>Click or drag files here to upload</p>
                   </div>
-            </IVueUpLoad>
+            </IvueUpLoad>
 
             <p>自定义上传列表</p>
-            <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" 
+            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'" 
                         multiple 
                         :showUploadList="false"
                         :defaultFileList="defaultList"
@@ -1489,7 +1489,7 @@ API
                   <div style="width: 58px;height:58px;line-height: 58px;">
                         <p>Click or drag files here to upload</p>
                   </div>
-            </IVueUpLoad>
+            </IvueUpLoad>
             <img v-for="item in uploadList" :src="item.url" :key="item.url" v-if="item.status === 'finished'"/>
       </div>
 </template>
@@ -1589,7 +1589,7 @@ export default {
    
 
 
-### IVueProgress 进度条
+### IvueProgress 进度条
 
 展示操作或任务的当前进度，比如上传文件。
 
@@ -1598,19 +1598,19 @@ export default {
 ```javascript
 <template>
       <div>
-            <IVueProgressLinear :percent="40" class="red-accent-4" ></IVueProgressLinear>
-            <IVueProgressLinear :percent="40"  status="active" ></IVueProgressLinear>
-            <IVueProgressLinear :percent="65"  status="wrong"></IVueProgressLinear>
-            <IVueProgressLinear :percent="100"  ></IVueProgressLinear>
-            <IVueProgressLinear :percent="80"  hideText></IVueProgressLinear>
-            <IVueProgressLinear :percent="100"  ><span>成功</span></IVueProgressLinear>
+            <IvueProgressLinear :percent="40" class="red-accent-4" ></IvueProgressLinear>
+            <IvueProgressLinear :percent="40"  status="active" ></IvueProgressLinear>
+            <IvueProgressLinear :percent="65"  status="wrong"></IvueProgressLinear>
+            <IvueProgressLinear :percent="100"  ></IvueProgressLinear>
+            <IvueProgressLinear :percent="80"  hideText></IvueProgressLinear>
+            <IvueProgressLinear :percent="100"  ><span>成功</span></IvueProgressLinear>
 
-            <IVueProgressCircular :percent="20" class="red-accent-4"></IVueProgressCircular>
-            <IVueProgressCircular :percent="value" :size="100" :width="15" :rotate="360" class="purple">{{value}}</IVueProgressCircular>
-            <IVueProgressCircular :percent="60" status="wrong"></IVueProgressCircular>
-            <IVueProgressCircular :percent="80"></IVueProgressCircular>
-            <IVueProgressCircular :percent="100"></IVueProgressCircular>
-            <IVueProgressCircular :percent="20" indeterminate></IVueProgressCircular>
+            <IvueProgressCircular :percent="20" class="red-accent-4"></IvueProgressCircular>
+            <IvueProgressCircular :percent="value" :size="100" :width="15" :rotate="360" class="purple">{{value}}</IvueProgressCircular>
+            <IvueProgressCircular :percent="60" status="wrong"></IvueProgressCircular>
+            <IvueProgressCircular :percent="80"></IvueProgressCircular>
+            <IvueProgressCircular :percent="100"></IvueProgressCircular>
+            <IvueProgressCircular :percent="20" indeterminate></IvueProgressCircular>
       </div>
 </template>
 
@@ -1637,7 +1637,7 @@ export default {
 </script>
 ```
 
-#### IVueProgressLinear 线条
+#### IvueProgressLinear 线条
 
 API
 
@@ -1652,7 +1652,7 @@ API
 | hideText    | 隐藏文字 | Boolean | false      |           
 
 
-#### IVueProgressCircular 圆形
+#### IvueProgressCircular 圆形
 
 API
 
@@ -1669,7 +1669,7 @@ API
 | indeterminate    | 一个不确定的进度圆环永远循环动画 | Boolean | false      |           
            
 
-#### IVueNotice 通知提醒
+#### IvueNotice 通知提醒
 
 在界面右上角显示可关闭的全局通知，常用于以下场景：
 
@@ -1700,21 +1700,21 @@ export default {
     },
     methods: {
         time () {
-            this.$IVueNotice.config({
+            this.$IvueNotice.config({
                 top: 100,
                 duration: 3
             });
-            this.$IVueNotice.open({
+            this.$IvueNotice.open({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.open({
+            this.$IvueNotice.open({
                 title: 'name : one',
                 duration: 0,
                 name: 'one'
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0,
@@ -1726,49 +1726,49 @@ export default {
                     ])
                 }
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.success({
+            this.$IvueNotice.success({
                 title: 'Notification title',
                 duration: 0
             });
-            this.$IVueNotice.info({
-                title: 'Notification title',
-                desc: 'This notification does not automatically close, and you need to click the close button to close.',
-                duration: 0
-            });
-            this.$IVueNotice.info({
-                title: 'Notification title',
-                duration: 0
-            });
-            this.$IVueNotice.warning({
+            this.$IvueNotice.info({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.warning({
+            this.$IvueNotice.info({
                 title: 'Notification title',
                 duration: 0
             });
-            this.$IVueNotice.error({
+            this.$IvueNotice.warning({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
                 duration: 0
             });
-            this.$IVueNotice.error({
+            this.$IvueNotice.warning({
+                title: 'Notification title',
+                duration: 0
+            });
+            this.$IvueNotice.error({
+                title: 'Notification title',
+                desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                duration: 0
+            });
+            this.$IvueNotice.error({
                 title: 'Notification title',
                 duration: 0
             });
 
         },
         close(){
-             this.$IVueNotice.close('one');
+             this.$IvueNotice.close('one');
         },
         destroy(){
-             this.$IVueNotice.destroy();
+             this.$IvueNotice.destroy();
         }
     }
 }
@@ -1782,11 +1782,11 @@ API
 
 通过直接调用以下方法来使用组件：
 
-* ```this.$IVueNotice.open(config)```
-* ```this.$IVueNotice.info(config)```
-* ```this.$IVueNotice.success(config)```
-* ```this.$IVueNotice.warning(config)```
-* ```this.$IVueNotice.error(config)```      
+* ```this.$IvueNotice.open(config)```
+* ```this.$IvueNotice.info(config)```
+* ```this.$IvueNotice.success(config)```
+* ```this.$IvueNotice.warning(config)```
+* ```this.$IvueNotice.error(config)```      
 
 
 参数 config 为对象，具体说明如下：     
@@ -1803,9 +1803,9 @@ API
 
 另外提供了全局配置、全局关闭某个通知和全局销毁的方法：        
 
-* ```this.$IVueNotice.config(options)```
-* ```this.$IVueNotice.close(options)```
-* ```this.$IVueNotice.destroy()```
+* ```this.$IvueNotice.config(options)```
+* ```this.$IvueNotice.close(options)```
+* ```this.$IvueNotice.destroy()```
 
 ```javascript
 this.$Notice.config({
@@ -1821,7 +1821,7 @@ this.$Notice.config({
 | duration | 默认自动关闭的延时，单位秒 | Number | 4.5  |      
 
 
-#### IVueMessage 全局提示
+#### IvueMessage 全局提示
 
 轻量级的信息反馈组件，在顶部居中显示，并自动消失。有多种不同的提示状态可选择。
 
@@ -1840,23 +1840,23 @@ this.$Notice.config({
 export default {
       methods: {
             click () {
-                  this.$IVueMessage.config({
+                  this.$IvueMessage.config({
                         top: 50,
                         duration: 0
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                         duration: 0,
                         closable: true
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                   });
-                  this.$IVueMessage.loading({
+                  this.$IvueMessage.loading({
                         content: 'Loading...',
                         duration: 0
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                         render: h => {
                               return h('span', [
@@ -1866,12 +1866,12 @@ export default {
                               ])
                         }
                   });
-                  this.$IVueMessage.info('This is created by ');
-                  this.$IVueMessage.warning('This is created by ');
-                  this.$IVueMessage.error('This is created by ');
+                  this.$IvueMessage.info('This is created by ');
+                  this.$IvueMessage.warning('This is created by ');
+                  this.$IvueMessage.error('This is created by ');
             },
             destroy () {
-                  this.$IVueMessage.destroy();
+                  this.$IvueMessage.destroy();
             }
       }
 }
@@ -1885,11 +1885,11 @@ API
 
 通过直接调用以下方法来使用组件：
 
-* ```this.$IVueMessage.info(config)```
-* ```this.$IVueMessage.success(config)```
-* ```this.$IVueMessage.warning(config)```
-* ```this.$IVueMessage.error(config)```      
-* ```this.$IVueMessage.loading(config)```      
+* ```this.$IvueMessage.info(config)```
+* ```this.$IvueMessage.success(config)```
+* ```this.$IvueMessage.warning(config)```
+* ```this.$IvueMessage.error(config)```      
+* ```this.$IvueMessage.loading(config)```      
 
 
 参数 config 为对象，具体说明如下：     
@@ -1905,8 +1905,8 @@ API
 
 另外提供了全局配置和全局销毁的方法：        
 
-* ```this.$IVueMessage.config(options)```
-* ```this.$IVueMessage.destroy()```
+* ```this.$IvueMessage.config(options)```
+* ```this.$IvueMessage.destroy()```
 
 ```javascript
 this.$Notice.config({
@@ -1932,19 +1932,19 @@ this.$Notice.config({
 ```javascript
 <template>
       <div>
-            <IVueTabs color="#424242" v-model="active">
-                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IVueTab>
-                  <IVueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IVueTabItem>
-            </IVueTabs>
+            <IvueTabs color="#424242" v-model="active">
+                  <IvueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IvueTab>
+                  <IvueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IvueTabItem>
+            </IvueTabs>
 
-            <IVueTabs color="#424242" centered height="100">
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
-            </IVueTabs>
+            <IvueTabs color="#424242" centered height="100">
+                  <IvueTab v-for="n in 3" :key="n" :rippleCentered="true"><IvueIcon>menu</IvueIcon></IvueTab>
+            </IvueTabs>
 
-             <IVueTabs color="#424242" right sliderColor="yellow" >
+             <IvueTabs color="#424242" right sliderColor="yellow" >
                   
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
-            </IVueTabs>
+                  <IvueTab v-for="n in 3" :key="n" :rippleCentered="true"><IvueIcon>menu</IvueIcon></IvueTab>
+            </IvueTabs>
       </div>
 </template>
 
@@ -1963,7 +1963,7 @@ export default {
 
 API
 
-##### IVueTabs props     
+##### IvueTabs props     
 
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |
@@ -1978,7 +1978,7 @@ API
 | prevIcon   | 导航栏箭头左边图标,通常与图标库 [material.io](https://material.io/tools/icons/?icon=keyboard_arrow_left&style=baseline)一起使用  | String | chevron_left    |
 
 
-##### IVueTab props     
+##### IvueTab props     
 
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |
@@ -1987,13 +1987,13 @@ API
 | rippleCentered    | 是否居中涟漪效果 | Boolean | false      |
         
 
-##### IVueTabsSlider props     
+##### IvueTabsSlider props     
 
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |
 | color    | 滑动条颜色 | String | #fff      |
         
-##### IVueTabItem props     
+##### IvueTabItem props     
 
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |
@@ -2001,7 +2001,7 @@ API
         
 
 
-### IVueLoadingBar 加载进度条
+### IvueLoadingBar 加载进度条
 
 全局创建一个显示页面加载、异步请求、文件上传等的加载进度条。
 
@@ -2011,10 +2011,10 @@ API
 
 通过直接调用以下方法来使用组件：
 
-* ```this.$IVueLoadingBar.start()```
-* ```this.$IVueLoadingBar.finish()```
-* ```this.$IVueLoadingBar.error()```
-* ```this.$IVueLoadingBar.update(percent)```
+* ```this.$IvueLoadingBar.start()```
+* ```this.$IvueLoadingBar.finish()```
+* ```this.$IvueLoadingBar.error()```
+* ```this.$IvueLoadingBar.update(percent)```
 
 具体说明如下：     
 
@@ -2028,11 +2028,11 @@ API
 
 另外提供了全局配置和全局销毁的方法：        
 
-* ```this.$IVueLoadingBar.config(options)```
-* ```this.$IVueLoadingBar.destroy()```
+* ```this.$IvueLoadingBar.config(options)```
+* ```this.$IvueLoadingBar.destroy()```
 
 ```javascript
-this.$IVueLoadingBar.config({
+this.$IvueLoadingBar.config({
     color: '#5cb85c',
     failedColor: '#f0ad4e',
     height: 5
@@ -2047,7 +2047,7 @@ this.$IVueLoadingBar.config({
     
 
 
-### IVueBadge 图钉
+### IvueBadge 图钉
 
 主要用于通知未读数的角标，提醒用户点击。
 
@@ -2056,25 +2056,25 @@ this.$IVueLoadingBar.config({
 ```javascript
 <template>
       <div>
-            <IVueBadge :count="3" color="#ba68c8" :show="show">
+            <IvueBadge :count="3" color="#ba68c8" :show="show">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-             <IVueBadge :count="0" color="purple" :showZero="true">
+             <IvueBadge :count="0" color="purple" :showZero="true">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-            <IVueBadge  dot color="#ba68c8" :count="0">
+            <IvueBadge  dot color="#ba68c8" :count="0">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-             <IVueBadge  text="123" :offset="[10,10]">
+             <IvueBadge  text="123" :offset="[10,10]">
                     <a href="#" class="demo-badge"></a>
-            </IVueBadge>
+            </IvueBadge>
 
-            <IVueBadge dot>
+            <IvueBadge dot>
                    <a href="#">可以是一个链接</a>
-            </IVueBadge>
+            </IvueBadge>
 
             <button @click="onShow">show</button>
       </div>
@@ -2122,7 +2122,7 @@ API
 | show    | 是否显示badge  | Boolean	 | true     |
 
 
-### IVueDatePicker 日期/月份选择器
+### IvueDatePicker 日期/月份选择器
 
 选择日期，支持年、月、日期类型，直观表示。
     
@@ -2133,91 +2133,91 @@ API
 <template>
   <div>
     <h1>日历变为横向 设置为多选 宽度百分百</h1>
-    <IVueDatePicker v-model="dates" headerColor="red" color="blue" landscape fullWidth multiple></IVueDatePicker>
+    <IvueDatePicker v-model="dates" headerColor="red" color="blue" landscape fullWidth multiple></IvueDatePicker>
 
     <h1>一开始显示为月份</h1>
-    <IVueDatePicker v-model="picker" type="month"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" type="month"></IvueDatePicker>
 
     <h1>语言</h1>
-    <IVueDatePicker v-model="picker" locale="zh-CH" :showCurrent="false"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" locale="zh-CH" :showCurrent="false"></IvueDatePicker>
 
     <h1>设置允许选择日期</h1>
-    <IVueDatePicker v-model="picker" locale="zh-CH" :allowedDates="allowedDates"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" locale="zh-CH" :allowedDates="allowedDates"></IvueDatePicker>
 
     <h1>便签</h1>
     <p>function</p>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :note="arrayEvents"
       :noteColor="date => date[9] % 2 ? 'red' : 'yellow'"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
     <p>array</p>
-    <IVueDatePicker v-model="picker" :note="['2018-12-10']" :noteColor="'red'"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" :note="['2018-12-10']" :noteColor="'red'"></IvueDatePicker>
 
     <h1>一周的第一天</h1>
-    <IVueDatePicker :value="picker" firstDayOfWeek="0"></IVueDatePicker>
-    <IVueDatePicker :value="picker" firstDayOfWeek="1"></IVueDatePicker>
+    <IvueDatePicker :value="picker" firstDayOfWeek="0"></IvueDatePicker>
+    <IvueDatePicker :value="picker" firstDayOfWeek="1"></IvueDatePicker>
 
     <h1>图标设置</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       :value="picker"
       nextIcon="arrow_right"
       prevIcon="arrow_left"
       yearIcon="event_note"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>只读</h1>
-    <IVueDatePicker v-model="picker" readonly></IVueDatePicker>
-    <IVueDatePicker v-model="picker" type="month" readonly></IVueDatePicker>
+    <IvueDatePicker v-model="picker" readonly></IvueDatePicker>
+    <IvueDatePicker v-model="picker" type="month" readonly></IvueDatePicker>
 
     <h1>noTitle</h1>
-    <IVueDatePicker v-model="picker" noTitle @input="handleInput"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" noTitle @input="handleInput"></IvueDatePicker>
 
     <h1>width</h1>
-    <IVueDatePicker v-model="picker" width="500"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" width="500"></IvueDatePicker>
 
     <h1>multiple</h1>
-    <IVueDatePicker v-model="months" type="month" multiple></IVueDatePicker>
+    <IvueDatePicker v-model="months" type="month" multiple></IvueDatePicker>
 
     <h1>max min</h1>
-    <IVueDatePicker v-model="picker" min="2016-06-15" max="2018-03-20"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" min="2016-06-15" max="2018-03-20"></IvueDatePicker>
 
     <h1>reactive</h1>
-    <IVueDatePicker v-model="picker" reactive></IVueDatePicker>
-    <IVueDatePicker v-model="picker" locale="zh-CH" reactive :showCurrent="false"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" reactive></IvueDatePicker>
+    <IvueDatePicker v-model="picker" locale="zh-CH" reactive :showCurrent="false"></IvueDatePicker>
 
     <h1>pickerDate</h1>
-    <IVueDatePicker v-model="picker" :pickerDate.sync="pickerDate"></IVueDatePicker>
+    <IvueDatePicker v-model="picker" :pickerDate.sync="pickerDate"></IvueDatePicker>
 
     <h1>titleDateFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :titleDateFormat="format('zh-CN',{ weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>titleYearFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :titleYearFormat="titleYearFormat('zh-CN',{ year: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>dayFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :dayFormat="format('zh-CN',{ day: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>monthFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :monthFormat="format('zh-CN',{ month: 'short', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
 
     <h1>headerDateFormat</h1>
-    <IVueDatePicker
+    <IvueDatePicker
       v-model="picker"
       :headerDateFormat="format('zh-CN',{ month: 'long', year: 'numeric', timeZone: 'UTC' })"
-    ></IVueDatePicker>
+    ></IvueDatePicker>
   </div>
 </template>
 
@@ -2324,8 +2324,8 @@ export default {
 | 属性          | 说明                             | 类型   | 默认值 |
 | ------------- | :------------------------------- | :----- | :----- |
 | landscape    | 日历方向,纵向（默认）和 横向 | Boolean | false     |
-| fullWidth    | 指定```IVueDatePicker```的宽度是否为 100% | Boolean | false     |
-| width    | 指定```IVueDatePicker```的宽度 | Number, String | 290     |
+| fullWidth    | 指定```IvueDatePicker```的宽度是否为 100% | Boolean | false     |
+| width    | 指定```IvueDatePicker```的宽度 | Number, String | 290     |
 | multiple    | 可以选择多个月或者多个日,使用```multiple```那么 ```v-modul``` 或者 ```value``` 必须为数组 | Boolean | false     |
 | type    | 日历显示的类型,```date```(默认日期) 和 ```month```(月期)| String | date     |
 | value    | 设置需要显示的日期或者月期 | Array, String | -     |
@@ -2364,7 +2364,7 @@ export default {
 
 # 其他
 
-### IVueAffix 图钉
+### IvueAffix 图钉
 
 使用图钉，可以将内容固定在屏幕上，并且不随页面的滚动而滚动。常用于侧边菜单等。
 

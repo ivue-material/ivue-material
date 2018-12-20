@@ -1,10 +1,10 @@
-import IVueDatePicker from '../../../src/components/IVueDatePicker/IVueDatePicker';
+import IvueDatePicker from '../../../src/components/IvueDatePicker/IvueDatePicker';
 import { mount } from '@vue/test-utils';
 
 
-describe('IVueDatePicker', function () {
+describe('IvueDatePicker', function () {
       it('should watch tableDate value and run transition', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         current: '2018-07',
                         value: '2018-11-03',
@@ -22,7 +22,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should watch tableDate value and run reverse transition', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         current: '2018-07',
                         value: '2018-11-02'
@@ -41,7 +41,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should change tableDate when touch is called', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2017-05-02'
                   }

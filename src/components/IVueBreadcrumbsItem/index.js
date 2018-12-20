@@ -1,3 +1,3 @@
-import IVueBreadcrumbsItem from './IVueBreadcrumbsItem.vue';
+import IvueBreadcrumbsItem from './IvueBreadcrumbsItem.vue';
 
-export default IVueBreadcrumbsItem;
+export default IvueBreadcrumbsItem;

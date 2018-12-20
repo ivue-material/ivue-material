@@ -1,3 +1,3 @@
-import IVueBadge from './IVueBadge.vue';
+import IvueBadge from './IvueBadge.vue';
 
-export default IVueBadge;
+export default IvueBadge;

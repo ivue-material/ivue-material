@@ -1,5 +1,5 @@
 <template>
-      <IVueRipple :ivueDisabled="!ivueRipple || disabled" 
+      <IvueRipple :ivueDisabled="!ivueRipple || disabled" 
                   :ivueEventTrigger="false"  
                   :ivueActive="ivueRippleActive" 
                   @update:ivueActive="active => $emit('update:ivueRippleActive', active)"
@@ -7,16 +7,16 @@
             <div :class="`${prefixCls}-content`">
                   <slot></slot>
             </div>
-      </IVueRipple>
+      </IvueRipple>
 </template>
 
 <script>
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 const prefixCls = 'ivue-button';
 
 export default {
-      name: "IVueButtonContent",
+      name: prefixCls,
       props: {
             /*
             * 禁用按钮并阻止其操作
@@ -49,14 +49,7 @@ export default {
             }
       },
       components: {
-            IVueRipple
+            IvueRipple
       }
 }
 </script>
-
-<style lang="scss" scoped>
-.ivue-button-content {
-  position: relative;
-  z-index: 2;
-}
-</style>

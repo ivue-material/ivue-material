@@ -10,23 +10,23 @@
 export default {
       methods: {
             click () {
-                  this.$IVueMessage.config({
+                  this.$IvueMessage.config({
                         top: 50,
                         duration: 0
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                         duration: 0,
                         closable: true
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                   });
-                  this.$IVueMessage.loading({
+                  this.$IvueMessage.loading({
                         content: 'Loading...',
                         duration: 0
                   });
-                  this.$IVueMessage.success({
+                  this.$IvueMessage.success({
                         content: 'Tips for manual closing',
                         render: h => {
                               return h('span', [
@@ -36,12 +36,12 @@ export default {
                               ])
                         }
                   });
-                  this.$IVueMessage.info('This is created by ');
-                  this.$IVueMessage.warning('This is created by ');
-                  this.$IVueMessage.error('This is created by ');
+                  this.$IvueMessage.info('This is created by ');
+                  this.$IvueMessage.warning('This is created by ');
+                  this.$IvueMessage.error('This is created by ');
             },
             destroy () {
-                  this.$IVueMessage.destroy();
+                  this.$IvueMessage.destroy();
             }
       }
 }

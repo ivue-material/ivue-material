@@ -1,10 +1,10 @@
-import IVueDatePicker from '../../../src/components/IVueDatePicker/IVueDatePicker';
+import IvueDatePicker from '../../../src/components/IvueDatePicker/IvueDatePicker';
 import { mount } from '@vue/test-utils';
 
 
-describe('IVueDatePicker', function () {
+describe('IvueDatePicker', function () {
       it('should emit input event on year click (reactive picker)', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05',
                         type: 'month',
@@ -33,7 +33,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should not emit input event on year click if month is not allowed', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05',
                         type: 'month',
@@ -56,7 +56,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should emit input event on month click', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05',
                         type: 'month'
@@ -75,7 +75,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should match change month when clicked on header arrow button', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05',
                         type: 'month'
@@ -93,7 +93,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should match change active picker when clicked on month button', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05-02',
                         type: 'month'
@@ -107,7 +107,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should set the table date when tableDate has changed', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         type: 'month'
                   },

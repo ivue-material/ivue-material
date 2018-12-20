@@ -3,33 +3,33 @@
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
             <p>基础用法</p>
-            <IVueCarousel v-model="value1" loop>
-                  <IVueCarouselItem>
+            <IvueCarousel v-model="value1" loop>
+                  <IvueCarouselItem>
                         <div class="demo-carousel" style="background:red">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel" style="background:yellow">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
 
             <p>自动切换</p>
-            <IVueCarousel v-model="value1" loop autoplay>
-                  <IVueCarouselItem>
+            <IvueCarousel v-model="value1" loop autoplay>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
 
             <p>综合设置</p>
-            <IVueCarousel  v-model="value1" 
+            <IvueCarousel  v-model="value1" 
                            :autoplay="autoplay"
                            :autoplaySpeed="autoplaySpeed"
                            :dots="dots"
@@ -37,16 +37,16 @@
                            :trigger="trigger"
                            :arrow="arrow"
             >
-                  <IVueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">1</div>
-                  </IVueCarouselItem>
-                  <IVueCarouselItem>
+                  </IvueCarouselItem>
+                  <IvueCarouselItem>
                         <div class="demo-carousel">2</div>
-                  </IVueCarouselItem>
-                    <IVueCarouselItem>
+                  </IvueCarouselItem>
+                    <IvueCarouselItem>
                         <div class="demo-carousel">3</div>
-                  </IVueCarouselItem>
-            </IVueCarousel>
+                  </IvueCarouselItem>
+            </IvueCarousel>
       </div>
 </template>
 

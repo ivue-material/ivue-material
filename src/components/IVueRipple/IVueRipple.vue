@@ -5,25 +5,25 @@
             @mousedown.passive="mousedown"
       >
             <slot></slot>
-            <IVueWave v-for="ripple in ripples"
+            <IvueWave v-for="ripple in ripples"
                       :key="ripple.uuid"
                       :class="['ivue-ripple-wave',waveClasses]"
                       :style="ripple.waveStyles"
                       @animating-end="clearWave()"
                       v-if="!ivueDisabled"
             >
-            </IVueWave>
+            </IvueWave>
       </div>
 </template>
 
 <script>
 // requestAnimationFrame polyfill for node and the browser.
 import raf from 'raf';
-import IVueUuid from '../../utils/IVueUuid';
-import IVueWave from './IVueWave';
+import IvueUuid from '../../utils/IvueUuid';
+import IvueWave from './IvueWave';
 
 export default {
-      name: 'MdRipple',
+      name: 'ivue-ripple',
       props: {
             /*
             * 启用/禁用涟漪
@@ -152,7 +152,7 @@ export default {
                               this.ripples.push({
                                     // 波浪 style
                                     waveStyles: this.applyStyles(position, size),
-                                    uuid: IVueUuid()
+                                    uuid: IvueUuid()
                               })
                         }
                   })
@@ -230,7 +230,7 @@ export default {
             }
       },
       components: {
-            IVueWave
+            IvueWave
       }
 }
 </script>

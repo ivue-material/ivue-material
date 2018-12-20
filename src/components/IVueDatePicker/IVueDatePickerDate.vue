@@ -10,7 +10,7 @@ const prefixCls = 'ivue-date-picker-date';
 
 export default {
   mixins: [DatePickerTable, Colorable],
-  name: 'IVueDatePickerDate',
+  name: prefixCls,
   props: {
     /*
     * 一周的第一天

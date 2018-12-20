@@ -1,6 +1,6 @@
 import CreateNativeLocaleFormatter from '../../../../src/utils/CreateNativeLocaleFormatter';
 
-describe('IVueDatePicker/util/CreateNativeLocaleFormatter', function () {
+describe('IvueDatePicker/util/CreateNativeLocaleFormatter', function () {
       it('should format dates', () => {
             const formatter = CreateNativeLocaleFormatter('en-us', { day: 'numeric', timeZone: 'UTC' });
 

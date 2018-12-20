@@ -1,10 +1,10 @@
 <script>
 import { oneOf } from '../../utils/Assist';
 
-const prefixCls = 'ivu-breadcrumb-item';
+const prefixCls = 'ivue-breadcrumb-item';
 
 export default {
-      name: 'IVueBreadcrumbsItem',
+      name: prefixCls,
       props: {
             /*
             * 当前面包屑是否处于禁用状态

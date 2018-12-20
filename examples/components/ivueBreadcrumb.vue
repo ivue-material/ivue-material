@@ -1,62 +1,62 @@
 <template>
       <div>
             <p>基础</p>
-            <IVueBreadcrumbs justifyEnd>
-                  <IVueBreadcrumbsItem>
-                         <IVueIcon>home</IVueIcon>
+            <IvueBreadcrumbs justifyEnd>
+                  <IvueBreadcrumbsItem>
+                         <IvueIcon>home</IvueIcon>
                         Home
-                  </IVueBreadcrumbsItem>
-                   <IVueBreadcrumbsItem >
+                  </IvueBreadcrumbsItem>
+                   <IvueBreadcrumbsItem >
                         home
-                  </IVueBreadcrumbsItem>
-            </IVueBreadcrumbs>
+                  </IvueBreadcrumbsItem>
+            </IvueBreadcrumbs>
 
             <p>disabled</p>
-            <IVueBreadcrumbs>
-                  <IVueBreadcrumbsItem :disabled="true">
-                         <IVueIcon>home</IVueIcon>
+            <IvueBreadcrumbs>
+                  <IvueBreadcrumbsItem :disabled="true">
+                         <IvueIcon>home</IvueIcon>
                         Home
-                  </IVueBreadcrumbsItem>
-                   <IVueBreadcrumbsItem >
+                  </IvueBreadcrumbsItem>
+                   <IvueBreadcrumbsItem >
                         home
-                  </IVueBreadcrumbsItem>
-            </IVueBreadcrumbs>
+                  </IvueBreadcrumbsItem>
+            </IvueBreadcrumbs>
 
             <p>href</p>
-            <IVueBreadcrumbs>
-                  <IVueBreadcrumbsItem :href="'www.baidu.com'">
-                         <IVueIcon>home</IVueIcon>
+            <IvueBreadcrumbs>
+                  <IvueBreadcrumbsItem :href="'www.baidu.com'">
+                         <IvueIcon>home</IvueIcon>
                         Home
-                  </IVueBreadcrumbsItem>
-                   <IVueBreadcrumbsItem >
+                  </IvueBreadcrumbsItem>
+                   <IvueBreadcrumbsItem >
                         home
-                  </IVueBreadcrumbsItem>
-            </IVueBreadcrumbs>
+                  </IvueBreadcrumbsItem>
+            </IvueBreadcrumbs>
 
             <p>自定义分隔符 no slot</p>
-            <IVueBreadcrumbs divider="-">
-                  <IVueBreadcrumbsItem>
-                         <IVueIcon>home</IVueIcon>
+            <IvueBreadcrumbs divider="-">
+                  <IvueBreadcrumbsItem>
+                         <IvueIcon>home</IvueIcon>
                        Home
-                  </IVueBreadcrumbsItem>
-                   <IVueBreadcrumbsItem >
-                        <IVueIcon>home</IVueIcon>
-                  </IVueBreadcrumbsItem>
-            </IVueBreadcrumbs>
+                  </IvueBreadcrumbsItem>
+                   <IvueBreadcrumbsItem >
+                        <IvueIcon>home</IvueIcon>
+                  </IvueBreadcrumbsItem>
+            </IvueBreadcrumbs>
             
             
             <p>自定义分隔符 slot</p>
-             <IVueBreadcrumbs>
-                   <IVueIcon slot="divider">forward</IVueIcon>
-                  <IVueBreadcrumbsItem  to="/">
-                         <IVueIcon>home</IVueIcon>
+             <IvueBreadcrumbs>
+                   <IvueIcon slot="divider">forward</IvueIcon>
+                  <IvueBreadcrumbsItem  to="/">
+                         <IvueIcon>home</IvueIcon>
                         Home
-                  </IVueBreadcrumbsItem>
-                   <IVueBreadcrumbsItem  to="/">
-                        <IVueIcon>home</IVueIcon>
+                  </IvueBreadcrumbsItem>
+                   <IvueBreadcrumbsItem  to="/">
+                        <IvueIcon>home</IvueIcon>
                         Home
-                  </IVueBreadcrumbsItem>
-            </IVueBreadcrumbs>
+                  </IvueBreadcrumbsItem>
+            </IvueBreadcrumbs>
       </div>
 </template>
 

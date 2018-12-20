@@ -2,7 +2,7 @@
 import Colorable from '../../utils/mixins/Colorable';
 
 export default {
-      name: 'IVueTabsSlider',
+      name: 'ivue-tabs-slider',
       mixins: [Colorable],
       render (h) {
             return h('div', this.setBackgroundColor(this.color, {

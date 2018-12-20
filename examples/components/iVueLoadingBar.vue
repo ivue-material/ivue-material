@@ -11,16 +11,16 @@
 export default {
       methods: {
             start () {
-                  this.$IVueLoadingBar.start();
+                  this.$IvueLoadingBar.start();
             },
             finish () {
-                  this.$IVueLoadingBar.finish();
+                  this.$IvueLoadingBar.finish();
             },
             error () {
-                  this.$IVueLoadingBar.error();
+                  this.$IvueLoadingBar.error();
             },
             update(){
-                  this.$IVueLoadingBar.update(50);
+                  this.$IvueLoadingBar.update(50);
             }
       }
 }

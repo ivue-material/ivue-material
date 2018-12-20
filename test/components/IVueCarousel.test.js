@@ -1,13 +1,13 @@
-import IVueCarousel from '../../src/components/IVueCarousel';
-import IVueCarouselItem from '../../src/components/IVueCarouselItem';
+import IvueCarousel from '../../src/components/IvueCarousel';
+import IvueCarouselItem from '../../src/components/IvueCarouselItem';
 import { mount } from '@vue/test-utils';
 
-describe('IVueCarousel', function () {
+describe('IvueCarousel', function () {
       it('should render the list', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueCarousel v-model="value1" :arrow="'always'" loop>
-                              <IVueCarouselItem>
+                        <IvueCarousel v-model="value1" :arrow="'always'" loop>
+                              <IvueCarouselItem>
                                     <div style=" height: 200px;
                                     line-height: 200px;
                                     text-align: center;
@@ -15,24 +15,24 @@ describe('IVueCarousel', function () {
                                     font-size: 20px;
                                     background: #506b9e;"
                               >1</div>
-                              </IVueCarouselItem>
-                              <IVueCarouselItem>
+                              </IvueCarouselItem>
+                              <IvueCarouselItem>
                                     <div style=" height: 200px;
                                     line-height: 200px;
                                     text-align: center;
                                     color: #fff;
                                     font-size: 20px;
                                     background: #506b9e;">2</div>
-                              </IVueCarouselItem>
-                              <IVueCarouselItem>
+                              </IvueCarouselItem>
+                              <IvueCarouselItem>
                                     <div style=" height: 200px;
                                     line-height: 200px;
                                     text-align: center;
                                     color: #fff;
                                     font-size: 20px;
                                     background: #506b9e;">3</div>
-                              </IVueCarouselItem>
-                        </IVueCarousel>
+                              </IvueCarouselItem>
+                        </IvueCarousel>
                   `,
                   data () {
                         return {
@@ -40,8 +40,8 @@ describe('IVueCarousel', function () {
                         }
                   },
                   components: {
-                        IVueCarousel,
-                        IVueCarouselItem
+                        IvueCarousel,
+                        IvueCarouselItem
                   }
             }, {
                          

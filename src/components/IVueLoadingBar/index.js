@@ -1,25 +1,25 @@
-import IVueLoadingBar from './IVueLoadingBar.js';
+import IvueLoadingBar from './IvueLoadingBar.js';
 
-let IVueLoadingBarInstance;
+let IvueLoadingBarInstance;
 let color = 'primary';
 let failedColor = 'error';
 let height = 2;
 let timer;
 
 // 获取组件实例
-function getIVueLoadingBarInstance () {
-      IVueLoadingBarInstance = IVueLoadingBarInstance || IVueLoadingBar.newInstance({
+function getIvueLoadingBarInstance () {
+      IvueLoadingBarInstance = IvueLoadingBarInstance || IvueLoadingBar.newInstance({
             color: color,
             failedColor: failedColor,
             height: height
       });
 
-      return IVueLoadingBarInstance;
+      return IvueLoadingBarInstance;
 }
 
 // 更新组件
 function update (options) {
-      let instance = getIVueLoadingBarInstance();
+      let instance = getIvueLoadingBarInstance();
 
       instance.update(options);
 }
@@ -122,8 +122,8 @@ export default {
       // 销毁
       destroy(){
             clearTimer();
-            let instance = getIVueLoadingBarInstance();
-            IVueLoadingBarInstance = null;
+            let instance = getIvueLoadingBarInstance();
+            IvueLoadingBarInstance = null;
             instance.destroy();
       }
 };

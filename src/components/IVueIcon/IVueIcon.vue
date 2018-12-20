@@ -1,15 +1,17 @@
 <template>
-      <IVueSvgLoader class="ivue-icon ivue-icon-image" :svgSrc="svgSrc" v-if="svgSrc" @svg-loaded="$emit('svg-loaded')"></IVueSvgLoader>
+      <IvueSvgLoader class="ivue-icon ivue-icon-image" :svgSrc="svgSrc" v-if="svgSrc" @svg-loaded="$emit('svg-loaded')"></IvueSvgLoader>
       <i class="ivue-icon ivue-icon-font" v-else>
             <slot/>
       </i>
 </template>
 
 <script>
-import IVueSvgLoader from '../IVueSvgLoader/IVueSvgLoader';
+import IvueSvgLoader from '../IvueSvgLoader/IvueSvgLoader';
+
+const prefixCls = 'ivue-icon';
 
 export default {
-      name: 'IVueIcon',
+      name: prefixCls,
       props: {
             /*
             * svg 链接
@@ -22,7 +24,7 @@ export default {
             }
       },
       components: {
-            IVueSvgLoader
+            IvueSvgLoader
       }
 }
 </script>

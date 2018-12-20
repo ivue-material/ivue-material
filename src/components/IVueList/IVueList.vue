@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import IVueRouterLinkProps from '../../utils/mixins/IVueRouterLinkProps';
+import IvueRouterLinkProps from '../../utils/mixins/IvueRouterLinkProps';
 
 export default {
-  name: "IVueList",
-  mixins: [IVueRouterLinkProps],
+  name: "ivue-list",
+  mixins: [IvueRouterLinkProps],
   props: {
     /*
     * 用于扩展列表项，将在展开另一个列表项时折叠,一次最多可扩展一个列表项
@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      IVueList: {
+      IvueList: {
         /*
         * 扩展列表
         * 
@@ -45,7 +45,7 @@ export default {
   },
   provide () {
     return {
-      IVueList: this.IVueList
+      IvueList: this.IvueList
     }
   },
   methods: {
@@ -53,24 +53,24 @@ export default {
     expandATab (expandedListItem) {
       if (this.ivueExpandSingle && expandedListItem) {
         // 其他可扩展列表项
-        const otherExpandableListItem = this.IVueList.expandable.filter(target => target !== expandedListItem);
+        const otherExpandableListItem = this.IvueList.expandable.filter(target => target !== expandedListItem);
         otherExpandableListItem.forEach(expandableListItem => expandableListItem.close());
       }
     },
     // 插入扩展
     pushExpandable (expandableListItem) {
-      let expandableListItems = this.IVueList.expandable;
+      let expandableListItems = this.IvueList.expandable;
 
       if (!expandableListItems.find(target => target === expandableListItem)) {
-        this.IVueList.expandable = expandableListItems.concat(expandableListItems);
+        this.IvueList.expandable = expandableListItems.concat(expandableListItems);
       }
     },
     // 删除扩展
     removeExpandable (expandableListItem) {
-      let expandableListItems = this.IVueList.expandable;
+      let expandableListItems = this.IvueList.expandable;
 
       if (expandableListItems.find(target => target === expandableListItem)) {
-        this.IVueList.expandable = expandableListItems.filter(target => target !== expandableListItem);
+        this.IvueList.expandable = expandableListItems.filter(target => target !== expandableListItem);
 
       }
     }

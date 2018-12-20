@@ -4,12 +4,12 @@
             <div :class="[`${prefixCls}-divider`]"><i></i></div>
             <!-- 步骤 -->
             <div :class="[`${prefixCls}-header`]" @click="nextStepper(stepNumber)">
-                  <IVueRipple :class="[`${prefixCls}-header-content`]" :ivueCentered="true">
+                  <IvueRipple :class="[`${prefixCls}-header-content`]" :ivueCentered="true">
                               <!-- 步骤数 还没完成或者没有错误显示-->
                               <span v-if="!icon && currentStatus !== 'finish' && currentStatus !== 'error'">{{stepNumber}}</span>
                               <!-- 图标 -->
                               <i v-else :class="iconClasses">{{icon ? icon : currentStatus === 'finish' ? 'check' : currentStatus === 'error'? 'close': ''}}</i>
-                  </IVueRipple>
+                  </IvueRipple>
             </div>
             <!-- 文字 -->
             <div :class="[`${prefixCls}-content`]">
@@ -23,12 +23,12 @@
 
 <script>
 import { oneOf } from '../../utils/Assist';
-import IVueRipple from '../IVueRipple/IVueRipple';
+import IvueRipple from '../IvueRipple/IvueRipple';
 
 const prefixCls = 'ivue-stepper-steps';
 
 export default {
-      name: "IVueStepperStep",
+      name: prefixCls,
       props: {
             status: {
                   validator (value) {
@@ -120,7 +120,7 @@ export default {
             }
       },
       components:{
-            IVueRipple
+            IvueRipple
       }
 }
 </script>

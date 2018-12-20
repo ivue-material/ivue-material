@@ -1,4 +1,4 @@
-import IVueNotification from '../IVueNotification';
+import IvueNotification from '../IvueNotification';
 
 
 const prefixCls = 'ivue-message';
@@ -18,7 +18,7 @@ const iconTypes = {
 
 // 获取实例
 function getMessageInstance () {
-      messageInstance = messageInstance || IVueNotification.newInstance({
+      messageInstance = messageInstance || IvueNotification.newInstance({
             prefixCls: prefixCls,
             styles: {
                   top: `${top}px`

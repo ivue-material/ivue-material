@@ -1,24 +1,24 @@
 <template>
   <div>
     <p>基本用法，通过 data 设置自动完成的数据源。</p>
-    <IVueAutoComplete
+    <IvueAutoComplete
       v-model="value1"
       :data="data1"
       @on-search="handleSearch1"
-    ></IVueAutoComplete>
+    ></IvueAutoComplete>
     <p>除了使用 data，还可以直接传入 Option 组件作为 slot 使用，这样可以自定义显示效果。</p>
-    <IVueAutoComplete v-model="value2" @on-search="handleSearch2" clearable>
-      <IVueOption v-for="item in data2" :value="item" :key="item">
+    <IvueAutoComplete v-model="value2" @on-search="handleSearch2" clearable>
+      <IvueOption v-for="item in data2" :value="item" :key="item">
         <span>{{ item }}</span>
-      </IVueOption>
-    </IVueAutoComplete>
+      </IvueOption>
+    </IvueAutoComplete>
     <p>不区分大小写的 AutoComplete，及过滤的用法。</p>
-    <IVueAutoComplete
+    <IvueAutoComplete
       :value="value3"
       :data="data3"
       :filterMethod="filterMethod"
       @on-search="search"
-    ></IVueAutoComplete>
+    ></IvueAutoComplete>
   </div>
 </template>
 

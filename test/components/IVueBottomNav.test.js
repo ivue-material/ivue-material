@@ -1,23 +1,23 @@
-import IVueBottomNav from '../../src/components/IVueBottomNav';
-import IVueIcon from '../../src/components/IVueIcon';
-import IVueButton from '../../src/components/IVueButton';
+import IvueBottomNav from '../../src/components/IvueBottomNav';
+import IvueIcon from '../../src/components/IvueIcon';
+import IvueButton from '../../src/components/IvueButton';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueBottomNav', function () {
+describe('IvueBottomNav', function () {
       it('should render the base bottom nav', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBottomNav :value="true" :active.sync="activeNav">
-                              <IVueButton class="red">
+                        <IvueBottomNav :value="true" :active.sync="activeNav">
+                              <IvueButton class="red">
                                     <span>Recents</span>
-                                    <IVueIcon>history</IVueIcon>
-                              </IVueButton>
-                              <IVueButton class="buld">
+                                    <IvueIcon>history</IvueIcon>
+                              </IvueButton>
+                              <IvueButton class="buld">
                                           <span>Face</span>
-                                          <IVueIcon>face</IVueIcon>
-                              </IVueButton>
-                        </IVueBottomNav>
+                                          <IvueIcon>face</IvueIcon>
+                              </IvueButton>
+                        </IvueBottomNav>
                   `,
                   data () {
                         return{
@@ -25,9 +25,9 @@ describe('IVueBottomNav', function () {
                         }
                   },
                   components: {
-                        IVueBottomNav,
-                        IVueIcon,
-                        IVueButton
+                        IvueBottomNav,
+                        IvueIcon,
+                        IvueButton
                   }
             }, {
                          
@@ -42,16 +42,16 @@ describe('IVueBottomNav', function () {
       it('should render the base bottom nav theme', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBottomNav :value="true" :active.sync="activeNav" :color="'red'">
-                              <IVueButton class="shades-white">
+                        <IvueBottomNav :value="true" :active.sync="activeNav" :color="'red'">
+                              <IvueButton class="shades-white">
                                     <span>Recents</span>
-                                    <IVueIcon>history</IVueIcon>
-                              </IVueButton>
-                              <IVueButton class="shades-white">
+                                    <IvueIcon>history</IvueIcon>
+                              </IvueButton>
+                              <IvueButton class="shades-white">
                                           <span>Face</span>
-                                          <IVueIcon>face</IVueIcon>
-                              </IVueButton>
-                        </IVueBottomNav>
+                                          <IvueIcon>face</IvueIcon>
+                              </IvueButton>
+                        </IvueBottomNav>
                   `,
                   data () {
                         return{
@@ -59,9 +59,9 @@ describe('IVueBottomNav', function () {
                         }
                   },
                   components: {
-                        IVueBottomNav,
-                        IVueIcon,
-                        IVueButton
+                        IvueBottomNav,
+                        IvueIcon,
+                        IvueButton
                   }
             }, {
                          
@@ -75,16 +75,16 @@ describe('IVueBottomNav', function () {
       it('should render the base bottom nav height', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBottomNav :value="true" :active.sync="activeNav" :height="'100'">
-                              <IVueButton class="red">
+                        <IvueBottomNav :value="true" :active.sync="activeNav" :height="'100'">
+                              <IvueButton class="red">
                                     <span>Recents</span>
-                                    <IVueIcon>history</IVueIcon>
-                              </IVueButton>
-                              <IVueButton class="buld">
+                                    <IvueIcon>history</IvueIcon>
+                              </IvueButton>
+                              <IvueButton class="buld">
                                           <span>Face</span>
-                                          <IVueIcon>face</IVueIcon>
-                              </IVueButton>
-                        </IVueBottomNav>
+                                          <IvueIcon>face</IvueIcon>
+                              </IvueButton>
+                        </IvueBottomNav>
                   `,
                   data () {
                         return{
@@ -92,9 +92,9 @@ describe('IVueBottomNav', function () {
                         }
                   },
                   components: {
-                        IVueBottomNav,
-                        IVueIcon,
-                        IVueButton
+                        IvueBottomNav,
+                        IvueIcon,
+                        IvueButton
                   }
             }, {
                          
@@ -108,16 +108,16 @@ describe('IVueBottomNav', function () {
       it('should render the base bottom nav position', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBottomNav :value="true" :active.sync="activeNav" :position="'absolute'">
-                              <IVueButton class="red">
+                        <IvueBottomNav :value="true" :active.sync="activeNav" :position="'absolute'">
+                              <IvueButton class="red">
                                     <span>Recents</span>
-                                    <IVueIcon>history</IVueIcon>
-                              </IVueButton>
-                              <IVueButton class="buld">
+                                    <IvueIcon>history</IvueIcon>
+                              </IvueButton>
+                              <IvueButton class="buld">
                                           <span>Face</span>
-                                          <IVueIcon>face</IVueIcon>
-                              </IVueButton>
-                        </IVueBottomNav>
+                                          <IvueIcon>face</IvueIcon>
+                              </IvueButton>
+                        </IvueBottomNav>
                   `,
                   data () {
                         return{
@@ -125,9 +125,9 @@ describe('IVueBottomNav', function () {
                         }
                   },
                   components: {
-                        IVueBottomNav,
-                        IVueIcon,
-                        IVueButton
+                        IvueBottomNav,
+                        IvueIcon,
+                        IvueButton
                   }
             }, {
                          
@@ -141,16 +141,16 @@ describe('IVueBottomNav', function () {
       it('should render the base bottom nav shift', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueBottomNav :value="true" :active.sync="activeNav" :shift="true">
-                              <IVueButton class="red">
+                        <IvueBottomNav :value="true" :active.sync="activeNav" :shift="true">
+                              <IvueButton class="red">
                                     <span>Recents</span>
-                                    <IVueIcon>history</IVueIcon>
-                              </IVueButton>
-                              <IVueButton class="buld">
+                                    <IvueIcon>history</IvueIcon>
+                              </IvueButton>
+                              <IvueButton class="buld">
                                           <span>Face</span>
-                                          <IVueIcon>face</IVueIcon>
-                              </IVueButton>
-                        </IVueBottomNav>
+                                          <IvueIcon>face</IvueIcon>
+                              </IvueButton>
+                        </IvueBottomNav>
                   `,
                   data () {
                         return{
@@ -158,9 +158,9 @@ describe('IVueBottomNav', function () {
                         }
                   },
                   components: {
-                        IVueBottomNav,
-                        IVueIcon,
-                        IVueButton
+                        IvueBottomNav,
+                        IvueIcon,
+                        IvueButton
                   }
             }, {
                          

@@ -1,6 +1,6 @@
 <script>
 export default {
-      name: 'IVueContent',
+      name: 'ivue-content',
       props: {
             /*
             * 输出标签。例如，当你想创建一个部分而不是div时很有用。
@@ -16,7 +16,7 @@ export default {
       render (createElement) {
             return createElement(this.iVueTag, {
                   staticClass: 'ivue-content',
-                  class: [this.$IVueActiveTheme],
+                  class: [this.$IvueActiveTheme],
                   attrs: this.$attrs,
                   on: this.$listeners
             }, this.$slots.default)

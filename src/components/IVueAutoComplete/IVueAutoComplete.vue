@@ -1,5 +1,5 @@
 <template>
-  <IVueSelect
+  <IvueSelect
     :placeholder="placeholder"
     :value="currentValue"
     :disabled="disabled"
@@ -7,11 +7,11 @@
     filterable
     autoComplete
     @on-change="handleChange"
-    class="ivue-auto-complete"
+    :class="prefixCls"
     ref="ivueSelect"
   >
     <slot name="input">
-      <IVueInput
+      <IvueInput
         v-model="currentValue"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -23,21 +23,23 @@
         @on-blur="handleBlur"
         slot="input"
         ref="iVueInput"
-      ></IVueInput>
+      ></IvueInput>
     </slot>
     <slot>
-      <IVueOption v-for="item in filterableData" :value="item" :key="item">{{item}}</IVueOption>
+      <IvueOption v-for="item in filterableData" :value="item" :key="item">{{item}}</IvueOption>
     </slot>
-  </IVueSelect>
+  </IvueSelect>
 </template>
 
 <script>
-import IVueSelect from '../IVueSelect/IVueSelect';
-import IVueOption from '../IVueSelect/IVueOption';
-import IVueInput from '../IVueInput/IVueInput';
+import IvueSelect from '../IvueSelect/IvueSelect';
+import IvueOption from '../IvueSelect/IvueOption';
+import IvueInput from '../IvueInput/IvueInput';
+
+const prefixCls = 'ivue-auto-complete';
 
 export default {
-  name: 'IVueAutoComplete',
+  name: prefixCls,
   props: {
     /*
     * 绑定的值，可使用 v-model 双向绑定
@@ -112,7 +114,8 @@ export default {
   data () {
     return {
       currentValue: this.value,
-      disableEmitChange: false
+      disableEmitChange: false,
+      prefixCls: prefixCls
     }
   },
   computed: {
@@ -172,9 +175,9 @@ export default {
     }
   },
   components: {
-    IVueSelect,
-    IVueOption,
-    IVueInput
+    IvueSelect,
+    IvueOption,
+    IvueInput
   }
 }
 </script>

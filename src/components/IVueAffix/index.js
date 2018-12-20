@@ -1,3 +1,3 @@
-import IVueAffix from './IVueAffix.vue';
+import IvueAffix from './IvueAffix.vue';
 
-export default IVueAffix;
+export default IvueAffix;

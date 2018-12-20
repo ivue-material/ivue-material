@@ -1,16 +1,16 @@
-import IVueInput from '../../src/components/IVueInput';
+import IvueInput from '../../src/components/IvueInput';
 import { mount } from '@vue/test-utils';
 
 
-describe('IVueInput', function () {
+describe('IvueInput', function () {
       it('should render the base text i-vue-input', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueInput placeholder="someing messasge">
-                        </IVueInput>
+                        <IvueInput placeholder="someing messasge">
+                        </IvueInput>
                   `,
                   components: {
-                        IVueInput
+                        IvueInput
                   }
             }, {
                          
@@ -24,11 +24,11 @@ describe('IVueInput', function () {
       it('should render the base textarea i-vue-input', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueInput placeholder="someing messasge" type="textarea" disabled>
-                        </IVueInput>
+                        <IvueInput placeholder="someing messasge" type="textarea" disabled>
+                        </IvueInput>
                   `,
                   components: {
-                        IVueInput
+                        IvueInput
                   }
             }, {
                          

@@ -38,13 +38,13 @@
 
 
 <script>
-import IVueIcon from '../IVueIcon';
+import IvueIcon from '../IvueIcon';
 import { oneOf } from '../../utils/Assist';
 
 const prefixCls = 'ivue-progress-circular';
 
 export default {
-      name: "IVueProgressCircular",
+      name: prefixCls,
       props: {
             /*
             * 状态，可选值为normal、active、wrong、success
@@ -210,7 +210,7 @@ export default {
             }
       },
       components: {
-            IVueIcon
+            IvueIcon
       }
 }
 </script>

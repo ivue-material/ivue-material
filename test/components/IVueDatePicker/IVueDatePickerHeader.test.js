@@ -1,10 +1,10 @@
-import IVueDatePickerHeader from '../../../src/components/IVueDatePicker/IVueDatePickerHeader';
+import IvueDatePickerHeader from '../../../src/components/IvueDatePicker/IvueDatePickerHeader';
 import { mount } from '@vue/test-utils';
 
 
-describe('IVueDatePickerHeader', function () {
+describe('IvueDatePickerHeader', function () {
       it('should render component with year value and match snapshot', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2017'
                   }
@@ -15,7 +15,7 @@ describe('IVueDatePickerHeader', function () {
 
 
       it('should render prev/next icons', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2017',
                         nextIcon: 'next',
@@ -29,7 +29,7 @@ describe('IVueDatePickerHeader', function () {
 
 
       it('should render component with own formatter', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2017-12',
                         format: value => `(${value})`
@@ -41,7 +41,7 @@ describe('IVueDatePickerHeader', function () {
 
 
       it('should render colored component', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2017-12',
                         color: 'red'
@@ -52,7 +52,7 @@ describe('IVueDatePickerHeader', function () {
       });
 
       it('should trigger event on arrows click', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2016-12'
                   }
@@ -72,7 +72,7 @@ describe('IVueDatePickerHeader', function () {
       });
 
       it('should calculate prev/next value', () => {
-            const wrapper = mount(IVueDatePickerHeader, {
+            const wrapper = mount(IvueDatePickerHeader, {
                   propsData: {
                         value: '2017-12'
                   }

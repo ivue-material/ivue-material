@@ -1,35 +1,35 @@
-import IVueNotice from '../../src/components/IVueNotice';
+import IvueNotice from '../../src/components/IvueNotice';
 import Vue from 'vue';
 
 import { mount } from '@vue/test-utils';
 
-describe('IVueNotice', function () {
-      it('should render the register the global IVueNotice component', async () => {
+describe('IvueNotice', function () {
+      it('should render the register the global IvueNotice component', async () => {
             const wrapper = mount({
                   template: `
                         <Button type="primary" @click="notice">Open notice</Button>
                   `,
                   mounted () {
-                        // 注册全局 IVueNotice 组件
-                        Vue.prototype.$IVueNotice = IVueNotice;
+                        // 注册全局 IvueNotice 组件
+                        Vue.prototype.$IvueNotice = IvueNotice;
                   },
                   methods: {
                         notice () {
-                              this.$IVueNotice.config({
+                              this.$IvueNotice.config({
                                     top: 50,
                                     duration: 3
                                 });
-                                this.$IVueNotice.open({
+                                this.$IvueNotice.open({
                                     title: 'Notification title',
                                     desc: 'This notification does not automatically close, and you need to click the close button to close.',
                                     duration: 0
                                 });
-                                this.$IVueNotice.open({
+                                this.$IvueNotice.open({
                                     title: 'name : one',
                                     duration: 0,
                                     name: 'one'
                                 });
-                                this.$IVueNotice.success({
+                                this.$IvueNotice.success({
                                     title: 'Notification title',
                                     desc: 'This notification does not automatically close, and you need to click the close button to close.',
                                     duration: 0,
@@ -41,39 +41,39 @@ describe('IVueNotice', function () {
                                         ])
                                     }
                                 });
-                                this.$IVueNotice.success({
+                                this.$IvueNotice.success({
                                     title: 'Notification title',
                                     desc: 'This notification does not automatically close, and you need to click the close button to close.',
                                     duration: 0
                                 });
-                                this.$IVueNotice.success({
+                                this.$IvueNotice.success({
                                     title: 'Notification title',
                                     duration: 0
                                 });
-                                this.$IVueNotice.info({
-                                    title: 'Notification title',
-                                    desc: 'This notification does not automatically close, and you need to click the close button to close.',
-                                    duration: 0
-                                });
-                                this.$IVueNotice.info({
-                                    title: 'Notification title',
-                                    duration: 0
-                                });
-                                this.$IVueNotice.warning({
+                                this.$IvueNotice.info({
                                     title: 'Notification title',
                                     desc: 'This notification does not automatically close, and you need to click the close button to close.',
                                     duration: 0
                                 });
-                                this.$IVueNotice.warning({
+                                this.$IvueNotice.info({
                                     title: 'Notification title',
                                     duration: 0
                                 });
-                                this.$IVueNotice.error({
+                                this.$IvueNotice.warning({
                                     title: 'Notification title',
                                     desc: 'This notification does not automatically close, and you need to click the close button to close.',
                                     duration: 0
                                 });
-                                this.$IVueNotice.error({
+                                this.$IvueNotice.warning({
+                                    title: 'Notification title',
+                                    duration: 0
+                                });
+                                this.$IvueNotice.error({
+                                    title: 'Notification title',
+                                    desc: 'This notification does not automatically close, and you need to click the close button to close.',
+                                    duration: 0
+                                });
+                                this.$IvueNotice.error({
                                     title: 'Notification title',
                                     duration: 0
                                 });
@@ -83,6 +83,6 @@ describe('IVueNotice', function () {
                          
                   });
 
-            expect(Vue.prototype.$IVueNotice).to.contain(Object);
+            expect(Vue.prototype.$IvueNotice).to.contain(Object);
       });
 });

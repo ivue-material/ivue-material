@@ -1,8 +1,8 @@
-import { IVueSelect, IVueOption, IVueOptionGroup } from '../../src/components/IVueSelect';
+import { IvueSelect, IvueOption, IvueOptionGroup } from '../../src/components/IvueSelect';
 import { mount } from '@vue/test-utils';
 
-describe('IVueSelect', function () {
-      it('should render the base IVueSelect', async () => {
+describe('IvueSelect', function () {
+      it('should render the base IvueSelect', async () => {
             const wrapper = mount({
                   template: `
                         <i-vue-select>
@@ -46,8 +46,8 @@ describe('IVueSelect', function () {
                         }
                   },
                   components: {
-                        IVueSelect,
-                        IVueOption
+                        IvueSelect,
+                        IvueOption
                   }
             }, {
                          
@@ -57,7 +57,7 @@ describe('IVueSelect', function () {
 
 
             expect(wrapper.classes()).to.contain('ivue-select');
-            expect(wrapper.contains(IVueOption)).to.be.equal(true);
+            expect(wrapper.contains(IvueOption)).to.be.equal(true);
             wrapper.find('.ivue-select-selection').trigger('click');
             expect(wrapper.find('.ivue-select-selection').vnode.context.visibleMenu).to.be.equal(true);
             wrapper.find('.ivue-select-item').trigger('click');
@@ -65,7 +65,7 @@ describe('IVueSelect', function () {
       });
 
 
-      it('should render the multiple IVueSelect', async () => {
+      it('should render the multiple IvueSelect', async () => {
             const wrapper = mount({
                   template: `
                         <i-vue-select multiple>
@@ -109,8 +109,8 @@ describe('IVueSelect', function () {
                         }
                   },
                   components: {
-                        IVueSelect,
-                        IVueOption
+                        IvueSelect,
+                        IvueOption
                   }
             }, {
                          
@@ -120,7 +120,7 @@ describe('IVueSelect', function () {
 
 
             expect(wrapper.classes()).to.contain('ivue-select');
-            expect(wrapper.contains(IVueOption)).to.be.equal(true);
+            expect(wrapper.contains(IvueOption)).to.be.equal(true);
             wrapper.find('.ivue-select-selection').trigger('click');
             expect(wrapper.find('.ivue-select-selection').vnode.context.visibleMenu).to.be.equal(true);
             wrapper.find('.ivue-select-item').trigger('click');
@@ -128,7 +128,7 @@ describe('IVueSelect', function () {
       });
 
 
-      it('should render the disabled IVueSelect', async () => {
+      it('should render the disabled IvueSelect', async () => {
             const wrapper = mount({
                   template: `
                         <i-vue-select disabled>
@@ -172,8 +172,8 @@ describe('IVueSelect', function () {
                         }
                   },
                   components: {
-                        IVueSelect,
-                        IVueOption
+                        IvueSelect,
+                        IvueOption
                   }
             }, {
                          

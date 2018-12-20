@@ -33,24 +33,24 @@ nav {
                 <li><router-link to="/Layout">Layout</router-link></li>
                 <li><router-link to="/Button">Button</router-link></li>
                 <li><router-link to="/Icon">Icon</router-link></li>
-                <li><router-link to="/IVueList">IVueList</router-link></li>
-                <li><router-link to="/IVueSpin">IVueSpin</router-link></li>
-                <li><router-link to="/IVueCarousel">IVueCarousel</router-link></li>
-                <li><router-link to="/IVueSwitch">IVueSwitch</router-link></li>
-                <li><router-link to="/IVueBottomNav">IVueBottomNav</router-link></li>
-                <li><router-link to="/IVueBreadcrumbs">IVueBreadcrumbs</router-link></li>
-                <li><router-link to="/IVueSelect">IVueSelect</router-link></li>
-                <li><router-link to="/IVueAutoComplete">IVueAutoComplete</router-link></li>
-                <li><router-link to="/IVueInput">IVueInput</router-link></li>
-                <li><router-link to="/IVueStepperStep">IVueStepperStep</router-link></li>
-                <li><router-link to="/IVueUpLoad">IVueUpLoad</router-link></li>
-                <li><router-link to="/IVueProgress">IVueProgress</router-link></li>
-                <li><router-link to="/IVueNotice">IVueNotice</router-link></li>
-                <li><router-link to="/IVueMessage">IVueMessage</router-link></li>
-                <li><router-link to="/IVueTabs">IVueTabs</router-link></li>
-                <li><router-link to="/IVueLoadingBar">IVueLoadingBar</router-link></li>
-                <li><router-link to="/IVueBadge">IVueBadge</router-link></li>
-                <li><router-link to="/IVueDatePicker">IVueDatePicker</router-link></li>
+                <li><router-link to="/IvueList">IvueList</router-link></li>
+                <li><router-link to="/IvueSpin">IvueSpin</router-link></li>
+                <li><router-link to="/IvueCarousel">IvueCarousel</router-link></li>
+                <li><router-link to="/IvueSwitch">IvueSwitch</router-link></li>
+                <li><router-link to="/IvueBottomNav">IvueBottomNav</router-link></li>
+                <li><router-link to="/IvueBreadcrumbs">IvueBreadcrumbs</router-link></li>
+                <li><router-link to="/IvueSelect">IvueSelect</router-link></li>
+                <li><router-link to="/IvueAutoComplete">IvueAutoComplete</router-link></li>
+                <li><router-link to="/IvueInput">IvueInput</router-link></li>
+                <li><router-link to="/IvueStepperStep">IvueStepperStep</router-link></li>
+                <li><router-link to="/IvueUpLoad">IvueUpLoad</router-link></li>
+                <li><router-link to="/IvueProgress">IvueProgress</router-link></li>
+                <li><router-link to="/IvueNotice">IvueNotice</router-link></li>
+                <li><router-link to="/IvueMessage">IvueMessage</router-link></li>
+                <li><router-link to="/IvueTabs">IvueTabs</router-link></li>
+                <li><router-link to="/IvueLoadingBar">IvueLoadingBar</router-link></li>
+                <li><router-link to="/IvueBadge">IvueBadge</router-link></li>
+                <li><router-link to="/IvueDatePicker">IvueDatePicker</router-link></li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -75,3 +75,6 @@ module.exports = {
   }
 }
 </script>
+<style lang="scss" scoped>
+</style>
+

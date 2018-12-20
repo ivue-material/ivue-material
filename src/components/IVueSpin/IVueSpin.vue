@@ -17,7 +17,7 @@ import { oneOf } from '../../utils/Assist';
 const prefixCls = 'ivue-spin';
 
 export default {
-      name: 'IVueSpin',
+      name: prefixCls,
       props: {
             /*
             * 尺寸

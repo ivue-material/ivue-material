@@ -1,4 +1,4 @@
-import IVueRipple from '../../components/IVueRipple/IVueRipple';
+import IvueRipple from '../../components/IvueRipple/IvueRipple';
 
 export default {
       props: {
@@ -8,6 +8,6 @@ export default {
             }
       },
       comments: {
-            IVueRipple
+            IvueRipple
       }
 }

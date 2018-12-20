@@ -1,10 +1,10 @@
-import IVueDatePicker from '../../../src/components/IVueDatePicker/IVueDatePicker';
+import IvueDatePicker from '../../../src/components/IvueDatePicker/IvueDatePicker';
 import { mount } from '@vue/test-utils';
 
 
-describe('IVueDatePicker', function () {
+describe('IvueDatePicker', function () {
       it('should display the correct date in title and header', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-11-10'
                   }
@@ -19,7 +19,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should render readonly picker', () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-11-10',
                         readonly: true
@@ -32,7 +32,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should emit input event on date click', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-12-10'
                   }
@@ -52,7 +52,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should not emit input event on month click if date is not allowed', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-12-10',
                         allowedDates: () => false,
@@ -70,7 +70,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should emit input event no year click (reactive picker)', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05-13',
                         reactive: true
@@ -94,7 +94,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should not emit input event no year click if date is not allowed', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05-13',
                         allowedDates: () => false
@@ -119,7 +119,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should emit input event with selected dates after click', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         multiple: true,
                         value: ['2018-05-07', '2018-05-08']
@@ -139,7 +139,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should emit update:pickerDate event when tableDate changes', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-12'
                   }
@@ -160,7 +160,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should set tableDate to pickerDate', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-12',
                         pickerDate: '2018-02'
@@ -173,7 +173,7 @@ describe('IVueDatePicker', function () {
 
 
       it('should update pickerDate to the selected month after setting it to null', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-09-13',
                         pickerDate: '2017-11'
@@ -196,7 +196,7 @@ describe('IVueDatePicker', function () {
       });
 
       it('should not emit @input and not emit @change when month is clicked (lazy picker)', async () => {
-            const wrapper = mount(IVueDatePicker, {
+            const wrapper = mount(IvueDatePicker, {
                   propsData: {
                         value: '2018-05-13'
                   },

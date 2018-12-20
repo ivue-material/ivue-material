@@ -10,7 +10,7 @@ import { oneOf } from '../../utils/Assist';
 const prefixCls = "ivue-stepper";
 
 export default {
-      name: "IVueStepper",
+      name: prefixCls,
       props: {
             /*
             * 当前步骤

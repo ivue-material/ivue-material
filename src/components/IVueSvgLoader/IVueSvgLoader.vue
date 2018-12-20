@@ -6,7 +6,7 @@
 let ivueSVGStore = {};
 
 export default {
-      name: 'IVueSvgLoader',
+      name: 'ivue-svg-loader',
       props: {
             /*
             * svg图标的来源

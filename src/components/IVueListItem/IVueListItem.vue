@@ -1,10 +1,10 @@
 <script>
 import InteractionEvents from '../../utils/InteractionEvents';
-import IVueListItemDefault from './IVueListItemDefault';
-import IVueListItemButton from './IVueListItemButton';
-import IVueListItemLink from './IVueListItemLink';
-import IVueListItemRouter from './IVueListItemRouter';
-import IVueListItemExpand from './IVueListItemExpand';
+import IvueListItemDefault from './IvueListItemDefault';
+import IvueListItemButton from './IvueListItemButton';
+import IvueListItemLink from './IvueListItemLink';
+import IvueListItemRouter from './IvueListItemRouter';
+import IvueListItemExpand from './IvueListItemExpand';
 
 // 判断是否有扩展
 function hasExpansion (props) {
@@ -54,38 +54,39 @@ function hasExpansion (props) {
 function createListComponent (props, parent, listeners) {
       // 判断扩展
       if (hasExpansion(props)) {
-            return IVueListItemExpand;
+            return IvueListItemExpand;
       }
 
       // 判断 disabled 渲染按钮
       if (props.disabled) {
-            return IVueListItemButton;
+            return IvueListItemButton;
       }
 
       // 通过判断事件决定是否渲染成按钮
       if (shouldRenderButtonWithListener(listeners)) {
-            return IVueListItemButton;
+            return IvueListItemButton;
       }
 
       // 判断是否是 router link 渲染成 router-link
       if (isRouterLink(parent, props)) {
            
-            delete IVueListItemRouter.props.href;
+            delete IvueListItemRouter.props.href;
             
-            return IVueListItemRouter;
+            return IvueListItemRouter;
       }
 
       // 判断href 渲染成a 标签
       if (props.href) {
-            return IVueListItemLink;
+            return IvueListItemLink;
       }
 
-      return IVueListItemDefault;
+      return IvueListItemDefault;
 }
 
+const prefixCls = 'ivue-list-item';
 
 export default {
-      name: "IVueListItem",
+      name: prefixCls,
       // 使组件无状态 (没有 data ) 和无实例 (没有 this 上下文)。用一个简单的 render 函数返回虚拟节点使他们更容易渲染。
       functional: true,
       // 组件需要的一切都是通过上下文传递 
@@ -99,7 +100,7 @@ export default {
             // 获取列表组件
             let listComponent = createListComponent(props, parent, listeners);
             // 静态样式
-            let staticClass = 'ivue-list-item';
+            let staticClass = prefixCls;
             if (data.staticClass) {
                   staticClass += ' ' + data.staticClass;
             }

@@ -3,38 +3,38 @@
            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
            <p>小</p>
-           <IVueSpin size="small"></IVueSpin> 
+           <IvueSpin size="small"></IvueSpin> 
            <p>中</p>
-           <IVueSpin></IVueSpin> 
+           <IvueSpin></IvueSpin> 
            <p>大</p>
-           <IVueSpin size="large"></IVueSpin> 
+           <IvueSpin size="large"></IvueSpin> 
            <p>居中固定</p>
            <div class="demo-spin-container">
-                 <IVueSpin fix></IVueSpin> 
+                 <IvueSpin fix></IvueSpin> 
            </div>
             <p>自定义内容</p>
            <div class="demo-spin-col">
-                 <IVueSpin fix>加载中...</IVueSpin> 
+                 <IvueSpin fix>加载中...</IvueSpin> 
            </div>
            <div class="demo-spin-col">
-                <IVueSpin fix>
-                  <IVueIcon class="demo-spin-icon-load">donut_large</IVueIcon>
+                <IvueSpin fix>
+                  <IvueIcon class="demo-spin-icon-load">donut_large</IvueIcon>
                   <div>Loading</div>
-                </IVueSpin> 
+                </IvueSpin> 
            </div>
            <div class="demo-spin-col">
-                <IVueSpin fix>
+                <IvueSpin fix>
                   <div class="loader">
                     <svg class="circular" viewBox="25 25 50 50">
                         <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
                     </svg>
                   </div>
-                </IVueSpin> 
+                </IvueSpin> 
            </div>
            <p>整页加载</p>
            <div>
-                  <IVueButton @click="handleSpinShow">整页显示，3秒后关闭</IVueButton>
-                  <IVueButton @click="handleSpinCustom">自定义显示内容</IVueButton>
+                  <IvueButton @click="handleSpinShow">整页显示，3秒后关闭</IvueButton>
+                  <IvueButton @click="handleSpinCustom">自定义显示内容</IvueButton>
            </div>
       </div>
 </template>
@@ -45,16 +45,16 @@
 export default {
       methods: {
             handleSpinShow () {
-                  this.$IVueSpin.show();
+                  this.$IvueSpin.show();
                   setTimeout(() => {
-                        this.$IVueSpin.hide();
+                        this.$IvueSpin.hide();
                   }, 3000)
             },
             handleSpinCustom () {
-                  this.$IVueSpin.show({
+                  this.$IvueSpin.show({
                         render: (h) => {
                               return h('div', [
-                                    h('IVueIcon', {
+                                    h('IvueIcon', {
                                           'class': 'demo-spin-icon-load',
                                     }, 'donut_large'),
                                     h('div', 'Loading')
@@ -63,7 +63,7 @@ export default {
                   });
 
                   setTimeout(() => {
-                        this.$IVueSpin.hide();
+                        this.$IvueSpin.hide();
                   }, 3000);
             }
       }

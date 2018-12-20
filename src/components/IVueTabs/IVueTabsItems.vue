@@ -3,7 +3,7 @@ import { provide as RegistrableProvide } from '../../utils/mixins/Registrable';
 import Touch from '../../utils/directives/Touch';
 
 export default {
-      name: 'IVueTabsItems',
+      name: 'ivue-tabs-items',
       directives: {
             Touch
       },

@@ -1,13 +1,13 @@
-import IVueUpLoad from '../../src/components/IVueUpLoad';
+import IvueUpLoad from '../../src/components/IvueUpLoad';
 import { mount } from '@vue/test-utils';
 
-describe('IVueUpLoad', function () {
-      it('should render the base IVueUpLoad', async () => {
+describe('IvueUpLoad', function () {
+      it('should render the base IvueUpLoad', async () => {
             const wrapper = mount({
                   template: `
-                        <IVueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
+                        <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
                               上传
-                        </IVueUpLoad>
+                        </IvueUpLoad>
                   `,
                   data () {
                         return {
@@ -24,7 +24,7 @@ describe('IVueUpLoad', function () {
                         }
                   },
                   components: {
-                        IVueUpLoad
+                        IvueUpLoad
                   }
             });
 

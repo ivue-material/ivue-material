@@ -1,24 +1,24 @@
 <template>
       <div>
-            <IVueList>
-                  <IVueListItem>Plain Text</IVueListItem>
-                  <IVueListItem :disabled="true">button</IVueListItem>
-                  <IVueListItem @click="">button</IVueListItem>
-                  <IVueListItem href="'www.baidu.com'">link</IVueListItem>
-                  <IVueListItem to="/icon">routerLink</IVueListItem>
-            </IVueList>
+            <IvueList>
+                  <IvueListItem>Plain Text</IvueListItem>
+                  <IvueListItem :disabled="true">button</IvueListItem>
+                  <IvueListItem @click="">button</IvueListItem>
+                  <IvueListItem href="'www.baidu.com'">link</IvueListItem>
+                  <IvueListItem to="/icon">routerLink</IvueListItem>
+            </IvueList>
 
             <p>expand</p>
-             <IVueList :ivueExpandSingle="expandSingle">
-                  <IVueListItem ivue-expand :ivue-expanded.sync="expandNews">
+             <IvueList :ivueExpandSingle="expandSingle">
+                  <IvueListItem ivue-expand :ivue-expanded.sync="expandNews">
                        <span class="ivue-list-item-text">News</span>
 
-                       <IVueList slot="ivue-expand">
-                              <IVueListItem class="ivue-inset">World</IVueListItem>
-                              <IVueListItem class="ivue-inset">World</IVueListItem>
-                        </IVueList>
-                  </IVueListItem>
-            </IVueList>
+                       <IvueList slot="ivue-expand">
+                              <IvueListItem class="ivue-inset">World</IvueListItem>
+                              <IvueListItem class="ivue-inset">World</IvueListItem>
+                        </IvueList>
+                  </IvueListItem>
+            </IvueList>
       </div>
 </template>
 

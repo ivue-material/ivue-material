@@ -6,7 +6,7 @@
 
 <script>
 export default {
-      name: "IVueWave",
+      name: "ivue-ripple",
       data () {
             return {
                   animating: true

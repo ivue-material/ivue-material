@@ -12,7 +12,7 @@ import { on, off } from '../../utils/Dom';
 const prefixCls = 'ivue-affix';
 
 export default {
-      name: 'IVueAffix',
+      name: prefixCls,
       props: {
             /*
             * 距离窗口顶部达到指定偏移量后触发

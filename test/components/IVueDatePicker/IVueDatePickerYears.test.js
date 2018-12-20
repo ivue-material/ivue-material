@@ -1,9 +1,9 @@
-import IVueDatePickerYears from '../../../src/components/IVueDatePicker/IVueDatePickerYears';
+import IvueDatePickerYears from '../../../src/components/IvueDatePicker/IvueDatePickerYears';
 import { mount } from '@vue/test-utils';
 
-describe('IVueDatePickerYears', function () {
+describe('IvueDatePickerYears', function () {
       it('should respect min/max props', async () => {
-            const wrapper = mount(IVueDatePickerYears, {
+            const wrapper = mount(IvueDatePickerYears, {
                   propsData: {
                         tableDate: '2017',
                         current: '2017-05',
@@ -18,7 +18,7 @@ describe('IVueDatePickerYears', function () {
       });
 
       it('should emit event on year click', async () => {
-            const wrapper = mount(IVueDatePickerYears, {
+            const wrapper = mount(IvueDatePickerYears, {
                   propsData: {
                         tableDate: '2017',
                         current: '2017-05',

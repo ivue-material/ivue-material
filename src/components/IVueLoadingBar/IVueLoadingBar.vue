@@ -11,7 +11,7 @@
 const prefixCls = 'ivue-loading-bar';
 
 export default {
-      name: "IVueLoadingBar",
+      name: prefixCls,
       props: {
             color: {
                   type: String,

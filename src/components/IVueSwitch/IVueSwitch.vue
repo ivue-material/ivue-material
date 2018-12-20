@@ -14,7 +14,7 @@ import Colorable from '../../utils/mixins/Colorable';
 const prefixCls = 'ivue-switch';
 
 export default {
-  name: 'IVueSwitch',
+  name: prefixCls,
   mixins: [Colorable],
   props: {
     /*

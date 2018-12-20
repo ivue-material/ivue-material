@@ -1,3 +1,3 @@
-import IVueDatePicker from './IVueDatePicker.vue';
+import IvueDatePicker from './IvueDatePicker.vue';
 
-export default IVueDatePicker;
+export default IvueDatePicker;

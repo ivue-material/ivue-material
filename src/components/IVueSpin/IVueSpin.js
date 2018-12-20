@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import IVueSpin from './IVueSpin.vue';
+import IvueSpin from './IvueSpin.vue';
 
-IVueSpin.newInstance = (properties) => {
+IvueSpin.newInstance = (properties) => {
       const _props = properties || {};
 
       const Instance = new Vue({
@@ -10,7 +10,7 @@ IVueSpin.newInstance = (properties) => {
                   let vnode = '';
 
                   if (this.render) {
-                        vnode = h(IVueSpin, {
+                        vnode = h(IvueSpin, {
                               props: {
                                     fix: true,
                                     fullscreen: true
@@ -18,7 +18,7 @@ IVueSpin.newInstance = (properties) => {
                         }, [this.render(h)]);
                   }
                   else {
-                        vnode = h(IVueSpin, {
+                        vnode = h(IvueSpin, {
                               props: {
                                     fix: true,
                                     size: 'large',
@@ -58,4 +58,4 @@ IVueSpin.newInstance = (properties) => {
 
 }
 
-export default IVueSpin;
+export default IvueSpin;

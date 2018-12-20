@@ -1,24 +1,24 @@
-import IVueBreadcrumbs from '../../src/components/IVueBreadcrumbs';
-import IVueBreadcrumbsItem from '../../src/components/IVueBreadcrumbsItem';
-import IVueIcon from '../../src/components/IVueIcon';
+import IvueBreadcrumbs from '../../src/components/IvueBreadcrumbs';
+import IvueBreadcrumbsItem from '../../src/components/IvueBreadcrumbsItem';
+import IvueIcon from '../../src/components/IvueIcon';
 import { mount } from '@vue/test-utils';
 
-describe('IVueBreadcrumbs', function () {
+describe('IvueBreadcrumbs', function () {
       it('should render the base breadcrumbs', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueBreadcrumbs>
-                        <IVueBreadcrumbsItem>
+                  <IvueBreadcrumbs>
+                        <IvueBreadcrumbsItem>
                               Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem>
+                        </IvueBreadcrumbsItem>
+                        <IvueBreadcrumbsItem>
                               home
-                        </IVueBreadcrumbsItem>
-                  </IVueBreadcrumbs>
+                        </IvueBreadcrumbsItem>
+                  </IvueBreadcrumbs>
                   `,
                   components: {
-                        IVueBreadcrumbs,
-                        IVueBreadcrumbsItem
+                        IvueBreadcrumbs,
+                        IvueBreadcrumbsItem
                   }
             }, {
                          
@@ -34,18 +34,18 @@ describe('IVueBreadcrumbs', function () {
       it('should render the disabled breadcrumbs item', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueBreadcrumbs>
-                        <IVueBreadcrumbsItem disabled>
+                  <IvueBreadcrumbs>
+                        <IvueBreadcrumbsItem disabled>
                               Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem disabled>
+                        </IvueBreadcrumbsItem>
+                        <IvueBreadcrumbsItem disabled>
                               home
-                        </IVueBreadcrumbsItem>
-                  </IVueBreadcrumbs>
+                        </IvueBreadcrumbsItem>
+                  </IvueBreadcrumbs>
                   `,
                   components: {
-                        IVueBreadcrumbs,
-                        IVueBreadcrumbsItem
+                        IvueBreadcrumbs,
+                        IvueBreadcrumbsItem
                   }
             }, {
                          
@@ -61,18 +61,18 @@ describe('IVueBreadcrumbs', function () {
       it('should render the  breadcrumbs href  tag is a', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueBreadcrumbs>
-                        <IVueBreadcrumbsItem :href="'www.baidu.com'">
+                  <IvueBreadcrumbs>
+                        <IvueBreadcrumbsItem :href="'www.baidu.com'">
                               Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem>
+                        </IvueBreadcrumbsItem>
+                        <IvueBreadcrumbsItem>
                               home
-                        </IVueBreadcrumbsItem>
-                  </IVueBreadcrumbs>
+                        </IvueBreadcrumbsItem>
+                  </IvueBreadcrumbs>
                   `,
                   components: {
-                        IVueBreadcrumbs,
-                        IVueBreadcrumbsItem
+                        IvueBreadcrumbs,
+                        IvueBreadcrumbsItem
                   }
             }, {
                          
@@ -90,18 +90,18 @@ describe('IVueBreadcrumbs', function () {
       it('should render the  breadcrumbs set divider', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueBreadcrumbs divider="-">
-                        <IVueBreadcrumbsItem>
+                  <IvueBreadcrumbs divider="-">
+                        <IvueBreadcrumbsItem>
                               Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem>
+                        </IvueBreadcrumbsItem>
+                        <IvueBreadcrumbsItem>
                               home
-                        </IVueBreadcrumbsItem>
-                  </IVueBreadcrumbs>
+                        </IvueBreadcrumbsItem>
+                  </IvueBreadcrumbs>
                   `,
                   components: {
-                        IVueBreadcrumbs,
-                        IVueBreadcrumbsItem
+                        IvueBreadcrumbs,
+                        IvueBreadcrumbsItem
                   }
             }, {
                          
@@ -117,22 +117,22 @@ describe('IVueBreadcrumbs', function () {
       it('should render the  breadcrumbs set slot divider', async () => {
             const wrapper = mount({
                   template: `
-                  <IVueBreadcrumbs>
-                        <IVueIcon slot="divider">forward</IVueIcon>
-                        <IVueBreadcrumbsItem>
-                              <IVueIcon>home</IVueIcon>
+                  <IvueBreadcrumbs>
+                        <IvueIcon slot="divider">forward</IvueIcon>
+                        <IvueBreadcrumbsItem>
+                              <IvueIcon>home</IvueIcon>
                               Home
-                        </IVueBreadcrumbsItem>
-                        <IVueBreadcrumbsItem>
-                              <IVueIcon>home</IVueIcon>
+                        </IvueBreadcrumbsItem>
+                        <IvueBreadcrumbsItem>
+                              <IvueIcon>home</IvueIcon>
                               Home
-                        </IVueBreadcrumbsItem>
-                  </IVueBreadcrumbs>
+                        </IvueBreadcrumbsItem>
+                  </IvueBreadcrumbs>
                   `,
                   components: {
-                        IVueBreadcrumbs,
-                        IVueBreadcrumbsItem,
-                        IVueIcon
+                        IvueBreadcrumbs,
+                        IvueBreadcrumbsItem,
+                        IvueIcon
                   }
             }, {
                          

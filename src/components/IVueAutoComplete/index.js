@@ -1,3 +1,3 @@
-import IVueAutoComplete from './IVueAutoComplete.vue';
+import IvueAutoComplete from './IvueAutoComplete.vue';
 
-export default IVueAutoComplete;
+export default IvueAutoComplete;

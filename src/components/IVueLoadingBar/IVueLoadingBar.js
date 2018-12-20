@@ -1,14 +1,14 @@
-import IVueLoadingBar from './IVueLoadingBar.vue';
+import IvueLoadingBar from './IvueLoadingBar.vue';
 import Vue from 'vue';
 
-IVueLoadingBar.newInstance = (properties) => {
+IvueLoadingBar.newInstance = (properties) => {
       const _props = properties || {};
 
       // 创建实例
       const Instance = new Vue({
             data: _props,
             render (h) {
-                  return h(IVueLoadingBar, {
+                  return h(IvueLoadingBar, {
                         props: _props
                   })
             }
@@ -37,4 +37,4 @@ IVueLoadingBar.newInstance = (properties) => {
       }
 }
 
-export default IVueLoadingBar;
+export default IvueLoadingBar;

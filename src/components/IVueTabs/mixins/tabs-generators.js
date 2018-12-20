@@ -1,6 +1,6 @@
-import IVueTabsItems from '../IVueTabsItems';
-import IVueTabsSlider from '../IVueTabsSlider';
-import IVueIcon from '../../IVueIcon';
+import IvueTabsItems from '../IvueTabsItems';
+import IvueTabsSlider from '../IvueTabsSlider';
+import IvueIcon from '../../IvueIcon';
 
 export default {
       methods: {
@@ -52,7 +52,7 @@ export default {
                         return null;
                   }
 
-                  return this.$createElement(IVueIcon, {
+                  return this.$createElement(IvueIcon, {
                         staticClass: `ivue-tabs-icon ivue-tabs-icon--${direction}`,
                         on: {
                               click: () => this.scrollTo(direction)
@@ -70,7 +70,7 @@ export default {
             // 头部滑动条
             genSlider (items) {
                   if (!items.length) {
-                        items = [this.$createElement(IVueTabsSlider, {
+                        items = [this.$createElement(IvueTabsSlider, {
                               props: {
                                     color: this.sliderColor
                               }
@@ -91,7 +91,7 @@ export default {
                         return null;
                   }
 
-                  return this.$createElement(IVueTabsItems, item);
+                  return this.$createElement(IvueTabsItems, item);
             }
       }
 }

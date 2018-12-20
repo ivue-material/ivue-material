@@ -13,9 +13,9 @@
             <span :class="textClasses" v-show="!hideText">
                   <slot>
                         <span v-if="progressTextStatus" :class="textInnerClasses">
-                              <IVueIcon>
+                              <IvueIcon>
                                     {{statusIcon}}
-                              </IVueIcon>
+                              </IvueIcon>
                         </span>
                         <span v-else :class="textInnerClasses">{{percent}}%</span>
                   </slot>
@@ -25,13 +25,13 @@
 
 
 <script>
-import IVueIcon from '../IVueIcon';
+import IvueIcon from '../IvueIcon';
 import { oneOf } from '../../utils/Assist';
 
 const prefixCls = 'ivue-progress-linear';
 
 export default {
-      name: "IVueProgressLinear",
+      name: "IvueProgressLinear",
       props: {
             /*
             * 状态，可选值为normal、active、wrong、success
@@ -175,7 +175,7 @@ export default {
             }
       },
       components: {
-            IVueIcon
+            IvueIcon
       }
 }
 </script>

@@ -1,66 +1,66 @@
-import IVueAffix from './components/IVueAffix';
-import IVueElevation from './components/IVueElevation';
-import IVueContent from './components/IVueContent';
-import IVueLayout from './components/IVueLayout';
-import IVueButton from './components/IVueButton';
-import IVueIcon from './components/IVueIcon';
-import IVueList from './components/IVueList';
-import IVueListItem from './components/IVueListItem';
-import IVueSpin from './components/IVueSpin';
-import IVueCarousel from './components/IVueCarousel';
-import IVueCarouselItem from './components/IVueCarouselItem';
-import IVueSwitch from './components/IVueSwitch';
-import IVueBottomNav from './components/IVueBottomNav';
-import IVueBreadcrumbs from './components/IVueBreadcrumbs';
-import IVueBreadcrumbsItem from './components/IVueBreadcrumbsItem';
-import { IVueSelect, IVueOption, IVueOptionGroup } from './components/IVueSelect';
-import IVueAutoComplete from './components/IVueAutoComplete';
-import IVueInput from './components/IVueInput';
-import { IVueStepper, IVueStepperStep } from './components/IVueStepper';
-import IVueUpLoad from './components/IVueUpLoad';
-import { IVueProgressLinear, IVueProgressCircular } from './components/IVueProgress';
-import IVueNotice from './components/IVueNotice';
-import IVueMessage from './components/IVueMessage';
-import { IVueTabs, IVueTab, IVueTabItem,IVueTabsSlider } from './components/IVueTabs';
-import IVueLoadingBar from './components/IVueLoadingBar';
-import IVueBadge from './components/IVueBadge';
-import IVueDatePicker from './components/IVueDatePicker';
+import IvueAffix from './components/IvueAffix';
+import IvueElevation from './components/IvueElevation';
+import IvueContent from './components/IvueContent';
+// import IvueLayout from './components/IvueLayout';
+import IvueButton from './components/IvueButton';
+import IvueIcon from './components/IvueIcon';
+import IvueList from './components/IvueList';
+import IvueListItem from './components/IvueListItem';
+import IvueSpin from './components/IvueSpin';
+import IvueCarousel from './components/IvueCarousel';
+import IvueCarouselItem from './components/IvueCarouselItem';
+import IvueSwitch from './components/IvueSwitch';
+import IvueBottomNav from './components/IvueBottomNav';
+import IvueBreadcrumbs from './components/IvueBreadcrumbs';
+import IvueBreadcrumbsItem from './components/IvueBreadcrumbsItem';
+import { IvueSelect, IvueOption, IvueOptionGroup } from './components/IvueSelect';
+import IvueAutoComplete from './components/IvueAutoComplete';
+import IvueInput from './components/IvueInput';
+import { IvueStepper, IvueStepperStep } from './components/IvueStepper';
+import IvueUpLoad from './components/IvueUpLoad';
+import { IvueProgressLinear, IvueProgressCircular } from './components/IvueProgress';
+import IvueNotice from './components/IvueNotice';
+import IvueMessage from './components/IvueMessage';
+import { IvueTabs, IvueTab, IvueTabItem,IvueTabsSlider } from './components/IvueTabs';
+import IvueLoadingBar from './components/IvueLoadingBar';
+import IvueBadge from './components/IvueBadge';
+import IvueDatePicker from './components/IvueDatePicker';
 
 const components = {
-  IVueAffix,
-  IVueElevation,
-  IVueContent,
-  IVueLayout,
-  IVueButton,
-  IVueIcon,
-  IVueList,
-  IVueListItem,
-  IVueSpin,
-  IVueCarousel,
-  IVueCarouselItem,
-  IVueSwitch,
-  IVueBottomNav,
-  IVueBreadcrumbs,
-  IVueBreadcrumbsItem,
-  IVueSelect,
-  IVueOption,
-  IVueOptionGroup,
-  IVueAutoComplete,
-  IVueInput,
-  IVueStepper,
-  IVueStepperStep,
-  IVueUpLoad,
-  IVueProgressLinear,
-  IVueProgressCircular,
-  IVueNotice,
-  IVueMessage,
-  IVueTabs,
-  IVueTab,
-  IVueTabItem,
-  IVueTabsSlider,
-  IVueLoadingBar,
-  IVueBadge,
-  IVueDatePicker
+  IvueAffix,
+  IvueElevation,
+  IvueContent,
+  // IvueLayout,
+  IvueButton,
+  IvueIcon,
+  IvueList,
+  IvueListItem,
+  IvueSpin,
+  IvueCarousel,
+  IvueCarouselItem,
+  IvueSwitch,
+  IvueBottomNav,
+  IvueBreadcrumbs,
+  IvueBreadcrumbsItem,
+  IvueSelect,
+  IvueOption,
+  IvueOptionGroup,
+  IvueAutoComplete,
+  IvueInput,
+  IvueStepper,
+  IvueStepperStep,
+  IvueUpLoad,
+  IvueProgressLinear,
+  IvueProgressCircular,
+  IvueNotice,
+  IvueMessage,
+  IvueTabs,
+  IvueTab,
+  IvueTabItem,
+  IvueTabsSlider,
+  IvueLoadingBar,
+  IvueBadge,
+  IvueDatePicker
 };
 
 const iVue = {
@@ -74,17 +74,17 @@ const install = function (Vue, opts = {}) {
     Vue.component(key, iVue[key]);
   });
 
-  // 注册全局 IVueSpin 组件
-  Vue.prototype.$IVueSpin = IVueSpin;
+  // 注册全局 IvueSpin 组件
+  Vue.prototype.$IvueSpin = IvueSpin;
 
-  // 注册全局 IVueNotice 通知 组件
-  Vue.prototype.$IVueNotice = IVueNotice;
+  // 注册全局 IvueNotice 通知 组件
+  Vue.prototype.$IvueNotice = IvueNotice;
 
-  // 注册全局 IVueMessage 提示 组件
-  Vue.prototype.$IVueMessage = IVueMessage;
+  // 注册全局 IvueMessage 提示 组件
+  Vue.prototype.$IvueMessage = IvueMessage;
 
-  // 注册全局 IVueLoadingBar 滚动条加载 组件
-  Vue.prototype.$IVueLoadingBar = IVueLoadingBar;
+  // 注册全局 IvueLoadingBar 滚动条加载 组件
+  Vue.prototype.$IvueLoadingBar = IvueLoadingBar;
 
 };
 

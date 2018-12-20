@@ -1,8 +1,8 @@
 <script>
-const prefixCls = 'ivu-breadcrumb';
+const prefixCls = 'ivue-breadcrumb';
 
 export default {
-      name: 'IVueBreadcrumbs',
+      name: prefixCls,
       props: {
             /*
             * 分隔符
@@ -51,7 +51,7 @@ export default {
                   for (let i = 0; i < this.$slots.default.length; i++) {
                         const elm = this.$slots.default[i];
 
-                        if (!elm.componentOptions || elm.componentOptions.Ctor.options.name !== `IVueBreadcrumbsItem`) {
+                        if (!elm.componentOptions || elm.componentOptions.Ctor.options.name !== `ivue-breadcrumb-item`) {
                               children.push(elm);
                         }
                         else {

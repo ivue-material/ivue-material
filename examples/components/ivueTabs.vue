@@ -1,18 +1,18 @@
 <template>
       <div>
-            <IVueTabs v-model="active" color="#424242">
-                  <IVueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IVueTab>
-                  <IVueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IVueTabItem>
-            </IVueTabs>
+            <IvueTabs v-model="active" color="#424242">
+                  <IvueTab v-for="n in 10" :key="`item${n}`"  :disabled="n === 3" >Item {{ n }}</IvueTab>
+                  <IvueTabItem  v-for="n in 10" :key="n">{{text}}{{n}}</IvueTabItem>
+            </IvueTabs>
 
-            <IVueTabs color="#424242" centered height="100">
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
-            </IVueTabs>
+            <IvueTabs color="#424242" centered height="100">
+                  <IvueTab v-for="n in 3" :key="n" :rippleCentered="true"><IvueIcon>menu</IvueIcon></IvueTab>
+            </IvueTabs>
 
-             <IVueTabs color="#424242" right sliderColor="yellow" >
+             <IvueTabs color="#424242" right sliderColor="yellow" >
                   
-                  <IVueTab v-for="n in 3" :key="n" :rippleCentered="true"><IVueIcon>menu</IVueIcon></IVueTab>
-            </IVueTabs>
+                  <IvueTab v-for="n in 3" :key="n" :rippleCentered="true"><IvueIcon>menu</IvueIcon></IvueTab>
+            </IvueTabs>
       </div>
 </template>
 

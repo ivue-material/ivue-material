@@ -1,3 +1,3 @@
-import IVueButton from './IVueButton.vue';
+import IvueButton from './IvueButton.vue';
 
-export default IVueButton;
+export default IvueButton;

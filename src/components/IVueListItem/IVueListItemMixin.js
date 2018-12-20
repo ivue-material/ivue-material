@@ -1,9 +1,9 @@
-import IVueRipple from '../../utils/mixins/IVueRipple';
-import IVueListItemContent from './IVueListItemContent';
+import IvueRipple from '../../utils/mixins/IvueRipple';
+import IvueListItemContent from './IvueListItemContent';
 
 
 export default {
-      mixins: [IVueRipple],
+      mixins: [IvueRipple],
       props: {
             disabled: {
                   type: Boolean,
@@ -16,6 +16,6 @@ export default {
             }
       },
       components:{
-            IVueListItemContent
+            IvueListItemContent
       }
 }

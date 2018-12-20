@@ -1,16 +1,16 @@
 <script>
-import IVueButtonContent from "./IVueButtonContent";
-import IVueRouterLinkProps from "../../utils/mixins/IVueRouterLinkProps";
+import IvueButtonContent from "./IvueButtonContent";
+import IvueRouterLinkProps from "../../utils/mixins/IvueRouterLinkProps";
 import Colorable from '../../utils/mixins/Colorable';
 import { inject as RegistrableInject } from '../../utils/mixins/Registrable';
 
 const prefixCls = 'ivue-button';
 
 export default {
-  name: "IVueButton",
+  name: prefixCls,
   mixins: [
     Colorable,
-    IVueRouterLinkProps,
+    IvueRouterLinkProps,
     RegistrableInject('buttonGroup')
   ],
   data () {
@@ -128,10 +128,10 @@ export default {
     }
   },
   components: {
-    IVueButtonContent
+    IvueButtonContent
   },
   render (createElement) {
-    const buttonContent = createElement('IVueButtonContent', {
+    const buttonContent = createElement(IvueButtonContent, {
       // 正常的 HTML 特性
       attrs: {
         ivueRipple: this.ivueRipple,
