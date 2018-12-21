@@ -11,19 +11,19 @@ export function inject (namespace, child, parent) {
             unregister: generateWarning(child, parent)
       } : null
 
-      return Vue.extend({
+      return {
             name: 'registrable-inject',
             inject: {
                   [namespace]: {
                         default: defaultImpl
                   }
             }
-      });
+      };
 }
 
 // 提供
 export function provide (namespace) {
-      return Vue.extend({
+      return {
         name: 'registrable-provide',
     
         methods: {
@@ -38,6 +38,6 @@ export function provide (namespace) {
             }
           }
         }
-      })
+      }
     }
     

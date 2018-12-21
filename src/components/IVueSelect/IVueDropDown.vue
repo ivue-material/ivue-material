@@ -7,6 +7,7 @@
 <script>
 import Vue from 'vue';
 import { getStyle } from '../../utils/Assist';
+
 const isServer = Vue.prototype.$isServer;
 
 export default {

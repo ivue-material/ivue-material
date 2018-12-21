@@ -3,10 +3,10 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import {IvueContent} from '../src/index';
+// import IVue from '../src/index';
 
-Vue.component('IvueContent', IvueContent);
-
+// Vue.component('IvueContent', IvueContent);
+// Vue.use(IVue)
 Vue.config.productionTip = false;
 import "../src/styles/index.scss";
 

@@ -1,10 +1,8 @@
-import Vue from 'vue';
-
 function isCssColor (color) {
       return !!color && !!color.match(/^(#|(rgb|hsl)a?\()/)
 }
 
-export default Vue.extend({
+export default {
       name: 'colorable',
       props: {
             color: {
@@ -52,4 +50,4 @@ export default Vue.extend({
                   return data;
             }
       }
-});
+};
