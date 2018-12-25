@@ -14,6 +14,24 @@ gulp.task('css', function () {
             .pipe(cleanCSS())
             .pipe(rename('ivue.css'))
             .pipe(gulp.dest('../dist/styles'));
+      // layout
+      gulp.src('../src/components/ivue-layout/layout.scss')
+            .pipe(sass())
+            .pipe(autoprefixer({
+                  browsers: ['last 2 versions', 'ie > 8']
+            }))
+            .pipe(cleanCSS())
+            .pipe(rename('layout.css'))
+            .pipe(gulp.dest('../dist/styles'));
+      // ivue-elevation
+      gulp.src('../src/components/ivue-elevation/elevation.scss')
+            .pipe(sass())
+            .pipe(autoprefixer({
+                  browsers: ['last 2 versions', 'ie > 8']
+            }))
+            .pipe(cleanCSS())
+            .pipe(rename('elevation.css'))
+            .pipe(gulp.dest('../dist/styles'));
 });
 
 // 拷贝字体文件

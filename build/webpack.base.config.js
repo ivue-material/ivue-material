@@ -17,7 +17,7 @@ module.exports = {
             // https://doc.webpack-china.org/guides/migrating/#module-loaders-module-rules
             rules: [
                   {
-                        // https://vue-loader.vuejs.org/en/configurations/extract-css.htmlF
+                        // https://vue-loader.vuejs.org/en/configurations/extract-css.html
                         test: /\.vue$/,
                         loader: 'vue-loader',
                         options: {
@@ -27,39 +27,39 @@ module.exports = {
                                           {
                                                 loader: 'css-loader',
                                                 options: {
-                                                      sourceMap: true
-                                                }
-                                          }
+                                                      sourceMap: true,
+                                                },
+                                          },
                                     ],
                                     less: [
                                           'vue-style-loader',
                                           {
                                                 loader: 'css-loader',
                                                 options: {
-                                                      sourceMap: true
-                                                }
+                                                      sourceMap: true,
+                                                },
                                           },
                                           {
                                                 loader: 'less-loader',
                                                 options: {
-                                                      sourceMap: true
-                                                }
-                                          }
-                                    ]
+                                                      sourceMap: true,
+                                                },
+                                          },
+                                    ],
                               },
                               postLoaders: {
                                     html: 'babel-loader?sourceMap'
                               },
-                              sourceMap: true
+                              sourceMap: true,
                         }
                   },
                   {
                         test: /\.js$/,
                         loader: 'babel-loader',
                         options: {
-                              sourceMap: true
+                              sourceMap: true,
                         },
-                        exclude: /node_modules/
+                        exclude: /node_modules/,
                   },
                   {
                         test: /\.css$/,
@@ -67,18 +67,18 @@ module.exports = {
                               {
                                     loader: 'style-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
                                     loader: 'css-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
-                                    loader: '\'autoprefixer-loader\''
-                              }
+                                    loader: '\'autoprefixer-loader\'',
+                              },
                         ]
                   },
                   {
@@ -87,21 +87,21 @@ module.exports = {
                               {
                                     loader: 'style-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
                                     loader: 'css-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
                                     loader: 'less-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
-                              }
+                                          sourceMap: true,
+                                    },
+                              },
                         ]
                   },
                   {
@@ -110,26 +110,25 @@ module.exports = {
                               {
                                     loader: 'style-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
                                     loader: 'css-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
+                                          sourceMap: true,
+                                    },
                               },
                               {
                                     loader: 'sass-loader',
                                     options: {
-                                          sourceMap: true
-                                    }
-                              }
+                                          sourceMap: true,
+                                    },
+                              },
                         ]
                   },
                   {
                         test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                        // limit 内联文件的字节限制为数据URL
                         loader: 'url-loader?limit=8192'
                   },
                   {
@@ -152,8 +151,8 @@ module.exports = {
             new webpack.DefinePlugin({
                   'process.env.VERSION': `'${pkg.version}'`
             }),
-             // 生成依赖图
-            //  new BundleAnalyzerPlugin({
+            // 生成依赖图
+            // new BundleAnalyzerPlugin({
             //       //  可以是`server`，`static`或`disabled`。
             //       //  在`server`模式下，分析器将启动HTTP服务器来显示软件包报告。
             //       //  在“静态”模式下，会生成带有报告的单个HTML文件。
@@ -162,7 +161,7 @@ module.exports = {
             //       //  将在“服务器”模式下使用的主机启动HTTP服务器。
             //       analyzerHost: '127.0.0.1',
             //       //  将在“服务器”模式下使用的端口启动HTTP服务器。
-            //       analyzerPort: 8888, 
+            //       analyzerPort: 8888,
             //       //  路径捆绑，将在`static`模式下生成的报告文件。
             //       //  相对于捆绑输出目录。
             //       reportFilename: 'report.html',
@@ -173,7 +172,7 @@ module.exports = {
             //       //  在默认浏览器中自动打开报告
             //       openAnalyzer: true,
             //       //  如果为true，则Webpack Stats JSON文件将在bundle输出目录中生成
-            //       generateStatsFile: false, 
+            //       generateStatsFile: false,
             //       //  如果`generateStatsFile`为`true`，将会生成Webpack Stats JSON文件的名字。
             //       //  相对于捆绑输出目录。
             //       statsFilename: 'stats.json',
@@ -181,7 +180,7 @@ module.exports = {
             //       //  例如，您可以使用`source：false`选项排除统计文件中模块的来源。
             //       //  在这里查看更多选项：https：  //github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
             //       statsOptions: null,
-            //     }
+            // }
             // )
       ]
 }

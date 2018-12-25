@@ -1,3 +1,4 @@
+// 拼接字符串
 const padStart = (string, targetLength, padString) => {
       targetLength = targetLength >> 0;
       string = String(string);

@@ -29,7 +29,7 @@ module.exports = merge(webpackBaseConfig, {
       externals: {
             vue: {
                   // 可以通过一个全局变量访问 library（例如，通过 script 标签）。
-                  root:'vue',
+                  root:'Vue',
                   // 可以将 library 作为一个 CommonJS 模块访问。
                   commonjs: 'vue',
                   // 导出的是 module.exports.default.

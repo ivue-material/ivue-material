@@ -1,5 +1,5 @@
-import IvuePicker from '../../components/IvueDatePicker/IvuePicker';
-import Colorable from './Colorable'
+import IvuePicker from '../../components/ivue-date-picker/ivue-picker';
+import Colorable from './colorable'
 
 export default {
       name: 'picker',

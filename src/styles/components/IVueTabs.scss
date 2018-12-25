@@ -11,6 +11,7 @@ $name: 'ivue-tabs';
             &--show-arrow {
                   margin-left: 40px;
                   margin-right: 40px;
+                  transition: all .6s cubic-bezier(.86, 0, .07, 1);
             }
       }
       &-container {
@@ -131,7 +132,7 @@ $name: 'ivue-tabs';
 
 .fade-transition-enter-active,
 .fade--transition-leave-active {
-      transition: opacity .3s cubic-bezier(.25,.8,.50,1);
+      transition: opacity .3s cubic-bezier(.25, .8, .50, 1);
 }
 
 .fade-transition-enter,

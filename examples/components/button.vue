@@ -61,7 +61,7 @@
 export default {
   computed: {
     pageUrl () {
-      return window.location.href
+      return 'www.baidu.com'
     }
   },
   methods: {

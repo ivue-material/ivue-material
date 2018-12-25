@@ -1,36 +1,32 @@
-import IvueAffix from './components/IvueAffix';
-import IvueElevation from './components/IvueElevation';
-import IvueContent from './components/IvueContent';
-// import IvueLayout from './components/IvueLayout';
-import IvueButton from './components/IvueButton';
-import IvueIcon from './components/IvueIcon';
-import IvueList from './components/IvueList';
-import IvueListItem from './components/IvueListItem';
-import IvueSpin from './components/IvueSpin';
-import IvueCarousel from './components/IvueCarousel';
-import IvueCarouselItem from './components/IvueCarouselItem';
-import IvueSwitch from './components/IvueSwitch';
-import IvueBottomNav from './components/IvueBottomNav';
-import IvueBreadcrumbs from './components/IvueBreadcrumbs';
-import IvueBreadcrumbsItem from './components/IvueBreadcrumbsItem';
-import { IvueSelect, IvueOption, IvueOptionGroup } from './components/IvueSelect';
-import IvueAutoComplete from './components/IvueAutoComplete';
-import IvueInput from './components/IvueInput';
-import { IvueStepper, IvueStepperStep } from './components/IvueStepper';
-import IvueUpLoad from './components/IvueUpLoad';
-import { IvueProgressLinear, IvueProgressCircular } from './components/IvueProgress';
-import IvueNotice from './components/IvueNotice';
-import IvueMessage from './components/IvueMessage';
-import { IvueTabs, IvueTab, IvueTabItem,IvueTabsSlider } from './components/IvueTabs';
-import IvueLoadingBar from './components/IvueLoadingBar';
-import IvueBadge from './components/IvueBadge';
-import IvueDatePicker from './components/IvueDatePicker';
+import IvueAffix from './components/ivue-affix';
+import IvueContent from './components/ivue-content';
+import IvueButton from './components/ivue-button';
+import IvueIcon from './components/ivue-icon';
+import IvueList from './components/ivue-list';
+import IvueListItem from './components/ivue-list-item';
+import IvueSpin from './components/ivue-spin';
+import IvueCarousel from './components/ivue-carousel';
+import IvueCarouselItem from './components/ivue-carousel-item';
+import IvueSwitch from './components/ivue-switch';
+import IvueBottomNav from './components/ivue-bottom-nav';
+import IvueBreadcrumbs from './components/ivue-breadcrumbs';
+import IvueBreadcrumbsItem from './components/ivue-breadcrumbs-item';
+import { IvueSelect, IvueOption, IvueOptionGroup } from './components/ivue-select';
+import IvueAutoComplete from './components/ivue-auto-complete';
+import IvueInput from './components/ivue-input';
+import { IvueStepper, IvueStepperStep } from './components/ivue-stepper';
+import IvueUpLoad from './components/ivue-up-load';
+import { IvueProgressLinear, IvueProgressCircular } from './components/ivue-progress';
+import IvueNotice from './components/ivue-notice';
+import IvueMessage from './components/ivue-message';
+import { IvueTabs, IvueTab, IvueTabItem, IvueTabsSlider } from './components/ivue-tabs';
+import IvueLoadingBar from './components/ivue-loading-bar';
+import IvueBadge from './components/ivue-badge';
+import IvueDatePicker from './components/ivue-date-picker';
 
 const components = {
   IvueAffix,
-  IvueElevation,
   IvueContent,
-  // IvueLayout,
   IvueButton,
   IvueIcon,
   IvueList,
@@ -85,6 +81,12 @@ const install = function (Vue, opts = {}) {
 
   // 注册全局 IvueLoadingBar 滚动条加载 组件
   Vue.prototype.$IvueLoadingBar = IvueLoadingBar;
+
+  Vue.prototype.$Ivue = {
+    size: opts.size || '',
+    transfer: 'transfer' in opts ? opts.transfer : '',
+    breakpointWidth: 800
+  }
 
 };
 
