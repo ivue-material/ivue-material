@@ -32,6 +32,17 @@ gulp.task('css', function () {
             .pipe(cleanCSS())
             .pipe(rename('elevation.css'))
             .pipe(gulp.dest('../dist/styles'));
+      // color
+      gulp.src('../src/styles/theme/index.scss')
+            .pipe(sass())
+            .pipe(autoprefixer({
+                  browsers: ['last 2 versions', 'ie > 8']
+            }))
+            .pipe(cleanCSS())
+            .pipe(rename('color.css'))
+            .pipe(gulp.dest('../dist/styles'));
+
+      
 });
 
 // 拷贝字体文件

@@ -1,6 +1,7 @@
 @import "./custom";
-@import "./theme/index";
+@import "./mixins.scss";
 @import "./components/index";
+
 *,
 ::after,
 ::before {
