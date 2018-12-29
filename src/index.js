@@ -90,6 +90,7 @@ const install = function (Vue, opts = {}) {
 
 };
 
+
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);

@@ -35,9 +35,9 @@ gulp.task('css', function () {
       // color
       gulp.src('../src/styles/theme/index.scss')
             .pipe(sass())
-            .pipe(autoprefixer({
-                  browsers: ['last 2 versions', 'ie > 8']
-            }))
+            // .pipe(autoprefixer({
+            //       browsers: ['last 2 versions', 'ie > 8']
+            // }))
             .pipe(cleanCSS())
             .pipe(rename('color.css'))
             .pipe(gulp.dest('../dist/styles'));
