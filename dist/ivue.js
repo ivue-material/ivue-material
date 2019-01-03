@@ -2119,7 +2119,6 @@ exports.default = {
       render: function render(createElement) {
             return createElement(this.iVueTag, {
                   staticClass: 'ivue-content',
-                  class: [this.$IvueActiveTheme],
                   attrs: this.$attrs,
                   on: this.$listeners
             }, this.$slots.default);
@@ -10890,7 +10889,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '0.2.3',
+  version: '0.2.4',
   install: install
 }, components);
 

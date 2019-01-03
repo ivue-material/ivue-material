@@ -16,7 +16,6 @@ export default {
       render (createElement) {
             return createElement(this.iVueTag, {
                   staticClass: 'ivue-content',
-                  class: [this.$IvueActiveTheme],
                   attrs: this.$attrs,
                   on: this.$listeners
             }, this.$slots.default)
