@@ -10889,7 +10889,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '0.2.4',
+  version: '0.2.5',
   install: install
 }, components);
 
