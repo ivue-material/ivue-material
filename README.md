@@ -529,7 +529,7 @@ API
 
 | 名称        | 说明                    | value |
 | ----------- | :---------------------- | :---- |
-| ivue-loaded | 在获取SVG图标后立即触发 | null  |
+| svg-loaded | 在获取SVG图标后立即触发 | null  |
 
 
 ### IvueList 列表

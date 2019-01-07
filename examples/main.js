@@ -3,12 +3,13 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import IVue from '../src/index';
+import IVue from 'ivue-material';
 
 // Vue.component('IvueContent', IvueContent);
 Vue.use(IVue)
 Vue.config.productionTip = false;
 import "../src/styles/index.scss";
+import 'ivue-material/dist/styles/color.css';
 
 /* eslint-disable no-new */
 new Vue({
