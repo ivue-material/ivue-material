@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import IVue from 'ivue-material';
+import IVue from '../src/index';
 
 // Vue.component('IvueContent', IvueContent);
 Vue.use(IVue)

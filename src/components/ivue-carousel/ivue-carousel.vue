@@ -7,7 +7,13 @@
                                     }"
       >
             <!-- 左按钮 -->
-            <IvueButton :class="arrowClasses" class="left ivue-icon-button" flat icon>
+            <IvueButton
+                  :class="arrowClasses"
+                  class="left ivue-icon-button"
+                  @click="arrowEvent(-1)"
+                  flat
+                  icon
+            >
                   <IvueIcon>{{leftArrow}}</IvueIcon>
             </IvueButton>
             <!-- 内容 -->
@@ -305,6 +311,10 @@ export default {
             }
       },
       methods: {
+            _initData () {
+                  this.currentIndex = this.value;
+                  this.trackIndex = this.value;
+            },
             // 初始化复制内容节点 用于 loop 效果
             initCopyTrackDom () {
                   this.$nextTick(() => {
@@ -387,7 +397,6 @@ export default {
             updateOffset () {
                   this.$nextTick(() => {
                         let offset = this.trackCopyIndex > 0 ? -1 : 1;
-
                         // 跟踪偏移位置
                         this.trackOffset = this.trackIndex * this.listWidth;
                         // 跟踪复制内容的偏移位置
@@ -425,7 +434,6 @@ export default {
             handleResize () {
                   // 当前列表宽度
                   this.listWidth = parseInt(getStyle(this.$el, 'width'));
-
                   // 更新内容宽度高度
                   this.updatePos();
                   // 更新偏移位置
@@ -483,8 +491,8 @@ export default {
                   this.currentIndex = index === this.slides.length ? 0 : index;
 
                   // 发送点击事件
-                  this.$emit('onChange', oldIndex, this.currentIndex);
-                  this.$emit('currentIndex', this.currentIndex);
+                  this.$emit('on-change', oldIndex, this.currentIndex);
+                  this.$emit('current-index', this.currentIndex);
             },
             // 设置自动播放
             setAutoplay () {
@@ -511,7 +519,7 @@ export default {
                         this.updateTrackIndex(index);
 
                         // 发送点击事件
-                        this.$emit('currentIndex', index);
+                        this.$emit('current-index', index);
 
                         // 激活时重置自动播放计时器
                         this.setAutoplay();
@@ -543,6 +551,25 @@ export default {
             value (value) {
                   this.updateTrackIndex(value);
                   this.setAutoplay();
+            },
+            loop (value) {
+                  // 监听调整大小
+                  this.handleResize();
+                  // 设置自动播放
+                  this.setAutoplay();
+                  // 初始化数据
+                  this._initData();
+                  // 更新偏移位置
+                  this.updateOffset();
+
+                  if (value) {
+                        this.initCopyTrackDom();
+                  }
+                  else {
+                        this.showCopyTrack = false;
+                  }
+
+
             }
       },
       components: {

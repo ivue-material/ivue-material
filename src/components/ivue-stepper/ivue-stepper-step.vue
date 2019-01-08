@@ -116,7 +116,7 @@ export default {
 
                   this.currentStatus = this.status;
 
-                  this.$parent.$emit('nextStepper', stepNumber - 1, this.status);
+                  this.$parent.$emit('next-stepper', stepNumber - 1, this.status);
             }
       },
       components:{

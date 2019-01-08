@@ -246,7 +246,7 @@ export default {
             active (index) {
                   this.update();
 
-                  this.$emit('onChange', index);
+                  this.$emit('on-change', index);
             },
             buttons: 'update'
       },

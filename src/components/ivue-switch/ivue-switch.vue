@@ -118,7 +118,7 @@ export default {
 
       this.currentValue = checked;
 
-      this.$emit('onChange', checked);
+      this.$emit('on-change', checked);
     }
   },
   watch: {

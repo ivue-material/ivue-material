@@ -62,7 +62,7 @@ export default {
             this._currentStep = this.currentStep;
             this._status = this.status;
 
-            this.$on('nextStepper', this.nextStepper);
+            this.$on('next-stepper', this.nextStepper);
 
             this.updateSteps();
       },

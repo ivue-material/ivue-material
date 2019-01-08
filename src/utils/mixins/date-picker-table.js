@@ -91,7 +91,7 @@ export default {
       },
       methods: {
             touch (value) {
-                  this.$emit('tableDate', this.calculateTableDate(value));
+                  this.$emit('table-date', this.calculateTableDate(value));
             },
             genButtonClasses (isSelected, isCurrent, isAllowed) {
                   return {

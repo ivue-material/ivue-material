@@ -1,9 +1,10 @@
 <template>
       <div>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-          
+
+
             <p>基础</p>
-            <IvueSwitch class="red-accent-4"></IvueSwitch>
+            <IvueSwitch class="red-accent-4" @on-change="handleChange"></IvueSwitch>
 
             <p>大小</p>
             <IvueSwitch size="large"></IvueSwitch>
@@ -16,9 +17,13 @@
                   <span slot="close">关</span>
             </IvueSwitch>
 
-            <IvueSwitch  class="red-accent-4">
-                  <span slot="open"><IvueIcon>check</IvueIcon></span>
-                  <span slot="close"><IvueIcon>close</IvueIcon></span>
+            <IvueSwitch class="red-accent-4">
+                  <span slot="open">
+                        <IvueIcon>check</IvueIcon>
+                  </span>
+                  <span slot="close">
+                        <IvueIcon>close</IvueIcon>
+                  </span>
             </IvueSwitch>
 
             <p>不可用</p>
@@ -33,7 +38,11 @@
 
 <script>
 export default {
-
+      methods: {
+            handleChange () {
+                  console.log('>')
+            }
+      }
 }
 </script>
 

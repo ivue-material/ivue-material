@@ -253,7 +253,7 @@ export default {
             },
             // 尾部图标点击事件
             handleSuffix(event){
-                 this.$emit('handleSuffix', event);
+                 this.$emit('handle-suffix', event);
             },
             // 输入事件
             handleInput (event) {
