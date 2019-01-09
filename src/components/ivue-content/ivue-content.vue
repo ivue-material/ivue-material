@@ -7,14 +7,14 @@ export default {
             * 
             * @type {String}
             */
-            iVueTag: {
+            ivueTag: {
                   type: String,
                   default: 'div'
             }
       },
       // 动态渲染输出
       render (createElement) {
-            return createElement(this.iVueTag, {
+            return createElement(this.ivueTag, {
                   staticClass: 'ivue-content',
                   attrs: this.$attrs,
                   on: this.$listeners

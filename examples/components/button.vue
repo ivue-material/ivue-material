@@ -4,7 +4,7 @@
     <div>
       <span>Flat</span>
       <IvueButton flat @click="clickBtn">默认效果</IvueButton>
-      <IvueButton flat :ivueRipple="false">波纹效果关闭</IvueButton>
+      <IvueButton flat :ivue-ripple="false">波纹效果关闭</IvueButton>
       <IvueButton flat color="red-accent-4">Accent</IvueButton>
       <IvueButton flat color="blue">Primary</IvueButton>
       <IvueButton flat disabled>disabled</IvueButton>

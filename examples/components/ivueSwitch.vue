@@ -4,17 +4,17 @@
 
 
             <p>基础</p>
-            <IvueSwitch class="red-accent-4" @on-change="handleChange"></IvueSwitch>
-
+            <IvueSwitch color="red-accent-4" v-model="switch1" @on-change="handleChange"></IvueSwitch>
+      {{switch1}}
             <p>大小</p>
             <IvueSwitch size="large"></IvueSwitch>
             <IvueSwitch></IvueSwitch>
             <IvueSwitch size="small"></IvueSwitch>
 
             <p>文字图标</p>
-            <IvueSwitch>
-                  <span slot="open">开</span>
-                  <span slot="close">关</span>
+            <IvueSwitch size="large">
+                  <span slot="open">开启</span>
+                  <span slot="close">关闭</span>
             </IvueSwitch>
 
             <IvueSwitch class="red-accent-4">
@@ -27,10 +27,10 @@
             </IvueSwitch>
 
             <p>不可用</p>
-            <IvueSwitch :disabled="true" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch :disabled="true" :value="true" size="large" class="red-accent-4"></IvueSwitch>
 
             <p>loading</p>
-            <IvueSwitch loading :value="true" class="red-accent-4"></IvueSwitch>
+            <IvueSwitch loading :value="true"  class="red-accent-4"></IvueSwitch>
             <IvueSwitch loading :value="true" size="large" class="red-accent-4"></IvueSwitch>
             <IvueSwitch loading :value="true" size="small" class="red-accent-4"></IvueSwitch>
       </div>
@@ -38,6 +38,11 @@
 
 <script>
 export default {
+      data () {
+            return {
+                    switch1: false
+            }
+      },    
       methods: {
             handleChange () {
                   console.log('>')
