@@ -92,11 +92,13 @@ export default {
       computed: {
             // class
             classes () {
+                  console.log(this.value)
                   return {
                         [`${prefixCls}--absolute`]: this.position === 'absolute',
                         [`${prefixCls}--active`]: this.value,
                         [`${prefixCls}--fixed`]: this.position === 'fixed',
-                        [`${prefixCls}--shift`]: this.shift
+                        [`${prefixCls}--shift`]: this.shift,
+                        [`${prefixCls}--is-color`]: this.color !== ''
                   }
             },
             // 实时计算高度

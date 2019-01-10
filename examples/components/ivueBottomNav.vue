@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <p>有主题颜色</p>
-    <IvueBottomNav :value="true" :active.sync="bottomNav" :color="color" key="theme">
+    <IvueBottomNav v-model="showNav" :active.sync="bottomNav" :color="color" key="theme" >
       <IvueButton flat color="red-accent-4">
         <span>Recents</span>
         <IvueIcon>history</IvueIcon>
@@ -45,7 +45,8 @@ export default {
     return {
       bottomNav: 0,
       bottomNav2: 1,
-      bottomNav3: 0
+      bottomNav3: 0,
+      showNav: true
     }
   },
   computed: {

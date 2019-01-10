@@ -4585,7 +4585,7 @@ exports.default = {
             classes: function classes() {
                   var _ref;
 
-                  return _ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '--absolute', this.position === 'absolute'), (0, _defineProperty3.default)(_ref, prefixCls + '--active', this.value), (0, _defineProperty3.default)(_ref, prefixCls + '--fixed', this.position === 'fixed'), (0, _defineProperty3.default)(_ref, prefixCls + '--shift', this.shift), _ref;
+                  return _ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '--absolute', this.position === 'absolute'), (0, _defineProperty3.default)(_ref, prefixCls + '--active', this.value), (0, _defineProperty3.default)(_ref, prefixCls + '--fixed', this.position === 'fixed'), (0, _defineProperty3.default)(_ref, prefixCls + '--shift', this.shift), (0, _defineProperty3.default)(_ref, prefixCls + '--is-color', this.color !== ''), _ref;
             },
             computedHeight: function computedHeight() {
                   return parseInt(this.height);
@@ -10932,7 +10932,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '0.3.3',
+  version: '0.3.5',
   install: install
 }, components);
 

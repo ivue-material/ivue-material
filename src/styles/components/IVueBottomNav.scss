@@ -17,6 +17,19 @@
       &--active {
             transform: translate3d(0, 0, 0);
       }
+      &--is-color {
+            /*没有激活时的状态*/
+            .ivue-button:not(.ivue-button--active) {
+                  opacity: .5;
+                  color: currentColor;
+            }
+      }
+      /*没有激活时的状态*/
+      &:not(.ivue-bottom-nav--is-color) {
+            .ivue-button:not(.ivue-button--active) {
+                  color: rgba(0, 0, 0, .54) !important;
+            }
+      }
       .ivue-button {
             flex-shrink: 1;
             margin: 0;
@@ -43,7 +56,7 @@
                   span {
                         line-height: 1;
                         transform: scale(1);
-                        transition: all $ivue-transition-stand;
+                        transition: all .15s $ivue-transition-stand-timing;
                   }
             }
             .ivue-icon {
@@ -54,8 +67,7 @@
                   margin-top: 0;
                   color: inherit;
                   margin-bottom: 4px;
-                  transition: all $ivue-transition-stand;
-
+                  transition: all .15s $ivue-transition-stand-timing;
             }
             /*激活*/
             &--active {
@@ -75,11 +87,6 @@
                               transform: scale(1.2);
                         }
                   }
-            }
-            /*没有激活时的状态*/
-            &:not(.ivue-button--active) {
-                  opacity: .5;
-                  color: currentColor;
             }
       }
       &--shift {
