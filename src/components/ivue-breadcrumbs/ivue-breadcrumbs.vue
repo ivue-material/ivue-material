@@ -1,9 +1,17 @@
 <script>
+import IvueBreadcrumbsItem from '../ivue-breadcrumbs-item/ivue-breadcrumbs-item'
+
 const prefixCls = 'ivue-breadcrumbs';
 
 export default {
       name: prefixCls,
       props: {
+            items: {
+                  type: Array,
+                  default: () => {
+                        return []
+                  }
+            },
             /*
             * 分隔符
             * 
@@ -46,10 +54,6 @@ export default {
       methods: {
             // 渲染子节点添加分隔符
             genChildren () {
-                  if (!this.$slots.default) {
-                        return null
-                  }
-
                   // 创建节点
                   const h = this.$createElement;
 
@@ -57,21 +61,44 @@ export default {
 
                   const dividerData = { staticClass: `${prefixCls}--divider` };
 
-                  let createDividers = false;
+                  if (this.items.length > 0) {
 
-                  for (let i = 0; i < this.$slots.default.length; i++) {
-                        const elm = this.$slots.default[i];
+                        this.items.forEach((item, index) => {
+                              children.push(h(IvueBreadcrumbsItem, {
+                                    props: {
+                                          href: item.href,
+                                          disabled: item.disabled
+                                    }
+                              }, [item.text]));
 
-                        if (!elm.componentOptions || elm.componentOptions.Ctor.options.name !== `ivue-breadcrumbs-item`) {
-                              children.push(elm);
-                        }
-                        else {
-                              if (createDividers) {
+
+                              if (index !== (this.items.length - 1)) {
                                     children.push(h('span', dividerData, this.computedDivider));
                               }
-                              children.push(elm);
 
-                              createDividers = true;
+                        })
+                  }
+                  else {
+                        if (!this.$slots.default) {
+                              return null
+                        }
+
+                        let createDividers = false;
+
+                        for (let i = 0; i < this.$slots.default.length; i++) {
+                              const elm = this.$slots.default[i];
+
+                              if ((!elm.componentOptions || elm.componentOptions.Ctor.options.name !== `ivue-breadcrumbs-item`)) {
+                                    children.push(elm);
+                              }
+                              else {
+                                    if (createDividers) {
+                                          children.push(h('span', dividerData, this.computedDivider));
+                                    }
+                                    children.push(elm);
+
+                                    createDividers = true;
+                              }
                         }
                   }
 

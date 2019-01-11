@@ -34,14 +34,6 @@ export default {
                   type: [String, Object]
             },
             /*
-            * a 链接跳转
-            * 
-            * @type {String,Object}
-            */
-            href: {
-                  type: [String, Object]
-            },
-            /*
             * exact 匹配模式
             * 
             * @type {Boolean}
