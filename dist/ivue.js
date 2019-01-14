@@ -4986,8 +4986,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_4b54be0e_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_4b54be0e_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_4b54be0e_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_5e51e946_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_5e51e946_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_5e51e946_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_14_2_3_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 /* script */
 
@@ -5005,8 +5005,8 @@ var __vue_module_identifier__ = null
 
 var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_14_2_3_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_4b54be0e_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__["render"],
-  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_4b54be0e_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__["staticRenderFns"],
+  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_5e51e946_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__["render"],
+  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_5e51e946_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_vue__["staticRenderFns"],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5024,7 +5024,7 @@ var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_14_2
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+      value: true
 });
 
 var _slicedToArray2 = __webpack_require__(17);
@@ -5084,914 +5084,916 @@ var optionRegexp = /^ivue-option$|^IvueOption$/i;
 var optionGroupRegexp = /^ivue-option-group$|^IvueOptionGroup$/i;
 
 var findOptionsInVNode = function (node) {
-  (0, _newArrowCheck3.default)(undefined, undefined);
+      (0, _newArrowCheck3.default)(undefined, undefined);
 
-  var options = node.componentOptions;
+      var options = node.componentOptions;
 
-  if (options && options.tag.match(optionRegexp)) {
-    return [node];
-  }
+      if (options && options.tag.match(optionRegexp)) {
+            return [node];
+      }
 
-  if (!node.children && (!options || !options.children)) {
-    return [];
-  }
+      if (!node.children && (!options || !options.children)) {
+            return [];
+      }
 
-  var children = [].concat((0, _toConsumableArray3.default)(node.children || []), (0, _toConsumableArray3.default)(options && options.children || []));
+      var children = [].concat((0, _toConsumableArray3.default)(node.children || []), (0, _toConsumableArray3.default)(options && options.children || []));
 
-  var childrenOption = children.reduce(function (arr, el) {
-    (0, _newArrowCheck3.default)(undefined, undefined);
-    return [].concat((0, _toConsumableArray3.default)(arr), (0, _toConsumableArray3.default)(findOptionsInVNode(el)));
-  }.bind(undefined), []).filter(Boolean);
+      var childrenOption = children.reduce(function (arr, el) {
+            (0, _newArrowCheck3.default)(undefined, undefined);
+            return [].concat((0, _toConsumableArray3.default)(arr), (0, _toConsumableArray3.default)(findOptionsInVNode(el)));
+      }.bind(undefined), []).filter(Boolean);
 
-  return childrenOption.length > 0 ? childrenOption : [];
+      return childrenOption.length > 0 ? childrenOption : [];
 }.bind(undefined);
 
 var extractOptions = function (options) {
-  (0, _newArrowCheck3.default)(undefined, undefined);
-  return options.reduce(function (options, slotEntry) {
-    (0, _newArrowCheck3.default)(undefined, undefined);
+      (0, _newArrowCheck3.default)(undefined, undefined);
+      return options.reduce(function (options, slotEntry) {
+            (0, _newArrowCheck3.default)(undefined, undefined);
 
-    if (options && slotEntry) {
-      return options.concat(findOptionsInVNode(slotEntry));
-    }
-  }.bind(undefined), []);
+            if (options && slotEntry) {
+                  return options.concat(findOptionsInVNode(slotEntry));
+            }
+      }.bind(undefined), []);
 }.bind(undefined);
 
 var getNestedProperty = function (obj, path) {
-  (0, _newArrowCheck3.default)(undefined, undefined);
+      (0, _newArrowCheck3.default)(undefined, undefined);
 
-  var keys = path.split('.');
+      var keys = path.split('.');
 
-  return keys.reduce(function (option, key) {
-    (0, _newArrowCheck3.default)(undefined, undefined);
+      return keys.reduce(function (option, key) {
+            (0, _newArrowCheck3.default)(undefined, undefined);
 
-    if (option) {
-      return option && option[key] || null;
-    }
-  }.bind(undefined), obj);
+            if (option) {
+                  return option && option[key] || null;
+            }
+      }.bind(undefined), obj);
 }.bind(undefined);
 
 var getOptionLabel = function (option) {
-  (0, _newArrowCheck3.default)(undefined, undefined);
+      (0, _newArrowCheck3.default)(undefined, undefined);
 
-  if (option.componentOptions.propsData.label) {
-    return option.componentOptions.propsData.label;
-  }
+      if (option.componentOptions.propsData.label) {
+            return option.componentOptions.propsData.label;
+      }
 
-  var textContent = (option.componentOptions.children || []).reduce(function (string, children) {
-    (0, _newArrowCheck3.default)(undefined, undefined);
+      var textContent = (option.componentOptions.children || []).reduce(function (string, children) {
+            (0, _newArrowCheck3.default)(undefined, undefined);
 
-    var _childrenVNode = children.children;
+            var _childrenVNode = children.children;
 
-    if (_childrenVNode && _childrenVNode.length > 0) {
-      return _childrenVNode.reduce(function (str, vnode) {
-        (0, _newArrowCheck3.default)(undefined, undefined);
+            if (_childrenVNode && _childrenVNode.length > 0) {
+                  return _childrenVNode.reduce(function (str, vnode) {
+                        (0, _newArrowCheck3.default)(undefined, undefined);
 
-        return str + (vnode.text || '');
+                        return str + (vnode.text || '');
+                  }.bind(undefined), '');
+            } else {
+                  return string + (children.text || '');
+            }
       }.bind(undefined), '');
-    } else {
-      return string + (children.text || '');
-    }
-  }.bind(undefined), '');
 
-  var innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
+      var innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
 
-  return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
+      return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
 }.bind(undefined);
 
 var applyProp = function (node, propName, value) {
-  (0, _newArrowCheck3.default)(undefined, undefined);
+      (0, _newArrowCheck3.default)(undefined, undefined);
 
-  return (0, _extends4.default)({}, node, {
-    componentOptions: (0, _extends4.default)({}, node.componentOptions, {
-      propsData: (0, _extends4.default)({}, node.componentOptions.propsData, (0, _defineProperty3.default)({}, propName, value))
-    })
-  });
+      return (0, _extends4.default)({}, node, {
+            componentOptions: (0, _extends4.default)({}, node.componentOptions, {
+                  propsData: (0, _extends4.default)({}, node.componentOptions.propsData, (0, _defineProperty3.default)({}, propName, value))
+            })
+      });
 }.bind(undefined);
 
 exports.default = {
-  name: prefixCls,
+      name: prefixCls,
 
-  directives: { clickOutside: _clickOutside.directive },
-  props: {
-    value: {
-      type: [String, Number, Array],
-      default: ''
-    },
+      directives: { clickOutside: _clickOutside.directive },
+      props: {
+            value: {
+                  type: [String, Number, Array],
+                  default: ''
+            },
 
-    multiple: {
-      type: Boolean,
-      default: false
-    },
+            multiple: {
+                  type: Boolean,
+                  default: false
+            },
 
-    labelAndValue: {
-      type: Boolean,
-      default: false
-    },
+            labelAndValue: {
+                  type: Boolean,
+                  default: false
+            },
 
-    notFindText: {
-      type: String,
-      default: '无匹配数据'
-    },
+            notFindText: {
+                  type: String,
+                  default: '无匹配数据'
+            },
 
-    filterable: {
-      type: Boolean,
-      default: false
-    },
+            filterable: {
+                  type: Boolean,
+                  default: false
+            },
 
-    multipleCloseIcon: {
-      type: String,
-      default: 'close'
-    },
+            multipleCloseIcon: {
+                  type: String,
+                  default: 'close'
+            },
 
-    resetSelectIcon: {
-      type: String,
-      default: 'cancel'
-    },
+            resetSelectIcon: {
+                  type: String,
+                  default: 'cancel'
+            },
 
-    arrowDownIcon: {
-      type: String,
-      default: 'keyboard_arrow_down'
-    },
+            arrowDownIcon: {
+                  type: String,
+                  default: 'keyboard_arrow_down'
+            },
 
-    clearable: {
-      type: Boolean,
-      default: false
-    },
+            clearable: {
+                  type: Boolean,
+                  default: false
+            },
 
-    disabled: {
-      type: Boolean,
-      default: false
-    },
+            disabled: {
+                  type: Boolean,
+                  default: false
+            },
 
-    placeholder: {
-      type: String,
-      default: '请选择'
-    },
+            placeholder: {
+                  type: String,
+                  default: '请选择'
+            },
 
-    autoComplete: {
-      type: Boolean,
-      default: false
-    },
+            autoComplete: {
+                  type: Boolean,
+                  default: false
+            },
 
-    searchMethod: {
-      type: Function
-    }
-  },
-  data: function data() {
-    return {
-      prefixCls: prefixCls,
-
-      values: [],
-
-      visibleMenu: false,
-
-      slotOptions: this.$slots.default,
-
-      focusIndex: -1,
-
-      filterQuery: '',
-
-      filterQueryChange: false,
-
-      caretPosition: -1,
-
-      isFocused: false,
-
-      hasMouseHover: false,
-
-      lastSearchQuery: ''
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    var onOptionClick = this.onOptionClick,
-        selectOptions = this.selectOptions,
-        getInitialValue = this.getInitialValue,
-        getOptionData = this.getOptionData;
-
-    this.$on('on-select-option', onOptionClick);
-
-    if (!this.isSearchMethod && selectOptions.length > 0) {
-      this.values = getInitialValue().map(function (value) {
-        (0, _newArrowCheck3.default)(this, _this);
-
-        if (typeof value === 'undefined' && !value) {
-          return null;
-        }
-
-        return getOptionData(value);
-      }.bind(this)).filter(Boolean);
-    }
-  },
-
-  computed: {
-    classes: function classes() {
-      var _ref;
-
-      return ['' + prefixCls, (_ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '-default', !this.multiple), (0, _defineProperty3.default)(_ref, prefixCls + '-multiple', this.multiple), (0, _defineProperty3.default)(_ref, prefixCls + '-visible', this.visibleMenu), (0, _defineProperty3.default)(_ref, prefixCls + '-disabled', this.disabled), _ref)];
-    },
-    selectionClasses: function selectionClasses() {
-      return [prefixCls + '-selection-default', (0, _defineProperty3.default)({}, prefixCls + '-selection', !this.autoComplete)];
-    },
-    dropdownClass: function dropdownClass() {
-      return (0, _defineProperty3.default)({}, 'ivue-auto-complete', this.autoComplete);
-    },
-    selectValue: function selectValue() {
-      var _this2 = this;
-
-      var labelAndValue = this.labelAndValue,
-          values = this.values,
-          multiple = this.multiple;
-
-      if (labelAndValue) {
-        return multiple ? values : values[0];
-      } else {
-        return multiple ? values.map(function (option) {
-          (0, _newArrowCheck3.default)(this, _this2);
-          return option.value;
-        }.bind(this)) : (values[0] || {}).value;
-      }
-    },
-    flatOptionsData: function flatOptionsData() {
-      return extractOptions(this.selectOptions);
-    },
-    selectOptions: function selectOptions() {
-      var _this3 = this;
-
-      var slotOptions = this.slotOptions,
-          focusIndex = this.focusIndex,
-          values = this.values,
-          handleOption = this.handleOption,
-          filterQueryChange = this.filterQueryChange,
-          validateOption = this.validateOption,
-          filterable = this.filterable,
-          autoComplete = this.autoComplete;
-
-      var selectOptions = [];
-
-      var slotOptionsData = slotOptions || [];
-
-      var optionCounter = -1;
-
-      var currentIndex = focusIndex;
-
-      var selectedValues = values.filter(Boolean).map(function (_ref4) {
-        var value = _ref4.value;
-        (0, _newArrowCheck3.default)(this, _this3);
-        return value;
-      }.bind(this));
-      var selectedKeys = values.filter(Boolean).map(function (_ref5) {
-        var keys = _ref5.keys;
-        (0, _newArrowCheck3.default)(this, _this3);
-        return keys;
-      }.bind(this));
-
-      if (autoComplete) {
-        var copyChildren = function (node, fn) {
-          (0, _newArrowCheck3.default)(this, _this3);
-
-          return (0, _extends4.default)({}, node, {
-            children: (node.children || []).map(fn).map(function (child) {
-              (0, _newArrowCheck3.default)(this, _this3);
-              return copyChildren(child, fn);
-            }.bind(this))
-          });
-        }.bind(this);
-
-        var autoCompleteOptions = extractOptions(slotOptionsData);
-        var selectedSlotOption = autoCompleteOptions[currentIndex];
-
-        return autoCompleteOptions.map(function (node, index) {
-          (0, _newArrowCheck3.default)(this, _this3);
-
-          if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.value) {
-            return applyProp(node, 'isFocused', true);
-          }
-
-          return copyChildren(node, function (child) {
-            (0, _newArrowCheck3.default)(this, _this3);
-
-            if (selectedSlotOption && child !== selectedSlotOption) {
-              return child;
+            searchMethod: {
+                  type: Function
             }
-            return applyProp(child, 'isFocused', true);
-          }.bind(this));
-        }.bind(this));
-      }
+      },
+      data: function data() {
+            return {
+                  prefixCls: prefixCls,
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+                  values: [],
 
-      try {
-        for (var _iterator = (0, _getIterator3.default)(slotOptionsData), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var option = _step.value;
+                  visibleMenu: false,
 
-          var componentOptions = option.componentOptions;
+                  slotOptions: this.$slots.default,
 
-          if (!componentOptions) {
-            continue;
-          }
+                  focusIndex: -1,
 
-          if (componentOptions.tag.match(optionGroupRegexp)) {
-            var childrenGroup = componentOptions.children;
+                  filterQuery: '',
 
-            if (filterable) {
-              childrenGroup = childrenGroup.filter(function (_ref6) {
-                var componentOptions = _ref6.componentOptions;
-                (0, _newArrowCheck3.default)(this, _this3);
-                return validateOption(componentOptions);
-              }.bind(this));
+                  filterQueryChange: false,
+
+                  caretPosition: -1,
+
+                  isFocused: false,
+
+                  hasMouseHover: false,
+
+                  lastSearchQuery: ''
+            };
+      },
+      mounted: function mounted() {
+            var _this = this;
+
+            var onOptionClick = this.onOptionClick,
+                selectOptions = this.selectOptions,
+                getInitialValue = this.getInitialValue,
+                getOptionData = this.getOptionData;
+
+            this.$on('on-select-option', onOptionClick);
+
+            if (!this.isSearchMethod && selectOptions.length > 0) {
+                  this.values = getInitialValue().map(function (value) {
+                        (0, _newArrowCheck3.default)(this, _this);
+
+                        if (typeof value === 'undefined' && !value) {
+                              return null;
+                        }
+
+                        return getOptionData(value);
+                  }.bind(this)).filter(Boolean);
             }
+      },
 
-            childrenGroup = childrenGroup.map(function (childrenGroupOption) {
-              (0, _newArrowCheck3.default)(this, _this3);
+      computed: {
+            classes: function classes() {
+                  var _ref;
 
-              optionCounter = optionCounter + 1;
-              return this.handleOption(childrenGroupOption, selectedValues, null, optionCounter === currentIndex);
-            }.bind(this));
+                  return ['' + prefixCls, (_ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '-default', !this.multiple), (0, _defineProperty3.default)(_ref, prefixCls + '-multiple', this.multiple), (0, _defineProperty3.default)(_ref, prefixCls + '-visible', this.visibleMenu), (0, _defineProperty3.default)(_ref, prefixCls + '-disabled', this.disabled), _ref)];
+            },
+            selectionClasses: function selectionClasses() {
+                  return [prefixCls + '-selection-default', (0, _defineProperty3.default)({}, prefixCls + '-selection', !this.autoComplete)];
+            },
+            dropdownClass: function dropdownClass() {
+                  return (0, _defineProperty3.default)({}, 'ivue-auto-complete', this.autoComplete);
+            },
+            selectValue: function selectValue() {
+                  var _this2 = this;
 
-            if (childrenGroup.length > 0) {
-              selectOptions.push((0, _extends4.default)({}, option, { componentOptions: (0, _extends4.default)({}, componentOptions, { children: childrenGroup }) }));
+                  var labelAndValue = this.labelAndValue,
+                      values = this.values,
+                      multiple = this.multiple;
+
+                  if (labelAndValue) {
+                        return multiple ? values : values[0];
+                  } else {
+                        return multiple ? values.map(function (option) {
+                              (0, _newArrowCheck3.default)(this, _this2);
+                              return option.value;
+                        }.bind(this)) : (values[0] || {}).value;
+                  }
+            },
+            flatOptionsData: function flatOptionsData() {
+                  return extractOptions(this.selectOptions);
+            },
+            selectOptions: function selectOptions() {
+                  var _this3 = this;
+
+                  var slotOptions = this.slotOptions,
+                      focusIndex = this.focusIndex,
+                      values = this.values,
+                      handleOption = this.handleOption,
+                      filterQueryChange = this.filterQueryChange,
+                      validateOption = this.validateOption,
+                      filterable = this.filterable,
+                      autoComplete = this.autoComplete;
+
+                  var selectOptions = [];
+
+                  var slotOptionsData = slotOptions || [];
+
+                  var optionCounter = -1;
+
+                  var currentIndex = focusIndex;
+
+                  var selectedValues = values.filter(Boolean).map(function (_ref4) {
+                        var value = _ref4.value;
+                        (0, _newArrowCheck3.default)(this, _this3);
+                        return value;
+                  }.bind(this));
+                  var selectedKeys = values.filter(Boolean).map(function (_ref5) {
+                        var keys = _ref5.keys;
+                        (0, _newArrowCheck3.default)(this, _this3);
+                        return keys;
+                  }.bind(this));
+
+                  if (autoComplete) {
+                        var copyChildren = function (node, fn) {
+                              (0, _newArrowCheck3.default)(this, _this3);
+
+                              return (0, _extends4.default)({}, node, {
+                                    children: (node.children || []).map(fn).map(function (child) {
+                                          (0, _newArrowCheck3.default)(this, _this3);
+                                          return copyChildren(child, fn);
+                                    }.bind(this))
+                              });
+                        }.bind(this);
+
+                        var autoCompleteOptions = extractOptions(slotOptionsData);
+                        var selectedSlotOption = autoCompleteOptions[currentIndex];
+
+                        return autoCompleteOptions.map(function (node, index) {
+                              (0, _newArrowCheck3.default)(this, _this3);
+
+                              if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.value) {
+                                    return applyProp(node, 'isFocused', true);
+                              }
+
+                              return copyChildren(node, function (child) {
+                                    (0, _newArrowCheck3.default)(this, _this3);
+
+                                    if (selectedSlotOption && child !== selectedSlotOption) {
+                                          return child;
+                                    }
+                                    return applyProp(child, 'isFocused', true);
+                              }.bind(this));
+                        }.bind(this));
+                  }
+
+                  var _iteratorNormalCompletion = true;
+                  var _didIteratorError = false;
+                  var _iteratorError = undefined;
+
+                  try {
+                        for (var _iterator = (0, _getIterator3.default)(slotOptionsData), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                              var option = _step.value;
+
+                              var componentOptions = option.componentOptions;
+
+                              if (!componentOptions) {
+                                    continue;
+                              }
+
+                              if (componentOptions.tag.match(optionGroupRegexp)) {
+                                    var childrenGroup = componentOptions.children;
+
+                                    if (filterable) {
+                                          childrenGroup = childrenGroup.filter(function (_ref6) {
+                                                var componentOptions = _ref6.componentOptions;
+                                                (0, _newArrowCheck3.default)(this, _this3);
+                                                return validateOption(componentOptions);
+                                          }.bind(this));
+                                    }
+
+                                    childrenGroup = childrenGroup.map(function (childrenGroupOption) {
+                                          (0, _newArrowCheck3.default)(this, _this3);
+
+                                          optionCounter = optionCounter + 1;
+                                          return this.handleOption(childrenGroupOption, selectedValues, null, optionCounter === currentIndex);
+                                    }.bind(this));
+
+                                    if (childrenGroup.length > 0) {
+                                          selectOptions.push((0, _extends4.default)({}, option, { componentOptions: (0, _extends4.default)({}, componentOptions, { children: childrenGroup }) }));
+                                    }
+                              } else {
+                                    if (filterQueryChange) {
+                                          var optionFilter = filterable ? validateOption(componentOptions) : option;
+                                          if (!optionFilter) {
+                                                continue;
+                                          }
+                                    }
+
+                                    optionCounter = optionCounter + 1;
+
+                                    selectOptions.push(handleOption(option, selectedValues, selectedKeys, optionCounter === currentIndex));
+                              }
+                        }
+                  } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                  } finally {
+                        try {
+                              if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                              }
+                        } finally {
+                              if (_didIteratorError) {
+                                    throw _iteratorError;
+                              }
+                        }
+                  }
+
+                  return selectOptions;
+            },
+            showNotFindText: function showNotFindText() {
+                  return this.selectOptions && this.selectOptions.length === 0 && !this.isSearchMethod;
+            },
+            canClearable: function canClearable() {
+                  var hasMouseHover = this.hasMouseHover,
+                      clearable = this.clearable,
+                      multiple = this.multiple,
+                      disabled = this.disabled;
+
+                  return hasMouseHover && clearable && !multiple && !disabled;
+            },
+            selectTabindex: function selectTabindex() {
+                  return this.disabled || this.filterable ? -1 : 0;
+            },
+            dropVisible: function dropVisible() {
+                  var status = true;
+                  var noSelectOptions = !this.selectOptions || this.selectOptions.length === 0;
+
+                  if (this.filterQuery === '' && noSelectOptions && this.isSearchMethod) {
+                        status = false;
+                  }
+
+                  if (this.autoComplete && noSelectOptions) {
+                        status = false;
+                  }
+
+                  return this.visibleMenu && status;
+            },
+            isSearchMethod: function isSearchMethod() {
+                  return typeof this.searchMethod === 'function';
             }
-          } else {
-            if (filterQueryChange) {
-              var optionFilter = filterable ? validateOption(componentOptions) : option;
-              if (!optionFilter) {
-                continue;
-              }
+      },
+      methods: {
+            onClickOutside: function onClickOutside(event) {
+                  var _this4 = this;
+
+                  var visibleMenu = this.visibleMenu,
+                      hideMenu = this.hideMenu,
+                      filterable = this.filterable,
+                      autoComplete = this.autoComplete;
+
+                  if (visibleMenu) {
+                        if (event.type === 'mousedown') {
+                              event.preventDefault();
+                              return;
+                        }
+
+                        if (filterable) {
+                              var input = this.$el.querySelector('input[type="text"]');
+
+                              this.caretPosition = input.selectionStart;
+
+                              this.$nextTick(function () {
+                                    (0, _newArrowCheck3.default)(this, _this4);
+
+                                    var caretPosition = this.caretPosition === -1 ? input.value.length : this.caretPosition;
+
+                                    input.setSelectionRange(caretPosition, caretPosition);
+
+                                    input.blur();
+                              }.bind(this));
+                        }
+
+                        if (!autoComplete) {
+                              event.stopPropagation();
+                        }
+                        event.preventDefault();
+
+                        hideMenu();
+
+                        this.isFocused = true;
+                  } else {
+                        this.caretPosition = -1;
+                        this.isFocused = false;
+                  }
+            },
+            toggleMenu: function toggleMenu(event, force) {
+                  if (this.disabled) {
+                        return false;
+                  }
+
+                  this.visibleMenu = typeof force !== 'undefined' ? force : !this.visibleMenu;
+                  if (this.visibleMenu) {
+                        this.$refs.ivueDropDown.$emit('on-update-drop-down');
+                  } else {
+                              if (this.filterable) {
+                                    var input = this.$el.querySelector('input[type="text"]');
+                                    input.blur();
+                              }
+                        }
+            },
+            hideMenu: function hideMenu() {
+                  this.toggleMenu(null, false);
+            },
+            updateSlotOptions: function updateSlotOptions() {
+                  if (this.$slots.default) {
+                        this.slotOptions = this.$slots.default;
+                  }
+            },
+            handleOption: function handleOption(option, values, keys, isFocused) {
+                  if (!option.componentOptions) {
+                        return option;
+                  }
+
+                  var optionValue = option.componentOptions.propsData.value;
+                  var disabled = option.componentOptions.propsData.disabled;
+                  var optionKeys = option.key;
+
+                  var isSelect = optionKeys && keys ? keys.includes(optionKeys) && values.includes(optionValue) : values.includes(optionValue);
+
+                  var propsData = (0, _extends4.default)({}, option.componentOptions.propsData, {
+                        selected: isSelect,
+                        isFocused: isFocused,
+                        keys: option.key,
+                        disabled: typeof disabled === 'undefined' ? false : disabled !== false
+                  });
+
+                  return (0, _extends4.default)({}, option, {
+                        componentOptions: (0, _extends4.default)({}, option.componentOptions, {
+                              propsData: propsData
+                        })
+                  });
+            },
+            onOptionClick: function onOptionClick(option) {
+                  var _this5 = this;
+
+                  var hideMenu = this.hideMenu,
+                      setFocusIndex = this.setFocusIndex,
+                      multiple = this.multiple,
+                      filterable = this.filterable,
+                      autoComplete = this.autoComplete,
+                      isSearchMethod = this.isSearchMethod;
+
+                  if (this.multiple) {
+
+                        var selected = this.values.find(function (_ref7) {
+                              var value = _ref7.value,
+                                  keys = _ref7.keys;
+                              (0, _newArrowCheck3.default)(this, _this5);
+
+                              if (keys) {
+                                    return keys === option.keys && value === option.value;
+                              } else {
+                                    return value === option.value;
+                              }
+                        }.bind(this));
+
+                        if (isSearchMethod) {
+                              this.lastSearchQuery = this.lastSearchQuery || this.filterQuery;
+                        } else {
+                              this.lastSearchQuery = '';
+                        }
+
+                        if (selected) {
+                              this.values = this.values.filter(function (_ref8) {
+                                    var value = _ref8.value,
+                                        keys = _ref8.keys;
+                                    (0, _newArrowCheck3.default)(this, _this5);
+
+                                    if (keys) {
+                                          return keys !== option.keys && value !== option.value || value === option.value && keys !== option.keys;
+                                    } else {
+                                          return value !== option.value;
+                                    }
+                              }.bind(this));
+                        } else {
+                              this.values = this.values.concat(option);
+                        }
+
+                        this.isFocused = true;
+                  } else {
+                        this.filterQuery = String(option.label).trim();
+
+                        this.values = [option];
+
+                        hideMenu();
+
+                        this.lastSearchQuery = '';
+                  }
+
+                  if (filterable) {
+                        var input = this.$el.querySelector('input[type="text"]');
+
+                        if (!this.autoComplete) {
+                              this.$nextTick(function () {
+                                    (0, _newArrowCheck3.default)(this, _this5);
+
+                                    input.focus();
+                              }.bind(this));
+                        }
+                  }
+
+                  this.focusIndex = setFocusIndex(option);
+
+                  if (this.filterQueryChange) {
+                        setTimeout(function () {
+                              (0, _newArrowCheck3.default)(this, _this5);
+
+                              this.filterQueryChange = false;
+                        }.bind(this), 300);
+                  } else {
+                        this.$nextTick(function () {
+                              (0, _newArrowCheck3.default)(this, _this5);
+
+                              this.filterQueryChange = false;
+                        }.bind(this));
+                  }
+            },
+            getOptionData: function getOptionData(data) {
+                  var _this6 = this;
+
+                  var flatOptionsData = this.flatOptionsData,
+                      setFocusIndex = this.setFocusIndex;
+
+
+                  var option = flatOptionsData.find(function (_ref9) {
+                        var componentOptions = _ref9.componentOptions;
+                        (0, _newArrowCheck3.default)(this, _this6);
+
+                        if ((typeof data === 'undefined' ? 'undefined' : (0, _typeof3.default)(data)) === 'object') {
+                              return componentOptions.propsData.value === data.value && componentOptions.propsData.keys === data.keys;
+                        } else {
+                              return componentOptions.propsData.value === data;
+                        }
+                  }.bind(this));
+
+                  if (!option) {
+                        return null;
+                  }
+
+                  var label = getOptionLabel(option);
+
+                  this.focusIndex = setFocusIndex(data);
+                  this.filterQuery = '';
+
+                  return {
+                        value: data.value || data,
+                        label: label,
+                        keys: option.key
+                  };
+            },
+            getInitialValue: function getInitialValue() {
+                  var _this7 = this;
+
+                  var value = this.value,
+                      getOptionData = this.getOptionData,
+                      multiple = this.multiple,
+                      isSearchMethod = this.isSearchMethod;
+
+
+                  var initialValue = Array.isArray(value) ? value : [value];
+
+                  if (typeof initialValue[0] === 'undefined' || String(initialValue[0]).trim() === '' && !(0, _isFinite2.default)(initialValue[0])) {
+                        initialValue = [];
+                  }
+
+                  if (isSearchMethod && !multiple && value) {
+                        var data = getOptionData(value);
+
+                        this.filterQuery = data ? data.label : String(value);
+                  }
+
+                  return initialValue.filter(function (item) {
+                        (0, _newArrowCheck3.default)(this, _this7);
+
+                        return Boolean(item) || item === 0;
+                  }.bind(this));
+            },
+            setFocusIndex: function setFocusIndex(option) {
+                  var _this8 = this;
+
+                  return this.flatOptionsData.findIndex(function (opt) {
+                        (0, _newArrowCheck3.default)(this, _this8);
+
+                        if (!opt || !opt.componentOptions) {
+                              return false;
+                        }
+
+                        if ((typeof option === 'undefined' ? 'undefined' : (0, _typeof3.default)(option)) === 'object') {
+                              if (option.keys) {
+                                    return opt.key === option.keys;
+                              } else {
+                                    return opt.componentOptions.propsData.value === option.value;
+                              }
+                        } else {
+                              return opt.componentOptions.propsData.value === option;
+                        }
+                  }.bind(this));
+            },
+            onFilterQueryChange: function onFilterQueryChange(filterQuery) {
+                  if (filterQuery.length > 0 && filterQuery !== this.filterQuery) {
+                        this.visibleMenu = true;
+                  }
+
+                  this.filterQuery = filterQuery;
+
+                  this.filterQueryChange = true;
+            },
+            validateOption: function validateOption(_ref10) {
+                  var _this9 = this;
+
+                  var children = _ref10.children,
+                      elm = _ref10.elm,
+                      propsData = _ref10.propsData;
+
+                  var value = propsData.value;
+
+                  var label = propsData.label || '';
+
+                  var textContent = elm && elm.textContent || (children || []).reduce(function (str, node) {
+                        (0, _newArrowCheck3.default)(this, _this9);
+
+                        var nodeText = node.elm ? node.elm.textContent : node.text;
+
+                        return '' + String(str) + String(nodeText);
+                  }.bind(this), '') || '';
+
+                  var stringValues = (0, _stringify2.default)([value, label, textContent]);
+
+                  var filterQuery = this.filterQuery.toLowerCase().trim();
+
+                  return stringValues.toLowerCase().includes(filterQuery);
+            },
+            resetData: function resetData() {
+                  var _this10 = this;
+
+                  this.focusIndex = -1;
+                  this.values = [];
+                  this.hasMouseHover = false;
+
+                  setTimeout(function () {
+                        (0, _newArrowCheck3.default)(this, _this10);
+
+                        this.filterQuery = '';
+                        this.filterQueryChange = false;
+                        this.isClear = false;
+                  }.bind(this), 300);
+            },
+            clearSingleSelect: function clearSingleSelect() {
+                  this.$emit('on-clear');
+
+                  this.isClear = true;
+
+                  this.hideMenu();
+
+                  if (this.clearable) {
+                        this.resetData();
+                  }
+            },
+            navigateOptions: function navigateOptions(direction) {
+                  var optionLength = this.flatOptionsData.length - 1;
+
+                  var index = this.focusIndex + direction;
+                  if (index < 0) {
+                        index = optionLength;
+                  }
+
+                  if (index > optionLength) {
+                        index = 0;
+                  }
+
+                  if (direction > 0) {
+                        var activeOption = -1;
+                        for (var i = 0; i < this.flatOptionsData.length; i++) {
+                              var isActiveOption = !this.flatOptionsData[i].componentOptions.propsData.disabled;
+
+                              if (isActiveOption) {
+                                    activeOption = i;
+                              }
+
+                              if (activeOption >= index) {
+                                    break;
+                              }
+                        }
+                        index = activeOption;
+                  } else {
+                        var _activeOption = this.flatOptionsData.length;
+                        for (var _i = optionLength; _i >= 0; _i--) {
+                              var _isActiveOption = !this.flatOptionsData[_i].componentOptions.propsData.disabled;
+
+                              if (_isActiveOption) {
+                                    _activeOption = _i;
+                              }
+                              if (_activeOption <= index) {
+                                    break;
+                              }
+                        }
+                        index = _activeOption;
+                  }
+
+                  this.focusIndex = index;
+            },
+            handldKeyDown: function handldKeyDown(event) {
+                  var visibleMenu = this.visibleMenu,
+                      navigateOptions = this.navigateOptions,
+                      hideMenu = this.hideMenu,
+                      focusIndex = this.focusIndex,
+                      flatOptionsData = this.flatOptionsData,
+                      getOptionData = this.getOptionData,
+                      onOptionClick = this.onOptionClick,
+                      toggleMenu = this.toggleMenu;
+
+                  if (event.key === 'Backspace') {
+                        return;
+                  }
+                  if (visibleMenu) {
+                        event.preventDefault();
+
+                        if (event.key === 'Tab') {
+                              event.stopPropagation();
+                        }
+
+                        if (event.key === 'ArrowUp') {
+                              navigateOptions(-1);
+                        }
+
+                        if (event.key === 'ArrowDown') {
+                              navigateOptions(1);
+                        }
+
+                        if (event.key === 'Enter') {
+                              if (focusIndex === -1) {
+                                    return hideMenu();
+                              }
+
+                              var optionComponent = flatOptionsData[focusIndex];
+                              var option = getOptionData(optionComponent.componentOptions.propsData);
+
+                              onOptionClick(option);
+                        }
+
+                        if (event.key === 'Escape') {
+                              event.stopPropagation();
+                              hideMenu();
+                        }
+                  } else {
+                        var keysCanOpenMenu = ['ArrowDown', 'ArrowUp'];
+
+                        if (keysCanOpenMenu.includes(event.key)) {
+                              toggleMenu(null, true);
+                        }
+                  }
             }
+      },
+      watch: {
+            value: function value(_value) {
+                  var _this11 = this;
 
-            optionCounter = optionCounter + 1;
+                  var getInitialValue = this.getInitialValue,
+                      getOptionData = this.getOptionData,
+                      selectValue = this.selectValue;
 
-            selectOptions.push(handleOption(option, selectedValues, selectedKeys, optionCounter === currentIndex));
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
 
-      return selectOptions;
-    },
-    showNotFindText: function showNotFindText() {
-      return this.selectOptions && this.selectOptions.length === 0 && !this.isSearchMethod;
-    },
-    canClearable: function canClearable() {
-      var hasMouseHover = this.hasMouseHover,
-          clearable = this.clearable,
-          multiple = this.multiple,
-          disabled = this.disabled;
+                  if (_value === undefined || _value === null) {
+                        this.values = [];
+                  } else if ((0, _stringify2.default)(_value) !== (0, _stringify2.default)(selectValue)) {
+                        this.$nextTick(function () {
+                              (0, _newArrowCheck3.default)(this, _this11);
 
-      return hasMouseHover && clearable && !multiple && !disabled;
-    },
-    selectTabindex: function selectTabindex() {
-      return this.disabled || this.filterable ? -1 : 0;
-    },
-    dropVisible: function dropVisible() {
-      var status = true;
-      var noSelectOptions = !this.selectOptions || this.selectOptions.length === 0;
+                              this.values = getInitialValue().map(getOptionData).filter(Boolean);
+                        }.bind(this));
+                  }
+            },
+            values: function values(newValue, oldValue) {
+                  var _this12 = this;
 
-      if (this.filterQuery === '' && noSelectOptions && this.isSearchMethod) {
-        status = false;
-      }
+                  var labelAndValue = this.labelAndValue,
+                      selectValue = this.selectValue,
+                      value = this.value,
+                      multiple = this.multiple;
 
-      if (this.autoComplete && noSelectOptions) {
-        status = false;
-      }
 
-      return this.visibleMenu && status;
-    },
-    isSearchMethod: function isSearchMethod() {
-      return typeof this.searchMethod === 'function';
-    }
-  },
-  methods: {
-    onClickOutside: function onClickOutside(event) {
-      var _this4 = this;
+                  var _newValue = (0, _stringify2.default)(newValue);
+                  var _oldValue = (0, _stringify2.default)(oldValue);
 
-      var visibleMenu = this.visibleMenu,
-          hideMenu = this.hideMenu,
-          filterable = this.filterable,
-          autoComplete = this.autoComplete;
+                  var vModelValue = labelAndValue && selectValue ? multiple ? selectValue.map(function (_ref11) {
+                        var value = _ref11.value;
+                        (0, _newArrowCheck3.default)(this, _this12);
+                        return value;
+                  }.bind(this)) : selectValue.value : selectValue;
 
-      if (visibleMenu) {
-        if (event.type === 'mousedown') {
-          event.preventDefault();
-          return;
-        }
+                  var emitInput = _newValue !== _oldValue && vModelValue !== value;
 
-        if (filterable) {
-          var input = this.$el.querySelector('input[type="text"]');
+                  if (emitInput) {
+                        this.$emit('input', vModelValue);
 
-          this.caretPosition = input.selectionStart;
+                        selectValue && this.$emit('on-change', selectValue);
+                  }
+            },
+            isFocused: function isFocused(focused) {
+                  var _this13 = this;
 
-          this.$nextTick(function () {
-            (0, _newArrowCheck3.default)(this, _this4);
+                  var filterable = this.filterable,
+                      values = this.values,
+                      multiple = this.multiple;
 
-            var caretPosition = this.caretPosition === -1 ? input.value.length : this.caretPosition;
+                  var el = filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
+                  el[focused ? 'focus' : 'blur']();
 
-            input.setSelectionRange(caretPosition, caretPosition);
+                  var _values = (0, _slicedToArray3.default)(values, 1),
+                      option = _values[0];
 
-            input.blur();
-          }.bind(this));
-        }
+                  setTimeout(function () {
+                        (0, _newArrowCheck3.default)(this, _this13);
 
-        if (!autoComplete) {
-          event.stopPropagation();
-        }
-        event.preventDefault();
+                        if (option && filterable && !multiple && !focused && !this.isClear) {
+                              var label = String(option.label || option.value).trim();
+                              if (label && this.filterQuery !== label) {
+                                    this.filterQuery = label;
+                              }
+                        }
+                  }.bind(this), 300);
+            },
+            filterQuery: function filterQuery(_filterQuery) {
+                  this.$emit('on-filter-query-change', _filterQuery);
 
-        hideMenu();
+                  var searchMethod = this.searchMethod,
+                      lastSearchQuery = this.lastSearchQuery,
+                      isSearchMethod = this.isSearchMethod;
 
-        this.isFocused = true;
-      } else {
-        this.caretPosition = -1;
-        this.isFocused = false;
-      }
-    },
-    toggleMenu: function toggleMenu(event, force) {
-      if (this.disabled) {
-        return false;
-      }
+                  var hasValidQuery = _filterQuery !== '' && (_filterQuery !== lastSearchQuery || !lastSearchQuery);
 
-      this.visibleMenu = typeof force !== 'undefined' ? force : !this.visibleMenu;
-      if (this.visibleMenu) {
-        this.$refs.ivueDropDown.$emit('on-update-drop-down');
-      } else {
-          if (this.filterable) {
-            var input = this.$el.querySelector('input[type="text"]');
-            input.blur();
-          }
-        }
-    },
-    hideMenu: function hideMenu() {
-      this.toggleMenu(null, false);
-    },
-    updateSlotOptions: function updateSlotOptions() {
-      if (this.$slots.default) {
-        this.slotOptions = this.$slots.default;
-      }
-    },
-    handleOption: function handleOption(option, values, keys, isFocused) {
-      if (!option.componentOptions) {
-        return option;
-      }
+                  if (searchMethod && hasValidQuery) {
+                        this.focusIndex = -1;
+                        searchMethod(_filterQuery);
+                  }
 
-      var optionValue = option.componentOptions.propsData.value;
-      var disabled = option.componentOptions.propsData.disabled;
-      var optionKeys = option.key;
+                  if (_filterQuery !== '' && isSearchMethod) {
+                        this.lastSearchQuery = _filterQuery;
+                  }
+            },
+            visibleMenu: function visibleMenu(state) {
+                  this.$emit('on-menu-open', state);
+            },
+            selectOptions: function selectOptions() {
+                  var slotOptions = this.slotOptions;
 
-      var isSelect = optionKeys && keys ? keys.includes(optionKeys) && values.includes(optionValue) : values.includes(optionValue);
 
-      var propsData = (0, _extends4.default)({}, option.componentOptions.propsData, {
-        selected: isSelect,
-        isFocused: isFocused,
-        keys: option.key,
-        disabled: typeof disabled === 'undefined' ? false : disabled !== false
-      });
-
-      return (0, _extends4.default)({}, option, {
-        componentOptions: (0, _extends4.default)({}, option.componentOptions, {
-          propsData: propsData
-        })
-      });
-    },
-    onOptionClick: function onOptionClick(option) {
-      var _this5 = this;
-
-      var hideMenu = this.hideMenu,
-          setFocusIndex = this.setFocusIndex,
-          multiple = this.multiple,
-          filterable = this.filterable,
-          autoComplete = this.autoComplete,
-          isSearchMethod = this.isSearchMethod;
-
-      if (this.multiple) {
-
-        var selected = this.values.find(function (_ref7) {
-          var value = _ref7.value,
-              keys = _ref7.keys;
-          (0, _newArrowCheck3.default)(this, _this5);
-
-          if (keys) {
-            return keys === option.keys && value === option.value;
-          } else {
-            return value === option.value;
-          }
-        }.bind(this));
-
-        if (isSearchMethod) {
-          this.lastSearchQuery = this.lastSearchQuery || this.filterQuery;
-        } else {
-          this.lastSearchQuery = '';
-        }
-
-        if (selected) {
-          this.values = this.values.filter(function (_ref8) {
-            var value = _ref8.value,
-                keys = _ref8.keys;
-            (0, _newArrowCheck3.default)(this, _this5);
-
-            if (keys) {
-              return keys !== option.keys && value !== option.value || value === option.value && keys !== option.keys;
-            } else {
-              return value !== option.value;
+                  if (slotOptions && slotOptions.length === 0) {
+                        this.filterQuery = '';
+                  }
             }
-          }.bind(this));
-        } else {
-          this.values = this.values.concat(option);
-        }
-
-        this.isFocused = true;
-      } else {
-        this.filterQuery = String(option.label).trim();
-
-        this.values = [option];
-
-        hideMenu();
-
-        this.lastSearchQuery = '';
+      },
+      components: {
+            IvueSleectHead: _ivueSelectHead2.default,
+            IvueDropDown: _ivueDropDown2.default,
+            FunctionalOptions: _functionalOptions2.default
       }
-
-      if (filterable) {
-        var input = this.$el.querySelector('input[type="text"]');
-
-        this.$nextTick(function () {
-          (0, _newArrowCheck3.default)(this, _this5);
-
-          input.blur();
-        }.bind(this));
-      }
-
-      this.focusIndex = setFocusIndex(option);
-
-      if (this.filterQueryChange) {
-        setTimeout(function () {
-          (0, _newArrowCheck3.default)(this, _this5);
-
-          this.filterQueryChange = false;
-        }.bind(this), 300);
-      } else {
-        this.$nextTick(function () {
-          (0, _newArrowCheck3.default)(this, _this5);
-
-          this.filterQueryChange = false;
-        }.bind(this));
-      }
-    },
-    getOptionData: function getOptionData(data) {
-      var _this6 = this;
-
-      var flatOptionsData = this.flatOptionsData,
-          setFocusIndex = this.setFocusIndex;
-
-
-      var option = flatOptionsData.find(function (_ref9) {
-        var componentOptions = _ref9.componentOptions;
-        (0, _newArrowCheck3.default)(this, _this6);
-
-        if ((typeof data === 'undefined' ? 'undefined' : (0, _typeof3.default)(data)) === 'object') {
-          return componentOptions.propsData.value === data.value && componentOptions.propsData.keys === data.keys;
-        } else {
-          return componentOptions.propsData.value === data;
-        }
-      }.bind(this));
-
-      if (!option) {
-        return null;
-      }
-
-      var label = getOptionLabel(option);
-
-      this.focusIndex = setFocusIndex(data);
-      this.filterQuery = '';
-
-      return {
-        value: data.value || data,
-        label: label,
-        keys: option.key
-      };
-    },
-    getInitialValue: function getInitialValue() {
-      var _this7 = this;
-
-      var value = this.value,
-          getOptionData = this.getOptionData,
-          multiple = this.multiple,
-          isSearchMethod = this.isSearchMethod;
-
-
-      var initialValue = Array.isArray(value) ? value : [value];
-
-      if (typeof initialValue[0] === 'undefined' || String(initialValue[0]).trim() === '' && !(0, _isFinite2.default)(initialValue[0])) {
-        initialValue = [];
-      }
-
-      if (isSearchMethod && !multiple && value) {
-        var data = getOptionData(value);
-
-        this.filterQuery = data ? data.label : String(value);
-      }
-
-      return initialValue.filter(function (item) {
-        (0, _newArrowCheck3.default)(this, _this7);
-
-        return Boolean(item) || item === 0;
-      }.bind(this));
-    },
-    setFocusIndex: function setFocusIndex(option) {
-      var _this8 = this;
-
-      return this.flatOptionsData.findIndex(function (opt) {
-        (0, _newArrowCheck3.default)(this, _this8);
-
-        if (!opt || !opt.componentOptions) {
-          return false;
-        }
-
-        if ((typeof option === 'undefined' ? 'undefined' : (0, _typeof3.default)(option)) === 'object') {
-          if (option.keys) {
-            return opt.key === option.keys;
-          } else {
-            return opt.componentOptions.propsData.value === option.value;
-          }
-        } else {
-          return opt.componentOptions.propsData.value === option;
-        }
-      }.bind(this));
-    },
-    onFilterQueryChange: function onFilterQueryChange(filterQuery) {
-      if (filterQuery.length > 0 && filterQuery !== this.filterQuery) {
-        this.visibleMenu = true;
-      }
-
-      this.filterQuery = filterQuery;
-
-      this.filterQueryChange = true;
-    },
-    validateOption: function validateOption(_ref10) {
-      var _this9 = this;
-
-      var children = _ref10.children,
-          elm = _ref10.elm,
-          propsData = _ref10.propsData;
-
-      var value = propsData.value;
-
-      var label = propsData.label || '';
-
-      var textContent = elm && elm.textContent || (children || []).reduce(function (str, node) {
-        (0, _newArrowCheck3.default)(this, _this9);
-
-        var nodeText = node.elm ? node.elm.textContent : node.text;
-
-        return '' + String(str) + String(nodeText);
-      }.bind(this), '') || '';
-
-      var stringValues = (0, _stringify2.default)([value, label, textContent]);
-
-      var filterQuery = this.filterQuery.toLowerCase().trim();
-
-      return stringValues.toLowerCase().includes(filterQuery);
-    },
-    resetData: function resetData() {
-      var _this10 = this;
-
-      this.focusIndex = -1;
-      this.values = [];
-      this.hasMouseHover = false;
-
-      setTimeout(function () {
-        (0, _newArrowCheck3.default)(this, _this10);
-
-        this.filterQuery = '';
-        this.filterQueryChange = false;
-        this.isClear = false;
-      }.bind(this), 300);
-    },
-    clearSingleSelect: function clearSingleSelect() {
-      this.$emit('on-clear');
-
-      this.isClear = true;
-
-      this.hideMenu();
-
-      if (this.clearable) {
-        this.resetData();
-      }
-    },
-    navigateOptions: function navigateOptions(direction) {
-      var optionLength = this.flatOptionsData.length - 1;
-
-      var index = this.focusIndex + direction;
-      if (index < 0) {
-        index = optionLength;
-      }
-
-      if (index > optionLength) {
-        index = 0;
-      }
-
-      if (direction > 0) {
-        var activeOption = -1;
-        for (var i = 0; i < this.flatOptionsData.length; i++) {
-          var isActiveOption = !this.flatOptionsData[i].componentOptions.propsData.disabled;
-
-          if (isActiveOption) {
-            activeOption = i;
-          }
-
-          if (activeOption >= index) {
-            break;
-          }
-        }
-        index = activeOption;
-      } else {
-        var _activeOption = this.flatOptionsData.length;
-        for (var _i = optionLength; _i >= 0; _i--) {
-          var _isActiveOption = !this.flatOptionsData[_i].componentOptions.propsData.disabled;
-
-          if (_isActiveOption) {
-            _activeOption = _i;
-          }
-          if (_activeOption <= index) {
-            break;
-          }
-        }
-        index = _activeOption;
-      }
-
-      this.focusIndex = index;
-    },
-    handldKeyDown: function handldKeyDown(event) {
-      var visibleMenu = this.visibleMenu,
-          navigateOptions = this.navigateOptions,
-          hideMenu = this.hideMenu,
-          focusIndex = this.focusIndex,
-          flatOptionsData = this.flatOptionsData,
-          getOptionData = this.getOptionData,
-          onOptionClick = this.onOptionClick,
-          toggleMenu = this.toggleMenu;
-
-      if (event.key === 'Backspace') {
-        return;
-      }
-      if (visibleMenu) {
-        event.preventDefault();
-
-        if (event.key === 'Tab') {
-          event.stopPropagation();
-        }
-
-        if (event.key === 'ArrowUp') {
-          navigateOptions(-1);
-        }
-
-        if (event.key === 'ArrowDown') {
-          navigateOptions(1);
-        }
-
-        if (event.key === 'Enter') {
-          if (focusIndex === -1) {
-            return hideMenu();
-          }
-
-          var optionComponent = flatOptionsData[focusIndex];
-          var option = getOptionData(optionComponent.componentOptions.propsData);
-
-          onOptionClick(option);
-        }
-
-        if (event.key === 'Escape') {
-          event.stopPropagation();
-          hideMenu();
-        }
-      } else {
-        var keysCanOpenMenu = ['ArrowDown', 'ArrowUp'];
-
-        if (keysCanOpenMenu.includes(event.key)) {
-          toggleMenu(null, true);
-        }
-      }
-    }
-  },
-  watch: {
-    value: function value(_value) {
-      var _this11 = this;
-
-      var getInitialValue = this.getInitialValue,
-          getOptionData = this.getOptionData,
-          selectValue = this.selectValue;
-
-
-      if (_value === undefined || _value === null) {
-        this.values = [];
-      } else if ((0, _stringify2.default)(_value) !== (0, _stringify2.default)(selectValue)) {
-        this.$nextTick(function () {
-          (0, _newArrowCheck3.default)(this, _this11);
-
-          this.values = getInitialValue().map(getOptionData).filter(Boolean);
-        }.bind(this));
-      }
-    },
-    values: function values(newValue, oldValue) {
-      var _this12 = this;
-
-      var labelAndValue = this.labelAndValue,
-          selectValue = this.selectValue,
-          value = this.value,
-          multiple = this.multiple;
-
-
-      var _newValue = (0, _stringify2.default)(newValue);
-      var _oldValue = (0, _stringify2.default)(oldValue);
-
-      var vModelValue = labelAndValue && selectValue ? multiple ? selectValue.map(function (_ref11) {
-        var value = _ref11.value;
-        (0, _newArrowCheck3.default)(this, _this12);
-        return value;
-      }.bind(this)) : selectValue.value : selectValue;
-
-      var emitInput = _newValue !== _oldValue && vModelValue !== value;
-
-      if (emitInput) {
-        this.$emit('input', vModelValue);
-
-        selectValue && this.$emit('on-change', selectValue);
-      }
-    },
-    isFocused: function isFocused(focused) {
-      var _this13 = this;
-
-      var filterable = this.filterable,
-          values = this.values,
-          multiple = this.multiple;
-
-      var el = filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
-      el[focused ? 'focus' : 'blur']();
-
-      var _values = (0, _slicedToArray3.default)(values, 1),
-          option = _values[0];
-
-      setTimeout(function () {
-        (0, _newArrowCheck3.default)(this, _this13);
-
-        if (option && filterable && !multiple && !focused && !this.isClear) {
-          var label = String(option.label || option.value).trim();
-          if (label && this.filterQuery !== label) {
-            this.filterQuery = label;
-          }
-        }
-      }.bind(this), 300);
-    },
-    filterQuery: function filterQuery(_filterQuery) {
-      this.$emit('on-filter-query-change', _filterQuery);
-
-      var searchMethod = this.searchMethod,
-          lastSearchQuery = this.lastSearchQuery,
-          isSearchMethod = this.isSearchMethod;
-
-      var hasValidQuery = _filterQuery !== '' && (_filterQuery !== lastSearchQuery || !lastSearchQuery);
-
-      if (searchMethod && hasValidQuery) {
-        this.focusIndex = -1;
-        searchMethod(_filterQuery);
-      }
-
-      if (_filterQuery !== '' && isSearchMethod) {
-        this.lastSearchQuery = _filterQuery;
-      }
-    },
-    visibleMenu: function visibleMenu(state) {
-      this.$emit('on-menu-open', state);
-    },
-    selectOptions: function selectOptions() {
-      var slotOptions = this.slotOptions;
-
-
-      if (slotOptions && slotOptions.length === 0) {
-        this.filterQuery = '';
-      }
-    }
-  },
-  components: {
-    IvueSleectHead: _ivueSelectHead2.default,
-    IvueDropDown: _ivueDropDown2.default,
-    FunctionalOptions: _functionalOptions2.default
-  }
 };
 
 /***/ }),
@@ -6042,7 +6044,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+      value: true
 });
 
 var _slicedToArray2 = __webpack_require__(17);
@@ -6072,224 +6074,224 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var prefixCls = 'ivue-select';
 
 exports.default = {
-  name: 'ivue-select-head',
-  mixins: [_emitterEvent2.default],
-  props: (_props = {
-    multiple: {
-      type: Boolean,
-      default: false
-    },
+      name: 'ivue-select-head',
+      mixins: [_emitterEvent2.default],
+      props: (_props = {
+            multiple: {
+                  type: Boolean,
+                  default: false
+            },
 
-    values: {
-      type: Array,
-      default: function _default() {
-        (0, _newArrowCheck3.default)(undefined, undefined);
-        return [];
-      }.bind(undefined)
-    },
+            values: {
+                  type: Array,
+                  default: function _default() {
+                        (0, _newArrowCheck3.default)(undefined, undefined);
+                        return [];
+                  }.bind(undefined)
+            },
 
-    placeholder: {
-      type: String,
-      default: ''
-    },
+            placeholder: {
+                  type: String,
+                  default: ''
+            },
 
-    clearable: {
-      type: [Function, Boolean],
-      default: false
-    },
+            clearable: {
+                  type: [Function, Boolean],
+                  default: false
+            },
 
-    filterable: {
-      type: Boolean,
-      default: false
-    },
+            filterable: {
+                  type: Boolean,
+                  default: false
+            },
 
-    multipleCloseIcon: {
-      type: String
-    },
+            multipleCloseIcon: {
+                  type: String
+            },
 
-    arrowDownIcon: {
-      type: String
-    },
+            arrowDownIcon: {
+                  type: String
+            },
 
-    resetSelectIcon: {
-      type: String
-    }
-  }, (0, _defineProperty3.default)(_props, 'clearable', {
-    type: Boolean,
-    default: false
-  }), (0, _defineProperty3.default)(_props, 'filterQueryProp', {
-    type: String,
-    default: ''
-  }), _props),
-  data: function data() {
-    return {
-      prefixCls: prefixCls,
+            resetSelectIcon: {
+                  type: String
+            }
+      }, (0, _defineProperty3.default)(_props, 'clearable', {
+            type: Boolean,
+            default: false
+      }), (0, _defineProperty3.default)(_props, 'filterQueryProp', {
+            type: String,
+            default: ''
+      }), _props),
+      data: function data() {
+            return {
+                  prefixCls: prefixCls,
 
-      inputLength: 20,
+                  inputLength: 20,
 
-      filterQuery: '',
+                  filterQuery: '',
 
-      isInputChange: false
-    };
-  },
+                  isInputChange: false
+            };
+      },
 
-  computed: {
-    defaultDisplayClasses: function defaultDisplayClasses() {
-      var _ref;
+      computed: {
+            defaultDisplayClasses: function defaultDisplayClasses() {
+                  var _ref;
 
-      var showPlaceholder = this.showPlaceholder,
-          multiple = this.multiple,
-          filterable = this.filterable;
-
-
-      return [(_ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '-selection-value', !showPlaceholder && !multiple && !filterable), (0, _defineProperty3.default)(_ref, prefixCls + '-placeholder', showPlaceholder && !filterable), _ref)];
-    },
-    defaultDisplayValue: function defaultDisplayValue() {
-      var values = this.values,
-          multiple = this.multiple,
-          selectedSingle = this.selectedSingle,
-          placeholder = this.placeholder;
+                  var showPlaceholder = this.showPlaceholder,
+                      multiple = this.multiple,
+                      filterable = this.filterable;
 
 
-      var selected = values[0];
+                  return [(_ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '-selection-value', !showPlaceholder && !multiple && !filterable), (0, _defineProperty3.default)(_ref, prefixCls + '-placeholder', showPlaceholder && !filterable), _ref)];
+            },
+            defaultDisplayValue: function defaultDisplayValue() {
+                  var values = this.values,
+                      multiple = this.multiple,
+                      selectedSingle = this.selectedSingle,
+                      placeholder = this.placeholder;
 
-      if (multiple && values.length > 0 || this.filterable) {
-        return '';
+
+                  var selected = values[0];
+
+                  if (multiple && values.length > 0 || this.filterable) {
+                        return '';
+                  }
+
+                  return '' + String(selectedSingle) || placeholder;
+            },
+            showPlaceholder: function showPlaceholder() {
+                  var values = this.values,
+                      multiple = this.multiple;
+
+
+                  var status = false;
+                  if (!multiple) {
+                        var value = values[0];
+
+                        if (typeof value === 'undefined' || String(value).trim() === '') {
+                              status = true;
+                        }
+                  } else {
+                        if (!values.length > 0) {
+                              status = true;
+                        }
+                  }
+
+                  return status;
+            },
+            selectedSingle: function selectedSingle() {
+                  var values = this.values;
+
+
+                  var selected = values[0];
+
+                  return selected ? selected.label : '';
+            },
+            selectedMultiple: function selectedMultiple() {
+                  return this.multiple ? this.values : [];
+            },
+            inputStyle: function inputStyle() {
+                  var style = {};
+
+                  if (this.multiple) {
+                        if (this.showPlaceholder) {
+                              style.width = "100%";
+                        } else {
+                              style.width = String(this.inputLength) + 'px';
+                        }
+                  }
+
+                  return style;
+            },
+            resetSelect: function resetSelect() {
+                  return !this.showPlaceholder && this.clearable;
+            }
+      },
+      methods: {
+            removeSelectItem: function removeSelectItem(value) {
+                  this.dispatch('ivue-select', 'on-select-option', value);
+            },
+            onInputFocus: function onInputFocus(e) {
+                  this.$emit(e.type === 'focus' ? 'on-input-focus' : 'on-input-blur');
+            },
+            resetInputState: function resetInputState() {
+                  this.inputLength = this.$refs.input.value.length * 12 + 20;
+            },
+            handleInputDelete: function handleInputDelete() {
+                  var multiple = this.multiple,
+                      selectedMultiple = this.selectedMultiple,
+                      filterQuery = this.filterQuery,
+                      removeSelectItem = this.removeSelectItem;
+
+
+                  if (multiple && selectedMultiple.length && filterQuery === '') {
+                        removeSelectItem(selectedMultiple[selectedMultiple.length - 1]);
+                  }
+            },
+            onHeaderClick: function onHeaderClick(e) {
+                  if (this.filterable && e.target === this.$el) {
+                        this.$refs.input.focus();
+                  }
+            },
+            onClear: function onClear() {
+                  this.$emit('on-clear');
+            }
+      },
+      watch: {
+            values: function values(_ref2) {
+                  var _this = this;
+
+                  var _ref3 = (0, _slicedToArray3.default)(_ref2, 1),
+                      value = _ref3[0];
+
+                  var filterable = this.filterable,
+                      multiple = this.multiple;
+
+
+                  if (!filterable) {
+                        return;
+                  }
+
+                  this.isInputChange = true;
+
+                  if (multiple) {
+                        this.filterQuery = '';
+
+                        this.isInputChange = false;
+                        return;
+                  }
+
+                  if (typeof value === 'undefined' || value === '' || value === null) {
+                        this.filterQuery = '';
+                  } else {
+                        this.filterQuery = value.label;
+                  }
+
+                  this.$nextTick(function () {
+                        (0, _newArrowCheck3.default)(this, _this);
+
+                        this.isInputChange = false;
+                  }.bind(this));
+            },
+            filterQuery: function filterQuery(value) {
+                  if (this.isInputChange) {
+                        this.isInputChange = false;
+                        return;
+                  }
+
+                  this.$emit('on-filter-query-change', value);
+            },
+            filterQueryProp: function filterQueryProp(filterQuery) {
+                  if (filterQuery !== this.filterQuery && this.filterable) {
+                        this.filterQuery = filterQuery;
+                  }
+            }
+      },
+      components: {
+            IvueIcon: _ivueIcon2.default
       }
-
-      return '' + String(selectedSingle) || placeholder;
-    },
-    showPlaceholder: function showPlaceholder() {
-      var values = this.values,
-          multiple = this.multiple;
-
-
-      var status = false;
-      if (!multiple) {
-        var value = values[0];
-
-        if (typeof value === 'undefined' || String(value).trim() === '') {
-          status = true;
-        }
-      } else {
-        if (!values.length > 0) {
-          status = true;
-        }
-      }
-
-      return status;
-    },
-    selectedSingle: function selectedSingle() {
-      var values = this.values;
-
-
-      var selected = values[0];
-
-      return selected ? selected.label : '';
-    },
-    selectedMultiple: function selectedMultiple() {
-      return this.multiple ? this.values : [];
-    },
-    inputStyle: function inputStyle() {
-      var style = {};
-
-      if (this.multiple) {
-        if (this.showPlaceholder) {
-          style.width = "100%";
-        } else {
-          style.width = String(this.inputLength) + 'px';
-        }
-      }
-
-      return style;
-    },
-    resetSelect: function resetSelect() {
-      return !this.showPlaceholder && this.clearable;
-    }
-  },
-  methods: {
-    removeSelectItem: function removeSelectItem(value) {
-      this.dispatch('IvueSelect', 'on-select-option', value);
-    },
-    onInputFocus: function onInputFocus(e) {
-      this.$emit(e.type === 'focus' ? 'on-input-focus' : 'on-input-blur');
-    },
-    resetInputState: function resetInputState() {
-      this.inputLength = this.$refs.input.value.length * 12 + 20;
-    },
-    handleInputDelete: function handleInputDelete() {
-      var multiple = this.multiple,
-          selectedMultiple = this.selectedMultiple,
-          filterQuery = this.filterQuery,
-          removeSelectItem = this.removeSelectItem;
-
-
-      if (multiple && selectedMultiple.length && filterQuery === '') {
-        removeSelectItem(selectedMultiple[selectedMultiple.length - 1]);
-      }
-    },
-    onHeaderClick: function onHeaderClick(e) {
-      if (this.filterable && e.target === this.$el) {
-        this.$refs.input.focus();
-      }
-    },
-    onClear: function onClear() {
-      this.$emit('on-clear');
-    }
-  },
-  watch: {
-    values: function values(_ref2) {
-      var _this = this;
-
-      var _ref3 = (0, _slicedToArray3.default)(_ref2, 1),
-          value = _ref3[0];
-
-      var filterable = this.filterable,
-          multiple = this.multiple;
-
-
-      if (!filterable) {
-        return;
-      }
-
-      this.isInputChange = true;
-
-      if (multiple) {
-        this.filterQuery = '';
-
-        this.isInputChange = false;
-        return;
-      }
-
-      if (typeof value === 'undefined' || value === '' || value === null) {
-        this.filterQuery = '';
-      } else {
-        this.filterQuery = value.label;
-      }
-
-      this.$nextTick(function () {
-        (0, _newArrowCheck3.default)(this, _this);
-
-        this.isInputChange = false;
-      }.bind(this));
-    },
-    filterQuery: function filterQuery(value) {
-      if (this.isInputChange) {
-        this.isInputChange = false;
-        return;
-      }
-
-      this.$emit('on-filter-query-change', value);
-    },
-    filterQueryProp: function filterQueryProp(filterQuery) {
-      if (filterQuery !== this.filterQuery && this.filterable) {
-        this.filterQuery = filterQuery;
-      }
-    }
-  },
-  components: {
-    IvueIcon: _ivueIcon2.default
-  }
 };
 
 /***/ }),
@@ -11005,7 +11007,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '0.3.6',
+  version: '0.3.7',
   install: install
 }, components);
 
@@ -14293,8 +14295,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_54e3f192_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_54e3f192_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_54e3f192_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_6b0b2098_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_6b0b2098_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_6b0b2098_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_14_2_3_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 /* script */
 
@@ -14312,8 +14314,8 @@ var __vue_module_identifier__ = null
 
 var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_14_2_3_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_script_index_0_ivue_select_head_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_54e3f192_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__["render"],
-  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_54e3f192_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__["staticRenderFns"],
+  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_6b0b2098_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__["render"],
+  __WEBPACK_IMPORTED_MODULE_1__babel_loader_sourceMap_node_modules_vue_loader_14_2_3_vue_loader_lib_template_compiler_index_id_data_v_6b0b2098_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_14_2_3_vue_loader_lib_selector_type_template_index_0_ivue_select_head_vue__["staticRenderFns"],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -14693,6 +14695,10 @@ var render = function render() {
         }return _vm.handldKeyDown($event);
       }, function ($event) {
         if (!('button' in $event) && _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])) {
+          return null;
+        }return _vm.handldKeyDown($event);
+      }, function ($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "delete", [8, 46], $event.key, ["Backspace", "Delete", "Del"])) {
           return null;
         }return _vm.handldKeyDown($event);
       }] } }, [_vm._t("input", [_c('input', { attrs: { "type": "hidden" }, domProps: { "value": _vm.selectValue } }), _vm._v(" "), _c('IvueSleectHead', { attrs: { "values": _vm.values, "multiple": _vm.multiple, "multipleCloseIcon": _vm.multipleCloseIcon, "arrowDownIcon": _vm.arrowDownIcon, "filterable": _vm.filterable, "resetSelectIcon": _vm.resetSelectIcon, "clearable": _vm.canClearable, "filterQueryProp": _vm.filterQuery, "disabled": _vm.disabled, "placeholder": _vm.placeholder }, on: { "on-filter-query-change": _vm.onFilterQueryChange, "on-input-focus": function onInputFocus($event) {
