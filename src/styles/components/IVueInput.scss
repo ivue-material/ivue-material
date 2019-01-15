@@ -15,7 +15,7 @@ $name: 'ivue-input';
             color: $text-color;
             cursor: text;
             width: 100%;
-            height: 30px;
+            min-height: 30px;
             line-height: 1.5;
             transition: border $ivue-transition-default, background $ivue-transition-default, box-shadow $ivue-transition-default;
             &:focus {

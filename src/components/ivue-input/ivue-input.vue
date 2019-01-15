@@ -289,7 +289,7 @@ export default {
             resizeTextarea () {
                   const autosize = this.autosize;
 
-                  if (!autosize && this.type !== 'textarea') {
+                  if (!autosize || this.type !== 'textarea') {
                         return;
                   }
 

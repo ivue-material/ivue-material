@@ -17,7 +17,6 @@
       :value="value3"
       :data="data3"
       :filterMethod="filterMethod"
-      @on-search="search"
     ></IvueAutoComplete>
   </div>
 </template>

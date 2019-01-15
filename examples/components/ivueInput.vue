@@ -22,7 +22,7 @@
             <IvueInput  placeholder="someing messasge"  disabled>
             </IvueInput>
             <p>textarea</p>
-            <IvueInput  placeholder="someing messasge"  type="textarea" :autosize="{minRows: 2,maxRows: 5}">
+            <IvueInput  placeholder="someing messasge"  type="textarea"  :rows="4" >
             </IvueInput>
             <p>textarea disabled</p>
             <IvueInput  placeholder="someing messasge"  type="textarea" disabled>
