@@ -13,9 +13,7 @@
             <span :class="textClasses" v-show="!hideText">
                   <slot>
                         <span v-if="progressTextStatus" :class="textInnerClasses">
-                              <IvueIcon>
-                                    {{statusIcon}}
-                              </IvueIcon>
+                              <IvueIcon>{{statusIcon}}</IvueIcon>
                         </span>
                         <span v-else :class="textInnerClasses">{{percent}}%</span>
                   </slot>
@@ -30,9 +28,18 @@ import { oneOf } from '../../utils/assist';
 
 const prefixCls = 'ivue-progress-linear';
 
+
+function isCssColor (color) {
+      return !!color && !!color.match(/^(#|(rgb|hsl)a?\()/)
+}
+
 export default {
       name: "IvueProgressLinear",
       props: {
+            color: {
+                  type: String,
+                  default: ''
+            },
             /*
             * 状态，可选值为normal、active、wrong、success
             * 
@@ -89,12 +96,22 @@ export default {
       },
       computed: {
             wrapClasses () {
+                  let _color = {};
+
+                  if (isCssColor(this.color)) {
+                        _color = { 'color': `${this.color}` };
+                  }
+                  else if (this.color) {
+                        _color = { [this.color + '--text']: true }
+                  }
+
                   return [
                         prefixCls,
                         `${prefixCls}-${this.currentStatus}`,
                         {
                               [`${prefixCls}-show-info`]: !this.hideText
-                        }
+                        },
+                        _color
                   ];
             },
             outerClasser () {

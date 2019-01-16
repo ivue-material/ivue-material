@@ -26,7 +26,10 @@ export default {
             this.$IvueNotice.open({
                 title: 'Notification title',
                 desc: 'This notification does not automatically close, and you need to click the close button to close.',
-                duration: 0
+                duration: 0,
+                onClose: function() {
+                    console.log('??')
+                }
             });
             this.$IvueNotice.open({
                 title: 'name : one',

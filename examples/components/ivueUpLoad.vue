@@ -39,8 +39,6 @@
                         :showUploadList="false"
                         :defaultFileList="defaultList"
                         :onSuccess="handleSuccess"
-                        :format="['jpg','jpeg','png']"
-                        :maxSize="20"
                         :onFormatError="handleFormatError"
                         :beforeUpload="handleBeforeUpload"
                         type="drag"
@@ -92,6 +90,7 @@ export default {
                   }, 1500);
             },
             handleSuccess (res, file) {
+                  console.log('??')
                   file.url = 'https://cn.vuejs.org/images/logo.png';
                   file.name = '7eb99afb9d5f317c912f08b5212fd69a';
             },
@@ -112,5 +111,9 @@ export default {
 <style lang="scss">
 .upload {
   border: 1px solid #dcdee2;
+}
+img{
+      width: 50px;
+      height: 50px;
 }
 </style>

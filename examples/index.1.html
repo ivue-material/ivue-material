@@ -14,27 +14,16 @@
 
 <body>
   <div id="app">
-    <ivue-upload :upload-url="'//jsonplaceholder.typicode.com/posts/'" :accept="'image/jpeg'">
-      <ivue-icon>cloud_upload</ivue-icon>上传
-    </ivue-upload>
+    <ivue-up-load multiple :upload-url="'//jsonplaceholder.typicode.com/posts/'" type="drag">
+      <div style="padding: 20px 0">
+        <p>Click or drag files here to upload</p>
+      </div>
+    </ivue-up-load>
   </div>
+
   <script>
     new Vue({
-      el: '#app',
-      data() {
-        return {
-          defaultList: [
-            {
-              'name': '1',
-              'url': 'https://cn.vuejs.org/images/logo.png'
-            },
-            {
-              'name': '2',
-              'url': 'https://cn.vuejs.org/images/logo.png'
-            }
-          ]
-        }
-      },
+      el: '#app'
     })
 
   </script>

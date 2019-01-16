@@ -1,37 +1,36 @@
 <template>
       <div :class="wrapClasses" :style="wrapStyles">
             <!-- 进度条 -->
-            <svg  :style="svgStyles" 
-                  xmlns='http://www.w3.org/2000/svg'
+            <svg
+                  :style="svgStyles"
+                  xmlns="http://www.w3.org/2000/svg"
                   :viewBox="`${viewBoxSize} ${viewBoxSize} ${2 * viewBoxSize} ${2 * viewBoxSize}`"
-                  >
-                  <circle fill='transparent'
-                          :cx="`${2 * viewBoxSize}`"
-                          :cy="`${2 * viewBoxSize}`"
-                          :r="radius"
-                          :stroke-width="strokeWidth"
-                          :stroke-dasharray="strokeDasharray"
-                          stroke-dashoffset="0"
-                          :class="`${prefixCls}-underlay`"
-                          v-if="!indeterminate"
-                  >
-                  </circle>
-                  <circle fill='transparent'
-                          :cx="`${2 * viewBoxSize}`"
-                          :cy="`${2 * viewBoxSize}`"
-                          :r="radius"
-                          :stroke-width="strokeWidth"
-                          :stroke-dasharray="strokeDasharray"
-                          :stroke-dashoffset="strokeDashoffset"
-                          :class="`${prefixCls}-overlay`"
-                  >
-                  </circle>
+            >
+                  <circle
+                        fill="transparent"
+                        :cx="`${2 * viewBoxSize}`"
+                        :cy="`${2 * viewBoxSize}`"
+                        :r="radius"
+                        :stroke-width="strokeWidth"
+                        :stroke-dasharray="strokeDasharray"
+                        stroke-dashoffset="0"
+                        :class="`${prefixCls}-underlay`"
+                        v-if="!indeterminate"
+                  ></circle>
+                  <circle
+                        fill="transparent"
+                        :cx="`${2 * viewBoxSize}`"
+                        :cy="`${2 * viewBoxSize}`"
+                        :r="radius"
+                        :stroke-width="strokeWidth"
+                        :stroke-dasharray="strokeDasharray"
+                        :stroke-dashoffset="strokeDashoffset"
+                        :class="`${prefixCls}-overlay`"
+                  ></circle>
             </svg>
             <!-- 进度数 -->
             <span :class="textClasses" v-if="!hideText && !indeterminate">
-                  <slot>
-                        {{percent}}%
-                  </slot>
+                  <slot>{{percent}}%</slot>
             </span>
       </div>
 </template>
@@ -43,9 +42,17 @@ import { oneOf } from '../../utils/assist';
 
 const prefixCls = 'ivue-progress-circular';
 
+function isCssColor (color) {
+      return !!color && !!color.match(/^(#|(rgb|hsl)a?\()/)
+}
+
 export default {
       name: prefixCls,
       props: {
+            color: {
+                  type: String,
+                  default: ''
+            },
             /*
             * 状态，可选值为normal、active、wrong、success
             * 
@@ -121,13 +128,23 @@ export default {
       },
       computed: {
             wrapClasses () {
+                  let _color = {};
+
+                  if (isCssColor(this.color)) {
+                        _color = { 'color': `${this.color}` };
+                  }
+                  else if (this.color) {
+                        _color = { [this.color + '--text']: true }
+                  }
+
                   return [
                         prefixCls,
                         `${prefixCls}-${this.currentStatus}`,
                         {
                               [`${prefixCls}-show-info`]: !this.hideText,
                               [`${prefixCls}-indeterminate`]: this.indeterminate
-                        }
+                        },
+                        _color
                   ];
             },
             wrapStyles () {
