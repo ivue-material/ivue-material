@@ -1,7 +1,7 @@
 <template>
       <div>
             <p>单选文件</p>
-            <IvueUpLoad :uploadUrl="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
+            <IvueUpLoad :upload-url="'//jsonplaceholder.typicode.com/posts/'"  :accept="'image/jpeg'" :defaultFileList="defaultList">
                   <IvueButton class="upload"  :ivueRipple="false">
                         <IvueIcon>cloud_upload</IvueIcon>上传
                   </IvueButton>
