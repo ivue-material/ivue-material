@@ -270,7 +270,6 @@ export default {
             // 输入框提交数据
             handleChange (e) {
                   const files = e.target.files;
-                  console.log(files)
 
                   if (!files) {
                         return;

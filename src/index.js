@@ -60,7 +60,8 @@ const components = {
 };
 
 const iVue = {
-  ...components
+  ...components,
+  'ivue-upload': IvueUpLoad
 };
 
 const install = function (Vue, opts = {}) {
