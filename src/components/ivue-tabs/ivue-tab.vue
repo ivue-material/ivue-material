@@ -1,13 +1,15 @@
 <script>
 import IvueRipple from '../ivue-ripple/ivue-ripple';
 import { inject as registrableInject } from '../../utils/mixins/registrable';
+import Colorable from '../../utils/mixins/colorable';
 
 const prefixCls = 'ivue-tabs-tab';
 
 export default {
       name: 'ivue-tab',
       mixins: [
-            registrableInject('tabNavList', 'ivue-tab', 'ivue-tabs')
+            registrableInject('tabNavList', 'ivue-tab', 'ivue-tabs'),
+            Colorable
       ],
       inject: ['tabNavClick'],
       props: {
@@ -80,7 +82,7 @@ export default {
             IvueRipple
       },
       render (h) {
-            return h('IvueRipple', {
+            return h('IvueRipple', this.setTextColor(this.color, {
                   staticClass: prefixCls,
                   class: this.wrapClass,
                   ref: 'tab',
@@ -94,7 +96,7 @@ export default {
                   nativeOn: {
                         click: this.handleChange
                   }
-            }, this.$slots.default)
+            }), this.$slots.default)
       }
 }
 </script>

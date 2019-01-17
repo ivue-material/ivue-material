@@ -33,13 +33,19 @@ export default {
             * 
             * @type{String}
             */
-            sliderColor: String,
+            sliderColor: {
+                  type: String,
+                  default: 'primary'
+            },
             /*
             * 滑动条隐藏
             * 
             * @type{Boolean}
             */
-            hideSlider: Boolean,
+            hideSlider: {
+                  type: Boolean,
+                  default: false
+            },
             /*
             * 是否显示导航栏箭头
             * 
@@ -62,6 +68,12 @@ export default {
             arrowsMargin: {
                   type: Number,
                   default: 40
-            }
+            },
+            /*
+            * 设置一个较高的最小宽度
+            * 
+            * @type {Boolean}
+            */
+            fixedTabs: Boolean
       }
 }

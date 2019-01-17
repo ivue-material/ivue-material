@@ -41,7 +41,8 @@ export default {
                         class: {
                               'ivue-tabs-container--centered': this.centered,
                               'ivue-tabs-container--right': this.right,
-                              'ivue-tabs-container--overflow': this.isOverflowing
+                              'ivue-tabs-container--overflow': this.isOverflowing,
+                              'ivue-tabs-container--fixed-tabs': this.fixedTabs
                         },
                         style: this.containerStyles,
                         ref: 'container'

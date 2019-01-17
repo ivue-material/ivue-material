@@ -342,56 +342,6 @@ $exports.store = store;
 Object.defineProperty(exports, "__esModule", {
       value: true
 });
-exports.oneOf = oneOf;
-exports.getStyle = getStyle;
-function oneOf(value, validList) {
-      for (var i = 0; i < validList.length; i++) {
-            if (value === validList[i]) {
-                  return true;
-            }
-      }
-
-      return false;
-}
-
-var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
-var MOZ_HACK_REGEXP = /^moz([A-Z])/;
-
-function camelCase(name) {
-      return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
-            return offset ? letter.toUpperCase() : letter;
-      }).replace(MOZ_HACK_REGEXP, 'Moz$1');
-}
-
-function getStyle(element, styleName) {
-      if (!element || !styleName) {
-            return null;
-      }
-
-      styleName = camelCase(styleName);
-
-      if (styleName === 'float') {
-            styleName = 'cssFloat';
-      }
-      try {
-            var computed = document.defaultView.getComputedStyle(element, '');
-
-            return element.style[styleName] || computed ? computed[styleName] : null;
-      } catch (e) {
-            return element.style[styleName];
-      }
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-      value: true
-});
 
 var _slicedToArray2 = __webpack_require__(17);
 
@@ -449,6 +399,56 @@ exports.default = {
             }
       }
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+      value: true
+});
+exports.oneOf = oneOf;
+exports.getStyle = getStyle;
+function oneOf(value, validList) {
+      for (var i = 0; i < validList.length; i++) {
+            if (value === validList[i]) {
+                  return true;
+            }
+      }
+
+      return false;
+}
+
+var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
+var MOZ_HACK_REGEXP = /^moz([A-Z])/;
+
+function camelCase(name) {
+      return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
+            return offset ? letter.toUpperCase() : letter;
+      }).replace(MOZ_HACK_REGEXP, 'Moz$1');
+}
+
+function getStyle(element, styleName) {
+      if (!element || !styleName) {
+            return null;
+      }
+
+      styleName = camelCase(styleName);
+
+      if (styleName === 'float') {
+            styleName = 'cssFloat';
+      }
+      try {
+            var computed = document.defaultView.getComputedStyle(element, '');
+
+            return element.style[styleName] || computed ? computed[styleName] : null;
+      } catch (e) {
+            return element.style[styleName];
+      }
+}
 
 /***/ }),
 /* 9 */
@@ -2156,7 +2156,7 @@ var _ivueRouterLinkProps = __webpack_require__(53);
 
 var _ivueRouterLinkProps2 = _interopRequireDefault(_ivueRouterLinkProps);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -3807,7 +3807,7 @@ var _defineProperty2 = __webpack_require__(2);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3900,7 +3900,7 @@ var _touch2 = _interopRequireDefault(_touch);
 
 var _dom = __webpack_require__(66);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4371,7 +4371,7 @@ var _defineProperty2 = __webpack_require__(2);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4505,7 +4505,7 @@ var _newArrowCheck2 = __webpack_require__(1);
 
 var _newArrowCheck3 = _interopRequireDefault(_newArrowCheck2);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -4903,7 +4903,7 @@ var _defineProperty2 = __webpack_require__(2);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 var _ivueRouterLinkProps = __webpack_require__(53);
 
@@ -6341,7 +6341,7 @@ var _vue = __webpack_require__(20);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6894,7 +6894,7 @@ var _defineProperty2 = __webpack_require__(2);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 var _calcTextareaHeight = __webpack_require__(283);
 
@@ -7108,7 +7108,7 @@ var _newArrowCheck2 = __webpack_require__(1);
 
 var _newArrowCheck3 = _interopRequireDefault(_newArrowCheck2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7267,7 +7267,7 @@ var _defineProperty2 = __webpack_require__(2);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 var _ivueRipple = __webpack_require__(16);
 
@@ -7372,7 +7372,7 @@ var _ivueUpLoadList = __webpack_require__(300);
 
 var _ivueUpLoadList2 = _interopRequireDefault(_ivueUpLoadList);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 var _ajax = __webpack_require__(303);
 
@@ -7889,7 +7889,7 @@ var _ivueIcon = __webpack_require__(23);
 
 var _ivueIcon2 = _interopRequireDefault(_ivueIcon);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8050,7 +8050,7 @@ var _ivueIcon = __webpack_require__(23);
 
 var _ivueIcon2 = _interopRequireDefault(_ivueIcon);
 
-var _assist = __webpack_require__(7);
+var _assist = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8530,7 +8530,7 @@ var _newArrowCheck2 = __webpack_require__(1);
 
 var _newArrowCheck3 = _interopRequireDefault(_newArrowCheck2);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -9085,7 +9085,7 @@ Object.defineProperty(exports, "__esModule", {
       value: true
 });
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -9122,13 +9122,17 @@ var _ivueRipple2 = _interopRequireDefault(_ivueRipple);
 
 var _registrable = __webpack_require__(22);
 
+var _colorable = __webpack_require__(7);
+
+var _colorable2 = _interopRequireDefault(_colorable);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var prefixCls = 'ivue-tabs-tab';
 
 exports.default = {
       name: 'ivue-tab',
-      mixins: [(0, _registrable.inject)('tabNavList', 'ivue-tab', 'ivue-tabs')],
+      mixins: [(0, _registrable.inject)('tabNavList', 'ivue-tab', 'ivue-tabs'), _colorable2.default],
       inject: ['tabNavClick'],
       props: {
             disabled: {
@@ -9183,7 +9187,7 @@ exports.default = {
             IvueRipple: _ivueRipple2.default
       },
       render: function render(h) {
-            return h('IvueRipple', {
+            return h('IvueRipple', this.setTextColor(this.color, {
                   staticClass: prefixCls,
                   class: this.wrapClass,
                   ref: 'tab',
@@ -9197,7 +9201,7 @@ exports.default = {
                   nativeOn: {
                         click: this.handleChange
                   }
-            }, this.$slots.default);
+            }), this.$slots.default);
       }
 };
 
@@ -10179,7 +10183,7 @@ var _ivueIcon = __webpack_require__(32);
 
 var _ivueIcon2 = _interopRequireDefault(_ivueIcon);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -10407,7 +10411,7 @@ var _monthChange = __webpack_require__(142);
 
 var _monthChange2 = _interopRequireDefault(_monthChange);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -10596,7 +10600,7 @@ var _pad = __webpack_require__(36);
 
 var _pad2 = _interopRequireDefault(_pad);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -10676,7 +10680,7 @@ var _newArrowCheck2 = __webpack_require__(1);
 
 var _newArrowCheck3 = _interopRequireDefault(_newArrowCheck2);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -10796,7 +10800,7 @@ var _newArrowCheck2 = __webpack_require__(1);
 
 var _newArrowCheck3 = _interopRequireDefault(_newArrowCheck2);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 
@@ -11043,7 +11047,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-  version: '0.4.1',
+  version: '0.4.3',
   install: install
 }, components);
 
@@ -16274,7 +16278,8 @@ exports.default = {
                         class: {
                               'ivue-tabs-container--centered': this.centered,
                               'ivue-tabs-container--right': this.right,
-                              'ivue-tabs-container--overflow': this.isOverflowing
+                              'ivue-tabs-container--overflow': this.isOverflowing,
+                              'ivue-tabs-container--fixed-tabs': this.fixedTabs
                         },
                         style: this.containerStyles,
                         ref: 'container'
@@ -16432,6 +16437,9 @@ exports.default = {
             lazyValue: function lazyValue() {
                   this.updateTabs();
             },
+            fixedTabs: function fixedTabs() {
+                  this.callSlider();
+            },
             value: function value(val) {
                   this.lazyValue = val;
             },
@@ -16487,9 +16495,15 @@ exports.default = {
 
             right: Boolean,
 
-            sliderColor: String,
+            sliderColor: {
+                  type: String,
+                  default: 'primary'
+            },
 
-            hideSlider: Boolean,
+            hideSlider: {
+                  type: Boolean,
+                  default: false
+            },
 
             showArrows: Boolean,
             nextIcon: {
@@ -16504,7 +16518,9 @@ exports.default = {
             arrowsMargin: {
                   type: Number,
                   default: 40
-            }
+            },
+
+            fixedTabs: Boolean
       }
 };
 
@@ -17373,7 +17389,7 @@ var _ivuePicker = __webpack_require__(346);
 
 var _ivuePicker2 = _interopRequireDefault(_ivuePicker);
 
-var _colorable = __webpack_require__(8);
+var _colorable = __webpack_require__(7);
 
 var _colorable2 = _interopRequireDefault(_colorable);
 

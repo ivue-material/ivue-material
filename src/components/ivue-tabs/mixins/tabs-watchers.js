@@ -19,6 +19,9 @@ export default {
             lazyValue () {
                   this.updateTabs();
             },
+            fixedTabs () {
+                  this.callSlider();
+            },
             // 监听value值
             value (val) {
                   this.lazyValue = val;
