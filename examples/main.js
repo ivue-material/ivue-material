@@ -8,6 +8,8 @@ import IVue from '../src/index';
 // Vue.component('IvueContent', IvueContent);
 Vue.use(IVue)
 Vue.config.productionTip = false;
+
+
 import "../src/styles/index.scss";
 import 'ivue-material/dist/styles/color.css';
 

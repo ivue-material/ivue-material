@@ -109,7 +109,9 @@ export default {
     })
   },
   methods: {
-    allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
+    allowedDates: val => {
+      return parseInt(val.split('-')[2], 10) % 2 === 0
+    },
     handleInput (value) {
       console.log(value)
     },
