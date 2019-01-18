@@ -6,7 +6,7 @@
 
 ## IVue
 
-IVue is a semantic component framework for Vue. It aims to provide clean, semantic and reusable components 
+IVue is a semantic component framework for Vue. It aims to provide clean, semantic and reusable components.
 iVue Created according to Google's **<a href="https://material.io/" target="_blank">Material Design Spec</a>**
 
 ## Browser Support
