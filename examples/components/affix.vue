@@ -13,11 +13,6 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-      overflow: scroll;
-      height: 100px;
-      background: red;
-}
 .demo-affix {
       width: 100px;
       height: 30px;

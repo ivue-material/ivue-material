@@ -92,7 +92,6 @@ export default {
       computed: {
             // class
             classes () {
-                  console.log(this.value)
                   return {
                         [`${prefixCls}--absolute`]: this.position === 'absolute',
                         [`${prefixCls}--active`]: this.value,
