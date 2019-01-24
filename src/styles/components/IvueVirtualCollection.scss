@@ -1,0 +1,13 @@
+$name: 'ivue-virtual-collection';
+.#{$name} {
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+      &--container {
+            position: relative;
+      }
+      .cell-container {
+            position: absolute;
+            top: 0;
+            will-change: transform
+      }
+}

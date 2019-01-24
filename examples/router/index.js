@@ -23,6 +23,7 @@ import IvueTabs from '../components/ivueTabs';
 import IvueLoadingBar from '../components/iVueLoadingBar';
 import IvueBadge from '../components/ivueBadge';
 import IvueDatePicker from '../components/ivueDatePicker';
+import IvueVirtualCollection from '../components/ivueVirtualCollection';
 
 Vue.use(Router);
 
@@ -142,6 +143,11 @@ export default new Router({
       path: '/IvueDatePicker',
       name: 'IvueDatePicker',
       component: IvueDatePicker
+    },
+    {
+      path: '/IvueVirtualCollection',
+      name: 'IvueVirtualCollection',
+      component: IvueVirtualCollection
     }
   ]
 });

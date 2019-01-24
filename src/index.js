@@ -23,6 +23,7 @@ import { IvueTabs, IvueTab, IvueTabItem, IvueTabsSlider } from './components/ivu
 import IvueLoadingBar from './components/ivue-loading-bar';
 import IvueBadge from './components/ivue-badge';
 import IvueDatePicker from './components/ivue-date-picker';
+import IvueVirtualCollection from './components/ivue-virtual-collection';
 
 const components = {
   IvueAffix,
@@ -56,7 +57,8 @@ const components = {
   IvueTabsSlider,
   IvueLoadingBar,
   IvueBadge,
-  IvueDatePicker
+  IvueDatePicker,
+  IvueVirtualCollection
 };
 
 const iVue = {
