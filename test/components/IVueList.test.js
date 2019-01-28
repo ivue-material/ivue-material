@@ -1,4 +1,4 @@
-import IvueList from '../../src/components/IvueList';
+import IvueList from '../../src/components/ivue-list';
 import { mount } from '@vue/test-utils';
 
 describe('IvueList', function () {

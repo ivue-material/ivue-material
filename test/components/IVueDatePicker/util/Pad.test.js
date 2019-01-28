@@ -1,4 +1,4 @@
-import Pad from '../../../../src/utils/Pad';
+import Pad from '../../../../src/utils/pad';
 
 
 describe('IvueDatePicker/util/Pad', function () {

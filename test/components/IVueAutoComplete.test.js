@@ -1,4 +1,4 @@
-import IvueAutoComplete from '../../src/components/IvueAutoComplete';
+import IvueAutoComplete from '../../src/components/ivue-auto-complete';
 
 import { mount } from '@vue/test-utils';
 

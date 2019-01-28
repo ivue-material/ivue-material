@@ -1,6 +1,6 @@
 
 import VueRouter from 'vue-router';
-import IvueButton from '../../src/components/IvueButton';
+import IvueButton from '../../src/components/ivue-button';
 import { mount, createLocalVue } from '@vue/test-utils';
 
 describe('IvueButton', function () {

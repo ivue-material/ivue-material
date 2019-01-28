@@ -1,4 +1,4 @@
-import IvueBadge from '../../src/components/IvueBadge';
+import IvueBadge from '../../src/components/ivue-badge';
 
 import { mount } from '@vue/test-utils';
 

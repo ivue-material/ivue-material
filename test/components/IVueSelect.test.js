@@ -1,15 +1,15 @@
-import { IvueSelect, IvueOption, IvueOptionGroup } from '../../src/components/IvueSelect';
+import { IvueSelect, IvueOption, IvueOptionGroup } from '../../src/components/ivue-select';
 import { mount } from '@vue/test-utils';
 
 describe('IvueSelect', function () {
       it('should render the base IvueSelect', async () => {
             const wrapper = mount({
                   template: `
-                        <i-vue-select>
-                              <i-vue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
+                        <ivue-select>
+                              <ivue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
                                     <span>{{ item.label }}</span>
-                              </i-vue-option>
-                        </i-vue-select>
+                              </ivue-option>
+                        </ivue-select>
                   `,
                   data () {
                         return {
@@ -68,11 +68,11 @@ describe('IvueSelect', function () {
       it('should render the multiple IvueSelect', async () => {
             const wrapper = mount({
                   template: `
-                        <i-vue-select multiple>
-                              <i-vue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
+                        <ivue-select multiple>
+                              <ivue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
                                     <span>{{ item.label }}</span>
-                              </i-vue-option>
-                        </i-vue-select>
+                              </ivue-option>
+                        </ivue-select>
                   `,
                   data () {
                         return {
@@ -131,11 +131,11 @@ describe('IvueSelect', function () {
       it('should render the disabled IvueSelect', async () => {
             const wrapper = mount({
                   template: `
-                        <i-vue-select disabled>
-                              <i-vue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
+                        <ivue-select disabled>
+                              <ivue-option v-for="(item,index) in cityList1" :value="item.value" :key="index">
                                     <span>{{ item.label }}</span>
-                              </i-vue-option>
-                        </i-vue-select>
+                              </ivue-option>
+                        </ivue-select>
                   `,
                   data () {
                         return {

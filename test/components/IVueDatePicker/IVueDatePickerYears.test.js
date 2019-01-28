@@ -1,4 +1,4 @@
-import IvueDatePickerYears from '../../../src/components/IvueDatePicker/IvueDatePickerYears';
+import IvueDatePickerYears from '../../../src/components/ivue-date-picker/ivue-date-picker-years';
 import { mount } from '@vue/test-utils';
 
 describe('IvueDatePickerYears', function () {

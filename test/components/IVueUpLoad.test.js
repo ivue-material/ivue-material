@@ -1,4 +1,4 @@
-import IvueUpLoad from '../../src/components/IvueUpLoad';
+import IvueUpLoad from '../../src/components/ivue-up-load';
 import { mount } from '@vue/test-utils';
 
 describe('IvueUpLoad', function () {

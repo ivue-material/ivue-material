@@ -1,5 +1,5 @@
-import IvueSpin from '../../src/components/IvueSpin';
-import IvueIcon from '../../src/components/IvueIcon';
+import IvueSpin from '../../src/components/ivue-spin';
+import IvueIcon from '../../src/components/ivue-icon';
 import { mount } from '@vue/test-utils';
 
 describe('IvueSpin', function () {

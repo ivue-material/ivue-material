@@ -23,3 +23,4 @@ import "./components/IvueTabs.test";
 import "./components/IvueLoadingBar.test";
 import "./components/IvueBadge.test";
 import "./components/IvueDatePicker/index";
+import "./components/IVueVirtualCollection/index";

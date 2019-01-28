@@ -18,6 +18,9 @@ import GroupMessage from './group-message';
 
 const prefixCls = 'ivue-virtual-collection';
 
+// 距离底部的敏感度
+const sensitivity = 0;
+
 export default {
       name: prefixCls,
       props: {
@@ -72,6 +75,15 @@ export default {
             sectionSize: {
                   type: Number,
                   default: 300
+            },
+            /**
+             * 设置距离底部的敏感度
+             * 
+             * @type {Number}
+             */
+            bottomSensitivity: {
+                  type: Number,
+                  default: sensitivity
             }
       },
       data () {
@@ -84,7 +96,9 @@ export default {
                   // 需要显示的选项
                   displayItems: [],
                   // 数据集合
-                  groupMessage: []
+                  groupMessage: [],
+                  onBottom: false,
+                  onTop: false
             }
       },
       created () {
@@ -169,6 +183,7 @@ export default {
                   const displayItems = [];
 
                   this.groupMessage.forEach((groupMessage, groupIndex) => {
+
                         // 获取需要渲染的那个块的索引
                         let indices = groupMessage.getCellIndices({
                               height: this.height,
@@ -176,7 +191,6 @@ export default {
                               x: scrollLeft,
                               y: scrollTop
                         });
-
 
                         indices.forEach(itemIndex => {
                               // 获取到当前视图需要显示的块的数量
@@ -192,12 +206,12 @@ export default {
 
                   if (window.requestAnimationFrame) {
                         window.requestAnimationFrame(() => {
-                              this.displayItems = displayItems
-                              this.$forceUpdate()
+                              this.displayItems = displayItems;
+                              this.$forceUpdate();
                         })
                   } else {
-                        this.displayItems = displayItems
-                        this.$forceUpdate()
+                        this.displayItems = displayItems;
+                        this.$forceUpdate();
                   }
             },
             // 设置总高度，总宽度
@@ -228,13 +242,33 @@ export default {
 
                   return {
                         transform: `translate3d(${x}px,${y}px,0)`,
+                        // left: `${x}px`,
+                        // top: `${y}px`,
                         width: `${width}px`,
                         height: `${height}px`
                   }
 
             },
             // 监听滚动
-            onScroll (e) {
+            onScroll (el) {
+                  let target = el.target;
+
+                  // 偏移距离
+                  let displacement = target.scrollHeight - target.clientHeight - target.scrollTop;
+
+                  // 是否到达底部
+                  if (displacement <= this.bottomSensitivity) {
+                        this.onBottom = true;
+                  }
+                  // 是否到达顶部
+                  else if (target.scrollTop === 0) {
+                        this.onTop = true
+                  }
+                  else {
+                        this.onBottom = false;
+                        this.onTop = false;
+                  }
+
                   this.flushDisplayItems();
             }
       },
@@ -249,6 +283,16 @@ export default {
                   this.totalWidth = 0;
 
                   this.onCollectionChanged();
+            },
+            onBottom (value) {
+                  if (value) {
+                        this.$emit('on-reach-bottom');
+                  }
+            },
+            onTop (value) {
+                  if (value) {
+                        this.$emit('on-reach-top');
+                  }
             }
       }
 }

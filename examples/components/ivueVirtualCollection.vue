@@ -3,8 +3,9 @@
             <IvueVirtualCollection
                   :collection="items"
                   :cellSizeAndPositionGetter="cellSizeAndPositionGetter"
-                  :height="800" 
+                  :height="800"
                   :width="width"
+                  :sectionSize="30"
             >
                   <div
                         slot="cell"
@@ -20,7 +21,7 @@
 export default {
       data () {
             return {
-                  amount: "100000",
+                  amount: "1000",
                   line: "30",
                   width: (document.body.clientWidth || document.documentElement.clientWidth) - 20
             }

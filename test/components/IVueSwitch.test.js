@@ -1,4 +1,4 @@
-import IvueSwitch from '../../src/components/IvueSwitch';
+import IvueSwitch from '../../src/components/ivue-switch';
 import { mount } from '@vue/test-utils';
 
 describe('IvueListItem', function () {

@@ -1,4 +1,4 @@
-import {IvueProgressLinear,IvueProgressCircular} from '../../src/components/IvueProgress';
+import {IvueProgressLinear,IvueProgressCircular} from '../../src/components/ivue-progress';
 
 import { mount } from '@vue/test-utils';
 

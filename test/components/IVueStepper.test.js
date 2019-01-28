@@ -1,4 +1,4 @@
-import {IvueStepper,IvueStepperStep} from '../../src/components/IvueStepper';
+import {IvueStepper,IvueStepperStep} from '../../src/components/ivue-stepper';
 import { mount } from '@vue/test-utils';
 
 describe('IvueList', function () {

@@ -1,4 +1,4 @@
-import IvueDatePicker from '../../../src/components/IvueDatePicker/IvueDatePicker';
+import IvueDatePicker from '../../../src/components/ivue-date-picker/ivue-date-picker';
 import { mount } from '@vue/test-utils';
 
 
@@ -89,7 +89,7 @@ describe('IvueDatePicker', function () {
             expect(wrapper.vm.tableDate).to.equal('2017');
 
             rightButton.trigger('click');
-            expect(wrapper.vm.tableDate).to.equal('2019');
+            expect(wrapper.vm.tableDate).to.equal('2018');
       });
 
       it('should match change active picker when clicked on month button', () => {

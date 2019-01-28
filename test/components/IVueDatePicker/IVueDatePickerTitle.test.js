@@ -1,4 +1,4 @@
-import IvueDatePickerTitle from '../../../src/components/IvueDatePicker/IvueDatePickerTitle';
+import IvueDatePickerTitle from '../../../src/components/ivue-date-picker/ivue-date-picker-title';
 import { mount } from '@vue/test-utils';
 
 describe('IvueDatePickerTitle', function () {

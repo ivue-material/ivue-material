@@ -1,4 +1,4 @@
-import MonthChange from '../../../../src/utils/MonthChange';
+import MonthChange from '../../../../src/utils/month-change';
 
 
 describe('IvueDatePicker/util/MonthChange', function () {

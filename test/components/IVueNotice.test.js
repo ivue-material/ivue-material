@@ -1,4 +1,4 @@
-import IvueNotice from '../../src/components/IvueNotice';
+import IvueNotice from '../../src/components/ivue-notice';
 import Vue from 'vue';
 
 import { mount } from '@vue/test-utils';

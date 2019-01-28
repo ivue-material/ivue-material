@@ -8,6 +8,6 @@ $name: 'ivue-virtual-collection';
       .cell-container {
             position: absolute;
             top: 0;
-            will-change: transform
+            will-change: transform, top
       }
 }

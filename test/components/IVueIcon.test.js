@@ -1,4 +1,4 @@
-import IvueIcon from '../../src/components/IvueIcon';
+import IvueIcon from '../../src/components/ivue-icon';
 import { mount } from '@vue/test-utils';
 import testSvg from './test.svg';
 

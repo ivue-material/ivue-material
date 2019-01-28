@@ -260,7 +260,7 @@ export default {
             * 
             * @type{Boolean}
             */
-            autoComplete: {
+            autocomplete: {
                   type: Boolean,
                   default: false
             },
@@ -373,7 +373,7 @@ export default {
                   return [
                         `${prefixCls}-selection-default`,
                         {
-                              [`${prefixCls}-selection`]: !this.autoComplete
+                              [`${prefixCls}-selection`]: !this.autocomplete
 
                         }
                   ]
@@ -382,7 +382,7 @@ export default {
             // 菜单样式
             dropdownClass () {
                   return {
-                        [`ivue-auto-complete`]: this.autoComplete
+                        [`ivue-auto-complete`]: this.autocomplete
                   }
             },
             // 当前选择的值
@@ -404,7 +404,7 @@ export default {
             },
             // 获取菜单选择列表
             selectOptions () {
-                  const { slotOptions, focusIndex, values, handleOption, filterQueryChange, validateOption, filterable, autoComplete } = this;
+                  const { slotOptions, focusIndex, values, handleOption, filterQueryChange, validateOption, filterable, autocomplete } = this;
 
                   // 获取选项的列表
                   const selectOptions = [];
@@ -419,7 +419,7 @@ export default {
                   const selectedKeys = values.filter(Boolean).map(({ keys }) => keys);
 
                   // 判断是否有自动输入
-                  if (autoComplete) {
+                  if (autocomplete) {
                         const copyChildren = (node, fn) => {
                               return {
                                     ...node,
@@ -427,10 +427,10 @@ export default {
                               }
                         }
 
-                        const autoCompleteOptions = extractOptions(slotOptionsData);
-                        const selectedSlotOption = autoCompleteOptions[currentIndex];
+                        const autocompleteOptions = extractOptions(slotOptionsData);
+                        const selectedSlotOption = autocompleteOptions[currentIndex];
 
-                        return autoCompleteOptions.map((node, index) => {
+                        return autocompleteOptions.map((node, index) => {
                               if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.value) {
                                     return applyProp(node, 'isFocused', true);
                               }
@@ -518,7 +518,7 @@ export default {
                         status = false;
                   }
 
-                  if (this.autoComplete && noSelectOptions) {
+                  if (this.autocomplete && noSelectOptions) {
                         status = false;
                   }
 
@@ -532,7 +532,7 @@ export default {
       methods: {
             // 点击外部
             onClickOutside (event) {
-                  const { visibleMenu, hideMenu, filterable, autoComplete } = this;
+                  const { visibleMenu, hideMenu, filterable, autocomplete } = this;
 
                   // 判断是否显示了菜单
                   if (visibleMenu) {
@@ -555,7 +555,7 @@ export default {
                               });
                         }
 
-                        if (!autoComplete) {
+                        if (!autocomplete) {
                               event.stopPropagation();
                         }
                         event.preventDefault();
@@ -636,7 +636,7 @@ export default {
             },
             // 选项菜单点击
             onOptionClick (option) {
-                  const { hideMenu, setFocusIndex, multiple, filterable, autoComplete, isSearchMethod } = this;
+                  const { hideMenu, setFocusIndex, multiple, filterable, autocomplete, isSearchMethod } = this;
 
                   // 判断是否开启了多选
                   if (this.multiple) {
@@ -691,7 +691,7 @@ export default {
                   if (filterable) {
                         const input = this.$el.querySelector('input[type="text"]');
 
-                        if (!this.autoComplete) {
+                        if (!this.autocomplete) {
                               this.$nextTick(() => {
                                     input.focus()
                               })

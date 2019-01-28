@@ -1,4 +1,4 @@
-import IvueDatePickerMonth from '../../../src/components/IvueDatePicker/IvueDatePickerMonth';
+import IvueDatePickerMonth from '../../../src/components/ivue-date-picker/ivue-date-picker-month';
 import { mount } from '@vue/test-utils';
 
 describe('IvueDatePickerMonth', function () {
@@ -47,7 +47,7 @@ describe('IvueDatePickerMonth', function () {
             })
 
             let tableDate;
-            wrapper.vm.$on('tableDate', function (e) {
+            wrapper.vm.$on('table-date', function (e) {
                   tableDate = e
             });
             wrapper.vm.touch(1);

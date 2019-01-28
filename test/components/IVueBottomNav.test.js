@@ -1,6 +1,6 @@
-import IvueBottomNav from '../../src/components/IvueBottomNav';
-import IvueIcon from '../../src/components/IvueIcon';
-import IvueButton from '../../src/components/IvueButton';
+import IvueBottomNav from '../../src/components/ivue-bottom-nav';
+import IvueIcon from '../../src/components/ivue-icon';
+import IvueButton from '../../src/components/ivue-button';
 
 import { mount } from '@vue/test-utils';
 

@@ -1,4 +1,4 @@
-import IvueInput from '../../src/components/IvueInput';
+import IvueInput from '../../src/components/ivue-input';
 import { mount } from '@vue/test-utils';
 
 

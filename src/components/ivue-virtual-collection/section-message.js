@@ -7,6 +7,8 @@ export default class SectionManager {
             // 设置默认视图大小
             this._sectionSize = sectionSize;
 
+
+
             // 收集所有单元格的数据
             this._cellMetadata = [];
 
@@ -102,5 +104,11 @@ export default class SectionManager {
       // 获取当前单元格的数据
       getCellMetadata (index) {
             return this._cellMetadata[index];
+      }
+
+
+      /** 基于当前注册的单元格的截面总数 */
+      getTotalSectionCount () {
+            return Object.keys(this._sections).length
       }
 }

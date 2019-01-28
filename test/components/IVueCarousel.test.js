@@ -1,5 +1,5 @@
-import IvueCarousel from '../../src/components/IvueCarousel';
-import IvueCarouselItem from '../../src/components/IvueCarouselItem';
+import IvueCarousel from '../../src/components/ivue-carousel';
+import IvueCarouselItem from '../../src/components/ivue-carousel-item';
 import { mount } from '@vue/test-utils';
 
 describe('IvueCarousel', function () {

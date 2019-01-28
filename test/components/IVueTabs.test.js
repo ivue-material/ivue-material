@@ -1,4 +1,4 @@
-import { IvueTabs, IvueTab, IvueTabItem, IvueTabsItems, IvueTabsSlider } from '../../src/components/IvueTabs';
+import { IvueTabs, IvueTab, IvueTabItem, IvueTabsItems, IvueTabsSlider } from '../../src/components/ivue-tabs';
 import { mount } from '@vue/test-utils';
 
 const Component = (items = ['foo', 'bar']) => {

@@ -1,4 +1,4 @@
-import CreateNativeLocaleFormatter from '../../../../src/utils/CreateNativeLocaleFormatter';
+import CreateNativeLocaleFormatter from '../../../../src/utils/create-native-locale-formatter';
 
 describe('IvueDatePicker/util/CreateNativeLocaleFormatter', function () {
       it('should format dates', () => {

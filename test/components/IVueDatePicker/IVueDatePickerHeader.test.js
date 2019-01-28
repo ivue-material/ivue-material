@@ -1,4 +1,4 @@
-import IvueDatePickerHeader from '../../../src/components/IvueDatePicker/IvueDatePickerHeader';
+import IvueDatePickerHeader from '../../../src/components/ivue-date-picker/ivue-date-picker-header';
 import { mount } from '@vue/test-utils';
 
 

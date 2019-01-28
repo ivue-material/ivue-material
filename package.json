@@ -1,6 +1,6 @@
 {
   "name": "ivue-material",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "A high quality UI components Library with Vue.js",
   "main": "dist/ivue.js",
   "files": [
@@ -23,7 +23,8 @@
   "author": "qq282126990",
   "dependencies": {
     "v-click-outside-x": "^3.2.2",
-    "raf": "^3.4.0"
+    "raf": "^3.4.0",
+    "lodash.throttle":"^4.1.1"
   },
   "peerDependencies": {
     "vue": "^2.5.21"
@@ -91,7 +92,8 @@
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-server": "^2.11.1",
-    "webpack-merge": "^3.0.0"
+    "webpack-merge": "^3.0.0",
+    "lodash.throttle":"^4.1.1"
   },
   "engines": {
     "node": ">=8.9.1",

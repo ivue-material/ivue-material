@@ -1,4 +1,4 @@
-import IvueLoadingBar from '../../src/components/IvueLoadingBar';
+import IvueLoadingBar from '../../src/components/ivue-loading-bar';
 import Vue from 'vue';
 
 import { mount } from '@vue/test-utils';

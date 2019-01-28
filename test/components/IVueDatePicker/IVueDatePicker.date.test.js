@@ -1,4 +1,4 @@
-import IvueDatePicker from '../../../src/components/IvueDatePicker/IvueDatePicker';
+import IvueDatePicker from '../../../src/components/ivue-date-picker/ivue-date-picker';
 import { mount } from '@vue/test-utils';
 
 

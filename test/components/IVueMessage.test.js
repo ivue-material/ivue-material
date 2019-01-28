@@ -1,4 +1,4 @@
-import IvueMessage from '../../src/components/IvueMessage';
+import IvueMessage from '../../src/components/ivue-message';
 import Vue from 'vue';
 
 import { mount } from '@vue/test-utils';

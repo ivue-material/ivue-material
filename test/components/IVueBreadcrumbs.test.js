@@ -1,6 +1,6 @@
-import IvueBreadcrumbs from '../../src/components/IvueBreadcrumbs';
-import IvueBreadcrumbsItem from '../../src/components/IvueBreadcrumbsItem';
-import IvueIcon from '../../src/components/IvueIcon';
+import IvueBreadcrumbs from '../../src/components/ivue-breadcrumbs';
+import IvueBreadcrumbsItem from '../../src/components/ivue-breadcrumbs-item';
+import IvueIcon from '../../src/components/ivue-icon';
 import { mount } from '@vue/test-utils';
 
 describe('IvueBreadcrumbs', function () {
@@ -25,9 +25,9 @@ describe('IvueBreadcrumbs', function () {
                   });
 
 
-            expect(wrapper.classes()).to.contain('ivu-breadcrumbs');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item').length > 0).to.be.equal(true);
+            expect(wrapper.classes()).to.contain('ivue-breadcrumbs');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item').length > 0).to.be.equal(true);
       });
 
 
@@ -52,10 +52,10 @@ describe('IvueBreadcrumbs', function () {
                   });
 
 
-            expect(wrapper.classes()).to.contain('ivu-breadcrumbs');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item--disabled').length > 0).to.be.equal(true);
+            expect(wrapper.classes()).to.contain('ivue-breadcrumbs');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item--disabled').length > 0).to.be.equal(true);
       });
 
       it('should render the  breadcrumbs href  tag is a', async () => {
@@ -79,11 +79,10 @@ describe('IvueBreadcrumbs', function () {
                   });
 
 
-            expect(wrapper.classes()).to.contain('ivu-breadcrumbs');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item').length > 0).to.be.equal(true);
+            expect(wrapper.classes()).to.contain('ivue-breadcrumbs');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item').length > 0).to.be.equal(true);
             expect(wrapper.element.getElementsByTagName('a').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByTagName('a')[0].href).to.be.equal('http://localhost:9876/www.baidu.com');
       });
 
 
@@ -108,10 +107,10 @@ describe('IvueBreadcrumbs', function () {
                   });
 
 
-            expect(wrapper.classes()).to.contain('ivu-breadcrumbs');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider')[0].innerHTML).to.be.equal('-');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item').length > 0).to.be.equal(true);
+            expect(wrapper.classes()).to.contain('ivue-breadcrumbs');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider')[0].innerHTML).to.be.equal('-');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item').length > 0).to.be.equal(true);
       });
 
       it('should render the  breadcrumbs set slot divider', async () => {
@@ -139,9 +138,9 @@ describe('IvueBreadcrumbs', function () {
                   });
 
 
-            expect(wrapper.classes()).to.contain('ivu-breadcrumbs');
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs-item').length > 0).to.be.equal(true);
-            expect(wrapper.element.getElementsByClassName('ivu-breadcrumbs--divider')[0].children[0].nodeName).to.be.equal('I');
+            expect(wrapper.classes()).to.contain('ivue-breadcrumbs');
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs-item').length > 0).to.be.equal(true);
+            expect(wrapper.element.getElementsByClassName('ivue-breadcrumbs--divider')[0].children[0].nodeName).to.be.equal('I');
       });
 });
