@@ -66,6 +66,7 @@ const iVue = {
   'ivue-upload': IvueUpLoad
 };
 
+
 const install = function (Vue, opts = {}) {
   if (install.installed) return;
 
