@@ -1,18 +1,19 @@
 <template>
-      <div :class="['ivue-ripple', rippleClasses]"
+      <div
+            :class="['ivue-ripple', rippleClasses]"
             @touchstart.passive="touchstart"
             @touchmove.passive="touchmove"
             @mousedown.passive="mousedown"
       >
             <slot></slot>
-            <IvueWave v-for="ripple in ripples"
-                      :key="ripple.uuid"
-                      :class="['ivue-ripple-wave',waveClasses]"
-                      :style="ripple.waveStyles"
-                      @animating-end="clearWave()"
-                      v-if="!ivueDisabled"
-            >
-            </IvueWave>
+            <IvueWave
+                  v-for="ripple in ripples"
+                  :key="ripple.uuid"
+                  :class="['ivue-ripple-wave',waveClasses]"
+                  :style="ripple.waveStyles"
+                  @animating-end="clearWave(ripple.uuid)"
+                  v-if="!ivueDisabled"
+            ></IvueWave>
       </div>
 </template>
 
@@ -112,7 +113,7 @@ export default {
                   return this.ivueEventTrigger && this.touchMoveCheck(event);
             },
             // 鼠标点击
-            mousedown () {
+            mousedown (event) {
                   return this.ivueEventTrigger && this.startRipple(event);
             },
             // 检查触摸开始
@@ -153,9 +154,9 @@ export default {
                                     // 波浪 style
                                     waveStyles: this.applyStyles(position, size),
                                     uuid: IvueUuid()
-                              })
+                              });
                         }
-                  })
+                  });
             },
             // 获取当前元素位置
             getSize () {
@@ -197,7 +198,7 @@ export default {
                   size += 'px';
                   return {
                         ...position,
-                        window: size,
+                        width: size,
                         height: size
                   }
             },

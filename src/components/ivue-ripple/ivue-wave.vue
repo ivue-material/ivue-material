@@ -12,16 +12,6 @@ export default {
                   animating: true
             }
       },
-      props: {
-            waveClasses: {
-                  type: String,
-                  default: null
-            },
-            waveStyles: {
-                  type: String,
-                  default: null
-            }
-      },
       methods: {
             // 动画结束
             end () {

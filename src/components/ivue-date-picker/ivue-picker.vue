@@ -44,7 +44,7 @@ export default {
         }
       }), this.$slots.title);
     },
-    genBodyTransition () {
+    genBodyTransition (p) {
       return this.$createElement('transition', {
         props: {
           name: this.transition
