@@ -24,6 +24,7 @@ import IvueLoadingBar from '../components/iVueLoadingBar';
 import IvueBadge from '../components/ivueBadge';
 import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
+import IvueCollapse from '../components/IvueCollapse';
 
 Vue.use(Router);
 
@@ -148,6 +149,11 @@ export default new Router({
       path: '/IvueVirtualCollection',
       name: 'IvueVirtualCollection',
       component: IvueVirtualCollection
+    },
+    {
+      path: '/IvueCollapse',
+      name: 'IvueCollapse',
+      component: IvueCollapse
     }
   ]
 });

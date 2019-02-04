@@ -52,6 +52,7 @@ nav {
                 <li><router-link to="/IvueBadge">IvueBadge</router-link></li>
                 <li><router-link to="/IvueDatePicker">IvueDatePicker</router-link></li>
                 <li><router-link to="/IvueVirtualCollection">IvueVirtualCollection</router-link></li>
+                <li><router-link to="/IvueCollapse">IvueCollapse</router-link></li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

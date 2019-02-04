@@ -24,6 +24,7 @@ import IvueLoadingBar from './components/ivue-loading-bar';
 import IvueBadge from './components/ivue-badge';
 import IvueDatePicker from './components/ivue-date-picker';
 import IvueVirtualCollection from './components/ivue-virtual-collection';
+import {IvueCollapse,IvueCollapsePanel} from './components/ivue-collapse';
 
 const components = {
   IvueAffix,
@@ -58,7 +59,9 @@ const components = {
   IvueLoadingBar,
   IvueBadge,
   IvueDatePicker,
-  IvueVirtualCollection
+  IvueVirtualCollection,
+  IvueCollapse,
+  IvueCollapsePanel
 };
 
 const iVue = {
