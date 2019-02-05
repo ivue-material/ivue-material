@@ -1,7 +1,7 @@
 <template>
       <div>
-            <IvueCollapse v-model="active" accordion>
-                  <IvueCollapsePanel name="0">
+            <IvueCollapse v-model="active" accordion collapseBgColor="red">
+                  <IvueCollapsePanel name="0" ivueDisabled>
                         <IvueIcon slot="header-icon">keyboard_arrow_right</IvueIcon>史蒂夫·乔布斯
                         <div slot="content">
                               <IvueCollapse v-model="active1" accordion>
@@ -28,7 +28,7 @@
 export default {
       data () {
             return {
-                  active: '0',
+                  active: null,
                   active1: '1'
             }
       }

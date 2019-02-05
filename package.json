@@ -1,6 +1,6 @@
 {
   "name": "ivue-material",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "description": "A high quality UI components Library with Vue.js",
   "main": "dist/ivue.js",
   "files": [

@@ -1,9 +1,13 @@
 <template>
       <div :class="classes">
-            <div :class="headerClasses" @click="toggle">
-                  <slot name="header-icon"></slot>
-                  <slot></slot>
-            </div>
+            <!-- 头部 -->
+            <IvueRipple :ivueDisabled="ivueDisabled">
+                  <div :class="headerClasses" @click="toggle">
+                        <slot name="header-icon"></slot>
+                        <slot></slot>
+                  </div>
+            </IvueRipple>
+            <!-- 内容 -->
             <CollapseTransition>
                   <div :class="`${prefixCls}--content`" v-show="isActive">
                         <div :class="`${prefixCls}--content-box`">
@@ -16,6 +20,7 @@
 
 <script>
 import CollapseTransition from '../../utils/collapse-transition';
+import IvueRipple from '../ivue-ripple/ivue-ripple';
 
 const prefixCls = 'ivue-collapse-panel';
 
@@ -29,7 +34,16 @@ export default {
              */
             name: {
                   type: String
-            }
+            },
+            /*
+            * 启用/禁用涟漪
+            * 
+            * @type {null}
+            */
+            ivueDisabled: {
+                  type: null,
+                  default: false
+            },
       },
       data () {
             return {
@@ -64,7 +78,8 @@ export default {
             }
       },
       components: {
-            CollapseTransition
+            CollapseTransition,
+            IvueRipple
       }
 }
 </script>

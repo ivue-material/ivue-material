@@ -9,6 +9,7 @@ const Transition = {
             el.dataset.oldPaddingTop = el.style.paddingTop;
             el.dataset.oldPaddingBottom = el.style.paddingBottom;
 
+            // 初始化
             el.style.height = '0';
             el.style.paddingTop = 0;
             el.style.paddingBottom = 0;
@@ -16,6 +17,7 @@ const Transition = {
       enter (el) {
             el.dataset.oldOverflow = el.style.overflow;
 
+            // 设置高度
             if (el.scrollHeight !== 0) {
                   el.style.height = `${el.scrollHeight}px`;
                   el.style.paddingTop = el.dataset.oldPaddingTop;
@@ -42,6 +44,7 @@ const Transition = {
             el.dataset.oldPaddingBottom = el.style.paddingBottom;
             el.dataset.oldOverflow = el.style.overflow;
 
+            // 设置高度
             el.style.height = `${el.scrollHeight}px`;
             el.style.overflow = 'hidden';
       },

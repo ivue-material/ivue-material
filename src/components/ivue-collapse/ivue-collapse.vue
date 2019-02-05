@@ -107,8 +107,6 @@ export default {
 
                   this.$emit('input', newActiveKey);
 
-                  console.log(newActiveKey)
-
                   // 切换面板是触发，返回当前展开的面板的 key，格式为数组
                   this.$emit('on-change', newActiveKey);
             }
