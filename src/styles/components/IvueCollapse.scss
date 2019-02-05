@@ -36,6 +36,12 @@ $name: 'ivue-collapse';
             &--active &--header .ivue-icon {
                   transform: rotateZ(90deg);
             }
+            &--ripple {
+                  overflow: hidden;
+                  .ivue-ripple {
+                        overflow: initial;
+                  }
+            }
       }
 }
 

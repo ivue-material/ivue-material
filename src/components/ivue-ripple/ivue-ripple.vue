@@ -6,14 +6,15 @@
             @mousedown.passive="mousedown"
       >
             <slot></slot>
-            <IvueWave
-                  v-for="ripple in ripples"
-                  :key="ripple.uuid"
-                  :class="['ivue-ripple-wave',waveClasses]"
-                  :style="ripple.waveStyles"
-                  @animating-end="clearWave(ripple.uuid)"
-                  v-if="!ivueDisabled"
-            ></IvueWave>
+            <div v-if="!ivueDisabled">
+                  <IvueWave
+                        v-for="ripple in ripples"
+                        :key="ripple.uuid"
+                        :class="['ivue-ripple-wave',waveClasses]"
+                        :style="ripple.waveStyles"
+                        @animating-end="clearWave(ripple.uuid)"
+                  ></IvueWave>
+            </div>
       </div>
 </template>
 

@@ -1,12 +1,14 @@
 <template>
       <div :class="classes">
             <!-- 头部 -->
-            <IvueRipple :ivueDisabled="ivueDisabled">
-                  <div :class="headerClasses" @click="toggle">
-                        <slot name="header-icon"></slot>
-                        <slot></slot>
-                  </div>
-            </IvueRipple>
+            <div :class="`${prefixCls}--ripple`">
+                  <IvueRipple :ivueDisabled="ivueDisabled">
+                        <div :class="headerClasses" @click="toggle">
+                              <slot name="header-icon"></slot>
+                              <slot></slot>
+                        </div>
+                  </IvueRipple>
+            </div>
             <!-- 内容 -->
             <CollapseTransition>
                   <div :class="`${prefixCls}--content`" v-show="isActive">
