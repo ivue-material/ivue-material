@@ -64,6 +64,7 @@ export default {
                         }
                   ]
             },
+            // 头部 class
             headerClasses () {
                   return [
                         `${prefixCls}--header`
