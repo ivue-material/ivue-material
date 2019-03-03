@@ -24,89 +24,91 @@ import IvueLoadingBar from './components/ivue-loading-bar';
 import IvueBadge from './components/ivue-badge';
 import IvueDatePicker from './components/ivue-date-picker';
 import IvueVirtualCollection from './components/ivue-virtual-collection';
-import {IvueCollapse,IvueCollapsePanel} from './components/ivue-collapse';
+import { IvueCollapse, IvueCollapsePanel } from './components/ivue-collapse';
+import IvueCascader from './components/ivue-cascader';
 
 const components = {
-  IvueAffix,
-  IvueContent,
-  IvueButton,
-  IvueIcon,
-  IvueList,
-  IvueListItem,
-  IvueSpin,
-  IvueCarousel,
-  IvueCarouselItem,
-  IvueSwitch,
-  IvueBottomNav,
-  IvueBreadcrumbs,
-  IvueBreadcrumbsItem,
-  IvueSelect,
-  IvueOption,
-  IvueOptionGroup,
-  IvueAutoComplete,
-  IvueInput,
-  IvueStepper,
-  IvueStepperStep,
-  IvueUpLoad,
-  IvueProgressLinear,
-  IvueProgressCircular,
-  IvueNotice,
-  IvueMessage,
-  IvueTabs,
-  IvueTab,
-  IvueTabItem,
-  IvueTabsSlider,
-  IvueLoadingBar,
-  IvueBadge,
-  IvueDatePicker,
-  IvueVirtualCollection,
-  IvueCollapse,
-  IvueCollapsePanel
+    IvueAffix,
+    IvueContent,
+    IvueButton,
+    IvueIcon,
+    IvueList,
+    IvueListItem,
+    IvueSpin,
+    IvueCarousel,
+    IvueCarouselItem,
+    IvueSwitch,
+    IvueBottomNav,
+    IvueBreadcrumbs,
+    IvueBreadcrumbsItem,
+    IvueSelect,
+    IvueOption,
+    IvueOptionGroup,
+    IvueAutoComplete,
+    IvueInput,
+    IvueStepper,
+    IvueStepperStep,
+    IvueUpLoad,
+    IvueProgressLinear,
+    IvueProgressCircular,
+    IvueNotice,
+    IvueMessage,
+    IvueTabs,
+    IvueTab,
+    IvueTabItem,
+    IvueTabsSlider,
+    IvueLoadingBar,
+    IvueBadge,
+    IvueDatePicker,
+    IvueVirtualCollection,
+    IvueCollapse,
+    IvueCollapsePanel,
+    IvueCascader
 };
 
 const iVue = {
-  ...components,
-  'ivue-upload': IvueUpLoad
+    ...components,
+    'ivue-upload': IvueUpLoad
 };
 
 
 const install = function (Vue, opts = {}) {
-  if (install.installed) return;
+    if (install.installed) return;
 
-  Object.keys(iVue).forEach(key => {
-    Vue.component(key, iVue[key]);
-  });
+    Object.keys(iVue).forEach(key => {
+        Vue.component(key, iVue[key]);
+    });
 
-  // 注册全局 IvueSpin 组件
-  Vue.prototype.$IvueSpin = IvueSpin;
+    // 注册全局 IvueSpin 组件
+    Vue.prototype.$IvueSpin = IvueSpin;
 
-  // 注册全局 IvueNotice 通知 组件
-  Vue.prototype.$IvueNotice = IvueNotice;
+    // 注册全局 IvueNotice 通知 组件
+    Vue.prototype.$IvueNotice = IvueNotice;
 
-  // 注册全局 IvueMessage 提示 组件
-  Vue.prototype.$IvueMessage = IvueMessage;
+    // 注册全局 IvueMessage 提示 组件
+    Vue.prototype.$IvueMessage = IvueMessage;
 
-  // 注册全局 IvueLoadingBar 滚动条加载 组件
-  Vue.prototype.$IvueLoadingBar = IvueLoadingBar;
+    // 注册全局 IvueLoadingBar 滚动条加载 组件
+    Vue.prototype.$IvueLoadingBar = IvueLoadingBar;
 
-  Vue.prototype.$Ivue = {
-    size: opts.size || '',
-    transfer: 'transfer' in opts ? opts.transfer : '',
-    breakpointWidth: 800
-  }
+    Vue.prototype.$Ivue = {
+        size: opts.size || '',
+        transfer: 'transfer' in opts ? opts.transfer : '',
+        breakpointWidth: 800
+    }
 
 };
 
 
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
+    install(window.Vue);
 }
 
 const API = {
-  version: process.env.VERSION, // eslint-disable-line no-undef
-  install,
-  ...components
+    version: process.env.VERSION, // eslint-disable-line no-undef
+    install,
+    ...components
 };
 
 module.exports.default = module.exports = API;   // eslint-disable-line no-undef

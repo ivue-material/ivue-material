@@ -25,6 +25,7 @@ import IvueBadge from '../components/ivueBadge';
 import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/IvueCollapse';
+import IvueCascader from '../components/ivueCascader';
 
 Vue.use(Router);
 
@@ -154,6 +155,11 @@ export default new Router({
       path: '/IvueCollapse',
       name: 'IvueCollapse',
       component: IvueCollapse
+    },
+    {
+        path: '/IvueCascader',
+        name: 'IvueCascader',
+        component: IvueCascader
     }
   ]
 });
