@@ -6,8 +6,6 @@ $input: 'ivue-input';
     width: 100%;
     /* 输入框 */
     &-selection-default {
-        position: relative;
-        display: inline-block;
         width: 100%;
         border: 1px solid #dcdee2;
         .#{$input}-wrapper {
@@ -16,6 +14,10 @@ $input: 'ivue-input';
                 cursor: pointer;
                 border: none;
                 height: $input-height-base;
+            }
+            .ivue-icon {
+                height: 100%;
+                transition: all .2s ease-in-out;
             }
         }
         &:hover {
@@ -36,12 +38,12 @@ $input: 'ivue-input';
     }
     /* 显示菜单 */
     &-visible {
-        .#{$input}-selection {
+        .#{$name}-selection {
             border-color: transparentize($primary-color, 0.2);
             outline: 0;
             box-shadow: 0 0 0 2px transparentize($primary-color, 0.8);
         }
-        .#{$input}-arrow {
+        .#{$name}-arrow {
             transform: rotate(180deg);
             transform-origin: center center;
         }
@@ -126,6 +128,38 @@ $input: 'ivue-input';
         &:last-child {
             border-right: 0;
         }
+        /* 菜单选项 */
+        &--item {
+            position: relative;
+            padding: 8px 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #606266;
+            height: 34px;
+            font-size: 14px;
+            box-sizing: border-box;
+            cursor: pointer;
+            &:hover {
+                background-color: #f5f7fa;
+            }
+            /* 现实扩展按钮 */
+            &---extensible {
+                .ivue-icon {
+                    position: absolute;
+                    top: 0;
+                    right: 15px;
+                    height: 100%;
+                    font-size: 18px;
+                    color: #bfcbd9;
+                }
+            }
+        }
+        /* 是否激活 */
+        .is-active {
+            color: $primary-color;
+            background-color: #f5f7fa;
+        }
     }
 }
 
@@ -133,7 +167,7 @@ $input: 'ivue-input';
 .#{$name}-menu-leave-active {
     opacity: 1;
     transform: scaleY(1);
-    transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1), opacity .3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform $ivue-transition-default, opacity $ivue-transition-default;
     transform-origin: center top;
 }
 

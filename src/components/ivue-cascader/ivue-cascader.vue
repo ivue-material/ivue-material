@@ -1,31 +1,16 @@
-<!-- <template>
-    <div :class="classes" @click="handleClick">
-        <div :class="cascaderClasses">
-            <IvueInput
-                :type="selectValue.length > 0 ? 'hidden' : 'text'"
-                readonly
-                placeholder="请选择"
-                :value="selectValue"
-                ref="input"
-            >
-                <template slot="suffix">
-                    <IvueIcon>{{arrowDownIcon}}</IvueIcon>
-                </template>
-            </IvueInput>
-            <span :class="`">{{selectValue}}</span>
-        </div>
-    </div>
-</template>
--->
 <script>
 import IvueCascaderMenu from './ivue-cascader-menu'
 import IvueInput from '../ivue-input'
 import IvueIcon from '../ivue-icon'
+// 注册外部点击事件插件
+import { directive as clickOutside } from '../../utils/click-outside';
 
 const prefixCls = 'ivue-cascader';
 
 export default {
     name: prefixCls,
+    // 注册局部指令
+    directives: { clickOutside },
     props: {
         /**
         * 下拉图标
@@ -110,6 +95,9 @@ export default {
                 }
             }, [
                     this.$createElement(IvueIcon, {
+                        class: {
+                            [`${prefixCls}-arrow`]: true,
+                        },
                         slot: 'suffix',
                     }, this.arrowDownIcon)
                 ]);
@@ -124,6 +112,26 @@ export default {
                 class: this.cascaderClasses
             }, [this.genInput(), this.genLabel()]);
         },
+        // 渲染菜单
+        genMenu () {
+            return this.$createElement(IvueCascaderMenu, {
+                props: {
+                    options: this.options,
+                    props: this.props,
+                    visible: this.visibleMenu
+                },
+                directives: [
+                    {
+                        name: 'show',
+                        value: this.visibleMenu
+                    }
+                ]
+            })
+        },
+        // 外部点击事件
+        onClickOutside () {
+            console.log('??')
+        },
         // 点击输入框
         handleClick () {
             this.visibleMenu = !this.visibleMenu;
@@ -137,17 +145,18 @@ export default {
     render (h) {
         return h('div', {
             class: this.classes,
+            'v-click-outside': this.onClickOutside,
             on: {
-                click: this.handleClick
+                click: this.handleClick,
+                '!v-click-outside': this.onClickOutside
             },
-        }, [this.genCascader(),
-        this.$createElement(IvueCascaderMenu, {
-            props: {
-                options: this.options,
-                props: this.props
-            }
-        })
-            ])
+            directives: [
+            ]
+        },
+            [this.genCascader(),
+            this.genMenu()
+            ]
+        )
     }
 }
 </script>

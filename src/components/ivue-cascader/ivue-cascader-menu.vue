@@ -1,9 +1,10 @@
 <script>
-import { generateId } from '../../utils/helpers';
+import { generateId, isDef } from '../../utils/helpers';
+import IvueIcon from '../ivue-icon/ivue-icon';
 
 const prefixCls = 'ivue-cascader-menu';
 
-// 复制数组
+// 浅拷贝
 const copyArray = (arr, props) => {
     if (!arr || !Array.isArray(arr) || !props) return arr;
 
@@ -36,7 +37,6 @@ const copyArray = (arr, props) => {
             itemCopy[childrenProp] = copyArray(item[childrenProp], props);
         }
         result.push(itemCopy);
-
     });
 
     return result;
@@ -54,29 +54,92 @@ export default {
             type: Array,
             required: true
         },
-        props: {},
+        props: {}
     },
     data () {
         return {
             prefixCls: prefixCls,
-            id: generateId()
+            id: generateId(),
+            /**
+             * 激活的选项
+             *
+             * @type {Array}
+             */
+            activeValue: ['zhinan']
         }
     },
     computed: {
         activeOptions () {
-            const loadActiveOptions = () => {
+            // 数据的参数选项
+            const configurableProps = ['label', 'value', 'children', 'disabled'];
+            // 当前点击激活的选项
+            const activeValue = this.activeValue;
 
+            // 整理选项
+            const formatOptions = (options) => {
+                options.forEach((option) => {
+                    if (option.__IS__FLAT__OPTIONS) return;
+                    // 遍历4次
+                    configurableProps.forEach((prop) => {
+                        // 选项的值
+                        const value = option[this.props[prop] || prop];
+                        // console.log(value)
+
+                        if (value !== undefined) {
+                            option[prop] = value;
+                        }
+                    });
+
+                    // 判断是否是数组，是的话递归调用
+                    if (Array.isArray(option.children)) {
+                        formatOptions(option.children);
+                    }
+                });
             }
 
-            copyArray(this.options, this.props)
-            // const optionsCopy;
+            // 获取激活的选项
+            const loadActiveOptions = (options, activeOptions = []) => {
+                // 当前选项层级
+                let level = activeOptions.length;
+                activeOptions[level] = options;
 
-            // return loadActiveOptions;
+                // 获取激活的value
+                let active = activeValue[level];
+
+                // 获取激活选项后的 children
+                if (isDef(active)) {
+                    options = options.filter((option) => option.value === active)[0];
+
+                    // 判断是否有子节点
+                    if (options && options.children) {
+                        loadActiveOptions(options.children, activeOptions);
+                    }
+                }
+                console.log(activeOptions)
+
+                return activeOptions;
+            }
+
+            // 浅拷贝
+            const optionsCopy = copyArray(this.options, this.props);
+            // 整理选项
+            formatOptions(optionsCopy);
+            // 获取激活的选项
+            return loadActiveOptions(optionsCopy)
         }
     },
     methods: {
+        // 当前选项是否可扩展
+        extensibleClass (item) {
+            if (item.children) {
+                return {
+                    [`${prefixCls}--item---extensible`]: true,
+                }
+            }
+        },
         // 渲染菜单
         genMenus () {
+            const { activeOptions, activeValue } = this;
             /**
              * renderList
              * Runtime helper for rendering v-for lists.
@@ -84,20 +147,40 @@ export default {
                 keyOrIndex: string | number,
                 index?: number
              */
-            // return this._l(() => {
-            console.log(this.activeOptions)
+            const menus = this._l(activeOptions, (menu, menuIndex) => {
+                // 循环选项
+                const items = this._l(menu, (item) => {
+                    return this.$createElement('li', {
+                        class: [
+                            {
+                                [`${prefixCls}--item`]: true,
+                                'is-active': item.value === activeValue[menuIndex],
+                            },
+                            this.extensibleClass(item)
+                        ]
+                    }, [
+                            this.$createElement('span', item.label),
+                            item.children ? this.$createElement(IvueIcon, 'keyboard_arrow_right') : null
+                        ]);
+                });
+
+
+                return this.$createElement('ul', {
+                    class: [
+                        this.prefixCls
+                    ],
+                    attrs: {
+                        id: this.id,
+                        role: 'menu'
+                    },
+                }, items);
+            });
+
+            console.log(menus)
+
             // const menuId = `menu-${this.id}-${menuIndex}`;
 
-            return this.$createElement('ul', {
-                class: [
-                    this.prefixCls
-                ],
-                attrs: {
-                    id: this.id,
-                    role: 'menu'
-                },
-            });
-            // });
+            return menus
 
         }
     },
@@ -110,12 +193,14 @@ export default {
                 h('div', {
                     class: 'popper-arrow'
                 }),
-                this.genMenus()
+                ...this.genMenus()
             ]
         );
 
         return h('transition', {
-            name: prefixCls,
+            props: {
+                name: prefixCls,
+            }
         }, [wrapper]);
     }
 }
