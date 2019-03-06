@@ -109,7 +109,10 @@ export default {
         },
         genCascader () {
             return this.$createElement('div', {
-                class: this.cascaderClasses
+                class: this.cascaderClasses,
+                on: {
+                    click: this.handleClick
+                }
             }, [this.genInput(), this.genLabel()]);
         },
         // 渲染菜单
@@ -120,6 +123,9 @@ export default {
                     props: this.props,
                     visible: this.visibleMenu
                 },
+                on: [
+                    '!click'
+                ],
                 directives: [
                     {
                         name: 'show',
@@ -129,8 +135,9 @@ export default {
             })
         },
         // 外部点击事件
-        onClickOutside () {
-            console.log('??')
+        onClickOutside (event) {
+            // 隐藏菜单
+            this.visibleMenu = false;
         },
         // 点击输入框
         handleClick () {
@@ -145,16 +152,20 @@ export default {
     render (h) {
         return h('div', {
             class: this.classes,
-            'v-click-outside': this.onClickOutside,
-            on: {
-                click: this.handleClick,
-                '!v-click-outside': this.onClickOutside
-            },
             directives: [
+                {
+                    name: 'click-outside',
+                    value: this.onClickOutside,
+                    modifiers: {
+                        quiet: true,
+                        once: true
+                    }
+                }
             ]
         },
-            [this.genCascader(),
-            this.genMenu()
+            [
+                this.genCascader(),
+                this.genMenu()
             ]
         )
     }

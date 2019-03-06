@@ -65,10 +65,11 @@ export default {
              *
              * @type {Array}
              */
-            activeValue: ['zhinan']
+            activeValue: []
         }
     },
     computed: {
+        // 获取激活的选项列表
         activeOptions () {
             // 数据的参数选项
             const configurableProps = ['label', 'value', 'children', 'disabled'];
@@ -83,7 +84,6 @@ export default {
                     configurableProps.forEach((prop) => {
                         // 选项的值
                         const value = option[this.props[prop] || prop];
-                        // console.log(value)
 
                         if (value !== undefined) {
                             option[prop] = value;
@@ -112,10 +112,10 @@ export default {
 
                     // 判断是否有子节点
                     if (options && options.children) {
+                        // 递归调用
                         loadActiveOptions(options.children, activeOptions);
                     }
                 }
-                console.log(activeOptions)
 
                 return activeOptions;
             }
@@ -129,6 +129,16 @@ export default {
         }
     },
     methods: {
+        // 选择选项
+        selectOption (item, menuIndex) {
+
+            if (menuIndex) {
+                this.activeValue.splice(menuIndex, this.activeValue.length - 1, item.value)
+            }
+            else {
+                this.activeValue = [item.value];
+            }
+        },
         // 当前选项是否可扩展
         extensibleClass (item) {
             if (item.children) {
@@ -157,7 +167,12 @@ export default {
                                 'is-active': item.value === activeValue[menuIndex],
                             },
                             this.extensibleClass(item)
-                        ]
+                        ],
+                        on: {
+                            click: () => {
+                                this.selectOption(item, menuIndex);
+                            }
+                        }
                     }, [
                             this.$createElement('span', item.label),
                             item.children ? this.$createElement(IvueIcon, 'keyboard_arrow_right') : null
