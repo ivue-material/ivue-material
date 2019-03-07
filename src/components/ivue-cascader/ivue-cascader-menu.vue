@@ -1,5 +1,6 @@
 <script>
 import { generateId, isDef } from '../../utils/helpers';
+import scrollIntoView from '../../utils/scroll-into-view';
 import IvueIcon from '../ivue-icon/ivue-icon';
 
 const prefixCls = 'ivue-cascader-menu';
@@ -8,7 +9,7 @@ const prefixCls = 'ivue-cascader-menu';
 const copyArray = (arr, props) => {
     if (!arr || !Array.isArray(arr) || !props) return arr;
 
-    const configurableProps = ['__IS__FLAT__OPTIONS', 'label', 'value', 'disabled'];
+    const configurableProps = ['label', 'value', 'disabled'];
     const result = [];
     const childrenProp = props.children || 'children';
 
@@ -54,7 +55,41 @@ export default {
             type: Array,
             required: true
         },
-        props: {}
+        /**
+         * 配置项
+         *
+         * @type {Object}
+         */
+        props: {
+            type: Object,
+            default () {
+                return {
+                    children: 'children',
+                    label: 'label',
+                    value: 'value',
+                    disabled: 'disabled'
+                };
+            }
+        },
+        /**
+         * 菜单现实隐藏
+         *
+         * @type {Boolean}
+         */
+        visible: {
+            type: Boolean
+        },
+        /**
+         * value
+         *
+         * @type {Array}
+         */
+        value: {
+            type: Array,
+            default () {
+                return [];
+            }
+        }
     },
     data () {
         return {
@@ -65,7 +100,7 @@ export default {
              *
              * @type {Array}
              */
-            activeValue: []
+            activeValue: [],
         }
     },
     computed: {
@@ -130,14 +165,23 @@ export default {
     },
     methods: {
         // 选择选项
-        selectOption (item, menuIndex) {
-
+        select (item, menuIndex) {
             if (menuIndex) {
                 this.activeValue.splice(menuIndex, this.activeValue.length - 1, item.value)
             }
             else {
                 this.activeValue = [item.value];
             }
+
+            this.$emit('select', this.activeValue.slice());
+        },
+        // 激活选项
+        activeItem (item, menuIndex) {
+            const length = this.activeOptions.length;
+            // 设置激活的 value
+            this.activeValue.splice(menuIndex, length, item.value);
+            // 设置激活 value 的 children
+            this.activeOptions.splice(menuIndex + 1, length, item.children);
         },
         // 当前选项是否可扩展
         extensibleClass (item) {
@@ -150,6 +194,9 @@ export default {
         // 渲染菜单
         genMenus () {
             const { activeOptions, activeValue } = this;
+            let itemId = null;
+            let itemIndex = 0;
+
             /**
              * renderList
              * Runtime helper for rendering v-for lists.
@@ -158,21 +205,48 @@ export default {
                 index?: number
              */
             const menus = this._l(activeOptions, (menu, menuIndex) => {
+                const menuId = `menu-${this.id}-${menuIndex}`;
+
                 // 循环选项
-                const items = this._l(menu, (item) => {
+                const items = this._l(menu, (item, itemIndex) => {
+                    const ownsId = `menu-item-${this.id}-${itemIndex + 1}`;
+
                     return this.$createElement('li', {
+                        attrs: {
+                            role: 'menu-item'
+                        },
                         class: [
                             {
                                 [`${prefixCls}--item`]: true,
+                                // 是否激活
                                 'is-active': item.value === activeValue[menuIndex],
                             },
+                            // 判断是否有扩展图标
                             this.extensibleClass(item)
                         ],
                         on: {
                             click: () => {
-                                this.selectOption(item, menuIndex);
+                                // 判断是否有子项
+                                if (item.children) {
+                                    if (this.visible) {
+                                        this.activeItem(item, menuIndex);
+                                        this.$nextTick(() => {
+                                            this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex])
+                                            this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex + 1])
+                                        });
+
+                                    }
+                                }
+                                else {
+                                    this.select(item, menuIndex);
+
+                                    this.$nextTick(() => {
+                                        this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex])
+                                    });
+                                }
                             }
-                        }
+                        },
+                        key: ownsId
                     }, [
                             this.$createElement('span', item.label),
                             item.children ? this.$createElement(IvueIcon, 'keyboard_arrow_right') : null
@@ -185,18 +259,33 @@ export default {
                         this.prefixCls
                     ],
                     attrs: {
-                        id: this.id,
                         role: 'menu'
                     },
+                    key: menuId,
+                    ref: 'menus'
                 }, items);
             });
 
-            console.log(menus)
-
-            // const menuId = `menu-${this.id}-${menuIndex}`;
-
             return menus
 
+        },
+        // 滚动菜单视图
+        scrollMenu (menu) {
+            scrollIntoView(menu, menu.getElementsByClassName('is-active')[0]);
+        },
+    },
+    watch: {
+        // 监听菜单现实隐藏
+        visible (value) {
+            if (value) {
+                this.activeValue = this.value;
+            }
+        },
+        value: {
+            immediate: true,
+            handler (value) {
+                // this.activeValue = value;
+            }
         }
     },
     render (h) {

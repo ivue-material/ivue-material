@@ -46,10 +46,36 @@ export default {
                 };
             }
         },
+        /**
+         * 选中项绑定值
+         *
+         * @type {Array}
+         */
+        value: {
+            type: Array,
+            default () {
+                return [];
+            }
+        },
+        /**
+         * 选项分隔符
+         *
+         * @type {String}
+         */
+        separator: {
+            type: String,
+            default: '/'
+        }
     },
     data () {
         return {
             prefixCls: prefixCls,
+            /**
+             * 当前的 value
+             *
+             * @type {Array}
+             */
+            currentValue: this.value || [],
             /**
              * 输入框数据
              *
@@ -79,16 +105,29 @@ export default {
                 `${prefixCls}-selection`,
             ]
         },
-        // 整理数据
-        currentLabels () {
+        // 获取当前选择的 labels
+        currentlabels () {
+            let options = this.options;
+            let labels = [];
 
+            this.currentValue.forEach((value) => {
+                // 获取当前的选项
+                const targetOption = options && options.filter((option) => option[this.props.value] === value)[0];
+                if (targetOption) {
+                    labels.push(targetOption[this.props.label]);
+                    options = targetOption[this.props.children];
+                }
+            });
+
+            return labels
         }
     },
     methods: {
+        // 渲染输入框
         genInput () {
             return this.$createElement(IvueInput, {
                 props: {
-                    type: this.selectValue.length > 0 ? 'hidden' : 'text',
+                    type: this.currentlabels.length > 0 ? 'hidden' : 'text',
                     readonly: 'readonly',
                     placeholder: '请选择',
                     value: this.selectValue
@@ -102,10 +141,16 @@ export default {
                     }, this.arrowDownIcon)
                 ]);
         },
+        // 渲染 label
         genLabel () {
+            const { currentlabels, separator } = this;
+            const label = this._l(currentlabels, (label, index) => {
+                return [label, index < currentlabels.length - 1 ? this.$createElement('span', ` ${separator} `) : null];
+            });
+
             return this.$createElement('span', {
                 class: `${prefixCls}-label`
-            }, [this.selectValue]);
+            }, [label]);
         },
         genCascader () {
             return this.$createElement('div', {
@@ -121,11 +166,12 @@ export default {
                 props: {
                     options: this.options,
                     props: this.props,
-                    visible: this.visibleMenu
+                    visible: this.visibleMenu,
+                    value: this.currentValue.slice(0)
                 },
-                on: [
-                    '!click'
-                ],
+                on: {
+                    'select': this.handlePick
+                },
                 directives: [
                     {
                         name: 'show',
@@ -142,6 +188,10 @@ export default {
         // 点击输入框
         handleClick () {
             this.visibleMenu = !this.visibleMenu;
+        },
+        // 菜单点击的选择
+        handlePick (value) {
+            this.currentValue = value;
         }
     },
     components: {
