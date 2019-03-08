@@ -89,6 +89,15 @@ export default {
             default () {
                 return [];
             }
+        },
+        /**
+         * 选择触发类型
+         *
+         * @type {String}
+         */
+        trigger: {
+            type: String,
+            default: 'click'
         }
     },
     data () {
@@ -143,6 +152,7 @@ export default {
 
                 // 获取激活选项后的 children
                 if (isDef(active)) {
+
                     options = options.filter((option) => option.value === active)[0];
 
                     // 判断是否有子节点
@@ -159,6 +169,7 @@ export default {
             const optionsCopy = copyArray(this.options, this.props);
             // 整理选项
             formatOptions(optionsCopy);
+
             // 获取激活的选项
             return loadActiveOptions(optionsCopy)
         }
@@ -193,7 +204,7 @@ export default {
         },
         // 渲染菜单
         genMenus () {
-            const { activeOptions, activeValue } = this;
+            const { activeOptions, activeValue, trigger } = this;
             let itemId = null;
             let itemIndex = 0;
 
@@ -210,10 +221,89 @@ export default {
                 // 循环选项
                 const items = this._l(menu, (item, itemIndex) => {
                     const ownsId = `menu-item-${this.id}-${itemIndex + 1}`;
+                    const events = {
+                        on: {}
+                    };
+
+                    if (!item.disabled) {
+                        // 注册键盘事件
+                        events.on.keydown = (event) => {
+                            const keyCode = event.keyCode;
+
+                            if ([37, 38, 39, 40, 13, 9, 27].indexOf(keyCode) < 0) {
+                                return;
+                            }
+
+                            // 当前节点
+                            const currentEle = event.target;
+                            // 父节点 ul
+                            const parentEle = this.$refs.menus.childNodes[menuIndex];
+                            // 菜单选项列表
+                            const menuItemList = parentEle.querySelectorAll("[tabindex='-1']");
+                            // 获取当前索引
+                            const currentIndex = Array.prototype.indexOf.call(menuItemList, currentEle);
+
+                            // 下一个index
+                            let nextIndex;
+
+                            if ([38, 40].indexOf(keyCode) > -1) {
+                                if (keyCode === 38) {
+                                    nextIndex = currentIndex !== 0 ? (currentIndex - 1) : currentIndex;
+                                }
+                                // 方向键 down
+                                else if (keyCode === 40) {
+                                    nextIndex = currentIndex !== (menuItemList.length - 1) ? currentIndex + 1 : currentIndex;
+                                }
+
+                                // 选项获取焦点
+                                menuItemList[nextIndex].focus();
+                            }
+                        };
+
+                        if (item.children) {
+                            let triggerEvent = {
+                                click: 'click',
+                                hover: 'mouseenter'
+                            }[trigger];
+
+                            // 事件
+                            const triggerHandler = () => {
+                                if (this.visible) {
+                                    this.activeItem(item, menuIndex);
+
+                                    this.$nextTick(() => {
+                                        this.scrollMenu(this.$refs.menus.childNodes[menuIndex]);
+                                        this.scrollMenu(this.$refs.menus.childNodes[menuIndex + 1]);
+                                    });
+                                }
+                            };
+
+                            // 注册点击事件
+                            events.on[triggerEvent] = triggerHandler;
+
+                            // focus 选中
+                            events.on['focus'] = () => {
+                                triggerHandler();
+                            };
+                        }
+                        else {
+                            // 注册点击事件
+                            events.on.click = () => {
+                                this.select(item, menuIndex);
+
+                                this.$nextTick(() => {
+                                    this.scrollMenu(this.$refs.menus.childNodes[menuIndex])
+                                });
+                            };
+                        }
+                    }
+
 
                     return this.$createElement('li', {
                         attrs: {
-                            role: 'menu-item'
+                            role: 'menu-item',
+                            tabindex: item.disabled ? null : -1,
+                            id: ownsId
                         },
                         class: [
                             {
@@ -224,28 +314,7 @@ export default {
                             // 判断是否有扩展图标
                             this.extensibleClass(item)
                         ],
-                        on: {
-                            click: () => {
-                                // 判断是否有子项
-                                if (item.children) {
-                                    if (this.visible) {
-                                        this.activeItem(item, menuIndex);
-                                        this.$nextTick(() => {
-                                            this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex])
-                                            this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex + 1])
-                                        });
-
-                                    }
-                                }
-                                else {
-                                    this.select(item, menuIndex);
-
-                                    this.$nextTick(() => {
-                                        this.scrollMenu(this.$refs.wrapper.getElementsByClassName('ivue-cascader-menu')[menuIndex])
-                                    });
-                                }
-                            }
-                        },
+                        ...events,
                         key: ownsId
                     }, [
                             this.$createElement('span', item.label),
@@ -259,10 +328,10 @@ export default {
                         this.prefixCls
                     ],
                     attrs: {
-                        role: 'menu'
+                        role: 'menu',
+                        id: menuId
                     },
                     key: menuId,
-                    ref: 'menus'
                 }, items);
             });
 
@@ -297,7 +366,9 @@ export default {
                 h('div', {
                     class: 'popper-arrow'
                 }),
-                ...this.genMenus()
+                h('div', {
+                    ref: 'menus',
+                }, this.genMenus()),
             ]
         );
 

@@ -88,7 +88,15 @@ export default {
             * @type {Boolean}
             */
             visibleMenu: false,
+            /**
+             * 菜单是否已获取焦点
+             *
+             * @type {Boolean}
+             */
+            menuFocus: false,
         }
+    },
+    mounted () {
     },
     computed: {
         classes () {
@@ -127,11 +135,11 @@ export default {
         genInput () {
             return this.$createElement(IvueInput, {
                 props: {
-                    type: this.currentlabels.length > 0 ? 'hidden' : 'text',
                     readonly: 'readonly',
-                    placeholder: '请选择',
+                    placeholder: this.currentlabels.length > 0 ? '' : '请选择',
                     value: this.selectValue
-                }
+                },
+                ref: 'input'
             }, [
                     this.$createElement(IvueIcon, {
                         class: {
@@ -157,7 +165,7 @@ export default {
                 class: this.cascaderClasses,
                 on: {
                     click: this.handleClick
-                }
+                },
             }, [this.genInput(), this.genLabel()]);
         },
         // 渲染菜单
@@ -170,14 +178,20 @@ export default {
                     value: this.currentValue.slice(0)
                 },
                 on: {
-                    'select': this.handlePick
+                    'select': this.handlePick,
+                    'focus': () => {
+                        console.log('??')
+
+                        return true
+                    }
                 },
                 directives: [
                     {
                         name: 'show',
                         value: this.visibleMenu
                     }
-                ]
+                ],
+                ref: 'menus'
             })
         },
         // 外部点击事件
@@ -185,13 +199,56 @@ export default {
             // 隐藏菜单
             this.visibleMenu = false;
         },
+        // 键盘事件
+        handleKeydown (event) {
+            const keyCode = event.keyCode;
+
+            // 确认按钮
+            if (keyCode === 13) {
+                this.handleClick();
+            }
+            // 方向键 down
+            else if (keyCode === 40) {
+                // 展开菜单
+                this.visibleMenu = true;
+
+                // // 选择第一个菜单选项
+                setTimeout(() => {
+                    const firstMenu = this.$refs.menus.$el.querySelectorAll('.ivue-cascader-menu')[0];
+
+                    console.log(document.activeElement)
+                    // 判断获取焦点
+                    // if (document.activeElement.getAttribute('tabindex') === '-1') {
+                    //     return;
+                    // }
+
+                    firstMenu.querySelectorAll("[tabindex='-1']")[0].focus();
+                })
+
+                // 阻止 事件冒泡
+                event.stopPropagation();
+                // 阻止该元素默认的 keyup 事件
+                event.preventDefault();
+                return
+            }
+            console.log('??')
+
+        },
         // 点击输入框
         handleClick () {
+            // 输入框获取焦点
+            this.$refs.input.$refs.input.focus()
+
             this.visibleMenu = !this.visibleMenu;
         },
         // 菜单点击的选择
-        handlePick (value) {
+        handlePick (value, close = true) {
             this.currentValue = value;
+
+            if (close) {
+                // 点击选择完后隐藏菜单
+                this.visibleMenu = false;
+            }
         }
     },
     components: {
@@ -202,14 +259,13 @@ export default {
     render (h) {
         return h('div', {
             class: this.classes,
+            on: {
+                'keydown': this.handleKeydown
+            },
             directives: [
                 {
                     name: 'click-outside',
-                    value: this.onClickOutside,
-                    modifiers: {
-                        quiet: true,
-                        once: true
-                    }
+                    value: this.onClickOutside
                 }
             ]
         },
