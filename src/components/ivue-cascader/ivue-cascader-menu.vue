@@ -98,6 +98,23 @@ export default {
         trigger: {
             type: String,
             default: 'click'
+        },
+        /**
+         * hover 悬停时间
+         *
+         * @type {Number}
+         */
+        hoverThreshold: {
+            type: Number,
+            default: 500
+        },
+        /**
+         * 是否允许选择任意一级的选项
+         *
+         * @type {Boolean}
+         */
+        changeOnSelect: {
+            type: Boolean
         }
     },
     data () {
@@ -110,6 +127,17 @@ export default {
              * @type {Array}
              */
             activeValue: [],
+            /**
+             * 是否通过点击进行
+             *
+             * @type {Boolean}
+             */
+            clicking: false,
+            /**
+             * hover 时保存菜单信息
+             */
+            hoverMenuMessage: {},
+            hoverTimer: 0,
         }
     },
     computed: {
@@ -184,6 +212,7 @@ export default {
                 this.activeValue = [item.value];
             }
 
+            // 发送选择事件
             this.$emit('select', this.activeValue.slice());
         },
         // 激活选项
@@ -193,6 +222,14 @@ export default {
             this.activeValue.splice(menuIndex, length, item.value);
             // 设置激活 value 的 children
             this.activeOptions.splice(menuIndex + 1, length, item.children);
+
+            if (this.changeOnSelect) {
+                this.$emit('select', this.activeValue.slice(), false);
+            }
+            else {
+                // 是否允许选择任意一级的选项
+                this.$emit('active-item-change', this.activeValue);
+            }
         },
         // 当前选项是否可扩展
         extensibleClass (item) {
@@ -204,9 +241,69 @@ export default {
         },
         // 渲染菜单
         genMenus () {
-            const { activeOptions, activeValue, trigger } = this;
+            const { activeOptions, activeValue, trigger, id } = this;
             let itemId = null;
             let itemIndex = 0;
+
+            // 触发方式hover
+            if (this.trigger === 'hover') {
+                this.$nextTick(() => {
+                    const activeItem = this.$refs.activeItem;
+
+                    if (activeItem) {
+                        // 获取激活的ul选项
+                        const activeMenu = activeItem.parentElement;
+                        const hoverZone = this.$refs.hoverZone;
+
+                        // 是否激活
+                        this.hoverMenuMessage = {
+                            activeItem,
+                            activeMenu,
+                            hoverZone
+                        }
+                    }
+                    else {
+                        this.hoverMenuMessage = {}
+                    }
+                });
+            }
+
+            // hover 事件
+            const hoverMenuHandler = (event) => {
+                const activeMenu = this.hoverMenuMessage.activeMenu;
+
+                // 是否有激活菜单
+                if (!activeMenu) {
+                    return;
+                }
+
+                const offsetX = event.offsetX;
+                const width = activeMenu.offsetWidth;
+                const height = activeMenu.offsetHeight;
+
+                // 当前移动的位置是否是激活选项
+                if (event.target === this.hoverMenuMessage.activeItem) {
+                    clearTimeout(this.hoverTimer);
+
+                    const { activeItem } = this.hoverMenuMessage;
+                    const offsetYTop = activeItem.offsetTop;
+                    const offsetYBottom = offsetYTop + activeItem.offsetHeight;
+
+                    // 设置 hover 蒙层位置
+                    this.hoverMenuMessage.hoverZone.innerHTML = `
+                        <path style="pointer-events: auto;" fill="transparent" d="M${offsetX} ${offsetYTop} L${width} 0 V${offsetYTop} Z" />
+                        <path style="pointer-events: auto;" fill="transparent" d="M${offsetX} ${offsetYBottom} L${width} ${height} V${offsetYBottom} Z" />
+                    `;
+                }
+                else {
+                    // 清除 hover 蒙层
+                    if (!this.hoverTimer) {
+                        this.hoverTimer = setTimeout(() => {
+                            this.hoverMenuMessage.hoverZone.innerHTML = '';
+                        }, this.hoverThreshold);
+                    }
+                }
+            };
 
             /**
              * renderList
@@ -216,11 +313,15 @@ export default {
                 index?: number
              */
             const menus = this._l(activeOptions, (menu, menuIndex) => {
-                const menuId = `menu-${this.id}-${menuIndex}`;
+                const menuId = `menu-${id}-${menuIndex}`;
 
                 // 循环选项
                 const items = this._l(menu, (item, itemIndex) => {
-                    const ownsId = `menu-item-${this.id}-${itemIndex + 1}`;
+                    // 没有子选项不设置id
+                    if (!item.disabled && !item.children) {
+                        itemId = `menu-item-${id}-${itemIndex++}`;
+                    }
+
                     const events = {
                         on: {}
                     };
@@ -245,6 +346,8 @@ export default {
 
                             // 下一个index
                             let nextIndex;
+                            // 下一个菜单
+                            let nextMenu;
 
                             if ([38, 40].indexOf(keyCode) > -1) {
                                 if (keyCode === 38) {
@@ -258,8 +361,37 @@ export default {
                                 // 选项获取焦点
                                 menuItemList[nextIndex].focus();
                             }
+                            // left键
+                            else if (keyCode === 37) {
+                                if (menuIndex !== 0) {
+                                    const leftMenu = this.$refs.menus.childNodes[menuIndex - 1];
+                                    leftMenu.querySelector('[is-expanded=true]').focus();
+                                }
+                            }
+                            // right键
+                            else if (keyCode === 39) {
+                                // 如果有子项选择第一个选项
+                                if (item.children) {
+                                    nextMenu = this.$refs.menus.childNodes[menuIndex + 1];
+                                    nextMenu.querySelectorAll("[tabindex='-1']")[0].focus();
+                                }
+                            }
+                            // enter键
+                            else if (keyCode === 13) {
+                                if (!item.children) {
+                                    this.select(item, menuIndex);
+                                    this.$nextTick(() => {
+                                        this.scrollMenu(this.$refs.menus.childNodes[menuIndex])
+                                    });
+                                }
+                            }
+                            // esc键 tab键
+                            else if (keyCode === 9 || keyCode === 27) {
+                                this.$emit('close-menu');
+                            }
                         };
 
+                        // 判断是否有子项
                         if (item.children) {
                             let triggerEvent = {
                                 click: 'click',
@@ -281,8 +413,16 @@ export default {
                             // 注册点击事件
                             events.on[triggerEvent] = triggerHandler;
 
+                            events.on['mousedown'] = () => {
+                                this.clicking = true;
+                            };
                             // focus 选中
                             events.on['focus'] = () => {
+                                if (this.clicking) {
+                                    this.clicking = false;
+                                    return;
+                                }
+
                                 triggerHandler();
                             };
                         }
@@ -303,36 +443,72 @@ export default {
                         attrs: {
                             role: 'menu-item',
                             tabindex: item.disabled ? null : -1,
-                            id: ownsId
+                            id: itemId,
+                            // 是否可扩展
+                            'is-expanded': item.value === activeValue[menuIndex]
                         },
                         class: [
                             {
                                 [`${prefixCls}--item`]: true,
                                 // 是否激活
                                 'is-active': item.value === activeValue[menuIndex],
+                                'is-disabled': item.disabled
                             },
                             // 判断是否有扩展图标
                             this.extensibleClass(item)
                         ],
                         ...events,
-                        key: ownsId
+                        key: itemId,
+                        ref: item.value === activeValue[menuIndex] ? 'activeItem' : null
                     }, [
                             this.$createElement('span', item.label),
                             item.children ? this.$createElement(IvueIcon, 'keyboard_arrow_right') : null
                         ]);
                 });
 
+                // 是否 hover 显示菜单
+                const isHoveredMenu = trigger === 'hover' && activeValue.length - 1 === menuIndex;
+                const hoverMenuEvent = {
+                    on: {
+                    }
+                }
+
+                // 菜单样式
+                let menuStyle = {};
+
+                if (isHoveredMenu) {
+                    // 鼠标移动事件
+                    hoverMenuEvent.on.mousemove = hoverMenuHandler;
+                    // 设置菜单样式
+                    menuStyle.position = 'relative';
+                }
 
                 return this.$createElement('ul', {
                     class: [
                         this.prefixCls
                     ],
+                    style: menuStyle,
                     attrs: {
                         role: 'menu',
                         id: menuId
                     },
                     key: menuId,
-                }, items);
+                    ...hoverMenuEvent
+                }, [
+                        items,
+                        // 设置 hover 移动蒙层
+                        isHoveredMenu ? this.$createElement('svg', {
+                            style: {
+                                position: 'absolute',
+                                top: 0,
+                                height: '100%',
+                                width: '100%',
+                                left: 0,
+                                pointerEvents: 'none'
+                            },
+                            ref: 'hoverZone'
+                        }) : null
+                    ]);
             });
 
             return menus

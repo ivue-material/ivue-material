@@ -1,6 +1,15 @@
 <template>
     <div>
+        <p>click</p>
         <IvueCascader :options="options"></IvueCascader>
+        <p>hover</p>
+        <IvueCascader
+            trigger="hover"
+            :options="options"
+            @active-item-change="handleActiveItemChange"
+        ></IvueCascader>
+        <p>changeOnSelect</p>
+        <IvueCascader :options="options" changeOnSelect></IvueCascader>
     </div>
 </template>
 
@@ -16,7 +25,8 @@ export default {
                     label: '设计原则',
                     children: [{
                         value: 'yizhi',
-                        label: '一致'
+                        label: '一致',
+                        disabled: true,
                     }, {
                         value: 'fankui',
                         label: '反馈'
@@ -203,6 +213,11 @@ export default {
                     label: '组件交互文档'
                 }]
             }],
+        }
+    },
+    methods: {
+        handleActiveItemChange (value) {
+            console.log(value)
         }
     }
 

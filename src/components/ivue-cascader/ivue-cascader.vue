@@ -65,6 +65,32 @@ export default {
         separator: {
             type: String,
             default: '/'
+        },
+        /**
+         * 选择触发类型
+         *
+         * @type {String}
+         */
+        trigger: {
+            type: String,
+            default: 'click'
+        },
+        /**
+         * hover 悬停时间
+         *
+         * @type {Number}
+         */
+        hoverThreshold: {
+            type: Number,
+            default: 500
+        },
+        /**
+         * 是否允许选择任意一级的选项
+         *
+         * @type {Boolean}
+         */
+        changeOnSelect: {
+            type: Boolean
         }
     },
     data () {
@@ -81,7 +107,7 @@ export default {
              *
              * @type {String}
              */
-            selectValue: '',
+            inputValue: '',
             /**
             * 是否显示菜单
             *
@@ -95,8 +121,6 @@ export default {
              */
             menuFocus: false,
         }
-    },
-    mounted () {
     },
     computed: {
         classes () {
@@ -137,7 +161,7 @@ export default {
                 props: {
                     readonly: 'readonly',
                     placeholder: this.currentlabels.length > 0 ? '' : '请选择',
-                    value: this.selectValue
+                    value: this.inputValue
                 },
                 ref: 'input'
             }, [
@@ -151,13 +175,19 @@ export default {
         },
         // 渲染 label
         genLabel () {
-            const { currentlabels, separator } = this;
+            const { currentlabels, separator, inputValue } = this;
             const label = this._l(currentlabels, (label, index) => {
                 return [label, index < currentlabels.length - 1 ? this.$createElement('span', ` ${separator} `) : null];
             });
 
             return this.$createElement('span', {
-                class: `${prefixCls}-label`
+                class: `${prefixCls}-label`,
+                directives: [
+                    {
+                        name: 'show',
+                        value: inputValue === ''
+                    }
+                ],
             }, [label]);
         },
         genCascader () {
@@ -175,15 +205,15 @@ export default {
                     options: this.options,
                     props: this.props,
                     visible: this.visibleMenu,
-                    value: this.currentValue.slice(0)
+                    value: this.currentValue.slice(0),
+                    trigger: this.trigger,
+                    hoverThreshold: this.hoverThreshold,
+                    changeOnSelect: this.changeOnSelect
                 },
                 on: {
-                    'select': this.handlePick,
-                    'focus': () => {
-                        console.log('??')
-
-                        return true
-                    }
+                    'select': this.handleSelect,
+                    'close-menu': this.onClickOutside,
+                    'active-item-change': this.handleActiveItemChange
                 },
                 directives: [
                     {
@@ -205,34 +235,32 @@ export default {
 
             // 确认按钮
             if (keyCode === 13) {
+                // 判断菜单是否已经获取焦点
+                if (this.menuFocus) {
+                    return;
+                }
                 this.handleClick();
             }
             // 方向键 down
             else if (keyCode === 40) {
+
                 // 展开菜单
                 this.visibleMenu = true;
-
-                // // 选择第一个菜单选项
-                setTimeout(() => {
-                    const firstMenu = this.$refs.menus.$el.querySelectorAll('.ivue-cascader-menu')[0];
-
-                    console.log(document.activeElement)
-                    // 判断获取焦点
-                    // if (document.activeElement.getAttribute('tabindex') === '-1') {
-                    //     return;
-                    // }
-
-                    firstMenu.querySelectorAll("[tabindex='-1']")[0].focus();
-                })
+                // 菜单获取焦点
+                this.menuFocus = true;
 
                 // 阻止 事件冒泡
                 event.stopPropagation();
                 // 阻止该元素默认的 keyup 事件
                 event.preventDefault();
-                return
             }
-            console.log('??')
-
+            // esc键  tab键
+            else if (keyCode === 27 || keyCode === 9) {
+                this.inputValue = '';
+                if (this.visibleMenu) {
+                    this.visibleMenu = false;
+                }
+            }
         },
         // 点击输入框
         handleClick () {
@@ -242,19 +270,38 @@ export default {
             this.visibleMenu = !this.visibleMenu;
         },
         // 菜单点击的选择
-        handlePick (value, close = true) {
+        handleSelect (value, close = true) {
             this.currentValue = value;
 
             if (close) {
                 // 点击选择完后隐藏菜单
                 this.visibleMenu = false;
             }
+        },
+        // 菜单激活选项改变
+        handleActiveItemChange (value) {
+            this.$emit('active-item-change', value);
         }
     },
     components: {
         IvueInput,
         IvueIcon,
         IvueCascaderMenu
+    },
+    watch: {
+        // 设置菜单是否获取焦点
+        menuFocus (focus) {
+            if (focus) {
+                const firstMenu = this.$refs.menus.$el.querySelectorAll('.ivue-cascader-menu')[0];
+                firstMenu.querySelectorAll("[tabindex='-1']")[0].focus();
+            }
+        },
+        // 监听菜单显示隐藏
+        visibleMenu (visible) {
+            if (!visible) {
+                this.menuFocus = false;
+            }
+        }
     },
     render (h) {
         return h('div', {
@@ -267,7 +314,7 @@ export default {
                     name: 'click-outside',
                     value: this.onClickOutside
                 }
-            ]
+            ],
         },
             [
                 this.genCascader(),

@@ -7,7 +7,7 @@ $input: 'ivue-input';
     /* 输入框 */
     &-selection-default {
         width: 100%;
-        border: 1px solid #dcdee2;
+        border: 1px solid $border-color;
         .#{$input}-wrapper {
             height: $input-height-base;
             .#{$input} {
@@ -18,6 +18,9 @@ $input: 'ivue-input';
             .ivue-icon {
                 height: 100%;
                 transition: all .2s ease-in-out;
+            }
+            .ivue-input-suffix {
+                z-index: 0;
             }
         }
         &:hover {
@@ -31,7 +34,7 @@ $input: 'ivue-input';
         outline: none;
         user-select: none;
         border-radius: $border-radius-small;
-        background-color: #fff;
+        background-color: $white-color;
         min-height: 32px;
         cursor: pointer;
         transition: all .2s ease-in-out;
@@ -55,7 +58,7 @@ $input: 'ivue-input';
         top: 0;
         height: 100%;
         padding: 0 32px 0 7px;
-        color: #606266;
+        color: $label-color;
         line-height: $input-height-base;
         width: 100%;
         white-space: nowrap;
@@ -77,10 +80,10 @@ $input: 'ivue-input';
         margin: 5px 0;
         white-space: nowrap;
         z-index: 2;
-        border: 1px solid #e4e7ed;
+        border: 1px solid $border-multiple-color;
         border-radius: 2px;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-        background: #fff;
+        background: $white-color;
         /* 箭头 */
         &-popper {
             margin-top: 12px;
@@ -101,7 +104,7 @@ $input: 'ivue-input';
                 width: 0px;
                 height: 0px;
                 border-top-width: 0px;
-                border-bottom-color: #ebeef5;
+                border-bottom-color: $popper-color;
                 filter: drop-shadow(rgba(0, 0, 0, 0.03) 0px 2px 12px);
             }
             .popper-arrow::after {
@@ -110,7 +113,7 @@ $input: 'ivue-input';
                 top: 1px;
                 margin-left: -6px;
                 border-top-width: 0;
-                border-bottom-color: #fff;
+                border-bottom-color: $white-color;
             }
         }
     }
@@ -119,8 +122,8 @@ $input: 'ivue-input';
         vertical-align: top;
         height: 204px;
         overflow: auto;
-        border-right: 1px solid #e4e7ed;
-        background-color: #fff;
+        border-right: 1px solid $border-color;
+        background-color: $white-color;
         box-sizing: border-box;
         margin: 0;
         padding: 6px 0;
@@ -141,6 +144,7 @@ $input: 'ivue-input';
             box-sizing: border-box;
             cursor: pointer;
             outline: none;
+            &:focus:not(:active),
             &:hover {
                 background-color: #f5f7fa;
             }
@@ -152,14 +156,19 @@ $input: 'ivue-input';
                     right: 15px;
                     height: 100%;
                     font-size: 18px;
-                    color: #bfcbd9;
+                    color: $extensible-color;
                 }
             }
         }
         /* 是否激活 */
         .is-active {
             color: $primary-color;
-            background-color: #f5f7fa;
+        }
+        /* 是否禁用 */
+        .is-disabled {
+            color: $disabled-color;
+            background-color: $white-color;
+            cursor: not-allowed;
         }
     }
 }
