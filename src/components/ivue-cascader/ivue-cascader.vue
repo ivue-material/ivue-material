@@ -1,9 +1,13 @@
 <script>
+// 函数去抖
+import debounce from 'lodash.debounce';
+// 注册外部点击事件插件
+import { directive as clickOutside } from '../../utils/click-outside';
+import { isIE, isEdge, escapeRegexpString } from '../../utils/helpers';
+
 import IvueCascaderMenu from './ivue-cascader-menu'
 import IvueInput from '../ivue-input'
 import IvueIcon from '../ivue-icon'
-// 注册外部点击事件插件
-import { directive as clickOutside } from '../../utils/click-outside';
 
 const prefixCls = 'ivue-cascader';
 
@@ -22,13 +26,23 @@ export default {
             default: 'keyboard_arrow_down'
         },
         /**
+         * 子选项图标
+         *
+         * @type {String}
+         */
+        childrenIcon: {
+            type: String,
+            default: 'keyboard_arrow_right'
+        },
+        /**
          * 可选项数据源
          *
          * @type {Array}
          */
         options: {
             type: Array,
-            required: true
+            required: true,
+            default: []
         },
         /**
          * 配置选项
@@ -91,6 +105,51 @@ export default {
          */
         changeOnSelect: {
             type: Boolean
+        },
+        /*
+        * 开启过滤筛选
+        *
+        * @type{Boolean}
+        */
+        filterable: {
+            type: Boolean,
+            default: false
+        },
+        /**
+         * 去抖延迟时间
+         *
+         * @type {Number}
+         */
+        debounce: {
+            type: Number,
+            default: 300
+        },
+        /**
+         * 没有搜索到数据时显示的提示
+         *
+         * @type {String}
+         */
+        noDataPlaceholder: {
+            type: String,
+            default: '无匹配数据'
+        },
+        /**
+         * 输入框 input placeholder
+         *
+         * @type {String}
+         */
+        placeholder: {
+            type: String,
+            default: '请选择'
+        },
+        /**
+        * 是否加载中
+        *
+        * @type {Boolean}
+        */
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data () {
@@ -120,9 +179,69 @@ export default {
              * @type {Boolean}
              */
             menuFocus: false,
+            /**
+             * 扁平化选项
+             *
+             * @type {Array}
+             */
+            flatOptions: null,
+            /**
+             * 输入框去抖
+             *
+             * @type {Function}
+             */
+            debouncedInputChange () { },
+            /**
+             * 深度观察的数据选项
+             *
+             * @type {Array}
+             */
+            deepOptions: null,
+            /**
+             * 过滤到的选项
+             *
+             * @type {Array}
+             */
+            filteredFlatOptions: null,
+            /**
+             * input 输入框宽度
+             *
+             * @type {Number}
+             */
+            inputWidth: 0
+        }
+    },
+    created () {
+        // 创建输入框去抖函数
+        this.debouncedInputChange = debounce((value) => {
+
+            // 输入框数据改变
+            this.$nextTick(() => {
+                this.handleInputChange(value);
+            });
+
+        }, this.debounce);
+
+    },
+    mounted () {
+        // 是否开启过滤
+        if (this.filterable) {
+            this.flatOptions = this.flattenOptions(this.options);
         }
     },
     computed: {
+        labelKey () {
+            return this.props.label || 'label';
+        },
+        valueKey () {
+            return this.props.value || 'value';
+        },
+        childrenKey () {
+            return this.props.children || 'children';
+        },
+        disabledKey () {
+            return this.props.disabled || 'disabled';
+        },
         classes () {
             return [
                 `${prefixCls}`,
@@ -139,29 +258,42 @@ export default {
         },
         // 获取当前选择的 labels
         currentlabels () {
+            const { valueKey, labelKey, childrenKey } = this;
+
             let options = this.options;
             let labels = [];
 
             this.currentValue.forEach((value) => {
                 // 获取当前的选项
-                const targetOption = options && options.filter((option) => option[this.props.value] === value)[0];
+                const targetOption = options && options.filter((option) => option[valueKey] === value || option[labelKey] === value)[0];
                 if (targetOption) {
-                    labels.push(targetOption[this.props.label]);
-                    options = targetOption[this.props.children];
+                    // 当前的 label
+                    labels.push(targetOption[labelKey]);
+
+                    // 当前的选项 option
+                    options = targetOption[childrenKey];
                 }
             });
 
-            return labels
+            return labels;
+        },
+        // 输入框只读
+        readonly () {
+            return !this.filterable || (!isIE() && !isEdge() && !this.visibleMenu);
         }
     },
     methods: {
         // 渲染输入框
         genInput () {
+            const { readonly, currentlabels, inputValue, inputChange, arrowDownIcon, placeholder } = this;
             return this.$createElement(IvueInput, {
                 props: {
-                    readonly: 'readonly',
-                    placeholder: this.currentlabels.length > 0 ? '' : '请选择',
-                    value: this.inputValue
+                    readonly: readonly,
+                    placeholder: currentlabels.length > 0 ? '' : placeholder,
+                    value: inputValue
+                },
+                on: {
+                    'input': inputChange
                 },
                 ref: 'input'
             }, [
@@ -170,12 +302,20 @@ export default {
                             [`${prefixCls}-arrow`]: true,
                         },
                         slot: 'suffix',
-                    }, this.arrowDownIcon)
+                    }, arrowDownIcon)
                 ]);
         },
         // 渲染 label
         genLabel () {
             const { currentlabels, separator, inputValue } = this;
+
+            /**
+             * renderList 循环遍历
+             * Runtime helper for rendering v-for lists.
+             *  val: any,
+                keyOrIndex: string | number,
+                index?: number
+             */
             const label = this._l(currentlabels, (label, index) => {
                 return [label, index < currentlabels.length - 1 ? this.$createElement('span', ` ${separator} `) : null];
             });
@@ -191,34 +331,57 @@ export default {
             }, [label]);
         },
         genCascader () {
+            const { cascaderClasses, handleClick, genInput, genLabel } = this;
+
             return this.$createElement('div', {
-                class: this.cascaderClasses,
+                class: cascaderClasses,
                 on: {
-                    click: this.handleClick
+                    click: handleClick
                 },
-            }, [this.genInput(), this.genLabel()]);
+            }, [genInput(), genLabel()]);
         },
         // 渲染菜单
         genMenu () {
+            const {
+                filteredFlatOptions,
+                deepOptions,
+                options,
+                props,
+                visibleMenu,
+                currentValue,
+                trigger,
+                hoverThreshold,
+                changeOnSelect,
+                handleSelect,
+                onClickOutside,
+                handleActiveItemChange,
+                inputWidth,
+                childrenIcon,
+                loading
+            } = this;
+
             return this.$createElement(IvueCascaderMenu, {
                 props: {
-                    options: this.options,
-                    props: this.props,
-                    visible: this.visibleMenu,
-                    value: this.currentValue.slice(0),
-                    trigger: this.trigger,
-                    hoverThreshold: this.hoverThreshold,
-                    changeOnSelect: this.changeOnSelect
+                    options: filteredFlatOptions || deepOptions || options,
+                    props: props,
+                    visible: visibleMenu,
+                    value: currentValue.slice(0),
+                    trigger: trigger,
+                    hoverThreshold: hoverThreshold,
+                    changeOnSelect: changeOnSelect,
+                    inputWidth: inputWidth,
+                    childrenIcon: childrenIcon,
+                    loading: loading
                 },
                 on: {
-                    'select': this.handleSelect,
-                    'close-menu': this.onClickOutside,
-                    'active-item-change': this.handleActiveItemChange
+                    'select': handleSelect,
+                    'close-menu': onClickOutside,
+                    'active-item-change': handleActiveItemChange
                 },
                 directives: [
                     {
                         name: 'show',
-                        value: this.visibleMenu
+                        value: visibleMenu
                     }
                 ],
                 ref: 'menus'
@@ -256,7 +419,10 @@ export default {
             }
             // esc键  tab键
             else if (keyCode === 27 || keyCode === 9) {
+                // 清除输入框内容
                 this.inputValue = '';
+
+                // 隐藏菜单
                 if (this.visibleMenu) {
                     this.visibleMenu = false;
                 }
@@ -265,7 +431,13 @@ export default {
         // 点击输入框
         handleClick () {
             // 输入框获取焦点
-            this.$refs.input.$refs.input.focus()
+            this.$refs.input.$refs.input.focus();
+
+            // 开启过滤不隐藏菜单
+            if (this.filterable) {
+                this.visibleMenu = true;
+                return;
+            }
 
             this.visibleMenu = !this.visibleMenu;
         },
@@ -281,6 +453,128 @@ export default {
         // 菜单激活选项改变
         handleActiveItemChange (value) {
             this.$emit('active-item-change', value);
+        },
+        // 输入框输入
+        inputChange (value) {
+            this.inputValue = value;
+
+            // 执行输入框去抖函数
+            this.debouncedInputChange(value);
+        },
+        // 输入框数据改变
+        handleInputChange (value) {
+            const { visibleMenu, valueKey, labelKey, disabledKey, filteredOptionLabel, noDataPlaceholder } = this;
+
+            if (!visibleMenu) {
+                return;
+            }
+            const flatOptions = this.flatOptions;
+            let filteredFlatOptions;
+
+            if (!value) {
+                this.filteredFlatOptions = null;
+                return;
+            }
+
+            // 过滤选项
+            filteredFlatOptions = flatOptions.filter((optionStack) => {
+                // 检测数组中的元素是否满足指定条件
+                return optionStack.some((option) => new RegExp(escapeRegexpString(value), 'i')
+                    // 检测输入的 value 是否匹配当前选项的 key
+                    .test(option[this.labelKey])
+                );
+            });
+
+            // 是否找到选项
+            if (filteredFlatOptions.length > 0) {
+                // 返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值
+                filteredFlatOptions = filteredFlatOptions.map((optionStack) => {
+                    return {
+                        __IS__FLAT__OPTIONS: true,
+                        value: optionStack.map((item) => item[valueKey]),
+                        label: filteredOptionLabel(value, optionStack),
+                        disabled: optionStack.some((item) => item[disabledKey]),
+                    }
+                });
+            }
+            else {
+                filteredFlatOptions = [{
+                    __IS__FLAT__OPTIONS: true,
+                    label: noDataPlaceholder,
+                    value: '',
+                    disabled: true
+                }];
+            }
+
+            this.filteredFlatOptions = filteredFlatOptions;
+        },
+        // 扁平化选项数据
+        flattenOptions (options, ancestor = []) {
+            const { childrenKey } = this;
+            let flatOptions = [];
+
+            // 遍历选项数据
+            options.forEach((option) => {
+                // 创建栈
+                const optionsStack = ancestor.concat(option);
+
+                /**
+                 * 判断是否有子选项
+                 * 数据结构为一下
+                 *
+                 * [1,1,1]
+                 * [1,1,2]
+                 * [1,1,3]
+                 * [1,2,1]
+                 * [1,2,2]
+                 * [2,1,1]
+                 * [2,1,2]
+                 * ......
+                 */
+                if (!option[childrenKey]) {
+                    flatOptions.push(optionsStack)
+                }
+                else {
+                    // 是否允许选择任意一级的选项
+                    if (this.changeOnSelect) {
+                        flatOptions.push(optionsStack)
+                    }
+
+                    // 递归调用遍历子选项 入栈
+                    flatOptions = flatOptions.concat(this.flattenOptions(option[childrenKey], optionsStack));
+                }
+            });
+
+            return flatOptions;
+        },
+        // 设置过滤后的选项的 label
+        filteredOptionLabel (inputValue, optionsStack) {
+            const { labelKey, highlightKeyword, separator } = this;
+
+            // 返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值
+            return optionsStack.map((option, index) => {
+                // label
+                const label = option[labelKey];
+                // 索引 转换小写
+                const keywordIndex = label.toLowerCase().indexOf(inputValue.toLowerCase());
+                // 截取输入的文字在label中的位置然后高亮
+                const labelPart = label.slice(keywordIndex, inputValue.length + keywordIndex);
+                // 渲染节点
+                const node = keywordIndex > -1 ? highlightKeyword(label, labelPart) : label;
+
+                return index === 0 ? node : [` ${separator} `, node]
+            });
+        },
+        // 高亮文字
+        highlightKeyword (label, keyword) {
+            return label.split(keyword).map((key, index) => index === 0 ? key : [
+                // 渲染高亮
+                this.$createElement('span',
+                    { class: { [`${prefixCls}-menu--item---keyword`]: true } },
+                    //  text to VNode
+                    [this._v(keyword)]),
+                key
+            ]);
         }
     },
     components: {
@@ -298,8 +592,33 @@ export default {
         },
         // 监听菜单显示隐藏
         visibleMenu (visible) {
+            // 隐藏
             if (!visible) {
+                // 菜单失去焦点
                 this.menuFocus = false;
+                // 清除输入框内容
+                this.inputValue = '';
+            }
+            else {
+                // 获取输入框宽度
+                this.inputWidth = this.$refs.input.$el.offsetWidth;
+                this.filteredFlatOptions = null;
+            }
+
+            // 发送菜单隐藏显示事件
+            this.$emit('visible-change', visible);
+        },
+        // 监听选项数据变化
+        options: {
+            // 深度观察
+            deep: true,
+            handler (value) {
+                // 是否开启过滤
+                if (this.filterable) {
+                    this.flatOptions = this.flattenOptions(this.options);
+                }
+
+                this.deepOptions = value;
             }
         }
     },

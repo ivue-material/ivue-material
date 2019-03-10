@@ -375,7 +375,7 @@ import CreateNativeLocaleFormatter from '../../utils/CreateNativeLocaleFormatter
 import Pad from '../../utils/Pad';
 import MonthChange from '../../utils/MonthChange';
 import Colorable from '../../utils/mixins/Colorable';
-import { createRange } from '../../utils/Helpers';
+import { createRange } from '../../utils/helpers';
 &nbsp;
 const prefixCls = 'ivue-date-picker-date';
 &nbsp;
@@ -466,7 +466,7 @@ export default {
           this.isNote(date) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.genNote(date) </span>: null
         ]));
 &nbsp;
-        // 一行7个      
+        // 一行7个
         if (rows.length % 7 === 0) {
           children.push(this.genTR(rows));
 &nbsp;
@@ -530,7 +530,7 @@ export default {
       this.genTBody()
     ])
   }
-}     
+}
 &lt;/script&gt;
 &nbsp;</pre></td></tr>
 </table></pre>

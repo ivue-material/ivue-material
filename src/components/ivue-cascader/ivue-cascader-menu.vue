@@ -9,7 +9,7 @@ const prefixCls = 'ivue-cascader-menu';
 const copyArray = (arr, props) => {
     if (!arr || !Array.isArray(arr) || !props) return arr;
 
-    const configurableProps = ['label', 'value', 'disabled'];
+    const configurableProps = ['__IS__FLAT__OPTIONS', 'label', 'value', 'disabled'];
     const result = [];
     const childrenProp = props.children || 'children';
 
@@ -29,8 +29,8 @@ const copyArray = (arr, props) => {
                 name = prop;
                 value = item[name];
             }
-            if (value !== undefined) itemCopy[name] = value;
 
+            if (value !== undefined) itemCopy[name] = value;
         });
 
         // 递归遍历
@@ -53,7 +53,8 @@ export default {
           */
         options: {
             type: Array,
-            required: true
+            required: true,
+            default: []
         },
         /**
          * 配置项
@@ -115,6 +116,33 @@ export default {
          */
         changeOnSelect: {
             type: Boolean
+        },
+        /**
+         * 输入框宽度
+         *
+         * @type {Number}
+         */
+        inputWidth: {
+            type: Number,
+            default: 0
+        },
+        /**
+         * 子选项图标
+         *
+         * @type {String}
+         */
+        childrenIcon: {
+            type: String,
+            default: 'keyboard_arrow_right'
+        },
+        /**
+         * 是否加载中
+         *
+         * @type {Boolean}
+         */
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data () {
@@ -151,6 +179,7 @@ export default {
             // 整理选项
             const formatOptions = (options) => {
                 options.forEach((option) => {
+                    // 是否是扁平化选项
                     if (option.__IS__FLAT__OPTIONS) return;
                     // 遍历4次
                     configurableProps.forEach((prop) => {
@@ -205,11 +234,15 @@ export default {
     methods: {
         // 选择选项
         select (item, menuIndex) {
-            if (menuIndex) {
-                this.activeValue.splice(menuIndex, this.activeValue.length - 1, item.value)
+            // 是否是过滤后的选项
+            if (item.__IS__FLAT__OPTIONS) {
+                this.activeValue = item.value || item.label;
+            }
+            else if (menuIndex) {
+                this.activeValue.splice(menuIndex, this.activeValue.length - 1, item.value || item.label)
             }
             else {
-                this.activeValue = [item.value];
+                this.activeValue = [item.value || item.label];
             }
 
             // 发送选择事件
@@ -219,7 +252,7 @@ export default {
         activeItem (item, menuIndex) {
             const length = this.activeOptions.length;
             // 设置激活的 value
-            this.activeValue.splice(menuIndex, length, item.value);
+            this.activeValue.splice(menuIndex, length, item.value || item.label);
             // 设置激活 value 的 children
             this.activeOptions.splice(menuIndex + 1, length, item.children);
 
@@ -241,7 +274,8 @@ export default {
         },
         // 渲染菜单
         genMenus () {
-            const { activeOptions, activeValue, trigger, id } = this;
+            const { activeOptions, activeValue, trigger, id, childrenIcon, loading } = this;
+
             let itemId = null;
             let itemIndex = 0;
 
@@ -313,6 +347,8 @@ export default {
                 index?: number
              */
             const menus = this._l(activeOptions, (menu, menuIndex) => {
+                let isFlat = false;
+
                 const menuId = `menu-${id}-${menuIndex}`;
 
                 // 循环选项
@@ -322,9 +358,15 @@ export default {
                         itemId = `menu-item-${id}-${itemIndex++}`;
                     }
 
+                    // 事件存储器
                     const events = {
                         on: {}
                     };
+
+                    // 是否是过滤后的选项
+                    if (item.__IS__FLAT__OPTIONS) {
+                        isFlat = true;
+                    }
 
                     if (!item.disabled) {
                         // 注册键盘事件
@@ -429,8 +471,10 @@ export default {
                         else {
                             // 注册点击事件
                             events.on.click = () => {
+                                // 点击选项
                                 this.select(item, menuIndex);
 
+                                // 滚动选项到视图可视区域
                                 this.$nextTick(() => {
                                     this.scrollMenu(this.$refs.menus.childNodes[menuIndex])
                                 });
@@ -438,20 +482,19 @@ export default {
                         }
                     }
 
-
                     return this.$createElement('li', {
                         attrs: {
                             role: 'menu-item',
                             tabindex: item.disabled ? null : -1,
                             id: itemId,
                             // 是否可扩展
-                            'is-expanded': item.value === activeValue[menuIndex]
+                            'is-expanded': (item.value || item.label) === activeValue[menuIndex]
                         },
                         class: [
                             {
                                 [`${prefixCls}--item`]: true,
                                 // 是否激活
-                                'is-active': item.value === activeValue[menuIndex],
+                                'is-active': (item.value || item.label) === activeValue[menuIndex],
                                 'is-disabled': item.disabled
                             },
                             // 判断是否有扩展图标
@@ -459,10 +502,12 @@ export default {
                         ],
                         ...events,
                         key: itemId,
-                        ref: item.value === activeValue[menuIndex] ? 'activeItem' : null
+                        // 是否是激活的选项
+                        ref: (item.value || item.label) === activeValue[menuIndex] ? 'activeItem' : null
                     }, [
                             this.$createElement('span', item.label),
-                            item.children ? this.$createElement(IvueIcon, 'keyboard_arrow_right') : null
+                            // 如果有子选项显示图标
+                            item.children ? this.$createElement(IvueIcon, childrenIcon) : null
                         ]);
                 });
 
@@ -475,6 +520,9 @@ export default {
 
                 // 菜单样式
                 let menuStyle = {};
+                if (isFlat) {
+                    menuStyle.minWidth = this.inputWidth + 'px';
+                }
 
                 if (isHoveredMenu) {
                     // 鼠标移动事件
@@ -483,10 +531,12 @@ export default {
                     menuStyle.position = 'relative';
                 }
 
+
                 return this.$createElement('ul', {
-                    class: [
-                        this.prefixCls
-                    ],
+                    class: {
+                        [prefixCls]: true,
+                        [`${prefixCls}--isFlat`]: isFlat
+                    },
                     style: menuStyle,
                     attrs: {
                         role: 'menu',
@@ -496,6 +546,8 @@ export default {
                     ...hoverMenuEvent
                 }, [
                         items,
+                        // loading 只显示在最后一个 ul
+                        loading && menuIndex === activeOptions.length - 1 ? this.$parent.$slots.loading : null,
                         // 设置 hover 移动蒙层
                         isHoveredMenu ? this.$createElement('svg', {
                             style: {
