@@ -26,6 +26,15 @@ export default {
             default: 'keyboard_arrow_down'
         },
         /**
+        * 清除按钮图标
+        *
+        * @type{Boolean}
+        */
+        clearableIcon: {
+            type: String,
+            default: 'cancel'
+        },
+        /**
          * 子选项图标
          *
          * @type {String}
@@ -150,6 +159,15 @@ export default {
         loading: {
             type: Boolean,
             default: false
+        },
+        /**
+         * 清除按钮
+         *
+         * @type {Boolean}
+         */
+        clearable: {
+            type: Boolean,
+            default: false
         }
     },
     data () {
@@ -208,7 +226,13 @@ export default {
              *
              * @type {Number}
              */
-            inputWidth: 0
+            inputWidth: 0,
+            /**
+             * 输入框 hover
+             *
+             * @type {Boolean}
+             */
+            inputHover: false
         }
     },
     created () {
@@ -285,7 +309,32 @@ export default {
     methods: {
         // 渲染输入框
         genInput () {
-            const { readonly, currentlabels, inputValue, inputChange, arrowDownIcon, placeholder } = this;
+            const {
+                readonly,
+                currentlabels,
+                inputValue,
+                inputChange,
+                arrowDownIcon,
+                placeholder,
+                clearableIcon,
+                inputHover,
+                clearable
+            } = this;
+
+            const _arrowDown = this.$createElement(IvueIcon, {
+                class: {
+                    [`${prefixCls}-arrow`]: true,
+                },
+                slot: 'suffix',
+            }, arrowDownIcon);
+
+            const _clearable = this.$createElement(IvueIcon, {
+                slot: 'suffix',
+                nativeOn: {
+                    'click': this.clearValue
+                }
+            }, clearableIcon);
+
             return this.$createElement(IvueInput, {
                 props: {
                     readonly: readonly,
@@ -297,12 +346,7 @@ export default {
                 },
                 ref: 'input'
             }, [
-                    this.$createElement(IvueIcon, {
-                        class: {
-                            [`${prefixCls}-arrow`]: true,
-                        },
-                        slot: 'suffix',
-                    }, arrowDownIcon)
+                    clearable && inputHover && currentlabels.length ? _clearable : _arrowDown
                 ]);
         },
         // 渲染 label
@@ -444,6 +488,8 @@ export default {
         // 菜单点击的选择
         handleSelect (value, close = true) {
             this.currentValue = value;
+            this.$emit('input', value);
+            this.$emit('change', value);
 
             if (close) {
                 // 点击选择完后隐藏菜单
@@ -575,7 +621,12 @@ export default {
                     [this._v(keyword)]),
                 key
             ]);
-        }
+        },
+        // 清除数据
+        clearValue (ev) {
+            ev.stopPropagation();
+            this.handleSelect([], true);
+        },
     },
     components: {
         IvueInput,
@@ -626,7 +677,19 @@ export default {
         return h('div', {
             class: this.classes,
             on: {
-                'keydown': this.handleKeydown
+                'keydown': this.handleKeydown,
+                'mouseenter': () => {
+                    this.inputHover = true;
+                },
+                'mouseleave': () => {
+                    this.inputHover = false;
+                },
+                'focus': () => {
+                    this.inputHover = true;
+                },
+                'blur': () => {
+                    this.inputHover = false;
+                }
             },
             directives: [
                 {

@@ -24,4 +24,5 @@ import "./components/IvueIcon.test";
 // import "./components/IvueBadge.test";
 // import "./components/IvueDatePicker/index";
 // import "./components/IVueVirtualCollection/index";
-import "./components/IVueCollapse.test";
+// import "./components/IVueCollapse.test";
+import "./components/IvueCascader.test";

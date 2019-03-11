@@ -19,9 +19,6 @@ $input: 'ivue-input';
                 height: 100%;
                 transition: all .2s ease-in-out;
             }
-            .ivue-input-suffix {
-                z-index: 0;
-            }
         }
         &:hover {
             border-color: transparentize($primary-color, 0.2);
