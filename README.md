@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://lovevuerk.com/" target="_blank">
-    <img width="100"src="https://github.com/qq282126990/ivue-ui/blob/master/logo.png">
+    <img width="100"src="https://lovevuerk.com/img/logo.png">
   </a>
 </p>
 
-## IVue     
+## IVue
 
 **<a href="https://lovevuerk.com/" target="_blank">https://lovevuerk.com/</a>**
 
@@ -13,9 +13,9 @@ iVue Created according to Google's **<a href="https://material.io/" target="_bla
 
 ## Browser Support
 
-IVue supports all **modern browsers**, including IE11 and Safari 9+ (using polyfills).        
-           
-IVue utilizes features of ES2015/2017 that require the need to use polyfills for Internet Explorer 11 and Safari 9/10. If you are using vue-cli-3, this is done automatically for you. Otherwise, in your project directory, you can install babel-polyfill:       
+IVue supports all **modern browsers**, including IE11 and Safari 9+ (using polyfills).
+
+IVue utilizes features of ES2015/2017 that require the need to use polyfills for Internet Explorer 11 and Safari 9/10. If you are using vue-cli-3, this is done automatically for you. Otherwise, in your project directory, you can install babel-polyfill:
 
 ```javascript
 // my-project/
@@ -53,8 +53,8 @@ Once installed, add the preset to your ```.babelrc``` or ```babel.config.js```
 module.exports = {
   presets: ['@babel/preset-env']
 }
-```       
-  
+```
+
 Unfortunately ```vue-cli-3``` doesn't automatically bring IE11 compatibility in which you may encounter various errors (such as Symbol is not defined). To assist in resolving these errors you may need to manually add ```transpileDependencies``` parameter in ```vue.config.js```
 
 ```
@@ -65,7 +65,7 @@ module.exports = {
 
 ## Installation
 
-Using npm:      
+Using npm:
 
 ```javascript
  npm install ivue-material --save
@@ -78,7 +78,7 @@ Using a script tag for global use:
 <script src="//unpkg.com/ivue-material/dist/ivue.min.js"></script>
 ```
 
-You can see the latest version resources at <a href="https://unpkg.com/ivue-material/" target="_blank">unpkg.com/ivue-material</a>           
+You can see the latest version resources at <a href="https://unpkg.com/ivue-material/" target="_blank">unpkg.com/ivue-material</a>
 
 ## Usage
 
