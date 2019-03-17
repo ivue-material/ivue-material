@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import IvueRipple from '../ivue-ripple/ivue-ripple';
-
 const prefixCls = 'ivue-select-group';
 
 export default {
@@ -21,7 +19,7 @@ export default {
       props: {
             /*
             * 选项grop标题
-            * 
+            *
             * @type {String}
             */
             label: {
@@ -56,9 +54,6 @@ export default {
                         this.hidden = showOption;
                   });
             }
-      },
-      components: {
-            IvueRipple
       }
 }
 </script>

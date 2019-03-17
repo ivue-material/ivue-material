@@ -3,8 +3,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div>
       <span>Flat</span>
-      <IvueButton flat @click="clickBtn">默认效果</IvueButton>
-      <IvueButton flat :ivue-ripple="false">波纹效果关闭</IvueButton>
+      <IvueButton flat @click="clickBtn" center>默认效果</IvueButton>
+      <IvueButton flat :ripple="false">波纹效果关闭</IvueButton>
       <IvueButton flat color="red-accent-4">Accent</IvueButton>
       <IvueButton flat color="blue">Primary</IvueButton>
       <IvueButton flat disabled>disabled</IvueButton>
@@ -12,7 +12,7 @@
     <div>
       <span>Raised</span>
       <IvueButton>默认效果</IvueButton>
-      <IvueButton :ivueRipple="false">波纹效果关闭</IvueButton>
+      <IvueButton :ripple="false">波纹效果关闭</IvueButton>
       <IvueButton color="blue">Primary</IvueButton>
       <IvueButton color="red-accent-4">Accent</IvueButton>
       <IvueButton disabled>disabled</IvueButton>

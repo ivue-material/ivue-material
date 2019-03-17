@@ -1,22 +1,22 @@
 <template>
-      <IvueRipple class="ivue-list-item-content" :ivueDisabled="ivueDisabled">
-            <slot></slot>
-      </IvueRipple>
+    <div class="ivue-list-item-content" v-ripple="!rippleDisabled">
+        <slot></slot>
+    </div>
 </template>
 
 <script>
-import IvueRipple from '../ivue-ripple/ivue-ripple';
+import ripple from '../../utils/directives/ripple';
 
 export default {
-      name: 'ivue-list-item-content',
-      props: {
-            ivueDisabled: {
-                  type: Boolean,
-                  default: false
-            }
-      },
-      components: {
-            IvueRipple
-      }
+    name: 'ivue-list-item-content',
+    directives: {
+        ripple
+    },
+    props: {
+        rippleDisabled: {
+            type: Boolean,
+            default: false
+        }
+    }
 }
 </script>

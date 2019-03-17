@@ -66,7 +66,7 @@ import IvueDropDown from './ivue-drop-down.vue';
 // 函数式组件用于提升渲染性能纯渲染组件
 import FunctionalOptions from './functional-options.vue';
 // 注册外部点击事件插件
-import { directive as clickOutside } from '../../utils/click-outside';
+import { directive as clickOutside } from '../../utils/directives/click-outside';
 
 const prefixCls = 'ivue-select';
 const optionRegexp = /^ivue-option$|^IvueOption$/i;
@@ -158,7 +158,7 @@ export default {
       props: {
             /*
             * 设置选择的值
-            * 
+            *
             * @type{String, Number, Array}
             */
             value: {
@@ -167,7 +167,7 @@ export default {
             },
             /*
             * 是否开启多选
-            * 
+            *
             * @type{Boolean}
             */
             multiple: {
@@ -176,7 +176,7 @@ export default {
             },
             /*
             * 是否将label和value一起返回
-            * 
+            *
             * @type{Boolean}
             */
             labelAndValue: {
@@ -185,7 +185,7 @@ export default {
             },
             /*
             * 没有找到数据时的提示
-            * 
+            *
             * @type{Boolean}
             */
             notFindText: {
@@ -194,7 +194,7 @@ export default {
             },
             /*
             * 开启过滤筛选
-            * 
+            *
             * @type{Boolean}
             */
             filterable: {
@@ -203,7 +203,7 @@ export default {
             },
             /*
             * 多项选择关闭图标
-            * 
+            *
             * @type{String}
             */
             multipleCloseIcon: {
@@ -212,7 +212,7 @@ export default {
             },
             /*
             * 重置选择图标
-            * 
+            *
             * @type{String}
             */
             resetSelectIcon: {
@@ -221,7 +221,7 @@ export default {
             },
             /*
             * 下拉图标
-            * 
+            *
             * @type{String}
             */
             arrowDownIcon: {
@@ -230,7 +230,7 @@ export default {
             },
             /*
             * 是否可以清除选择
-            * 
+            *
             * @type{Boolean}
             */
             clearable: {
@@ -239,7 +239,7 @@ export default {
             },
             /*
             * 是否禁用选择组件
-            * 
+            *
             * @type{Boolean}
             */
             disabled: {
@@ -248,7 +248,7 @@ export default {
             },
             /*
             * 输入提示
-            * 
+            *
             * @type {String}
             */
             placeholder: {
@@ -257,7 +257,7 @@ export default {
             },
             /*
             * 自动完成
-            * 
+            *
             * @type{Boolean}
             */
             autocomplete: {
@@ -266,7 +266,7 @@ export default {
             },
             /*
             * 搜索方法
-            * 
+            *
             * @type{Function}
             */
             searchMethod: {
@@ -278,7 +278,7 @@ export default {
                   prefixCls: prefixCls,
                   /*
                   * 最终渲染的数据
-                  * 
+                  *
                   * @type {Array}
                   */
                   values: [],
@@ -1012,7 +1012,7 @@ export default {
             },
             // 监听过滤输入框输入数据
             filterQuery (filterQuery) {
-                  // API 搜索词改变时触发 
+                  // API 搜索词改变时触发
                   this.$emit('on-filter-query-change', filterQuery);
 
                   const { searchMethod, lastSearchQuery, isSearchMethod } = this;

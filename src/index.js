@@ -26,6 +26,7 @@ import IvueDatePicker from './components/ivue-date-picker';
 import IvueVirtualCollection from './components/ivue-virtual-collection';
 import { IvueCollapse, IvueCollapsePanel } from './components/ivue-collapse';
 import IvueCascader from './components/ivue-cascader';
+import Directives from './utils/directives';
 
 const components = {
     IvueAffix,
@@ -71,7 +72,6 @@ const iVue = {
     'ivue-upload': IvueUpLoad
 };
 
-
 const install = function (Vue, opts = {}) {
     if (install.installed) return;
 
@@ -97,10 +97,16 @@ const install = function (Vue, opts = {}) {
         breakpointWidth: 800
     }
 
+    // 注册全局指令
+    // ripple resize touch click-outside
+    Object.keys(Directives).forEach(key => {
+        Vue.directive(key, Directives[key]);
+    })
 };
 
 
 // auto install
+/* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue);
 }
