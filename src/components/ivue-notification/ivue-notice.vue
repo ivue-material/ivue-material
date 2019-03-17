@@ -1,5 +1,5 @@
 <template>
-      <transition :name="transitionName">
+      <transition :name="transitionName" appear>
             <div :class="classes" :style="styles">
                   <template v-if="type === 'notice'">
                         <!-- 内容 -->
@@ -40,7 +40,7 @@ export default {
             },
             /*
             * 内容
-            * 
+            *
             * @type {String}
             */
             content: {
@@ -49,7 +49,7 @@ export default {
             },
             /*
             * 通知类型
-            * 
+            *
             * @type {String}
             */
             type: {
@@ -57,7 +57,7 @@ export default {
             },
             /*
             * 通知栏样式
-            * 
+            *
             * @type {String}
             */
             styles: {
@@ -68,7 +68,7 @@ export default {
             },
             /*
             * render 渲染函数
-            * 
+            *
             * @type {Function}
             */
             render: {
@@ -79,7 +79,7 @@ export default {
             },
             /*
             * 关闭方法
-            * 
+            *
             * @type {Function}
             */
             onClose: {
@@ -87,7 +87,7 @@ export default {
             },
             /*
             * 延迟关闭时间
-            * 
+            *
             * @type {Function}
             */
             duration: {
@@ -96,7 +96,7 @@ export default {
             },
             /*
             * 是否有关闭按钮
-            * 
+            *
             * @type {Function}
             */
             closable: {

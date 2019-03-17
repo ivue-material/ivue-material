@@ -24,7 +24,7 @@ export default {
       IvueList: {
         /*
         * 扩展列表
-        * 
+        *
         * @type {Array}
         */
         expandable: [],

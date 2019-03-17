@@ -3,201 +3,200 @@ $defailt-width: 44px;
 $defailt-after-width: 20px;
 $small-after-width: $defailt-after-width - 6;
 $large-after-width: $defailt-after-width+6;
-$large-height : ($defailt-after-width * 3 / 2);
-
+$large-height: ($defailt-after-width * 3 / 2);
 @mixin transition() {
-      transition: transform .2s ease-in-out 0s, width .25s ease-in-out 0s;
-      will-change: transform, width;
+    transition: transform .2s ease-in-out 0s, width .25s ease-in-out 0s;
+    will-change: transform, width;
 }
 
 .#{$name} {
-      position: relative;
-      display: inline-block;
-      width: $defailt-width;
-      height: $defailt-width / 2;
-      line-height: $defailt-after-width;
-      border-radius: 22px;
-      vertical-align: middle;
-      border: 1px solid #ccc;
-      background: #ccc;
-      cursor: pointer;
-      user-select: none;
-      outline: none;
-      transition: all .2s ease-in-out 0s;
-      will-change: all;
-      -webkit-tap-highlight-color: transparent;
-      &:focus {
-            box-shadow: 0 0 0 2px fade(currentColor, 20%);
-            outline: 0;
-      }
-      &:focus:hover {
-            box-shadow: none;
-      }
-      &:after {
-            content: '';
-            width: $defailt-after-width;
-            height: $defailt-after-width;
-            border-radius: $defailt-after-width;
-            background: #fff;
-            position: absolute;
-            cursor: pointer;
-            @include transition;
-      }
-      &:active:after {
-            width: 28px;
-            @include transition;
-      }
-      &:before {
-            content: '';
-            display: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: transparent;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            z-index: 1;
-            border: 1px solid currentColor;
-            border-color: transparent transparent transparent currentColor;
-            animation: switch-loading 1s linear;
-            animation-iteration-count: infinite;
-      }
-      /*内部文字样式*/
-      &-inner {
-            position: absolute;
-            height: 100%;
-            align-items: center;
-            display: flex;
-            color: #fff;
-            font-size: $font-small-size;
-            transform: translate3d(23px, 0, 0);
-            will-change: transform;
-            i {
-                  position: relative;
-                  top: -1px;
-                  width: 12px;
-                  height: 12px;
-                  text-align: center;
-            }
-      }
-      /*禁用*/
-      &-disabled {
+    position: relative;
+    display: inline-block;
+    width: $defailt-width;
+    height: $defailt-width / 2;
+    line-height: $defailt-after-width;
+    border-radius: 22px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    background: #ccc;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: all .2s ease-in-out 0s;
+    will-change: all;
+    -webkit-tap-highlight-color: transparent;
+    &:focus {
+        box-shadow: 0 0 0 2px fade(currentColor, 20%);
+        outline: 0;
+    }
+    &:focus:hover {
+        box-shadow: none;
+    }
+    &:after {
+        content: '';
+        width: $defailt-after-width;
+        height: $defailt-after-width;
+        border-radius: $defailt-after-width;
+        background: #fff;
+        position: absolute;
+        cursor: pointer;
+        @include transition;
+    }
+    &:active:after {
+        width: 28px;
+        @include transition;
+    }
+    &:before {
+        content: '';
+        display: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: transparent;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        z-index: 1;
+        border: 1px solid currentColor;
+        border-color: transparent transparent transparent currentColor;
+        animation: switch-loading 1s linear;
+        animation-iteration-count: infinite;
+    }
+    /*内部文字样式*/
+    &-inner {
+        position: absolute;
+        height: 100%;
+        align-items: center;
+        display: flex;
+        color: #fff;
+        font-size: $font-small-size;
+        transform: translate3d(23px, 0, 0);
+        will-change: transform;
+        i {
+            position: relative;
+            top: -1px;
+            width: 12px;
+            height: 12px;
+            text-align: center;
+        }
+    }
+    /*禁用*/
+    &-disabled {
+        cursor: $cursor-disabled;
+        border-color: #f3f3f3 !important;
+        background-color: #f3f3f3 !important;
+        &:after {
+            background: #ccc;
             cursor: $cursor-disabled;
-            border-color: #f3f3f3 !important;
-            background-color: #f3f3f3 !important;
-            &:after {
-                  background: #ccc;
-                  cursor: $cursor-disabled;
-            }
-            .#{$name}-inner {
-                  color: #ccc;
-            }
-      }
-      /*loading*/
-      &-loading {
-            opacity: .6;
-            &:before {
-                  display: block;
-            }
-            &:active:after {
-                  width: $defailt-after-width;
-                  transform: translate3d(22px, 0, 0) !important;
-            }
-            &.#{$name}-small:active:after {
-                  width: $small-after-width;
-                  transform: translate3d(12px, 0, 0) !important;
-            }
-            &.#{$name}-large:active:after {
-                  width: $large-after-width;
-                  transform: translate3d($large-height + 2, 0, 0) !important;
-            }
-      }
-      /*小*/
-      &-small {
-            width: 28px;
-            height: 16px;
-            line-height: $small-after-width;
-            &:after {
-                  width: $small-after-width;
-                  height: $small-after-width;
-            }
-            &:active:after {
-                  width: 16px;
-                  @include transition;
-            }
-            &:before {
-                  width: 10px;
-                  height: 10px;
-                  transform: translate3d(2px, 0, 0);
-            }
-            &.#{$name}-checked:after {
-                  transform: translate3d($small-after-width - 2, 0, 0);
-            }
-            &.#{$name}-checked:before {
-                  left: $small-after-width;
-                  width: 10px;
-                  height: 10px;
-            }
-      }
-      &-small:active {
-            &.#{$name}-checked:after {
-                  transform: translate3d(10px, 0, 0);
-            }
-      }
-      /*大*/
-      &-large {
-            width: $defailt-after-width * 3;
-            height: $large-height - 2;
-            &:active:after {
-                  width: 36px;
-                  @include transition;
-            }
-            &:after {
-                  width: $large-after-width;
-                  height: $large-after-width;
-            }
-            &.#{$name}-checked:after {
-                  transform: translate3d($large-height + 2, 0, 0);
-            }
-            &.#{$name}-checked:before {
-                  left: $large-height + 4;
-                  width: $large-after-width - 4;
-                  height: $large-after-width - 4;
-            }
-            .#{$name}-inner {
-                  transform: translate3d($large-after-width , 0, 0);
-            }
-      }
-      &-large:active {
-            &.#{$name}-checked:after {
-                  transform: translate3d($large-after-width - 4, 0, 0);
-            }
-      }
-      /*检查*/
-      &-checked {
-            border-color: currentColor;
-            background: currentColor;
-            .#{$name}-inner {
-                  transform: translate3d(7px, 0, 0);
-            }
-            &:after {
-                  transform: translate3d($defailt-after-width + 2, 0, 0);
-            }
-            &:before {
-                  left: 24px;
-            }
-            &:active:after {
-                  transform: translate3d(14px, 0, 0);
-            }
-      }
+        }
+        .#{$name}-inner {
+            color: #ccc;
+        }
+    }
+    /*loading*/
+    &-loading {
+        opacity: .6;
+        &:before {
+            display: block;
+        }
+        &:active:after {
+            width: $defailt-after-width;
+            transform: translate3d(22px, 0, 0) !important;
+        }
+        &.#{$name}-small:active:after {
+            width: $small-after-width;
+            transform: translate3d(12px, 0, 0) !important;
+        }
+        &.#{$name}-large:active:after {
+            width: $large-after-width;
+            transform: translate3d($large-height + 2, 0, 0) !important;
+        }
+    }
+    /*小*/
+    &-small {
+        width: 28px;
+        height: 16px;
+        line-height: $small-after-width;
+        &:after {
+            width: $small-after-width;
+            height: $small-after-width;
+        }
+        &:active:after {
+            width: 16px;
+            @include transition;
+        }
+        &:before {
+            width: 10px;
+            height: 10px;
+            transform: translate3d(2px, 0, 0);
+        }
+        &.#{$name}-checked:after {
+            transform: translate3d($small-after-width - 2, 0, 0);
+        }
+        &.#{$name}-checked:before {
+            left: $small-after-width;
+            width: 10px;
+            height: 10px;
+        }
+    }
+    &-small:active {
+        &.#{$name}-checked:after {
+            transform: translate3d(10px, 0, 0);
+        }
+    }
+    /*大*/
+    &-large {
+        width: $defailt-after-width * 3;
+        height: $large-height - 2;
+        &:active:after {
+            width: 36px;
+            @include transition;
+        }
+        &:after {
+            width: $large-after-width;
+            height: $large-after-width;
+        }
+        &.#{$name}-checked:after {
+            transform: translate3d($large-height + 2, 0, 0);
+        }
+        &.#{$name}-checked:before {
+            left: $large-height + 4;
+            width: $large-after-width - 4;
+            height: $large-after-width - 4;
+        }
+        .#{$name}-inner {
+            transform: translate3d($large-after-width, 0, 0);
+        }
+    }
+    &-large:active {
+        &.#{$name}-checked:after {
+            transform: translate3d($large-after-width - 4, 0, 0);
+        }
+    }
+    /*检查*/
+    &-checked {
+        border-color: currentColor;
+        background: currentColor;
+        .#{$name}-inner {
+            transform: translate3d(7px, 0, 0);
+        }
+        &:after {
+            transform: translate3d($defailt-after-width + 2, 0, 0);
+        }
+        &:before {
+            left: 24px;
+        }
+        &:active:after {
+            transform: translate3d(14px, 0, 0);
+        }
+    }
 }
 
 @keyframes switch-loading {
-      0% {
-            transform: rotate(0);
-      }
-      100% {
-            transform: rotate(360deg)
-      }
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg)
+    }
 }

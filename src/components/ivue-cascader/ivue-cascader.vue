@@ -2,7 +2,7 @@
 // 函数去抖
 import debounce from 'lodash.debounce';
 // 注册外部点击事件插件
-import { directive as clickOutside } from '../../utils/click-outside';
+import { directive as clickOutside } from '../../utils/directives/click-outside';
 import { isIE, isEdge, escapeRegexpString } from '../../utils/helpers';
 
 import IvueCascaderMenu from './ivue-cascader-menu'

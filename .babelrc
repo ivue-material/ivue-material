@@ -36,14 +36,7 @@
     "transform-es5-property-mutators",
     "transform-object-rest-spread",
     "transform-runtime",
-    "transform-vue-jsx",
-    [
-      "import",
-      {
-        "libraryName": "ivue",
-        "libraryDirectory": "src/components"
-      }
-    ]
+    "transform-vue-jsx"
   ],
   "comments": false
 }
