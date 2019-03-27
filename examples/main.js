@@ -9,9 +9,9 @@ Vue.use(IVue)
 Vue.config.productionTip = false;
 
 
-import "../dist/styles/elevation.css";
+// import "../dist/styles/elevation.css";
 import "../src/styles/index.scss";
-import 'ivue-material/dist/styles/color.css';
+
 
 /* eslint-disable no-new */
 new Vue({
