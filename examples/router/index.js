@@ -26,6 +26,7 @@ import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/IvueCollapse';
 import IvueCascader from '../components/ivueCascader';
+import IvueTouch from '../components/ivueTouch'
 
 Vue.use(Router);
 
@@ -160,6 +161,11 @@ export default new Router({
         path: '/IvueCascader',
         name: 'IvueCascader',
         component: IvueCascader
+    },
+    {
+      path:'/IvueTouch',
+      name:'IvueTouch',
+      component:IvueTouch
     }
   ]
 });
