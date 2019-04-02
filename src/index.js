@@ -26,6 +26,7 @@ import IvueDatePicker from './components/ivue-date-picker';
 import IvueVirtualCollection from './components/ivue-virtual-collection';
 import { IvueCollapse, IvueCollapsePanel } from './components/ivue-collapse';
 import IvueCascader from './components/ivue-cascader';
+import IvueTooltip from './components/ivue-tooltip';
 import Directives from './utils/directives';
 
 const components = {
@@ -64,7 +65,8 @@ const components = {
     IvueVirtualCollection,
     IvueCollapse,
     IvueCollapsePanel,
-    IvueCascader
+    IvueCascader,
+    IvueTooltip
 };
 
 const iVue = {

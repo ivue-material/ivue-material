@@ -24,8 +24,10 @@ import IvueLoadingBar from '../components/iVueLoadingBar';
 import IvueBadge from '../components/ivueBadge';
 import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
-import IvueCollapse from '../components/IvueCollapse';
-import IvueCascader from '../components/ivueCascader';
+import IvueCollapse from '../components/ivueCollapse';
+import IvueCascader from '../components/IvueCascader';
+import IvueTooltip from '../components/ivueTooltip';
+
 
 Vue.use(Router);
 
@@ -160,6 +162,11 @@ export default new Router({
         path: '/IvueCascader',
         name: 'IvueCascader',
         component: IvueCascader
+    },
+    {
+        path: '/IvueTooltip',
+        name: 'IvueTooltip',
+        component: IvueTooltip
     }
   ]
 });

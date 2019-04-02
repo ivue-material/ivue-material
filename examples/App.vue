@@ -106,6 +106,9 @@ nav {
                 <li>
                     <router-link to="/IvueCascader">IvueCascader</router-link>
                 </li>
+                <li>
+                    <router-link to="/IvueTooltip">IvueTooltip</router-link>
+                </li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
