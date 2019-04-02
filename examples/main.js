@@ -11,6 +11,7 @@ Vue.config.productionTip = false;
 
 // import "../dist/styles/elevation.css";
 import "../src/styles/index.scss";
+import "../src/styles/theme/index.scss";
 
 
 /* eslint-disable no-new */
