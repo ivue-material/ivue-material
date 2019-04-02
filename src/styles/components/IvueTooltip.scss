@@ -1,0 +1,13 @@
+$name: 'ivue-tooltip';
+
+.#{$name} {
+    position: absolute;
+    border-radius: 4px;
+    padding: 10px;
+    z-index: 2000;
+    font-size: 12px;
+    line-height: 1.2;
+    min-width: 10px;
+    word-wrap: break-word;
+    background: red;
+}
