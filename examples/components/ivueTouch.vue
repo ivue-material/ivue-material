@@ -14,11 +14,13 @@
             <h2>{{direction}}</h2>
         </div>
         <span>expose event object:</span>
-        <div class="expose-event">
-            <p v-for="(item,index) in event" :key="index">
-                <strong>{{index}}</strong>
-                <span>{{item}}</span>
-            </p>
+        <div class="expose-event" v-if="JSON.stringify(event)!=='{}'">
+            <div v-for="(key,item) in event" :key="item">
+                <p v-if="typeof key !=='function'">
+                    <strong>{{item}}</strong>
+                    <span>{{key}}</span>
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -47,7 +49,7 @@ export default {
         height: 200px;
         line-height: 200px;
         text-align:center;
-        border: 1px solid red;
+        border: 1px solid #eee;
         box-sizing: border-box;
         h2{
             position: absolute;
@@ -62,16 +64,14 @@ export default {
             height: 50%;
             border:1px solid transparent;
             &:nth-child(1){
-                border-right: 1px solid red
-            }
-            &:nth-child(2){
-                border-bottom: 1px solid red;
+                border-right: 1px dotted #ddd;
+                border-bottom: 1px dotted #ddd;
             }
             &:nth-child(3){
-                border-top: 1px solid red;
+                border-right: 1px dotted #ddd;
             }
             &:nth-child(4){
-                border-left: 1px solid red;
+                border-top: 1px dotted #ddd;
             }
         }
     }
