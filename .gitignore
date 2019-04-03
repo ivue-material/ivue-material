@@ -17,5 +17,6 @@ npm-debug.log
 *.swo
 *.log
 dist/
+dist
 test/coverage
 .vscode
