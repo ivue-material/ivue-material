@@ -25,9 +25,9 @@ import IvueBadge from '../components/ivueBadge';
 import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/ivueCollapse';
-import IvueCascader from '../components/IvueCascader';
+import IvueCascader from '../components/ivueCascader';
 import IvueTooltip from '../components/ivueTooltip';
-
+import IvueTouch from '../components/ivueTouch'
 
 Vue.use(Router);
 
@@ -167,6 +167,11 @@ export default new Router({
         path: '/IvueTooltip',
         name: 'IvueTooltip',
         component: IvueTooltip
+    },
+    {
+        path:'/IvueTouch',
+        name:'IvueTouch',
+        component:IvueTouch
     }
   ]
 });

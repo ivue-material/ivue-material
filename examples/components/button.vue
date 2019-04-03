@@ -53,7 +53,7 @@
       <IvueButton icon color="red-accent-4">
         <IvueIcon>menu</IvueIcon>
       </IvueButton>
-    </div>
+    </div> 
   </div>
 </template>
 
