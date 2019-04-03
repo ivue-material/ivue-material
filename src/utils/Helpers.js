@@ -27,3 +27,8 @@ export const isEdge = function () {
 
 // 需要跳过过滤的字符串
 export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+
+// 获取组件的第一个子节点
+export function getFirstComponentChild (children) {
+    return children && children.filter(c => c && c.tag)[0];
+};

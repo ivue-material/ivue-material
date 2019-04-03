@@ -1,5 +1,6 @@
 <script>
 import Colorable from '../../utils/mixins/colorable';
+import { getFirstComponentChild } from '../../utils/helpers';
 import { oneOf } from '../../utils/assist';
 
 const prefixCls = 'ivue-tooltip';
@@ -57,7 +58,7 @@ export default {
             return this.$createElement('div', this.setTextColor(this.color, {
                 staticClass: `${prefixCls}-popper--arrow`,
             }))
-        }
+        },
     },
     render () {
         const { rounded, color, content, direction, arrow, setBackgroundColor, genPopperArrow } = this;
@@ -73,7 +74,11 @@ export default {
             },
         }
 
-        return this.$createElement('div', setBackgroundColor(color, tooltipAttrs), [this.$slots.content || content, arrow ? genPopperArrow() : null]);
+        console.log(this.$slots.default)
+        console.log(getFirstComponentChild(this.$slots.default))
+
+        // return this.$createElement('div', setBackgroundColor(color, tooltipAttrs), [this.$slots.content || content, arrow ? genPopperArrow() : null]);
+        return getFirstComponentChild(this.$slots.default);
     }
 }
 </script>
