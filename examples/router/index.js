@@ -26,7 +26,9 @@ import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/ivueCollapse';
 import IvueCascader from '../components/ivueCascader';
+
 import IvueTooltip from '../components/ivueTooltip';
+
 import IvueTouch from '../components/ivueTouch'
 
 Vue.use(Router);

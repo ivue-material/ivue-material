@@ -108,7 +108,8 @@ nav {
                 </li>
                 <li>
                     <router-link to="/IvueTooltip">IvueTooltip</router-link>
-                              <li>
+                </li>
+                <li>
                     <router-link to="/IvueTouch">IvueTouch</router-link>
                 </li>
             </ul>
