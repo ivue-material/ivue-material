@@ -106,7 +106,10 @@ nav {
                 <li>
                     <router-link to="/IvueCascader">IvueCascader</router-link>
                 </li>
-                              <li>
+                <li>
+                    <router-link to="/IvueTooltip">IvueTooltip</router-link>
+                </li>
+                <li>
                     <router-link to="/IvueTouch">IvueTouch</router-link>
                 </li>
             </ul>
