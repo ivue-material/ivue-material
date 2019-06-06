@@ -30,5 +30,6 @@ export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}(
 
 // 获取组件的第一个子节点
 export function getFirstComponentChild (children) {
-    return children && children.filter(c => c && c.tag)[0];
+    console.log(children)
+    return children && children.filter(c => c && (c.tag || c.text))[0];
 };

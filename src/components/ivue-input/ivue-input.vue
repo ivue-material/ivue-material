@@ -21,6 +21,7 @@
                 :autofocus="autofocus"
                 :number="number"
                 :id="id"
+                :maxlength="maxlength"
                 @keyup.enter="handleEnter"
                 @keyup="handleKeyup"
                 @keypress="handleKeypress"

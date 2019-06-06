@@ -1,10 +1,8 @@
 <template>
-    <div>
-        <div class="ivue-tooltip-wrapper">
-            <IvueTooltip color="#303133" content="Top Left 提示文字">
-                <p>你好</p>
-            </IvueTooltip>
-        </div>
+    <div class="ivue-tooltip-wrapper">
+        <IvueTooltip color="#303133" content="Here is the prompt text" arrow>
+            A balloon appears when the mouse passes over this text
+        </IvueTooltip>
     </div>
 </template>
 
@@ -17,6 +15,7 @@ export default {
 <style scoped>
 .ivue-tooltip-wrapper {
   position: relative;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 </style>

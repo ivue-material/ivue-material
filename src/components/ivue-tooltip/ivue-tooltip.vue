@@ -2,12 +2,13 @@
 import Colorable from '../../utils/mixins/colorable';
 import { getFirstComponentChild } from '../../utils/helpers';
 import { oneOf } from '../../utils/assist';
+import Popper from './popper';
 
 const prefixCls = 'ivue-tooltip';
 
 export default {
     name: prefixCls,
-    mixins: [Colorable],
+    mixins: [Colorable, Popper],
     props: {
         /**
          * 提示的文字内容
@@ -45,12 +46,26 @@ export default {
          */
         rounded: {
             type: Boolean
-        }
+        },
+        /**
+         * 提示显示延迟时间
+         *
+         * @type {Number}
+         */
+        delay: {
+            type: Number,
+            default: 100
+        },
     },
     data () {
         return {
             prefixCls: prefixCls
         }
+    },
+    mounted () {
+        requestAnimationFrame(() => {
+            this.updatePopper();
+        })
     },
     methods: {
         // 渲染箭头
@@ -59,26 +74,71 @@ export default {
                 staticClass: `${prefixCls}-popper--arrow`,
             }))
         },
+        // 渲染内容
+        genReference () {
+            return this.$createElement('div',
+                {
+                    staticClass: `${prefixCls}-reference`,
+                    ref: 'reference'
+                }, [getFirstComponentChild(this.$slots.default)])
+        },
+        // 渲染提示
+        genPopper () {
+            const { rounded, color, content, direction, arrow, setBackgroundColor, genPopperArrow } = this;
+
+            let tooltipAttrs = {
+                staticClass: `${prefixCls}-popper`,
+                class: {
+                    [`${prefixCls}-rounded`]: rounded
+                },
+                // 普通的 HTML 特性
+                attrs: {
+                    'x-direction': direction
+                },
+                ref: 'popper',
+                directives: [{
+                    name: 'show',
+                    value: this.visible
+                }]
+            }
+
+            return this.$createElement('div',
+                setBackgroundColor(color, tooltipAttrs),
+                [this.$slots.content || content, arrow ? genPopperArrow() : null]
+            )
+        },
+        // 显示提示
+        handleShowPopper () {
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.visible = true;
+            }, this.delay);
+        },
+        // 隐藏提示
+        handleClosePopper () {
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+                this.timeout = setTimeout(() => {
+                    this.visible = false;
+                }, 100);
+            }
+        }
     },
     render () {
-        const { rounded, color, content, direction, arrow, setBackgroundColor, genPopperArrow } = this;
-
-        let tooltipAttrs = {
+        return this.$createElement('div', {
             staticClass: prefixCls,
-            class: {
-                [`${prefixCls}-rounded`]: rounded
+            on: {
+                mouseenter: () => {
+                    this.handleShowPopper()
+                },
+                mouseleave: () => {
+                   this.handleClosePopper()
+                }
             },
-            // 普通的 HTML 特性
-            attrs: {
-                'x-direction': direction
-            },
-        }
-
-        console.log(this.$slots.default)
-        console.log(getFirstComponentChild(this.$slots.default))
-
-        // return this.$createElement('div', setBackgroundColor(color, tooltipAttrs), [this.$slots.content || content, arrow ? genPopperArrow() : null]);
-        return getFirstComponentChild(this.$slots.default);
+        }, [
+                this.genReference(),
+                this.genPopper()
+            ]);
     }
 }
 </script>
