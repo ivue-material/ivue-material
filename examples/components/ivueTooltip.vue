@@ -16,6 +16,7 @@
             color="grey"
             content="Here is the prompt text"
             arrow
+            always
         >A balloon appears when the mouse passes over this text</IvueTooltip>
         <h1>方向</h1>
         <IvueTooltip

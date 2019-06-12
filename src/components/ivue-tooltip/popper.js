@@ -95,6 +95,11 @@ export default {
         visible (val) {
             if (val) {
                 this.updatePopper();
+
+                this.$emit('on-popper-show');
+            }
+            else {
+                this.$emit('on-popper-hide');
             }
 
             this.$emit('input', val);
