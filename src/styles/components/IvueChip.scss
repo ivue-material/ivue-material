@@ -1,0 +1,14 @@
+$name: 'ivue-chip';
+
+.#{$name} {
+    position: relative;
+    align-items: center;
+    border-radius: 32px;
+    font-size: 14px;
+    margin: 4px;
+    outline: none;
+    vertical-align: middle;
+    transition: $ivue-transition-stand;
+    background: #e0e0e0;
+    color: rgba(0,0,0,0.87);
+}

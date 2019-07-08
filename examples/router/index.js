@@ -26,6 +26,7 @@ import IvueDatePicker from '../components/ivueDatePicker';
 import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/ivueCollapse';
 import IvueCascader from '../components/ivueCascader';
+import IvueChip from '../components/ivueChip';
 
 import IvueTooltip from '../components/ivueTooltip';
 
@@ -174,6 +175,11 @@ export default new Router({
         path:'/IvueTouch',
         name:'IvueTouch',
         component:IvueTouch
+    },
+    {
+        path:'/IvueChip',
+        name:'IvueChip',
+        component:IvueChip
     }
   ]
 });

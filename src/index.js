@@ -27,6 +27,7 @@ import IvueVirtualCollection from './components/ivue-virtual-collection';
 import { IvueCollapse, IvueCollapsePanel } from './components/ivue-collapse';
 import IvueCascader from './components/ivue-cascader';
 import IvueTooltip from './components/ivue-tooltip';
+import IvueChip from './components/ivue-chip';
 import Directives from './utils/directives';
 
 const components = {
@@ -66,7 +67,8 @@ const components = {
     IvueCollapse,
     IvueCollapsePanel,
     IvueCascader,
-    IvueTooltip
+    IvueTooltip,
+    IvueChip
 };
 
 const iVue = {
