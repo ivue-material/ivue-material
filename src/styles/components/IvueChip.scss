@@ -2,6 +2,7 @@ $name: 'ivue-chip';
 
 .#{$name} {
     position: relative;
+    display: inline-flex;
     align-items: center;
     border-radius: 32px;
     font-size: 14px;
@@ -11,4 +12,17 @@ $name: 'ivue-chip';
     transition: $ivue-transition-stand;
     background: #e0e0e0;
     color: rgba(0,0,0,0.87);
+    /* 内容 */
+    &-content{
+        display: inline-flex;
+        align-items: center;
+        border-radius: 28px;
+        cursor: default;
+        justify-content: space-between;
+        height: 32px;
+        padding: 0 12px;
+        vertical-align: middle;
+        white-space: nowrap;
+        z-index: 1;
+    }
 }

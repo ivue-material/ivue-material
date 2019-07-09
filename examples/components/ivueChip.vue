@@ -1,17 +1,14 @@
 <template>
     <div>
-        <IvueChip >
-            hello
-        </IvueChip>
+        <IvueChip>hello</IvueChip>
     </div>
 </template>
 
 <script>
-    export default {
+export default {
 
-    }
+}
 </script>
 
 <style lang="scss" scoped>
-
 </style>

@@ -32,4 +32,3 @@ module.exports = function (config) {
             listenAddress: 'localhost'
       })
 }
-

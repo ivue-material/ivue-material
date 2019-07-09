@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import "../src/styles/index.scss";
-import "./components/IvueButton.test";
-import "./components/IvueIcon.test";
+// import "./components/IvueButton.test";
+// import "./components/IvueIcon.test";
 // import "./components/IvueList.test";
 // import "./components/IvueListItem.test";
 // import "./components/IvueSpin.test";
@@ -25,4 +25,5 @@ import "./components/IvueIcon.test";
 // import "./components/IvueDatePicker/index";
 // import "./components/IVueVirtualCollection/index";
 // import "./components/IVueCollapse.test";
-import "./components/IvueCascader.test";
+// import "./components/IvueCascader.test";
+import "./components/IVueTooltip.test";

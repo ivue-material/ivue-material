@@ -132,24 +132,6 @@ describe('IvueButton', function () {
             expect(testWrapper.attributes().type).to.be.equal("button");
       });
 
-      // it('should render tag <button> when using "to" prop and vue-router is not configured', function () {
-      //       const wrapper = mount({
-      //             template: `
-      //                         <IvueButton to="/test">button</IvueButton>
-      //                   `,
-      //             components: {
-      //                   IvueButton
-      //             }
-      //       }, {
-      //             });
-
-
-      //       expect(wrapper.classes()).to.contain('ivue-button');
-      //       expect(wrapper.contains('button')).to.be.equal(true);
-      //       expect(wrapper.attributes().type).to.be.equal('button');
-      //       expect(wrapper.attributes().href).to.be.equal(undefined);
-
-      // });
 
       it('should not render a ripple element if the button is disabled', function () {
             const wrapper = mount({
