@@ -144,8 +144,6 @@ export default {
                 this.$emit('created', this);
             };
 
-            console.log(options)
-
             this.popperJS = new Popper(reference, popper, options);
         },
         // 更新节点
