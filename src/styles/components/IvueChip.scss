@@ -11,9 +11,31 @@ $name: 'ivue-chip';
     vertical-align: middle;
     transition: $ivue-transition-stand;
     background: #e0e0e0;
-    color: rgba(0,0,0,0.87);
+    color: rgba(0, 0, 0, 0.87);
+
+    /* 获取焦点 */
+    &:focus {
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+            0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+        &::after {
+            background: currentColor;
+            border-radius: inherit;
+            content: '';
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: inherit;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0.13;
+        }
+    }
+
     /* 内容 */
-    &-content{
+    &-content {
         display: inline-flex;
         align-items: center;
         border-radius: 28px;
