@@ -39,6 +39,24 @@ $name: 'ivue-chip';
         }
     }
 
+    /* hover */
+    &:hover:not(.ivue-chip--disabled) {
+        &::after {
+            background: currentColor;
+            border-radius: inherit;
+            content: '';
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: inherit;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0.13;
+        }
+    }
+
+
     /* 内容 */
     &-content {
         display: inline-flex;

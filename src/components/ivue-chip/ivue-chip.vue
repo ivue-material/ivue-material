@@ -56,6 +56,15 @@ export default {
          */
         disabled: {
             type: Boolean,
+        },
+        /**
+         * 关闭图标
+         *
+         * @type {String}
+         */
+        closeIcon: {
+            type: String,
+            default: 'cancel'
         }
     },
     computed: {
@@ -92,7 +101,7 @@ export default {
             }
 
             return h('div', data, [
-                h(IvueIcon, ['cancel'])
+                h(IvueIcon, [this.closeIcon])
             ])
         }
     },

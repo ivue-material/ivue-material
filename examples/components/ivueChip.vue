@@ -1,7 +1,7 @@
 <template>
     <div>
-        <IvueChip>hello</IvueChip>
-        <IvueChip disabled>hello</IvueChip>
+        <IvueChip v-ripple>hello</IvueChip>
+        <IvueChip disabled >hello</IvueChip>
         <IvueChip color="primary" text-color="#ffffff">hello</IvueChip>
         <IvueChip color="primary" text-color="#ffffff">
             <IvueIcon>build</IvueIcon>Icon
