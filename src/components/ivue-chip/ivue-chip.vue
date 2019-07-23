@@ -14,6 +14,21 @@ export default {
          */
         textColor: {
             type: String
+        },
+        /**
+         * 显示轮廓
+         *
+         * @type {Boolean}
+         */
+        outline: {
+            type: Boolean
+        }
+    },
+    computed: {
+        classes () {
+            return {
+                [`${prefixCls}--outline`]: this.outline
+            }
         }
     },
     methods: {
@@ -25,20 +40,18 @@ export default {
         }
     },
     render (h) {
-        const { setTextColor, color, textColor } = this;
-
-        // 设置颜色
-        // const setColor = (!this.outline) ? this.setBackgroundColor : setTextColor;
+        const { setTextColor, color, textColor, outline, classes } = this;
 
         const data = this.setBackgroundColor(color, {
             staticClass: prefixCls,
+            class: classes,
             attrs: {
                 tabindex: 0
             },
             on: this.$listeners
         });
 
-        const _color = textColor || color;
+        const _color = textColor || (outline && color);
 
         return h('span', setTextColor(_color, data), [this.getContent(h)]);
     }

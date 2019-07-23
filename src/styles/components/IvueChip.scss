@@ -47,4 +47,17 @@ $name: 'ivue-chip';
         white-space: nowrap;
         z-index: 1;
     }
+
+
+    /* 轮廓 */
+    // Increase specificity to override theme background
+    &.#{$name}.ivue-chip--outline {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: 1px solid currentColor;
+        color: #9e9e9e;
+        height: 32px;
+    }
+
+
 }
