@@ -13,8 +13,13 @@ $name: 'ivue-chip';
     background: #e0e0e0;
     color: rgba(0, 0, 0, 0.87);
 
+    /* 正方形 */
+    &--square {
+        border-radius: 2px;
+    }
+
     /* 获取焦点 */
-    &:focus {
+    &:focus:not(.ivue-chip--disabled) {
         box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
             0px 2px 2px 0px rgba(0, 0, 0, 0.14),
             0px 1px 5px 0px rgba(0, 0, 0, 0.12);
@@ -48,6 +53,34 @@ $name: 'ivue-chip';
         z-index: 1;
     }
 
+    &--close &-content {
+        padding: 0 4px 0 12px;
+    }
+
+
+    /* 关闭按钮 */
+    &-close {
+        align-items: center;
+        color: inherit;
+        display: flex;
+        font-size: 20px;
+        margin: 0 2px 0 8px;
+        text-decoration: none;
+        user-select: none;
+
+        &>.ivue-icon {
+            color: inherit;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+
+    /* 禁用 */
+    &--disabled {
+        color: rgba(0, 0, 0, .38);
+    }
+
 
     /* 轮廓 */
     // Increase specificity to override theme background
@@ -58,6 +91,5 @@ $name: 'ivue-chip';
         color: #9e9e9e;
         height: 32px;
     }
-
 
 }

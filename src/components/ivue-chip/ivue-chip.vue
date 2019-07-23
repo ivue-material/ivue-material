@@ -1,5 +1,6 @@
 <script>
 import Colorable from '../../utils/mixins/colorable';
+import IvueIcon from '../ivue-icon/ivue-icon';
 
 const prefixCls = 'ivue-chip';
 
@@ -22,12 +23,48 @@ export default {
          */
         outline: {
             type: Boolean
+        },
+        /**
+         * 正方形边框
+         *
+         * @type {Boolean}
+         */
+        square: {
+            type: Boolean
+        },
+        /**
+         * 是否可关闭
+         *
+         * @type {Boolean}
+         */
+        close: {
+            type: Boolean
+        },
+        /**
+         * v-modul
+         *
+         * @type {Boolean}
+         */
+        value: {
+            type: Boolean,
+            default: true
+        },
+        /**
+         * 是否禁用
+         *
+         * @type {Boolean}
+         */
+        disabled: {
+            type: Boolean,
         }
     },
     computed: {
         classes () {
             return {
-                [`${prefixCls}--outline`]: this.outline
+                [`${prefixCls}--disabled`]: this.disabled,
+                [`${prefixCls}--outline`]: this.outline,
+                [`${prefixCls}--square`]: this.square,
+                [`${prefixCls}--close`]: this.close,
             }
         }
     },
@@ -36,7 +73,27 @@ export default {
         getContent (h) {
             return h('span', {
                 staticClass: `${prefixCls}-content`
-            }, [this.$slots.default]);
+            }, [
+                    this.$slots.default,
+                    this.close && this.getClose(h)
+                ]);
+        },
+        // 渲染关闭按钮
+        getClose (h) {
+            const data = {
+                staticClass: `${prefixCls}-close`,
+                on: {
+                    click: (event) => {
+                        event.stopPropagation();
+
+                        this.$emit('input', false)
+                    }
+                }
+            }
+
+            return h('div', data, [
+                h(IvueIcon, ['cancel'])
+            ])
         }
     },
     render (h) {
@@ -46,8 +103,12 @@ export default {
             staticClass: prefixCls,
             class: classes,
             attrs: {
-                tabindex: 0
+                tabindex: this.disabled ? -1 : 0
             },
+            directives: [{
+                name: 'show',
+                value: this.value
+            }],
             on: this.$listeners
         });
 
