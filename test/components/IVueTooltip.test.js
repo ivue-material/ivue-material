@@ -36,25 +36,4 @@ describe('IvueTooltip', function () {
         expect(wrapper.find('.ivue-tooltip-popper').element.style[0] !== 'display').to.be.equal(true);
     });
 
-
-    it('should render the placement', async () => {
-        const wrapper = mount({
-            template: `
-            <IvueTooltip
-                color="#303133"
-                content="Here is the prompt text"
-                placement="right"
-            >A balloon appears when the mouse passes over this text</IvueTooltip>
-            `,
-            components: {
-                IvueTooltip
-            }
-        },{
-            attachToDocument:true
-        });
-
-
-        console.log(wrapper.find('.ivue-tooltip'))
-    });
-
 });
