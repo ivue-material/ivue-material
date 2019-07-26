@@ -26,4 +26,5 @@ import "../src/styles/index.scss";
 // import "./components/IVueVirtualCollection/index";
 // import "./components/IVueCollapse.test";
 // import "./components/IvueCascader.test";
-import "./components/IVueTooltip.test";
+// import "./components/IVueTooltip.test";
+import "./components/IVueChip.test.js";
