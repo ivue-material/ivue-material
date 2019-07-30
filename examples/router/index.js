@@ -27,159 +27,163 @@ import IvueVirtualCollection from '../components/ivueVirtualCollection';
 import IvueCollapse from '../components/ivueCollapse';
 import IvueCascader from '../components/ivueCascader';
 import IvueChip from '../components/ivueChip';
-
+import IvueRadio from '../components/ivueRadio';
 import IvueTooltip from '../components/ivueTooltip';
-
 import IvueTouch from '../components/ivueTouch'
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/Affix',
-      name: 'Affix',
-      component: Affix
-    },
-    {
-      path: '/Elevation',
-      name: 'Elevation',
-      component: Elevation
-    },
-    {
-      path: '/Layout',
-      name: 'Layout',
-      component: Layout
-    },
-    {
-      path: '/Button',
-      name: 'Button',
-      component: Button
-    },
-    {
-      path: '/Icon',
-      name: 'Icon',
-      component: Icon
-    },
-    {
-      path: '/IvueList',
-      name: 'IvueList',
-      component: IvueList
-    },
-    {
-      path: '/IvueSpin',
-      name: 'IvueSpin',
-      component: IvueSpin
-    },
-    {
-      path: '/IvueCarousel',
-      name: 'IvueCarousel',
-      component: IvueCarousel
-    },
-    {
-      path: '/IvueSwitch',
-      name: 'IvueSwitch',
-      component: IvueSwitch
-    },
-    {
-      path: '/IvueBottomNav',
-      name: 'IvueBottomNav',
-      component: IvueBottomNav
-    },
-    {
-      path: '/IvueBreadcrumbs',
-      name: 'IvueBreadcrumbs',
-      component: IvueBreadcrumbs
-    },
-    {
-      path: '/IvueSelect',
-      name: 'IvueSelect',
-      component: IvueSelect
-    },
-    {
-      path: '/IvueAutoComplete',
-      name: 'IvueAutoComplete',
-      component: IvueAutoComplete
-    },
-    {
-      path: '/IvueInput',
-      name: 'IvueInput',
-      component: IvueInput
-    },
-    {
-      path: '/IvueStepperStep',
-      name: 'IvueStepperStep',
-      component: IvueStepperStep
-    },
-    {
-      path: '/IvueUpLoad',
-      name: 'IvueUpLoad',
-      component: IvueUpLoad
-    },
-    {
-      path: '/IvueProgress',
-      name: 'IvueProgress',
-      component: IvueProgress
-    },
-    {
-      path: '/IvueNotice',
-      name: 'IvueNotice',
-      component: IvueNotice
-    },
-    {
-      path: '/IvueMessage',
-      name: 'IvueMessage',
-      component: IvueMessage
-    },
-    {
-      path: '/IvueTabs',
-      name: 'IvueTabs',
-      component: IvueTabs
-    },
-    {
-      path: '/IvueLoadingBar',
-      name: 'IvueLoadingBar',
-      component: IvueLoadingBar
-    },
-    {
-      path: '/IvueBadge',
-      name: 'IvueBadge',
-      component: IvueBadge
-    },
-    {
-      path: '/IvueDatePicker',
-      name: 'IvueDatePicker',
-      component: IvueDatePicker
-    },
-    {
-      path: '/IvueVirtualCollection',
-      name: 'IvueVirtualCollection',
-      component: IvueVirtualCollection
-    },
-    {
-      path: '/IvueCollapse',
-      name: 'IvueCollapse',
-      component: IvueCollapse
-    },
-    {
-        path: '/IvueCascader',
-        name: 'IvueCascader',
-        component: IvueCascader
-    },
-    {
-        path: '/IvueTooltip',
-        name: 'IvueTooltip',
-        component: IvueTooltip
-    },
-    {
-        path:'/IvueTouch',
-        name:'IvueTouch',
-        component:IvueTouch
-    },
-    {
-        path:'/IvueChip',
-        name:'IvueChip',
-        component:IvueChip
-    }
-  ]
+    routes: [
+        {
+            path: '/Affix',
+            name: 'Affix',
+            component: Affix
+        },
+        {
+            path: '/Elevation',
+            name: 'Elevation',
+            component: Elevation
+        },
+        {
+            path: '/Layout',
+            name: 'Layout',
+            component: Layout
+        },
+        {
+            path: '/Button',
+            name: 'Button',
+            component: Button
+        },
+        {
+            path: '/Icon',
+            name: 'Icon',
+            component: Icon
+        },
+        {
+            path: '/IvueList',
+            name: 'IvueList',
+            component: IvueList
+        },
+        {
+            path: '/IvueSpin',
+            name: 'IvueSpin',
+            component: IvueSpin
+        },
+        {
+            path: '/IvueCarousel',
+            name: 'IvueCarousel',
+            component: IvueCarousel
+        },
+        {
+            path: '/IvueSwitch',
+            name: 'IvueSwitch',
+            component: IvueSwitch
+        },
+        {
+            path: '/IvueBottomNav',
+            name: 'IvueBottomNav',
+            component: IvueBottomNav
+        },
+        {
+            path: '/IvueBreadcrumbs',
+            name: 'IvueBreadcrumbs',
+            component: IvueBreadcrumbs
+        },
+        {
+            path: '/IvueSelect',
+            name: 'IvueSelect',
+            component: IvueSelect
+        },
+        {
+            path: '/IvueAutoComplete',
+            name: 'IvueAutoComplete',
+            component: IvueAutoComplete
+        },
+        {
+            path: '/IvueInput',
+            name: 'IvueInput',
+            component: IvueInput
+        },
+        {
+            path: '/IvueStepperStep',
+            name: 'IvueStepperStep',
+            component: IvueStepperStep
+        },
+        {
+            path: '/IvueUpLoad',
+            name: 'IvueUpLoad',
+            component: IvueUpLoad
+        },
+        {
+            path: '/IvueProgress',
+            name: 'IvueProgress',
+            component: IvueProgress
+        },
+        {
+            path: '/IvueNotice',
+            name: 'IvueNotice',
+            component: IvueNotice
+        },
+        {
+            path: '/IvueMessage',
+            name: 'IvueMessage',
+            component: IvueMessage
+        },
+        {
+            path: '/IvueTabs',
+            name: 'IvueTabs',
+            component: IvueTabs
+        },
+        {
+            path: '/IvueLoadingBar',
+            name: 'IvueLoadingBar',
+            component: IvueLoadingBar
+        },
+        {
+            path: '/IvueBadge',
+            name: 'IvueBadge',
+            component: IvueBadge
+        },
+        {
+            path: '/IvueDatePicker',
+            name: 'IvueDatePicker',
+            component: IvueDatePicker
+        },
+        {
+            path: '/IvueVirtualCollection',
+            name: 'IvueVirtualCollection',
+            component: IvueVirtualCollection
+        },
+        {
+            path: '/IvueCollapse',
+            name: 'IvueCollapse',
+            component: IvueCollapse
+        },
+        {
+            path: '/IvueCascader',
+            name: 'IvueCascader',
+            component: IvueCascader
+        },
+        {
+            path: '/IvueTooltip',
+            name: 'IvueTooltip',
+            component: IvueTooltip
+        },
+        {
+            path: '/IvueTouch',
+            name: 'IvueTouch',
+            component: IvueTouch
+        },
+        {
+            path: '/IvueChip',
+            name: 'IvueChip',
+            component: IvueChip
+        },
+        {
+            path: '/IvueRadio',
+            name: 'IvueRadio',
+            component: IvueRadio
+        }
+    ]
 });
