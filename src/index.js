@@ -29,6 +29,8 @@ import IvueCascader from './components/ivue-cascader';
 import IvueTooltip from './components/ivue-tooltip';
 import IvueChip from './components/ivue-chip';
 import IvueRadio from './components/ivue-radio';
+import IvueRadioGroup from './components/ivue-radio-group';
+
 import Directives from './utils/directives';
 
 const components = {
@@ -70,7 +72,8 @@ const components = {
     IvueCascader,
     IvueTooltip,
     IvueChip,
-    IvueRadio
+    IvueRadio,
+    IvueRadioGroup
 };
 
 const iVue = {
