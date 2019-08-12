@@ -89,7 +89,7 @@ $ease-in-out: ease-in-out;
             opacity: 0.2;
             transition: all $transition-time $ease-in-out;
             box-shadow: 0 0 0 2px currentColor;
-            z-index:1;
+            z-index: 1;
         }
     }
 
@@ -151,6 +151,13 @@ $ease-in-out: ease-in-out;
                 background-color: $disabled-color;
             }
 
+        }
+
+        .#{$name}-focus {
+            &::before {
+                background-color: $disabled-color;
+                box-shadow: 0 0 0 2px $disabled-color;
+            }
         }
 
         .#{$name}-input {
