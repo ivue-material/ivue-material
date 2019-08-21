@@ -1,19 +1,18 @@
-
 <script>
 import Colorable from '../../utils/mixins/colorable';
 import { findComponentUpward } from '../../utils/assist.js';
 
-const prefixCls = 'ivue-radio';
+const prefixCls = 'ivue-checkbox';
 
 export default {
     name: prefixCls,
     mixins: [Colorable],
     props: {
         /**
-         * value (v-model)
-         *
-         * @type {String, Number, Boolean}
-         */
+        * value (v-model)
+        *
+        * @type {String, Number, Boolean}
+        */
         value: {
             type: [String, Number, Boolean],
             default: false
@@ -46,10 +45,10 @@ export default {
             default: ''
         },
         /**
-         * 文字
-         *
-         * @type {String,Number}
-         */
+        * 文字
+        *
+        * @type {String,Number}
+        */
         label: {
             type: [String, Number]
         },
@@ -59,6 +58,14 @@ export default {
          * @type {Boolean}
          */
         disabled: {
+            type: Boolean
+        },
+        /**
+         * 不确定
+         *
+         * @type {Boolean}
+         */
+        indeterminate: {
             type: Boolean
         },
         /**
@@ -79,11 +86,11 @@ export default {
              */
             currentValue: this.value,
             /**
-             * 查找父节点
+             * input 焦点
              *
-             * @type {Array}
+             * @type {Boolean}
              */
-            parent: findComponentUpward(this, 'ivue-radio-group'),
+            focusInner: false,
             /**
              * 是否是组合
              *
@@ -91,32 +98,25 @@ export default {
              */
             isGroup: false,
             /**
-             * 组件名称
-             *
-             * @type {String}
-             */
-            groupName: this.name,
+            * 查找父节点
+            *
+            * @type {Array}
+            */
+            parent: findComponentUpward(this, 'ivue-checkbox-group'),
             /**
-             * input 焦点
+             * 组合值列表
              *
-             * @type {Boolean}
+             * @type {Array}
              */
-            focusInner: false
+            modelArray: [],
+            checkedNames: ['123']
         }
     },
     mounted () {
+        this.parent = findComponentUpward(this, 'ivue-checkbox-group');
+
         if (this.parent) {
             this.isGroup = true;
-
-            if (this.name && this.name !== this.parent.name) {
-                /* eslint-disable no-console */
-                if (console.warn) {
-                    console.warn('Name does not match Radio Group name.');
-                }
-            }
-            else {
-                this.groupName = this.parent.name
-            }
         }
 
         // 是否是一个组合
@@ -128,24 +128,26 @@ export default {
         }
     },
     computed: {
-        // 外层
+        // 外层样式
         wrapperClass () {
             return [
                 `${prefixCls}-wrapper`,
                 {
+                    [`${prefixCls}-wrapper-checked`]: this.currentValue,
                     [`${prefixCls}-wrapper-disabled`]: this.disabled
                 }
             ]
         },
-        // 圆点外层
-        radioClass () {
+        // 复选框外层
+        checkBoxClass () {
             return {
                 [`${prefixCls}`]: true,
                 [`${prefixCls}-checked`]: this.currentValue,
-                [`${prefixCls}-disabled`]: this.disabled
+                [`${prefixCls}-disabled`]: this.disabled,
+                [`${prefixCls}-indeterminate`]: this.indeterminate
             }
         },
-        // 圆点
+        // 复选框样式
         innerClass () {
             return [
                 `${prefixCls}-inner`,
@@ -154,44 +156,83 @@ export default {
                 }
             ]
         },
-        // 输入框
+        // input样式
         inputClass () {
-            return `${prefixCls}-input`;
+            return [
+                `${prefixCls}-input`,
+            ]
         }
     },
     methods: {
-        genRadio (h) {
-            const {
-                radioClass,
-                innerClass,
-                inputClass,
-                currentValue,
-                handleChange,
-                groupName,
-                handleFocus,
-                handleBlur
-            } = this;
+        // 渲染 checkbox
+        genCheckBox (h) {
+            const { checkBoxClass, innerClass, setTextColor, genInput, genGroupInput, isGroup } = this;
 
-            return h('span', this.setTextColor(this.color, {
-                class: radioClass
+            return h('span', setTextColor(this.color, {
+                class: checkBoxClass
             }), [
                     h('span', {
                         class: innerClass
                     }),
-                    h('input', {
-                        class: inputClass,
-                        attrs: {
-                            type: 'radio',
-                            checked: currentValue,
-                            name: groupName
-                        },
-                        on: {
-                            change: handleChange,
-                            focus: handleFocus,
-                            blur: handleBlur
-                        }
-                    })
+                    // 是否开启了组合
+                    isGroup ? genGroupInput(h) : genInput(h)
                 ]);
+        },
+        // 渲染input
+        genInput (h) {
+            const {
+                inputClass,
+                name,
+                disabled,
+                currentValue,
+                handleChange,
+                handleFocus,
+                handleBlur
+            } = this;
+
+            return h('input', {
+                class: inputClass,
+                attrs: {
+                    type: 'checkbox',
+                    name: name,
+                    checked: currentValue,
+                    disabled: disabled
+                },
+                on: {
+                    change: handleChange,
+                    focus: handleFocus,
+                    blur: handleBlur
+                }
+            });
+        },
+        // 渲染组input
+        genGroupInput (h) {
+            const {
+                inputClass,
+                name,
+                currentValue,
+                handleChange,
+                handleFocus,
+                handleBlur,
+                label
+            } = this;
+
+            return h('input', {
+                class: inputClass,
+                attrs: {
+                    type: 'checkbox',
+                    name: name,
+                    checked: currentValue,
+                },
+                domProps: {
+                    value: label
+                },
+                on: {
+                    change: handleChange,
+                    focus: handleFocus,
+                    blur: handleBlur
+                }
+            });
         },
         // 获取焦点
         handleFocus () {
@@ -201,39 +242,45 @@ export default {
         handleBlur () {
             this.focusInner = false;
         },
+        // 更新 value
+        updateValue () {
+            this.currentValue = this.value === this.trueValue;
+        },
         // 改变
         handleChange (event) {
             if (this.disabled) {
-                return false
+                return false;
             }
 
-            // radio 改变
+            // check 改变
             const checked = event.target.checked;
 
             this.currentValue = checked;
 
             const value = checked ? this.trueValue : this.falseValue;
+
             this.$emit('input', value);
 
             if (this.isGroup) {
-                if (this.label !== undefined) {
-                    this.parent.handleChange({
-                        value: this.label,
-                        checked: this.value
-                    })
+                const value = event.target.value;
+                const indexOf = this.modelArray.indexOf(value);
+
+                if (indexOf > -1) {
+                    this.modelArray.splice(indexOf, 1);
+
                 }
+                else {
+                    this.modelArray.push(value);
+                }
+
+                this.parent.handleChange(this.modelArray);
             }
             else {
                 this.$emit('on-change', value);
             }
-        },
-        // 更新 value
-        updateValue () {
-            this.currentValue = this.value === this.trueValue;
         }
     },
     watch: {
-        // 监听 value
         value (value) {
             if (value === this.trueValue || value === this.falseValue) {
                 this.updateValue();
@@ -246,9 +293,14 @@ export default {
         return h('label', {
             class: this.wrapperClass,
         }, [
-                this.genRadio(h),
-                h('span', this.setTextColor(this.textColor, {}), [this.$slots.default || this.label])
+                this.genCheckBox(h),
+                h('span', this.setTextColor(this.textColor, {
+                    class: `${prefixCls}-text`
+                }), [this.$slots.default || this.label])
             ])
     }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

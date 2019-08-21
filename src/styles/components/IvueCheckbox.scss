@@ -1,0 +1,187 @@
+$name: 'ivue-checkbox';
+
+.#{$name} {
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover {
+        .#{$name}-inner {
+            border-color: #bcbcbc;
+        }
+    }
+
+    /* 组合 */
+    &-group {
+        font-size: $font-base-size;
+    }
+
+    /* 外层 */
+    &-wrapper {
+        cursor: pointer;
+        font-size: $font-small-size;
+        display: inline-block;
+        margin-right: 8px;
+
+        /* 是否激活 */
+        &-checked {
+            .#{$name}-inner {
+                border-color: currentColor;
+                background-color: currentColor;
+            }
+        }
+
+        /* 是否禁用 */
+        &-disabled {
+            cursor: $cursor-disabled;
+        }
+    }
+
+    /* 复选框样式 */
+    &-inner {
+        position: relative;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid $border-color;
+        border-radius: 2px;
+        background-color: $white-color;
+        transition: border-color .2s $ease-in-out, box-shadow .2s $ease-in-out, background-color .2s $ease-in-out;
+
+        &::after {
+            content: "";
+            display: table;
+            position: absolute;
+            top: 1px;
+            left: 5px;
+            width: 4px;
+            height: 8px;
+            border: 2px solid $white-color;
+            border-left: 0;
+            border-top: 0;
+            transform-origin: center center;
+            transform: rotate(45deg) scale(0);
+            transition: all .2s $ease-in-out;
+        }
+    }
+
+    /* 激活 */
+    &-checked {
+        .#{$name}-inner {
+            &::after {
+                content: "";
+                display: table;
+                position: absolute;
+                top: 1px;
+                left: 4px;
+                width: 4px;
+                height: 8px;
+                border: 2px solid $white-color;
+                border-top: 0;
+                border-left: 0;
+                transform-origin: center center;
+                transform: rotate(45deg) scale(1);
+                transition: all .2s $ease-in-out;
+            }
+        }
+
+        &:hover {
+            .#{$name}-inner {
+                border-color: currentColor;
+            }
+        }
+    }
+
+    /* 焦点 */
+    &-focus {
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 2px;
+            display: table;
+            border-top: 0;
+            border-left: 0;
+            opacity: 0.2;
+            transition: all $transition-time $ease-in-out;
+            box-shadow: 0 0 0 3px currentColor;
+            z-index: 1;
+        }
+    }
+
+    /* input样式 */
+    &-input {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* 文字 */
+    &-text {
+        margin-left: 5px;
+    }
+
+    /* 是否禁用 */
+    &-disabled {
+        cursor: $cursor-disabled;
+
+        .#{$name}-inner {
+            border-color: #d7dde4;
+            background-color: #f3f3f3;
+
+            &::after {
+                border: 2px solid #ccc;
+                border-top: 0;
+                border-left: 0;
+                animation-name: none;
+            }
+
+        }
+
+        .#{$name}-focus {
+            &::before {
+                box-shadow: none;
+            }
+        }
+
+        .#{$name}-input {
+            cursor: $cursor-disabled;
+        }
+
+        &:hover {
+            .#{$name}-inner {
+                border-color: #d7dde4;
+            }
+        }
+    }
+
+    /* 不定性选择 */
+    &-indeterminate {
+        .#{$name}-inner {
+            &::after {
+                position: absolute;
+                left: 2px;
+                top: 5px;
+                width: 8px;
+                height: 1px;
+                transform: scale(1);
+            }
+        }
+    }
+}

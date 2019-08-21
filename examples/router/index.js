@@ -30,6 +30,7 @@ import IvueChip from '../components/ivueChip';
 import IvueRadio from '../components/ivueRadio';
 import IvueTooltip from '../components/ivueTooltip';
 import IvueTouch from '../components/ivueTouch'
+import IvueCheckbox from '../components/ivueCheckbox'
 
 Vue.use(Router);
 
@@ -184,6 +185,11 @@ export default new Router({
             path: '/IvueRadio',
             name: 'IvueRadio',
             component: IvueRadio
+        },
+        {
+            path: '/IvueCheckbox',
+            name: 'IvueCheckbox',
+            component: IvueCheckbox
         }
     ]
 });
