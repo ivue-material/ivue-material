@@ -14,9 +14,9 @@ $ease-in-out: ease-in-out;
     box-sizing: content-box;
     border-radius: 50%;
 
-    &-text {
-        position: relative;
-        top: 1px;
+    &-content {
+        display: flex;
+        align-items: center;
     }
 
     /* 组合 */

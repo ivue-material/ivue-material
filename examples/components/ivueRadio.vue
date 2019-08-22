@@ -3,7 +3,7 @@
         <IvueRadio
             v-model="active"
             color="primary"
-            textColor="#000"
+            textColor="primary"
             @on-change="handleChange1"
             rippleDisabled
         >Radio</IvueRadio>

@@ -183,6 +183,12 @@ export default {
         inputClass () {
             return `${prefixCls}-input`;
         },
+        // 内容外层
+        contentClass () {
+            return {
+                [`${prefixCls}-content`]: true
+            };
+        },
         // 更新 ripple
         computedRipple () {
             if (this.rippleDisabled || this.disabled || this.currentValue) {
@@ -288,10 +294,12 @@ export default {
         return h('label', {
             class: this.wrapperClass
         }, [
-                this.genRadio(h),
-                h('span', this.setTextColor(this.textColor, {
-                    class: `${prefixCls}-text`
-                }), [this.$slots.default || this.label])
+                h('span', {
+                    class: this.contentClass
+                }, [
+                        this.genRadio(h),
+                        h('span', this.setTextColor(this.textColor, {}), [this.$slots.default || this.label])
+                    ])
             ])
     }
 }

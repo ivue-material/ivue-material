@@ -18,6 +18,12 @@ $name: 'ivue-checkbox';
         }
     }
 
+    /* 内容 */
+    &-content {
+        display: flex;
+        align-items: center;
+    }
+
     /* 组合 */
     &-group {
         font-size: $font-base-size;
@@ -133,13 +139,6 @@ $name: 'ivue-checkbox';
         z-index: 1;
         width: 100%;
         height: 100%;
-    }
-
-
-    /* 文字 */
-    &-text {
-        position: relative;
-        top: 1px;
     }
 
     /* 是否禁用 */
