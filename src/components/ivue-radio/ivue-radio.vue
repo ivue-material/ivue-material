@@ -90,8 +90,7 @@ export default {
         size: {
             validator (value) {
                 return oneOf(value, ['small', 'large', 'default']);
-            },
-            default: 'default'
+            }
         }
     },
     data () {
@@ -186,7 +185,7 @@ export default {
         },
         // 更新 ripple
         computedRipple () {
-            if (this.rippleDisabled || this.disabled) {
+            if (this.rippleDisabled || this.disabled || this.currentValue) {
                 return false;
             }
 

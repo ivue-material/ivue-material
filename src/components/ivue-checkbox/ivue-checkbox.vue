@@ -94,8 +94,7 @@ export default {
         size: {
             validator (value) {
                 return oneOf(value, ['small', 'large', 'default']);
-            },
-            default: 'default'
+            }
         }
     },
     data () {
