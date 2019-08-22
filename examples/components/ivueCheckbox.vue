@@ -9,11 +9,11 @@
         >default</IvueCheckbox>
         <IvueCheckbox color="red" textColor="#000" disabled v-model="active">disabled</IvueCheckbox>
         <IvueCheckbox color="red" textColor="#000" v-model="active" indeterminate>indeterminate</IvueCheckbox>
-        <IvueCheckBoxGroup v-model="value1" @on-change="handleChange">
+        <IvueCheckboxGroup v-model="value1" @on-change="handleChange">
             <IvueCheckbox color="primary" textColor="#000" label="1"></IvueCheckbox>
             <IvueCheckbox color="primary" textColor="#000" label="2"></IvueCheckbox>
             <IvueCheckbox color="primary" textColor="#000" label="3"></IvueCheckbox>
-        </IvueCheckBoxGroup>
+        </IvueCheckboxGroup>
         {{value1}}
         <IvueCheckbox color="red" textColor="#000" v-model="active" size="small" indeterminate>small</IvueCheckbox>
         <IvueCheckbox color="red" textColor="#000" v-model="active" size="default" indeterminate>default</IvueCheckbox>

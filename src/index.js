@@ -31,7 +31,7 @@ import IvueChip from './components/ivue-chip';
 import IvueRadio from './components/ivue-radio';
 import IvueRadioGroup from './components/ivue-radio-group';
 import IvueCheckbox from './components/ivue-checkbox';
-import IvueCheckBoxGroup from './components/ivue-checkbox-group';
+import IvueCheckboxGroup from './components/ivue-checkbox-group';
 
 import Directives from './utils/directives';
 
