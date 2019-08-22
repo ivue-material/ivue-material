@@ -191,7 +191,6 @@ export default {
             if ((multiple && values.length > 0) || this.filterable) {
                 return '';
             }
-            console.log(selectedSingle)
             return `${selectedSingle}` || placeholder;
         },
         // 是否显示占位符

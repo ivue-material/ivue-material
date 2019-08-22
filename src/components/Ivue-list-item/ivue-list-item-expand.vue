@@ -89,7 +89,6 @@ export default {
             })
         },
         toggleExpand () {
-            console.log('??')
             this.fetchStyle().then(() => {
                 this.showContent = !this.showContent;
             })
