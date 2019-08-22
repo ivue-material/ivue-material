@@ -1,5 +1,3 @@
-import { VNode, VNodeDirective } from 'vue';
-
 /**
  * 创建 transform
  *

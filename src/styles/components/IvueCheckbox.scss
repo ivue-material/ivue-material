@@ -7,6 +7,10 @@ $name: 'ivue-checkbox';
     line-height: 1;
     display: inline-block;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    height: 15px;
+    box-sizing: content-box;
 
     &:hover {
         .#{$name}-inner {
@@ -44,9 +48,9 @@ $name: 'ivue-checkbox';
     &-inner {
         position: relative;
         display: inline-block;
-        width: 14px;
-        height: 14px;
-        border: 1px solid $border-color;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #626262;
         border-radius: 2px;
         background-color: $white-color;
         transition: border-color .2s $ease-in-out, box-shadow .2s $ease-in-out, background-color .2s $ease-in-out;
@@ -55,10 +59,10 @@ $name: 'ivue-checkbox';
             content: "";
             display: table;
             position: absolute;
-            top: 1px;
-            left: 5px;
-            width: 4px;
-            height: 8px;
+            top: 0;
+            left: 3px;
+            width: 5px;
+            height: 9px;
             border: 2px solid $white-color;
             border-left: 0;
             border-top: 0;
@@ -75,10 +79,10 @@ $name: 'ivue-checkbox';
                 content: "";
                 display: table;
                 position: absolute;
-                top: 1px;
-                left: 4px;
-                width: 4px;
-                height: 8px;
+                top: 0;
+                left: 3px;
+                width: 5px;
+                height: 9px;
                 border: 2px solid $white-color;
                 border-top: 0;
                 border-left: 0;
@@ -134,7 +138,8 @@ $name: 'ivue-checkbox';
 
     /* 文字 */
     &-text {
-        margin-left: 5px;
+        position: relative;
+        top: 1px;
     }
 
     /* 是否禁用 */
@@ -176,11 +181,77 @@ $name: 'ivue-checkbox';
         .#{$name}-inner {
             &::after {
                 position: absolute;
-                left: 2px;
-                top: 5px;
-                width: 8px;
-                height: 1px;
+                left: 1px;
+                top: 4px;
+                width: 9px;
+                height: 2px;
                 transform: scale(1);
+            }
+        }
+    }
+
+    /* 最小 */
+    &-small {
+        .#{$name} {
+            height: 13px;
+        }
+
+        .#{$name}-inner {
+            width: 13px;
+            height: 13px;
+
+            &::after {
+                left: 3px;
+                width: 4px;
+                height: 7px;
+            }
+        }
+
+        /* 不定性选择 */
+        .#{$name}-indeterminate {
+            .#{$name}-inner {
+                &::after {
+                    position: absolute;
+                    left: 1px;
+                    top: 3px;
+                    width: 7px;
+                    height: 2px;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+
+
+    /* 最大 */
+    &-large {
+        .#{$name} {
+            height: 18px;
+        }
+
+        .#{$name}-inner {
+            width: 18px;
+            height: 18px;
+
+            &::after {
+                left: 4px;
+                width: 6px;
+                height: 11px;
+            }
+        }
+
+        /* 不定性选择 */
+        .#{$name}-indeterminate {
+            .#{$name}-inner {
+                &::after {
+                    position: absolute;
+                    left: 1px;
+                    top: 6px;
+                    width: 12px;
+                    height: 2px;
+                    transform: scale(1);
+                }
             }
         }
     }

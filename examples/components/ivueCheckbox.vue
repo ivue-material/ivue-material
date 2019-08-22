@@ -4,6 +4,7 @@
             color="red"
             textColor="#000"
             v-model="active"
+            rippleDisabled
             @on-change="handleChange"
         >default</IvueCheckbox>
         <IvueCheckbox color="red" textColor="#000" disabled v-model="active">disabled</IvueCheckbox>
@@ -14,6 +15,9 @@
             <IvueCheckbox color="primary" textColor="#000" label="3"></IvueCheckbox>
         </IvueCheckBoxGroup>
         {{value1}}
+        <IvueCheckbox color="red" textColor="#000" v-model="active" size="small" indeterminate>small</IvueCheckbox>
+        <IvueCheckbox color="red" textColor="#000" v-model="active" size="default" indeterminate>default</IvueCheckbox>
+        <IvueCheckbox color="red" textColor="#000" v-model="active" size="large" indeterminate>large</IvueCheckbox>
     </div>
 </template>
 

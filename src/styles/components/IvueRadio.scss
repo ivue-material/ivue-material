@@ -5,11 +5,19 @@ $ease-in-out: ease-in-out;
 .#{$name} {
     position: relative;
     display: inline-block;
-    margin-right: 5px;
+    padding: 5px;
     white-space: nowrap;
     vertical-align: middle;
     line-height: 1;
     cursor: pointer;
+    height: 15px;
+    box-sizing: content-box;
+    border-radius: 50%;
+
+    &-text {
+        position: relative;
+        top: 1px;
+    }
 
     /* 组合 */
     &-group {
@@ -41,12 +49,12 @@ $ease-in-out: ease-in-out;
         position: relative;
         left: 0;
         top: 0;
-        width: 14px;
-        height: 14px;
+        width: 15px;
+        height: 15px;
         display: inline-block;
         background-color: $white-color;
         border-radius: 50%;
-        border: 1px solid #dcdee2;
+        border: 2px solid #535353;
         transition: all $transition-time $ease-in-out;
 
         &::after {
@@ -57,8 +65,8 @@ $ease-in-out: ease-in-out;
             top: 0;
             bottom: 0;
             margin: auto;
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             display: table;
             border-top: 0;
@@ -167,6 +175,40 @@ $ease-in-out: ease-in-out;
         &:hover {
             .#{$name}-inner {
                 border-color: #d7dde4;
+            }
+        }
+    }
+
+    /* 最小 */
+    &-small {
+        .#{$name} {
+            height: 13px;
+        }
+
+        .#{$name}-inner {
+            width: 13px;
+            height: 13px;
+
+            &::after {
+                width: 5px;
+                height: 5px;
+            }
+        }
+    }
+
+    /* 最大 */
+    &-large {
+        .#{$name} {
+            height: 18px;
+        }
+
+        .#{$name}-inner {
+            width: 18px;
+            height: 18px;
+
+            &::after {
+                width: 8px;
+                height: 8px;
             }
         }
     }

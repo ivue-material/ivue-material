@@ -1,13 +1,17 @@
 
 <script>
 import Colorable from '../../utils/mixins/colorable';
-import { findComponentUpward } from '../../utils/assist.js';
+import { findComponentUpward, oneOf } from '../../utils/assist.js';
+import ripple from '../../utils/directives/ripple';
 
 const prefixCls = 'ivue-radio';
 
 export default {
     name: prefixCls,
     mixins: [Colorable],
+    directives: {
+        ripple
+    },
     props: {
         /**
          * value (v-model)
@@ -68,6 +72,26 @@ export default {
          */
         name: {
             type: String
+        },
+        /**
+         * 是否禁用涟漪效果
+         *
+         * @type{Boolean}
+         */
+        rippleDisabled: {
+            type: Boolean,
+            default: false
+        },
+        /**
+         * 大小
+         *
+         * @type {String}
+         */
+        size: {
+            validator (value) {
+                return oneOf(value, ['small', 'large', 'default']);
+            },
+            default: 'default'
         }
     },
     data () {
@@ -133,7 +157,9 @@ export default {
             return [
                 `${prefixCls}-wrapper`,
                 {
-                    [`${prefixCls}-wrapper-disabled`]: this.disabled
+                    [`${prefixCls}-wrapper-checked`]: this.currentValue,
+                    [`${prefixCls}-wrapper-disabled`]: this.disabled,
+                    [`${prefixCls}-${this.size}`]: !!this.size,
                 }
             ]
         },
@@ -157,6 +183,16 @@ export default {
         // 输入框
         inputClass () {
             return `${prefixCls}-input`;
+        },
+        // 更新 ripple
+        computedRipple () {
+            if (this.rippleDisabled || this.disabled) {
+                return false;
+            }
+
+            return {
+                center: true
+            };
         }
     },
     methods: {
@@ -169,11 +205,18 @@ export default {
                 handleChange,
                 groupName,
                 handleFocus,
-                handleBlur
+                handleBlur,
+                computedRipple
             } = this;
 
             return h('span', this.setTextColor(this.color, {
-                class: radioClass
+                class: radioClass,
+                directives: [
+                    {
+                        name: 'ripple',
+                        value: computedRipple
+                    }
+                ],
             }), [
                     h('span', {
                         class: innerClass
@@ -244,10 +287,12 @@ export default {
     },
     render (h) {
         return h('label', {
-            class: this.wrapperClass,
+            class: this.wrapperClass
         }, [
                 this.genRadio(h),
-                h('span', this.setTextColor(this.textColor, {}), [this.$slots.default || this.label])
+                h('span', this.setTextColor(this.textColor, {
+                    class: `${prefixCls}-text`
+                }), [this.$slots.default || this.label])
             ])
     }
 }

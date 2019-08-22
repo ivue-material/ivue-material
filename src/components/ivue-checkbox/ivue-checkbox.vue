@@ -1,6 +1,7 @@
 <script>
 import Colorable from '../../utils/mixins/colorable';
-import { findComponentUpward } from '../../utils/assist.js';
+import { findComponentUpward, oneOf } from '../../utils/assist.js';
+import ripple from '../../utils/directives/ripple';
 
 const prefixCls = 'ivue-checkbox';
 
@@ -75,6 +76,26 @@ export default {
          */
         name: {
             type: String
+        },
+        /**
+         * 是否禁用涟漪效果
+         *
+         * @type{Boolean}
+         */
+        rippleDisabled: {
+            type: Boolean,
+            default: false
+        },
+        /**
+         * 大小
+         *
+         * @type {String}
+         */
+        size: {
+            validator (value) {
+                return oneOf(value, ['small', 'large', 'default']);
+            },
+            default: 'default'
         }
     },
     data () {
@@ -134,7 +155,8 @@ export default {
                 `${prefixCls}-wrapper`,
                 {
                     [`${prefixCls}-wrapper-checked`]: this.currentValue,
-                    [`${prefixCls}-wrapper-disabled`]: this.disabled
+                    [`${prefixCls}-wrapper-disabled`]: this.disabled,
+                    [`${prefixCls}-${this.size}`]: !!this.size,
                 }
             ]
         },
@@ -161,15 +183,39 @@ export default {
             return [
                 `${prefixCls}-input`,
             ]
+        },
+        // 更新 ripple
+        computedRipple () {
+            if (this.rippleDisabled || this.disabled) {
+                return false;
+            }
+
+            return {
+                center: true
+            };
         }
     },
     methods: {
         // 渲染 checkbox
         genCheckBox (h) {
-            const { checkBoxClass, innerClass, setTextColor, genInput, genGroupInput, isGroup } = this;
+            const {
+                checkBoxClass,
+                innerClass,
+                computedRipple,
+                setTextColor,
+                genInput,
+                genGroupInput,
+                isGroup
+            } = this;
 
             return h('span', setTextColor(this.color, {
-                class: checkBoxClass
+                class: checkBoxClass,
+                directives: [
+                    {
+                        name: 'ripple',
+                        value: computedRipple
+                    }
+                ]
             }), [
                     h('span', {
                         class: innerClass

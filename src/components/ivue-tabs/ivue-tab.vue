@@ -25,7 +25,7 @@ export default {
             type: Boolean,
             default: false
         },
-        /*
+        /**
         * 是否禁用涟漪效果
         *
         * @type{Boolean}
@@ -34,7 +34,7 @@ export default {
             type: Boolean,
             default: false
         },
-        /*
+        /**
         * 是否居中涟漪效果
         *
         * @type{Boolean}
