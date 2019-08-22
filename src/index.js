@@ -77,7 +77,7 @@ const components = {
     IvueRadio,
     IvueRadioGroup,
     IvueCheckbox,
-    IvueCheckBoxGroup
+    IvueCheckboxGroup
 };
 
 const iVue = {
