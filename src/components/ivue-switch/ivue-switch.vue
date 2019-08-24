@@ -54,6 +54,15 @@ export default {
             default: false
         },
         /**
+         * 进度条颜色
+         *
+         * @type {String}
+         */
+        loadingColor: {
+            type: String,
+            default: ''
+        },
+        /**
          * 选中时的值
          *
          * @type {String,Number,Boolean}
@@ -132,6 +141,13 @@ export default {
                     [`${prefixCls}-emboss--thumb__checked`]: this.currentValue === this.trueValue
                 }
             ]
+        },
+        // 进度条样式
+        embossLodingClass () {
+            return {
+                [`${prefixCls}-emboss--loading`]: this.loading
+
+            }
         },
         // 浮雕ripple
         embossRippleClass () {
@@ -233,7 +249,9 @@ export default {
                 embossTrackClass,
                 embossThumbClass,
                 embossRippleClass,
-                computedRipple
+                computedRipple,
+                embossLodingClass,
+                loadingColor
             } = this;
 
             // 是否开启颜色
@@ -243,7 +261,9 @@ export default {
                 class: embossClass
             }), [
                     h('span', { class: embossTrackClass }),
-                    h('span', { class: embossThumbClass }),
+                    h('span', { class: embossThumbClass }, [
+                        h('span', setTextColor(loadingColor, { class: embossLodingClass })),
+                    ]),
                     h('span', {
                         class: embossRippleClass,
                         directives: [

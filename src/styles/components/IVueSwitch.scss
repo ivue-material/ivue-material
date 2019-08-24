@@ -260,6 +260,25 @@ $emboss-margin: 7px;
             }
         }
 
+
+        /* loading */
+        &--loading {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: $emboss-default-height - 4;
+            height: $emboss-default-height - 4;
+            border-radius: 50%;
+            border: 1px solid currentColor;
+            border-color: transparent transparent transparent currentColor;
+            animation: switch-loading 1s linear;
+            animation-iteration-count: infinite;
+            background-color: transparent;
+        }
+
         /* 跟踪 */
         &--track {
             position: absolute;
@@ -344,6 +363,11 @@ $emboss-margin: 7px;
             width: $emboss-small-width;
             height: $emboss-small-height;
 
+            .#{$name}-emboss--loading {
+                width: $emboss-small-height - 4;
+                height: $emboss-small-height - 4;
+            }
+
             .#{$name}-emboss--track {
                 top: calc(50% - 4px);
                 left: 1px;
@@ -372,11 +396,15 @@ $emboss-margin: 7px;
             }
         }
 
-
         /*大*/
         &--large {
             width: $emboss-large-width;
             height: $emboss-large-height;
+
+            .#{$name}-emboss--loading {
+                width: $emboss-large-height - 4;
+                height: $emboss-large-height - 4;
+            }
 
             .#{$name}-emboss--track {
                 top: calc(50% - 7px);
