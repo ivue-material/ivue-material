@@ -2,7 +2,7 @@
     <div>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <p>基础</p>
-        <IvueSwitch loading color="#F41D74" v-model="switch1" @on-change="handleChange"></IvueSwitch>
+        <IvueSwitch  color="#F41D74" v-model="switch1" @on-change="handleChange"></IvueSwitch>
         <p>flat</p>
         <IvueSwitch color="#000" v-model="switch1" @on-change="handleChange" emboss>
             <span slot="open">开启</span>
@@ -35,7 +35,7 @@
         <IvueSwitch :disabled="true" :value="true" emboss></IvueSwitch>
         <IvueSwitch :disabled="true" :value="false" emboss></IvueSwitch>
         <p>loading</p>
-        <IvueSwitch loading loadingColor="#000" v-model="switch1" emboss color="#F41D74"></IvueSwitch>
+        <IvueSwitch  loadingColor="#000" v-model="switch1" emboss color="#F41D74"></IvueSwitch>
         <IvueSwitch loading loadingColor="#000" v-model="switch1" emboss color="#F41D74" size="large"></IvueSwitch>
         <IvueSwitch loading loadingColor="#000" v-model="switch1" emboss color="#F41D74" size="small"></IvueSwitch>
         <IvueSwitch loading :value="true" size="large"></IvueSwitch>
@@ -47,7 +47,7 @@
 export default {
     data () {
         return {
-            switch1: false
+            switch1: true
         }
     },
     methods: {

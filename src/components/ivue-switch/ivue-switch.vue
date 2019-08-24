@@ -287,7 +287,7 @@ export default {
     },
     render (h) {
         const {
-            setBackgroundColor,
+            setTextColor,
             genInner,
             wrapClasses,
             currentValue,
@@ -301,7 +301,7 @@ export default {
         // 是否开启颜色
         const _color = currentValue === trueValue ? color : '';
 
-        return h('div', setBackgroundColor(!emboss && _color, {
+        return h('div', setTextColor(!emboss && _color, {
             class: wrapClasses,
             attrs: {
                 tabindex: '0'
