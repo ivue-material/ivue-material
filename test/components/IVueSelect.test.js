@@ -50,7 +50,7 @@ describe('IvueSelect', function () {
                         IvueOption
                   }
             }, {
-                         
+
                   });
 
 
@@ -113,7 +113,7 @@ describe('IvueSelect', function () {
                         IvueOption
                   }
             }, {
-                         
+
                   });
 
 
@@ -124,7 +124,7 @@ describe('IvueSelect', function () {
             wrapper.find('.ivue-select-selection').trigger('click');
             expect(wrapper.find('.ivue-select-selection').vnode.context.visibleMenu).to.be.equal(true);
             wrapper.find('.ivue-select-item').trigger('click');
-            expect(wrapper.find('.ivue-select-selection-multiple').text()).to.be.equal('New  close');
+            expect(wrapper.find('.ivue-select-selection-multiple').text()).to.be.equal('New close');
       });
 
 
@@ -176,7 +176,7 @@ describe('IvueSelect', function () {
                         IvueOption
                   }
             }, {
-                         
+
                   });
 
 

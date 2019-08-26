@@ -114,7 +114,7 @@ const install = function (Vue, opts = {}) {
     // ripple resize touch click-outside
     Object.keys(Directives).forEach(key => {
         Vue.directive(key, Directives[key]);
-    })
+    });
 };
 
 
@@ -130,4 +130,6 @@ const API = {
     ...components
 };
 
-module.exports.default = module.exports = API;   // eslint-disable-line no-undef
+// module.exports.default = module.exports = API;   // eslint-disable-line no-undef
+
+export default API;  // eslint-disable-line no-undef

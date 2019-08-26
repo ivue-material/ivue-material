@@ -46,7 +46,7 @@ function isRouterLink (parent, props) {
 }
 
 // 判断是否有扩展
-function hasExpansion (props) {
+function _hasExpansion (props) {
     return props.hasOwnProperty('ivueExpand') && props.ivueExpand !== false;
 }
 
@@ -54,7 +54,7 @@ function hasExpansion (props) {
 // 创建列表组件
 function createListComponent (props, parent, listeners) {
     // 判断扩展
-    if (hasExpansion(props)) {
+    if (_hasExpansion(props)) {
         return IvueListItemExpand;
     }
 

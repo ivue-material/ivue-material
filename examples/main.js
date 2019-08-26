@@ -3,11 +3,11 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import IVue from './ivue.js';
+import IVue from '../src/index';
+// import IVue from '../dist/ivue';
 
 Vue.use(IVue)
 Vue.config.productionTip = false;
-
 
 // import "../dist/styles/elevation.css";
 import "../src/styles/index.scss";

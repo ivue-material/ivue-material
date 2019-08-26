@@ -1,5 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Directives from '../src/utils/directives';
+
+// 注册全局指令
+// ripple resize touch click-outside
+Object.keys(Directives).forEach(key => {
+    Vue.directive(key, Directives[key]);
+});
 
 import "../src/styles/index.scss";
 // import "./components/IvueButton.test";
@@ -29,4 +36,4 @@ import "../src/styles/index.scss";
 // import "./components/IVueTooltip.test";
 // import "./components/IVueChip.test.js";
 // import "./components/IVueRadio.test.js";
-// import "./components/IVueCheckBox.test.js";
+import "./components/IVueCheckBox.test.js";
