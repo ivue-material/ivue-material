@@ -14,12 +14,11 @@ if (!process.env.NODE_ENV) {
 }
 
 const opn = require('opn');
-const path  = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const express = require('express');
 // 轻松的配置代理服务器中间件
 const proxyMiddleware = require('http-proxy-middleware');
-
 const webpackConfig = require('./webpack.dev');
 
 let app = express();
@@ -46,6 +45,7 @@ let hotMiddleware = require('webpack-hot-middleware')(compiler, {
 // 当 html-webpack-plugin 的模版文件更新的时候，强制重新刷新调试页面
 compiler.hooks.shouldEmit.tap('compilation', function (compilation) {
     compilation.hooks.additionalAssets.tapAsync('html-webpack-plugin-after-emit', function (data, cb) {
+
         hotMiddleware.publish({
             action: 'reload'
         });
@@ -79,11 +79,6 @@ app.use(devMiddleware);
 
 // 使用热更新， 如果编译出现错误会实时展示编译错误
 app.use(hotMiddleware);
-
-// 纯静态资源服务
-// '/' static
-let staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory);
-app.use(staticPath, express.static('./static'));
 
 let url = 'http://localhost:' + port;
 

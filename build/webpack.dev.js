@@ -25,11 +25,6 @@ module.exports = merge(webpackConfig, {
     mode: "development",
     // cheap-module-eval-source-map 开发速度更快
     devtool: config.dev.devtool,
-    // 入口
-    entry: {
-        main: './examples/main',
-        vendors: ['vue', 'vue-router']
-    },
     module: {
         rules: utils.styleLoaders({
             hotReload: true,
@@ -37,13 +32,6 @@ module.exports = merge(webpackConfig, {
             sourceMap: config.dev.cssSourceMap,
             usePostCSS: true
         })
-    },
-    // 配置模块的解析方式
-    resolve: {
-        alias: {
-            ivue: '../../src/index',
-            vue: 'vue/dist/vue.esm.js'
-        }
     },
     plugins: [
         // 允许您创建可在配置全局常量的编译时间
@@ -65,12 +53,21 @@ module.exports = merge(webpackConfig, {
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.join(__dirname, '../examples/index.html'),
+            template: 'examples/index.html',
             // 所有javascript资源将被放置在body元素的底部。
             // 'head'将脚本放在head元素中
             inject: true
         }),
 
         new FriendlyErrorsPlugin(),
+
+        // copy custom static assets
+        new CopyWebpackPlugin([
+        {
+          from: path.resolve(__dirname, '../static'),
+          to: config.dev.assetsSubDirectory,
+          ignore: ['.*']
+        }
+      ])
     ]
 });

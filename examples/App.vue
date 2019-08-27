@@ -112,15 +112,17 @@ nav {
                 <li>
                     <router-link to="/IvueTouch">IvueTouch</router-link>
                 </li>
-                 <li>
+                <li>
                     <router-link to="/IvueChip">IvueChip</router-link>
                 </li>
-
                 <li>
                     <router-link to="/IvueRadio">IvueRadio</router-link>
                 </li>
                 <li>
                     <router-link to="/IvueCheckbox">IvueCheckbox</router-link>
+                </li>
+                <li>
+                    <router-link to="/IvueAvatar">IvueAvatar</router-link>
                 </li>
             </ul>
         </nav>

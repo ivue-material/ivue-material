@@ -31,6 +31,7 @@ import IvueRadio from '../components/ivueRadio';
 import IvueTooltip from '../components/ivueTooltip';
 import IvueTouch from '../components/ivueTouch'
 import IvueCheckbox from '../components/ivueCheckbox'
+import IvueAvatar from '../components/ivueAvatar'
 
 Vue.use(Router);
 
@@ -190,6 +191,11 @@ export default new Router({
             path: '/IvueCheckbox',
             name: 'IvueCheckbox',
             component: IvueCheckbox
+        },
+        {
+            path: '/IvueAvatar',
+            name: 'IvueAvatar',
+            component: IvueAvatar
         }
     ]
 });

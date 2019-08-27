@@ -22,7 +22,7 @@ function resolve (dir) {
 const webpackConfig = {
     context: path.resolve(__dirname, '../'),
     entry: {
-        main: './src/index.js'
+        app: './examples/main.js'
     },
     output: {
         // 输出目录作为绝对路径。

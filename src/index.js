@@ -32,6 +32,7 @@ import IvueRadio from './components/ivue-radio';
 import IvueRadioGroup from './components/ivue-radio-group';
 import IvueCheckbox from './components/ivue-checkbox';
 import IvueCheckboxGroup from './components/ivue-checkbox-group';
+import IvueAvatar from './components/ivue-avatar';
 
 import Directives from './utils/directives';
 
@@ -77,7 +78,8 @@ const components = {
     IvueRadio,
     IvueRadioGroup,
     IvueCheckbox,
-    IvueCheckboxGroup
+    IvueCheckboxGroup,
+    IvueAvatar
 };
 
 const iVue = {
