@@ -10,7 +10,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 识别某些类别的webpack错误，并清理，聚合和优先级，以提供更好的开发人员体验。
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const utils = require('./utils');
 const config = require('../config');
@@ -59,15 +58,6 @@ module.exports = merge(webpackConfig, {
             inject: true
         }),
 
-        new FriendlyErrorsPlugin(),
-
-        // copy custom static assets
-        new CopyWebpackPlugin([
-        {
-          from: path.resolve(__dirname, '../static'),
-          to: config.dev.assetsSubDirectory,
-          ignore: ['.*']
-        }
-      ])
+        new FriendlyErrorsPlugin()
     ]
 });
