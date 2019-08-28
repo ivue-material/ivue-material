@@ -36,4 +36,5 @@ import "../src/styles/index.scss";
 // import "./components/IVueTooltip.test";
 // import "./components/IVueChip.test.js";
 // import "./components/IVueRadio.test.js";
-import "./components/IVueCheckBox.test.js";
+// import "./components/IVueCheckBox.test.js";
+import "./components/IVueAvatar.test.js";
