@@ -124,6 +124,9 @@ nav {
                 <li>
                     <router-link to="/IvueAvatar">IvueAvatar</router-link>
                 </li>
+                <li>
+                    <router-link to="/IvuePage">IvuePage</router-link>
+                </li>
             </ul>
         </nav>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

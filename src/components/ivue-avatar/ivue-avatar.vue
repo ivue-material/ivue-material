@@ -142,7 +142,7 @@ export default {
         },
         // 渲染slot
         genSlot (h) {
-            return h('span', {
+            return h('div', {
                 staticClass: `${prefixCls}-text`,
                 style: this.slotStyle,
                 ref: 'children'
