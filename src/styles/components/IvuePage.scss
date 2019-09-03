@@ -1,5 +1,85 @@
 $name: 'ivue-page';
 
 .#{$name} {
-    
+
+    &-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 4px;
+        text-align: center;
+        list-style: none;
+        user-select: none;
+        cursor: pointer;
+        font-weight: 500;
+        min-width: 32px;
+        height: 32px;
+        line-height: 28px;
+        border-radius: 5px;
+        color: #ffffff;
+        border: 2px solid currentColor;
+        background: currentColor;
+        transition: border .2s ease-in-out, color .2s ease-in-out;
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+        /* 激活 */
+        &--active {
+            border-color: $primary-color;
+        }
+
+        &:hover {
+            border-color: $primary-color;
+        }
+
+        /* 文字 */
+        &--text {
+            color: #000000;
+        }
+
+        /* 缩略符 */
+        &--abbreviation {
+            border-color: transparent;
+            background: none;
+            transition: none;
+            box-shadow: none;
+            cursor: auto;
+
+            &::after {
+                content: "\2022\2022\2022";
+                display: block;
+                letter-spacing: 1px;
+                color: #ccc;
+                text-align: center;
+            }
+
+            &:hover {
+                border-color: transparent;
+            }
+        }
+    }
+
+    /* 上一页 上一页*/
+    &-prev,
+    &-next {
+        color: #000000;
+        background: none;
+        border-color: transparent;
+        transition: border .2s ease-in-out;
+
+        .ivue-icon {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+        }
+    }
+
+    /* 禁用 */
+    &-disabled {
+        cursor: $cursor-disabled;
+        color: #ccc;
+        border-color: transparent;
+
+        &:hover {
+            border-color: transparent;
+        }
+    }
 }
