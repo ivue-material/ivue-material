@@ -2,11 +2,21 @@
 const prefixCls = 'ivue-page';
 import Colorable from '../../utils/mixins/colorable';
 import IvueIcon from '../ivue-icon/ivue-icon';
+import IvueOptions from './ivue-options';
 
 export default {
     name: prefixCls,
     mixins: [Colorable],
     props: {
+        /**
+         * 圆形
+         *
+         * @type {Boolean}
+         */
+        circle: {
+            type: Boolean,
+            default: false
+        },
         /**
          * 数据总数
          *
@@ -73,6 +83,39 @@ export default {
         nextIcon: {
             type: String,
             default: 'keyboard_arrow_right'
+        },
+        /**
+         * 页数选择选项
+         *
+         * @type {Array}
+         */
+        pageSizeOpts: {
+            type: Array,
+            default: () => {
+                return []
+            }
+        },
+        /**
+         * 电梯文字
+         *
+         * @type {Object}
+         */
+        elevatorText: {
+            type: Object,
+            default: () => {
+                return {
+                    go: '跳至',
+                    page: '页'
+                }
+            }
+        },
+        /**
+         * 是否显示电梯
+         *
+         * @type {Boolean}
+         */
+        showElevator: {
+            type: Boolean
         }
     },
     data () {
@@ -93,7 +136,8 @@ export default {
         // 选项样式
         itemClass () {
             return {
-                [`${prefixCls}-item`]: true
+                [`${prefixCls}-item`]: true,
+                [`${prefixCls}-item--circle`]: this.circle
             }
         },
         // 所有的页数
@@ -170,7 +214,8 @@ export default {
                 currentPageSize,
                 total,
                 handleChangePage,
-                setRenderRange
+                setRenderRange,
+                handleFastNext
             } = this;
 
             let _currentPage = currentPage;
@@ -197,12 +242,39 @@ export default {
             };
 
             // 缩略符号
-            const abbreviation = h('li', {
-                class: {
-                    ...itemClass,
-                    [`${prefixCls}-item--abbreviation`]: true
-                }
-            });
+            const abbreviationPrev = {
+                tag: 'li',
+                data: {
+                    class: {
+                        ...itemClass,
+                        [`${prefixCls}-item--abbreviation`]: true
+                    },
+                    on: {
+                        click: this.handleFastPrev
+                    }
+                },
+                content: [
+                    h(IvueIcon, 'chevron_left'),
+                    h(IvueIcon, 'chevron_left')
+                ]
+            };
+
+            const abbreviationNext = {
+                tag: 'li',
+                data: {
+                    class: {
+                        ...itemClass,
+                        [`${prefixCls}-item--abbreviation`]: true
+                    },
+                    on: {
+                        click: this.handleFastNext
+                    }
+                },
+                content: [
+                    h(IvueIcon, 'chevron_right'),
+                    h(IvueIcon, 'chevron_right')
+                ]
+            };
 
             range.push(startItem);
 
@@ -365,20 +437,23 @@ export default {
             }
 
             return [
-                ...setRenderRange(h, range, abbreviation, currentPage, allPages)
+                ...setRenderRange(h, range, abbreviationPrev, abbreviationNext, currentPage, allPages)
             ]
         },
         // 改变页数
         handleChangePage (page) {
             if (this.currentPage != page) {
                 this.currentPage = page;
+
+                this.$emit('on-change', page);
+
+                // 修改 v-modul
+                this.inputValue = page
             }
 
-            // 修改 v-modul
-            this.inputValue = page
         },
         // 设置渲染内容
-        setRenderRange (h, range, abbreviation, currentPage, allPages) {
+        setRenderRange (h, range, abbreviationPrev, abbreviationNext, currentPage, allPages) {
             let ret = [];
 
             range.forEach((key, index) => {
@@ -392,12 +467,12 @@ export default {
 
             // 缩略号
             if (currentPage > 5) {
-                ret.splice(1, 0, abbreviation);
+                ret.splice(1, 0, h(abbreviationPrev.tag, abbreviationPrev.data, abbreviationPrev.content));
             }
 
             // 缩略号
             if (allPages - currentPage >= 5) {
-                ret.splice(-1, 0, abbreviation);
+                ret.splice(-1, 0, h(abbreviationNext.tag, abbreviationNext.data, abbreviationNext.content));
             }
 
             return ret;
@@ -419,6 +494,40 @@ export default {
             }
 
             this.handleChangePage(current + 1)
+        },
+        // 快速前进
+        handleFastNext () {
+            const page = this.currentPage + 5;
+
+            if (page > this.allPages) {
+                this.handleChangePage(this.allPages);
+            }
+            else {
+                this.handleChangePage(page)
+            }
+        },
+        // 快速前进
+        handleFastPrev () {
+            const page = this.currentPage - 5;
+
+            if (page > 0) {
+                this.handleChangePage(page);
+            }
+            else {
+                this.handleChangePage(1)
+            }
+        },
+        // 选择页数
+        handleSelectPage (pageSize) {
+            this.currentPageSize = pageSize;
+
+            this.$emit('on-change-page-size', pageSize);
+
+            this.handleChangePage(1);
+        },
+        // 电梯页数
+        handleElevatorPage (page) {
+            this.handleChangePage(page);
         }
     },
     watch: {
@@ -440,17 +549,47 @@ export default {
         }
     },
     components: {
-        IvueIcon
+        IvueIcon,
+        IvueOptions
     },
     render (h) {
-        const { wrapperClass, genItems, genNextBtn, genPrevBtn, prevIcon, nextIcon } = this;
+        const {
+            wrapperClass,
+            genItems,
+            genNextBtn,
+            genPrevBtn,
+            prevIcon,
+            nextIcon,
+            pageSizeOpts,
+            currentPageSize,
+            handleSelectPage,
+            currentPage,
+            allPages,
+            elevatorText,
+            showElevator,
+            handleElevatorPage
+        } = this;
 
         return h('ul', {
             class: wrapperClass
         }, [
                 genPrevBtn(h, prevIcon),
                 genItems(h),
-                genNextBtn(h, nextIcon)
+                genNextBtn(h, nextIcon),
+                h(IvueOptions, {
+                    props: {
+                        pageSizeOpts,
+                        currentPage,
+                        allPages,
+                        elevatorText,
+                        showElevator,
+                        pageSize: currentPageSize
+                    },
+                    on: {
+                        ['on-select']: handleSelectPage,
+                        ['on-elevator']: handleElevatorPage
+                    }
+                })
             ]);
     }
 }

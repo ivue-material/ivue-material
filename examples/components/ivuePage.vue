@@ -1,7 +1,11 @@
 <template>
     <div>
-        <IvuePage :total="10" :bgList="bgList" :colorList="colorList" v-model="value"></IvuePage>
-        <IvuePage :total="1"></IvuePage>
+        <IvuePage :total="100" :bgList="bgList" :colorList="colorList" v-model="value"></IvuePage>
+        <IvuePage :total="100" :bgList="bgList" :colorList="colorList" :pageSize="10"></IvuePage>
+        <IvuePage :total="10" circle></IvuePage>
+
+        <IvuePage :total="100" :bgList="bgList" :colorList="colorList" :pageSize="10" :pageSizeOpts="[10,20,30]" showElevator></IvuePage>
+
         {{value}}
     </div>
 </template>

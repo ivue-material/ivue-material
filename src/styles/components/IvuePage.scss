@@ -3,6 +3,7 @@ $name: 'ivue-page';
 .#{$name} {
 
     &-item {
+        position: relative;
         display: inline-block;
         vertical-align: middle;
         margin-right: 4px;
@@ -18,8 +19,13 @@ $name: 'ivue-page';
         color: #ffffff;
         border: 2px solid currentColor;
         background: currentColor;
-        transition: border .2s ease-in-out, color .2s ease-in-out;
+        transition: border .2s ease-in-out;
         box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+        /* 圆形 */
+        &--circle {
+            border-radius: 50%;
+        }
 
         /* 激活 */
         &--active {
@@ -41,7 +47,6 @@ $name: 'ivue-page';
             background: none;
             transition: none;
             box-shadow: none;
-            cursor: auto;
 
             &::after {
                 content: "\2022\2022\2022";
@@ -51,8 +56,35 @@ $name: 'ivue-page';
                 text-align: center;
             }
 
+
+            .ivue-icon {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin-left: 5px;
+                display: none;
+                color: $primary-color;
+                font-size: 20px;
+
+                &:first-child {
+                    margin-left: -1px;
+                }
+
+            }
+
             &:hover {
                 border-color: transparent;
+
+                &::after {
+                    display: none;
+                }
+
+                .ivue-icon {
+                    display: initial;
+                    color: $primary-color;
+                }
             }
         }
     }
@@ -80,6 +112,55 @@ $name: 'ivue-page';
 
         &:hover {
             border-color: transparent;
+        }
+    }
+
+    /* 选项 */
+    &-options {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 15px;
+
+        .ivue-select-item-selected:after {
+            display: none;
+        }
+
+        /* 选择 */
+        &--select {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        /* 电梯 */
+        &--elevator {
+            display: inline-block;
+            vertical-align: middle;
+            height: 32px;
+            line-height: 32px;
+
+            input {
+                position: relative;
+                display: inline-block;
+                width: 50px;
+                height: 32px;
+                line-height: 1.5;
+                margin: 0 8px;
+                padding: 4px 7px;
+                font-size: 12px;
+                border: 1px solid $border-color;
+                color: #515a6e;
+                background-color: #fff;
+                outline: none;
+                cursor: text;
+                transition: border .2s ease-in-out;
+                border-radius: 5px;
+            }
+
+            &:hover {
+                input {
+                    border-color: $primary-color;
+                }
+            }
         }
     }
 }
