@@ -33,6 +33,7 @@ import IvueTouch from '../components/ivueTouch'
 import IvueCheckbox from '../components/ivueCheckbox'
 import IvueAvatar from '../components/ivueAvatar'
 import IvuePage from '../components/ivuePage'
+import IvueTable from '../components/ivueTable'
 
 Vue.use(Router);
 
@@ -202,6 +203,11 @@ export default new Router({
             path: '/IvuePage',
             name: 'IvuePage',
             component: IvuePage
+        },
+        {
+            path: '/IvueTable',
+            name: 'IvueTable',
+            component: IvueTable
         }
     ]
 });
