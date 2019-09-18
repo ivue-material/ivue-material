@@ -31,7 +31,8 @@ export default {
                 prefixCls,
                 this.rowClsName(row._index),
                 {
-                    [`${prefixCls}-hover`]: rewriteTableData[row._index] && rewriteTableData[row._index]._isHover
+                    [`${prefixCls}-hover`]: rewriteTableData[row._index] && rewriteTableData[row._index]._isHover,
+                    [`${prefixCls}-highlight`]: rewriteTableData[row._index] && rewriteTableData[row._index]._isHighlight,
                 }
             ]
         }

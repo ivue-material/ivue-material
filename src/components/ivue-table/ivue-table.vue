@@ -81,6 +81,14 @@ export default {
          */
         width: {
             type: [Number, String]
+        },
+        /**
+         * 是否开启高亮行
+         *
+         * @type {Boolean}
+         */
+        highlightRow: {
+            type: Boolean
         }
     },
     data () {
@@ -703,7 +711,11 @@ export default {
             this.tableData.forEach((row, index) => {
                 const newRow = deepCopy(row);
 
+                // 鼠标悬浮
                 newRow._isHover = false;
+
+                // 高亮行
+                newRow._isHighlight = false;
 
                 data[index] = newRow;
             });
@@ -718,9 +730,40 @@ export default {
         handleMouseOut (_index) {
             this.rewriteTableData[_index]._isHover = false;
         },
+        // 点击当前行
+        clickCurrentRow (_index) {
+            this.highlightCurrentRow(_index);
+        },
         // 某行的样式
         _rowClassName (index) {
             return this.rowClassName(this.tableData[index], index);
+        },
+        // 高亮当前行
+        highlightCurrentRow (_index) {
+            // 是否开启高亮行
+            if (!this.highlightRow || this.rewriteTableData[_index]._isHighlight) {
+                return;
+            }
+
+            this.handleCurrentRow('highlight', _index);
+        },
+        // 处理当前行
+        handleCurrentRow (type, _index) {
+            let oldIndex = -1;
+
+            for (let i in this.rewriteTableData) {
+                if (this.rewriteTableData[i]._isHighlight) {
+                    oldIndex = parseInt(i);
+
+                    // 初始化高亮
+                    this.rewriteTableData[i]._isHighlight = false;
+                }
+            }
+
+            // 是否高亮
+            if (type === 'highlight') {
+                this.rewriteTableData[_index]._isHighlight = true;
+            }
         },
         // 固定头部
         fixedHeader () {

@@ -101,6 +101,9 @@ export default {
                             $event.stopPropagation();
 
                             this.handleMouseOut(row._index)
+                        },
+                        'click': () => {
+                            this.clickCurrentRow(row._index);
                         }
                     },
                     key: row._rowKey
@@ -132,6 +135,10 @@ export default {
         // 鼠标离开
         handleMouseOut (_index) {
             this.$parent.handleMouseOut(_index);
+        },
+        // 点击当前行
+        clickCurrentRow (_index) {
+            this.$parent.clickCurrentRow(_index);
         },
         // td class
         tdClass (header, row) {

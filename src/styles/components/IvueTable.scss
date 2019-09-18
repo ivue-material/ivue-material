@@ -94,7 +94,9 @@ $name:'ivue-table';
 
     /* tr */
     &-tr {
-        &-hover {
+
+        &-hover,
+        &-highlight {
             .#{$name}-td {
                 background-color: rgba(65, 119, 246, .2);
             }

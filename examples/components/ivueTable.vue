@@ -8,7 +8,7 @@
             height="200"
             width="600"
         ></IvueTable>
-        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200"></IvueTable>
+        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200" highlightRow></IvueTable>
         <IvueTable :tableHeader="columns1" :tableData="data1" width="600" height="200"></IvueTable>
     </div>
 </template>
@@ -89,7 +89,10 @@ export default {
                     address: 'Washington, D.C. No. 1 Lake Park',
                     province: 'America',
                     city: 'Washington, D.C.',
-                    zip: 100000
+                    zip: 100000,
+                    cellClassName: {
+                        name: 'demo-table-info-cell-name'
+                    }
                 },
                 {
                     name: 'Joe Black',
@@ -97,7 +100,11 @@ export default {
                     address: 'Sydney No. 1 Lake Park',
                     province: 'Australian',
                     city: 'Sydney',
-                    zip: 100000
+                    zip: 100000,
+                    cellClassName: {
+                        age: 'demo-table-info-cell-age',
+                        address: 'demo-table-info-cell-address'
+                    }
                 },
                 {
                     name: 'Jon Snow',
@@ -106,6 +113,7 @@ export default {
                     province: 'Canada',
                     city: 'Ottawa',
                     zip: 100000,
+                    className: 'demo-table-info-column'
                 }
             ],
             headerColor: [{
