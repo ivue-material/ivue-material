@@ -734,6 +734,14 @@ export default {
         clickCurrentRow (_index) {
             this.highlightCurrentRow(_index);
         },
+        // 清除当前行
+        clearCurrentRow () {
+            if (!this.highlightRow) {
+                return;
+            }
+    
+            this.handleCurrentRow('clear');
+        },
         // 某行的样式
         _rowClassName (index) {
             return this.rowClassName(this.tableData[index], index);

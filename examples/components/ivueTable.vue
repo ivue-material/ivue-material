@@ -8,8 +8,10 @@
             height="200"
             width="600"
         ></IvueTable>
-        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200" highlightRow></IvueTable>
+        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200" highlightRow ref="highlightRow"></IvueTable>
+        <IvueButton @click="handleClick">清除 highlightRow</IvueButton>
         <IvueTable :tableHeader="columns1" :tableData="data1" width="600" height="200"></IvueTable>
+
     </div>
 </template>
 
@@ -133,6 +135,9 @@ export default {
                 return 'demo-table-error-row';
             }
             return '';
+        },
+        handleClick(){
+            this.$refs.highlightRow.clearCurrentRow();
         }
     }
 }
