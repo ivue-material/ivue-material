@@ -139,7 +139,30 @@ export default {
              * @type {Object}
              */
             scrollBarWidth: getScrollBarSize(),
-            leftFixedColumns: []
+            /**
+             * 左边固定的列
+             *
+             * @type {Array}
+             */
+            leftFixedColumns: [],
+            /**
+             * 右边固定的列
+             *
+             * @type {Array}
+             */
+            rightFixedColumns: [],
+            /**
+             * 头部宽度
+             *
+             * @type {Number}
+             */
+            headerWidth: 0,
+            /**
+             * 头部高度
+             *
+             * @type {Number}
+             */
+            headerHeight: 0
         }
     },
     mounted () {
@@ -148,7 +171,6 @@ export default {
         this.handleResize();
 
         on(window, 'resize', this.handleResize);
-
     },
     computed: {
         wrapperClass () {
@@ -200,8 +222,42 @@ export default {
 
             return style;
         },
+        // 固定右侧样式
+        fixedRightTableStyle () {
+            let style = {};
+            let width = 0;
+
+            this.rightFixedColumns.forEach((col) => {
+                if (col.fixed && col.fixed === 'right') {
+                    width += col._width;
+                }
+            });
+
+            style.width = `${width}px`;
+            style.right = `${this.showVerticalScrollBar ? this.scrollBarWidth : 0}px`;
+
+            return style;
+        },
         // 内容样式
         contentStyle () {
+            let style = {};
+
+            const {
+                contentHeight,
+                showHorizontalScrollBar,
+                scrollBarWidth
+            } = this;
+
+            if (contentHeight !== 0) {
+                const height = contentHeight;
+
+                style.height = `${height}px`;
+            }
+
+            return style;
+        },
+        // 内容样式
+        fixedContentStyle () {
             let style = {};
 
             const {
@@ -224,6 +280,12 @@ export default {
                 `${prefixCls}-fixed--header`,
             ];
         },
+        // 固定内容样式
+        fixedContentClass () {
+            return [
+                `${prefixCls}-fixed--content`,
+            ];
+        },
         // 固定的样式
         fixedTableStyle () {
             let style = {};
@@ -238,6 +300,22 @@ export default {
 
 
             style.width = `${width}px`;
+
+            return style;
+        },
+        // 右边滚动右上角
+        fixedRightHeaderStyle () {
+            let style = {};
+            let width = 0;
+
+            let height = this.headerHeight + 1;
+
+            if (this.showVerticalScrollBar) {
+                width = this.scrollBarWidth;
+            }
+
+            style.width = `${width}px`;
+            style.height = `${height}px`;
 
             return style;
         },
@@ -256,18 +334,24 @@ export default {
             const {
                 _tableHeader,
                 columnsWidth,
-                headerColor
+                headerColor,
+                tableStyle,
+                handleMouseWheel
             } = this;
 
             return h('div', {
                 class: `${prefixCls}-header`,
-                ref: 'header'
+                ref: 'header',
+                on: {
+                    mousewheel: handleMouseWheel
+                }
             }, [
                     h(IvueTableHeader, {
                         props: {
                             columnsWidth,
                             headerColor,
-                            tableHeader: _tableHeader
+                            tableHeader: _tableHeader,
+                            tableStyle
                         }
                     })
                 ]);
@@ -280,12 +364,17 @@ export default {
                 columnsWidth,
                 sequenceTableData,
                 rewriteTableData,
-                contentStyle
+                contentStyle,
+                handleContentScroll
             } = this;
 
             return h('div', {
                 style: contentStyle,
                 class: `${prefixCls}-content--wrapper`,
+                on: {
+                    scroll: handleContentScroll
+                },
+                ref: 'contentWrapper',
             }, [
                     h(IvueTableContent, {
                         class: `${prefixCls}-content`,
@@ -305,11 +394,16 @@ export default {
         genLeftFixed (h) {
             const {
                 fixedTableStyle,
+                fixedContentStyle,
                 fixedHeaderClass,
+                fixedContentClass,
                 columnsWidth,
                 headerColor,
-                _tableHeader,
-                tableStyle
+                leftFixedColumns,
+                tableStyle,
+                rewriteTableData,
+                sequenceTableData,
+                handleFixedMousewheel
             } = this;
 
             return h('div', {
@@ -322,15 +416,109 @@ export default {
                     }, [
                             h(IvueTableHeader, {
                                 props: {
-                                    fixed:'left',
+                                    fixed: 'left',
                                     columnsWidth,
                                     headerColor,
-                                    tableHeader: _tableHeader,
+                                    tableHeader: leftFixedColumns,
                                     tableStyle: tableStyle
+                                }
+                            })
+                        ]),
+                    // 内容
+                    h('div', {
+                        class: fixedContentClass,
+                        style: fixedContentStyle,
+                        ref: 'fixedLeftBody',
+                        on: {
+                            mousewheel: handleFixedMousewheel
+                        },
+                        nativeOn: {
+                            DOMMouseScroll: handleFixedMousewheel
+                        }
+                    }, [
+                            h(IvueTableContent, {
+                                props: {
+                                    fixed: 'left',
+                                    tableStyle: fixedTableStyle,
+                                    columnsWidth,
+                                    rewriteTableData,
+                                    tableHeader: leftFixedColumns,
+                                    data: sequenceTableData
                                 }
                             })
                         ])
                 ])
+        },
+        // 渲染右侧固定
+        genRightFixed (h) {
+            const {
+                fixedRightTableStyle,
+                fixedContentStyle,
+                fixedTableStyle,
+                fixedHeaderClass,
+                fixedContentClass,
+                columnsWidth,
+                headerColor,
+                rightFixedColumns,
+                tableStyle,
+                rewriteTableData,
+                sequenceTableData,
+                handleFixedMousewheel
+            } = this;
+
+            return h('div', {
+                class: [
+                    `${prefixCls}-fixed`,
+                    `${prefixCls}-fixed--right`,
+                ],
+                style: fixedRightTableStyle
+            }, [
+                    // 头部
+                    h('div', {
+                        class: fixedHeaderClass
+                    }, [
+                            h(IvueTableHeader, {
+                                props: {
+                                    fixed: 'right',
+                                    columnsWidth,
+                                    headerColor,
+                                    tableHeader: rightFixedColumns,
+                                    tableStyle: fixedRightTableStyle
+                                }
+                            })
+                        ]),
+                    // 内容
+                    h('div', {
+                        class: fixedContentClass,
+                        style: fixedContentStyle,
+                        ref: 'fixedRightBody',
+                        on: {
+                            mousewheel: handleFixedMousewheel
+                        },
+                        // nativeOn: {
+                        //     DOMMouseScroll: handleFixedMousewheel
+                        // }
+                    }, [
+                            h(IvueTableContent, {
+                                props: {
+                                    fixed: 'right',
+                                    tableStyle: fixedTableStyle,
+                                    columnsWidth,
+                                    rewriteTableData,
+                                    tableHeader: rightFixedColumns,
+                                    data: sequenceTableData
+                                }
+                            })
+                        ])
+
+                ])
+        },
+        // 右边滚动右上角
+        genRightHeader (h) {
+            return h('div', {
+                class: `${prefixCls}-fixed--rightheader`,
+                style: this.fixedRightHeaderStyle
+            })
         },
         // 设置表头id
         setTableHeaderId (tableHeader) {
@@ -402,7 +590,7 @@ export default {
             // 累加宽度
             let reduceWidth = hasWidthColumns.map(cell => cell.width).reduce((a, b) => a + b, 0);
             // 可以使用的宽度
-            let usableWidth = tableWidth - reduceWidth - sumMinWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0) - 1;
+            let usableWidth = tableWidth - reduceWidth - sumMinWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0);
             // 可以使用的长度
             let usableLength = noWidthColumns.length;
 
@@ -451,15 +639,18 @@ export default {
                 };
             }
 
+
+            // 表格宽度
+            this.tableWidth = this._tableHeader.map((header) => header._width).reduce((a, b) => a + b, 0) + (this.showVerticalScrollBar ? this.scrollBarWidth : 0);
             // 每列的宽度
             this.columnsWidth = columnsWidth;
-            // 表格宽度
-            this.tableWidth = this._tableHeader.map((header) => header._width).reduce((a, b) => a + b, 0) + (this.showVerticalScrollBar ? this.scrollBarWidth : 0) + 1;
             // 固定头部
             this.fixedHeader();
 
             // 左边固定的列
-            this.leftFixedColumns = convertColumnOrder(this._tableHeader, 'left')
+            this.leftFixedColumns = convertColumnOrder(this._tableHeader, 'left');
+            // 右边固定的列
+            this.rightFixedColumns = convertColumnOrder(this._tableHeader, 'right');
         },
         // 过滤数据
         filterData (data, column) {
@@ -548,6 +739,11 @@ export default {
         },
         // 固定内容
         fixedContent () {
+            if (this.$refs.header) {
+                this.headerWidth = this.$refs.header.children[0].offsetWidth;
+                this.headerHeight = this.$refs.header.children[0].offsetHeight;
+            }
+
             if (!this.$refs.content || !this.tableData || this.tableData.length === 0) {
                 this.showVerticalScrollBar = false;
             }
@@ -580,6 +776,87 @@ export default {
                 }
 
             }
+        },
+        // 内容滚动
+        handleContentScroll (event) {
+            if (this.isLeftFixed) {
+                this.$refs.fixedLeftBody.scrollTop = event.target.scrollTop;
+            }
+
+            if (this.isRightFixed) {
+                this.$refs.fixedRightBody.scrollTop = event.target.scrollTop;
+            }
+
+            this.$refs.header.scrollLeft = event.target.scrollLeft;
+
+        },
+        // 鼠标滚动
+        handleFixedMousewheel (event) {
+            let deltaY = event.deltaY;
+
+            // 是否是Y轴滚动
+            if (!deltaY && event.detail) {
+                deltaY = event.detail * 48;
+            }
+
+            // 向上滚动
+            if (!deltaY && event.wheelDeltaY) {
+                deltaY = -event.wheelDeltaY
+            }
+
+            if (!deltaY && event.wheelDelta) {
+                deltaY = -event.wheelDelta;
+            }
+
+
+            if (!deltaY) {
+                return;
+            }
+
+            const content = this.$refs.contentWrapper;
+            // 当前滚动到顶部的位置
+            const currentScrollTop = content.scrollTop;
+
+            // 向下滚动
+            if (deltaY < 0 && currentScrollTop !== 0) {
+                event.preventDefault();
+            }
+
+            // 向上滚动
+            if (deltaY > 0 && content.scrollHeight - content.clientHeight > currentScrollTop) {
+                event.preventDefault();
+            }
+
+            // content.scrollTop += deltaY;
+            let step = 0;
+
+            let timeId;
+            timeId = setInterval(() => {
+                step += 5;
+                if (deltaY > 0) {
+                    content.scrollTop += 2;
+                }
+                else {
+                    content.scrollTop -= 2;
+                }
+
+                if (step >= Math.abs(deltaY)) {
+                    clearInterval(timeId);
+                }
+            }, 5);
+        },
+        // 横向滚动
+        handleMouseWheel (event) {
+            const deltaX = event.deltaX;
+            const content = this.$refs.contentWrapper;
+
+            if (deltaX > 0) {
+                content.scrollLeft = content.scrollLeft + 10;
+            }
+            else {
+                content.scrollLeft = content.scrollLeft - 10;
+            }
+
         }
     },
     beforeDestroy () {
@@ -605,9 +882,12 @@ export default {
             wrapperStyle,
             classes,
             isLeftFixed,
+            isRightFixed,
             genHeader,
             genContent,
-            genLeftFixed
+            genLeftFixed,
+            genRightFixed,
+            genRightHeader
         } = this;
 
 
@@ -623,7 +903,9 @@ export default {
                 }, [
                         genHeader(h),
                         genContent(h),
-                        isLeftFixed ? genLeftFixed(h) : ''
+                        isLeftFixed ? genLeftFixed(h) : '',
+                        isRightFixed ? genRightFixed(h) : '',
+                        isRightFixed ? genRightHeader(h) : ''
                     ])
             ]);
     }

@@ -86,11 +86,15 @@ $name:'ivue-table';
             overflow: hidden;
             background-color: #f8f8f9;
         }
+
+        &--scrollBar {
+            background-color: #f8f8f9;
+        }
     }
 
     /* tr */
     &-tr {
-        &:hover {
+        &-hover {
             .#{$name}-td {
                 background-color: rgba(65, 119, 246, .2);
             }
@@ -133,6 +137,7 @@ $name:'ivue-table';
         .#{$name}-th,
         .#{$name}-header--th {
             border-right: 1px solid #e8eaec;
+            border-color: #e8eaec !important;
         }
     }
 
@@ -141,11 +146,49 @@ $name:'ivue-table';
         position: absolute;
         top: 0;
         left: 0;
-        box-shadow: 2px 0 6px -2px rgba(0, 0, 0, .5);
+        box-shadow: 2px 0 6px -2px rgba(0, 0, 0, .2);
+        background-color: #f8f8f9;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $border-color;
+            z-index: 4;
+        }
 
         /* 头部 */
-        &--header{
+        &--header {
             overflow: hidden;
         }
+
+        /* 内容 */
+        &--content {
+            overflow: hidden;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* 右固定 */
+        &--right {
+            left: auto;
+            right: 0;
+            box-shadow: -2px 0 6px -2px rgba(0, 0, 0, .2);
+        }
+
+        /* 右边滚动右上角 */
+        &--rightheader {
+            position: absolute;
+            top: -1px;
+            right: 0;
+            background-color: #f8f8f9;
+            border-top: 1px solid #dcdee2;
+            border-bottom: 1px solid #e8eaec;
+        }
     }
+
+
 }

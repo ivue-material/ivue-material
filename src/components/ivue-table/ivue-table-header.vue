@@ -66,7 +66,7 @@ export default {
     computed: {
         // 渲染头部
         headRows () {
-            return [this.tableHeader]
+            return [this.tableHeader];
         },
         // table style
         tableStyles () {
@@ -104,13 +104,18 @@ export default {
                 headerColor,
                 setBackgroundColor,
                 setTextColor,
-                headRows
+                headRows,
+                scrollBarCellClass
             } = this;
 
             return h('thead', headRows.map((cols, rowIndex) => {
                 const scrollBarTh = h('th', setBackgroundColor(headerColor[headerColor.length - 2] && headerColor[headerColor.length - 2].bg, {
                     attrs: {
                         rowspan: headRows.length
+                    },
+                    class: {
+                        [`${prefixCls}--th`]: true,
+                        ...scrollBarCellClass ()
                     }
                 }));
 
@@ -156,6 +161,27 @@ export default {
                     [`${prefixCls}--hidden`]: !this.fixed && column.fixed && (column.fixed === 'left' || column.fixed === 'right'),
                 }
             ]
+        },
+        // 滚动条样式
+        scrollBarCellClass () {
+            let hasRightFixed = false;
+            for (let i in this.headRows) {
+                for (let j in this.headRows[i]) {
+                    if (this.headRows[i][j].fixed === 'right') {
+                        hasRightFixed = true;
+                        break;
+                    }
+
+                    if (hasRightFixed) {
+                        break;
+                    }
+                }
+            }
+
+            return {
+                [`${prefixCls}--hidden`]: hasRightFixed
+            }
+
         }
     },
     render (h) {

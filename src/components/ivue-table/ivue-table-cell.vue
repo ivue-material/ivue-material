@@ -30,6 +30,23 @@ export default {
          */
         index: {
             type: Number
+        },
+        /**
+         * 固定方向
+         *
+         * @type {Boolean, String}
+         */
+        fixed: {
+            type: [Boolean, String],
+            default: false
+        },
+        /**
+         * 行的下标
+         *
+         * @type {Number}
+         */
+        naturalIndex: {
+            type: Number
         }
     },
     computed: {
@@ -37,7 +54,7 @@ export default {
             return [
                 prefixCls,
                 {
-                    [`${prefixCls}--hidden`]: this.column.fixed && (this.column.fixed === 'left' || this.column.fixed === 'right'),
+                    [`${prefixCls}--hidden`]: !this.fixed && this.column.fixed && (this.column.fixed === 'left' || this.column.fixed === 'right'),
                 }
             ]
         }
@@ -46,14 +63,23 @@ export default {
         const {
             row,
             column,
-            classes
+            classes,
+            naturalIndex
         } = this;
-        const base = h('span', row[column.key])
+        const base = h('span', row[column.key]);
+        let index;
+
+        // 是否显示行下标
+        if (column.type === 'index') {
+            index = h('span', column.indexMethod ? column.indexMethod(row) : naturalIndex + 1)
+        }
+
 
         return h('div', {
             class: classes
         }, [
-                base
+                base,
+                index
             ])
     }
 }

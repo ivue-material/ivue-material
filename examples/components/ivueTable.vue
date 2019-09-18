@@ -3,12 +3,13 @@
         <IvueTable
             border=""
             :tableHeader="columns1"
-            :tableData="data1"
             :headerColor="headerColor"
+            :tableData="data1"
             height="200"
             width="600"
         ></IvueTable>
-        <!-- <IvueTable :tableHeader="columns1" :tableData="data1" :rowClassName="rowClassName"></IvueTable> -->
+        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200"></IvueTable>
+        <IvueTable :tableHeader="columns1" :tableData="data1" width="600" height="200"></IvueTable>
     </div>
 </template>
 
@@ -20,8 +21,49 @@ export default {
                 {
                     title: 'Name',
                     key: 'name',
-                    className: 'demo-table-info-column',
+                    width: 100,
                     fixed: 'left'
+                },
+                {
+                    title: 'Age',
+                    key: 'age',
+                    width: 100
+                },
+                {
+                    title: 'Province',
+                    key: 'province',
+                    width: 100
+                },
+                {
+                    title: 'City',
+                    key: 'city',
+                    width: 100
+                },
+                {
+                    title: 'Address',
+                    key: 'address',
+                    width: 200
+                },
+                {
+                    title: 'Postcode',
+                    key: 'zip',
+                    width: 100,
+                    fixed: 'right'
+                },
+            ],
+            columns2: [
+                {
+                    type: 'index',
+                    width: 60,
+                    align: 'center',
+                    indexMethod: (row) => {
+                        return row._index % 2
+                    }
+                },
+                {
+                    title: 'Name',
+                    key: 'name',
+                    className: 'demo-table-info-column',
                 },
                 {
                     title: 'Age',
@@ -30,7 +72,6 @@ export default {
                 {
                     title: 'Address',
                     key: 'address',
-                    fixed: 'right'
                 }
             ],
             data1: [
@@ -38,29 +79,33 @@ export default {
                     name: 'John Brown',
                     age: 18,
                     address: 'New York No. 1 Lake Park',
-                    date: '2016-10-03'
+                    province: 'America',
+                    city: 'New York',
+                    zip: 100000
                 },
                 {
                     name: 'Jim Green',
                     age: 24,
-                    address: 'London No. 1 Lake Park',
-                    date: '2016-10-01'
+                    address: 'Washington, D.C. No. 1 Lake Park',
+                    province: 'America',
+                    city: 'Washington, D.C.',
+                    zip: 100000
                 },
                 {
                     name: 'Joe Black',
                     age: 30,
                     address: 'Sydney No. 1 Lake Park',
-                    date: '2016-10-02',
-                    cellClassName: {
-                        age: 'demo-table-info-cell-age',
-                        address: 'demo-table-info-cell-address'
-                    }
+                    province: 'Australian',
+                    city: 'Sydney',
+                    zip: 100000
                 },
                 {
                     name: 'Jon Snow',
                     age: 26,
                     address: 'Ottawa No. 2 Lake Park',
-                    date: '2016-10-04'
+                    province: 'Canada',
+                    city: 'Ottawa',
+                    zip: 100000,
                 }
             ],
             headerColor: [{

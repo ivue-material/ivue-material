@@ -58,6 +58,15 @@ export default {
         rewriteTableData: {
             type: Object,
             default: {}
+        },
+        /**
+         * 固定方向
+         *
+         * @type {Boolean, String}
+         */
+        fixed: {
+            type: [Boolean, String],
+            default: false
         }
     },
     methods: {
@@ -104,8 +113,10 @@ export default {
                             h(IvueTableCell, {
                                 props: {
                                     row,
+                                    fixed: this.fixed,
                                     column: header,
-                                    index: row._index
+                                    index: row._index,
+                                    naturalIndex: index
                                 },
                                 key: header._columnKey
                             })
