@@ -3,6 +3,7 @@
 import Mixin from './mixin.js';
 import IvueTableTr from './ivue-table-tr';
 import IvueTableCell from './ivue-table-cell';
+import IvueTableExpand from './ivue-table-expand';
 
 const prefixCls = 'ivue-table';
 
@@ -69,6 +70,31 @@ export default {
             default: false
         }
     },
+    data () {
+        return {
+            prefixCls: 'ivue-table'
+        }
+    },
+    computed: {
+        // 扩展的渲染函数
+        expandRender () {
+            let render = function () {
+                return '';
+            }
+
+            for (let i = 0; i < this.tableHeader.length; i++) {
+                const column = this.tableHeader[i];
+                if (column.type && column.type === 'expand') {
+                    if (column.render) {
+                        render = column.render;
+                    }
+                }
+
+            }
+
+            return render;
+        }
+    },
     methods: {
         // 渲染 colgroup
         genColgroup (h) {
@@ -82,55 +108,106 @@ export default {
         },
         // 渲染 tbody
         genTbody (h) {
+            const {
+                rewriteTableData,
+                handleMouseIn,
+                handleMouseOut,
+                clickCurrentRow,
+                data,
+                tableHeader,
+                tdClass,
+                fixed,
+                alignClass,
+                rowExpanded,
+                expandRender,
+                rowChecked,
+                rowDisabled
+            } = this;
+
             return h('tbody', {
                 class: `${prefixCls}-tbody`,
-            }, this.data.map((row, index) => {
+            }, data.map((row, index) => {
+                // 扩展
+                const expanded = h('tr', {
+                    class: {
+                        [`${prefixCls}-expanded--hidden`]: fixed,
+                        [`${prefixCls}-tr`]: true
+                    }
+                }, [
+                        h('td', {
+                            attrs: {
+                                colspan: tableHeader.length
+                            },
+                            class: [
+                                `${prefixCls}-expanded--cell`,
+                                `${prefixCls}-td`
+                            ]
+                        }, [
+                                h(IvueTableExpand, {
+                                    props: {
+                                        row,
+                                        render: expandRender,
+                                        index: row._index
+                                    },
+                                    key: row._rowKey
+                                })
+                            ])
+                    ])
+
+
                 // 渲染 tr
-                return h(IvueTableTr, {
+                return [h(IvueTableTr, {
                     props: {
                         row,
-                        rewriteTableData: this.rewriteTableData
+                        rewriteTableData
                     },
                     nativeOn: {
                         'mouseenter': ($event) => {
                             $event.stopPropagation();
 
-                            this.handleMouseIn(row._index)
+                            handleMouseIn(row._index)
                         },
                         'mouseleave': ($event) => {
                             $event.stopPropagation();
 
-                            this.handleMouseOut(row._index)
+                            handleMouseOut(row._index)
                         },
                         'click': () => {
-                            this.clickCurrentRow(row._index);
+                            clickCurrentRow(row._index);
                         }
                     },
                     key: row._rowKey
-                }, this.tableHeader.map((header) => {
+                }, tableHeader.map((header) => {
                     // 渲染td
                     return h('td', {
-                        class: this.tdClass(header, row)
+                        class: [
+                            ...tdClass(header, row),
+                            alignClass(header)
+                        ]
                     }, [
                             // 渲染内容
                             h(IvueTableCell, {
                                 props: {
                                     row,
-                                    fixed: this.fixed,
+                                    fixed,
                                     column: header,
                                     index: row._index,
-                                    naturalIndex: index
+                                    naturalIndex: index,
+                                    expanded: rowExpanded(row._index),
+                                    checked: rowChecked(row._index),
+                                    disabled: rowDisabled(row._index)
                                 },
                                 key: header._columnKey
                             })
                         ])
-                }));
+                })),
+                rowExpanded(row._index) ? expanded : ''
+                ];
             }));
         },
         // 鼠标进入
         handleMouseIn (_index) {
             this.$parent.handleMouseIn(_index);
-
         },
         // 鼠标离开
         handleMouseOut (_index) {
@@ -159,7 +236,19 @@ export default {
                     [`${header.className}`]: header.className
                 }
             ]
-        }
+        },
+        // 是否有扩展
+        rowExpanded (_index) {
+            return this.rewriteTableData[_index] && this.rewriteTableData[_index]._isExpanded;
+        },
+        // 是否有选中
+        rowChecked (_index) {
+            return this.rewriteTableData[_index] && this.rewriteTableData[_index]._isChecked;
+        },
+        // 是否禁用
+        rowDisabled (_index) {
+            return this.rewriteTableData[_index] && this.rewriteTableData[_index]._isDisabled;
+        },
     },
     components: {
         IvueTableTr

@@ -2,6 +2,8 @@
 import Mixin from './mixin.js';
 import Colorable from '../../utils/mixins/colorable';
 import { typeOf } from '../../utils/assist.js';
+import renderHeader from './render-header';
+import IvueCheckbox from '../ivue-checkbox/ivue-checkbox';
 
 const prefixCls = 'ivue-table-header';
 
@@ -61,6 +63,30 @@ export default {
             default: () => {
                 return {}
             }
+        },
+        /**
+         * 序列化数据
+         *
+         * @type {Array}
+         */
+        sequenceTableData: {
+            type: Array,
+            default: () => {
+                return [];
+            }
+        },
+        /**
+         * 重写的数据
+         *
+         * @type {Array,Object}
+         */
+        rewriteTableData: {
+            type: [Array, Object]
+        }
+    },
+    data () {
+        return {
+            prefixCls: 'ivue-table'
         }
     },
     computed: {
@@ -75,6 +101,32 @@ export default {
             style.width = `${width}px`;
 
             return style;
+        },
+        // 是否选择全部
+        isSelectAll () {
+            let isSelectAll = true;
+            const { sequenceTableData, rewriteTableData } = this;
+
+            // 是否有数据
+            if (!sequenceTableData.length) {
+                isSelectAll = false;
+            }
+
+            // 是否禁用
+            if (!sequenceTableData.find((item) => !item._disabled)) {
+                isSelectAll = false;
+            }
+
+            // 是否有选中
+            for (let i = 0; i < sequenceTableData.length; i++) {
+                if (!rewriteTableData[sequenceTableData[i]._index]._isChecked && !rewriteTableData[sequenceTableData[i]._index]._isDisabled) {
+                    isSelectAll = false;
+
+                    break;
+                }
+            }
+
+            return isSelectAll;
         }
     },
     methods: {
@@ -105,7 +157,11 @@ export default {
                 setBackgroundColor,
                 setTextColor,
                 headRows,
-                scrollBarCellClass
+                scrollBarCellClass,
+                alignClass,
+                sequenceTableData,
+                isSelectAll,
+                handleSelectAll
             } = this;
 
             return h('thead', headRows.map((cols, rowIndex) => {
@@ -115,7 +171,7 @@ export default {
                     },
                     class: {
                         [`${prefixCls}--th`]: true,
-                        ...scrollBarCellClass ()
+                        ...scrollBarCellClass()
                     }
                 }));
 
@@ -127,8 +183,40 @@ export default {
                     const color = headerColor[colorIndex] && headerColor[colorIndex].color || '';
 
                     // 正常显示
-                    const base = h('span', setTextColor(color, {}), [column.title || '#']);
+                    let base = h('span', setTextColor(color, {}), [column.title || '#']);
 
+                    // render 显示头部
+                    let tableRenderHeader;
+                    if (column.renderHeader) {
+                        tableRenderHeader = h(renderHeader, setTextColor(color, {
+                            props: {
+                                render: column.renderHeader,
+                                column,
+                                index
+                            }
+                        }));
+                    }
+
+                    // 是否开启了扩展
+                    if (column.type === 'expand') {
+                        base = h('span', setTextColor(color, {}), [column.title || '']);
+                    }
+
+                    // 是否开启多选
+                    if (column.type === 'selection') {
+                        base = h(IvueCheckbox, {
+                            props: {
+                                disabled: !sequenceTableData.length,
+                                color: column.checkBoxColor,
+                                value: isSelectAll
+                            },
+                            on: {
+                                'on-change': handleSelectAll
+                            }
+                        })
+                    }
+
+                    // 是否有颜色
                     if (headerColor[colorIndex] && typeOf(headerColor[colorIndex]) !== 'object') {
                         console.error(`headerColor ${colorIndex} need one object`)
                     }
@@ -136,7 +224,8 @@ export default {
                     // 渲染 th
                     return h('th', setBackgroundColor(bg, {
                         class: {
-                            [`${prefixCls}--th`]: true
+                            [`${prefixCls}--th`]: true,
+                            ...alignClass(column)
                         },
                         attrs: {
                             colSpan: column.colSpan,
@@ -145,7 +234,9 @@ export default {
                     }), [
                             h('div', {
                                 class: cellClasses(column)
-                            }, [base])
+                            }, [
+                                    column.renderHeader ? tableRenderHeader : base
+                                ])
                         ]);
                 }),
                 this.$parent.showVerticalScrollBar && rowIndex === 0 ? scrollBarTh : ''
@@ -159,6 +250,7 @@ export default {
                 `${prefixCls}--cell`,
                 {
                     [`${prefixCls}--hidden`]: !this.fixed && column.fixed && (column.fixed === 'left' || column.fixed === 'right'),
+                    [`${prefixCls}--selection`]: column.type === 'selection'
                 }
             ]
         },
@@ -181,8 +273,16 @@ export default {
             return {
                 [`${prefixCls}--hidden`]: hasRightFixed
             }
+        },
+        // 选择全部选项
+        handleSelectAll () {
+            const status = !this.isSelectAll;
 
+            this.$parent.handleSelectAll(status);
         }
+    },
+    components: {
+        renderHeader
     },
     render (h) {
         const {

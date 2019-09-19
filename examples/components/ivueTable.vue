@@ -2,16 +2,43 @@
     <div>
         <IvueTable
             border=""
-            :tableHeader="columns1"
+            :tableHeader="columns2"
             :headerColor="headerColor"
             :tableData="data1"
             height="200"
             width="600"
+            ref="selection"
+            @on-select-change="handleSelection"
+            @on-select-all="handleSelectionAll"
+            @on-select-cancel="handleSelectCancel"
         ></IvueTable>
-        <IvueTable border="" :tableHeader="columns2" :tableData="data1" width="600" height="200" highlightRow ref="highlightRow"></IvueTable>
+        <Button @click="handleSelectAll(true)">Set all selected</Button>
+        <Button @click="handleSelectAll(false)">Cancel all selected</Button>
+        <IvueTable
+            :showHeader="false"
+            border=""
+            :tableHeader="columns2"
+            :tableData="data1"
+            width="600"
+            height="200"
+            highlightRow
+            ref="highlightRow"
+            @on-current-row="handleCurrentRow"
+        ></IvueTable>
+        <p>newData: {{newData && newData.name}}</p>
+        <p>oldData: {{oldData && oldData.name}}</p>
         <IvueButton @click="handleClick">清除 highlightRow</IvueButton>
-        <IvueTable :tableHeader="columns1" :tableData="data1" width="600" height="200"></IvueTable>
-
+        <IvueTable
+            :tableHeader="columns1"
+            :tableData="data1"
+            width="600"
+            height="200"
+            highlightRow
+            :showHeader="false"
+        >
+            <template slot-scope="{ row }" slot="age">age</template>
+            <template slot-scope="{ row }" slot="province">province</template>
+        </IvueTable>
     </div>
 </template>
 
@@ -21,25 +48,39 @@ export default {
         return {
             columns1: [
                 {
+                    type: 'expand',
+                    width: 50,
+                    render: (h, params) => {
+                        return h('div', `${params.row.name}`)
+                    }
+                },
+                {
                     title: 'Name',
                     key: 'name',
                     width: 100,
-                    fixed: 'left'
+                    renderHeader: (h) => {
+                        return h('div', 'hello')
+                    },
                 },
                 {
                     title: 'Age',
                     key: 'age',
-                    width: 100
+                    width: 100,
+                    align: 'center',
+                    slot: 'age'
                 },
                 {
                     title: 'Province',
                     key: 'province',
-                    width: 100
+                    width: 100,
+                    align: 'left',
+                    slot: 'province'
                 },
                 {
                     title: 'City',
                     key: 'city',
-                    width: 100
+                    width: 100,
+                    align: 'right',
                 },
                 {
                     title: 'Address',
@@ -54,6 +95,12 @@ export default {
                 },
             ],
             columns2: [
+                {
+                    type: 'selection',
+                    width: 60,
+                    checkBoxColor: '#4177f6',
+                    align: 'center'
+                },
                 {
                     type: 'index',
                     width: 60,
@@ -83,7 +130,12 @@ export default {
                     address: 'New York No. 1 Lake Park',
                     province: 'America',
                     city: 'New York',
-                    zip: 100000
+                    zip: 100000,
+                    checkBoxColor: '#4177f6',
+                    _checked: true,
+                    _expanded: true,
+                    _highlight: true,
+                    _disabled: true
                 },
                 {
                     name: 'Jim Green',
@@ -94,7 +146,8 @@ export default {
                     zip: 100000,
                     cellClassName: {
                         name: 'demo-table-info-cell-name'
-                    }
+                    },
+                    checkBoxColor: 'red',
                 },
                 {
                     name: 'Joe Black',
@@ -124,7 +177,9 @@ export default {
             }, {
                 bg: 'primary',
                 color: '#fff'
-            }]
+            }],
+            newData: '',
+            oldData: ''
         }
     },
     methods: {
@@ -136,8 +191,26 @@ export default {
             }
             return '';
         },
-        handleClick(){
+        handleClick () {
             this.$refs.highlightRow.clearCurrentRow();
+        },
+        handleCurrentRow (newData, oldData) {
+            this.newData = newData;
+            this.oldData = oldData;
+        },
+        handleSelection (data) {
+            console.log(data)
+        },
+        handleSelectionAll (data) {
+            console.log(`选择了全部:${data}`)
+        },
+        handleSelectCancel (data, selectOption) {
+            console.log('取消选项')
+            console.log(data)
+            console.log(selectOption)
+        },
+        handleSelectAll (status) {
+            this.$refs.selection.handleSelectAll(status);
         }
     }
 }

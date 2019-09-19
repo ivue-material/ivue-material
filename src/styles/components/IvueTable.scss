@@ -90,6 +90,26 @@ $name:'ivue-table';
         &--scrollBar {
             background-color: #f8f8f9;
         }
+
+        /* 多选 */
+        &--selection {
+            display: inline-block;
+            word-wrap: normal;
+            vertical-align: middle;
+
+            .ivue-checkbox-wrapper {
+                margin-right: 0;
+                vertical-align: middle;
+            }
+
+            .ivue-checkbox {
+                padding: 0;
+            }
+
+            .ivue-checkbox-inner {
+                border: 2px solid #e8eaec;
+            }
+        }
     }
 
     /* tr */
@@ -98,7 +118,7 @@ $name:'ivue-table';
         &-hover,
         &-highlight {
             .#{$name}-td {
-                background-color: rgba(65, 119, 246, .2);
+                background-color: #D1DEFD;
             }
         }
     }
@@ -130,6 +150,46 @@ $name:'ivue-table';
         &--hidden {
             visibility: hidden;
         }
+
+
+        /* 扩展 */
+        &--expand {
+            height: 47px;
+            line-height: 47px;
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform .2s ease-in-out;
+
+            .ivue-icon {
+                font-size: 20px;
+            }
+        }
+
+        /* 展开 */
+        &--expandExpanded {
+            transform: rotate(90deg);
+        }
+
+        /* 多选 */
+        &--selection {
+            display: inline-block;
+            word-wrap: normal;
+            vertical-align: middle;
+
+            .ivue-checkbox-wrapper {
+                margin-right: 0;
+                vertical-align: middle;
+            }
+
+            .ivue-checkbox {
+                padding: 0;
+            }
+
+            .ivue-checkbox-inner {
+                border: 2px solid #e8eaec;
+            }
+        }
     }
 
     /* 边框 */
@@ -149,7 +209,7 @@ $name:'ivue-table';
         top: 0;
         left: 0;
         box-shadow: 2px 0 6px -2px rgba(0, 0, 0, .2);
-        background-color: #f8f8f9;
+        // background-color: #f8f8f9;
 
         &::before {
             content: "";
@@ -192,5 +252,37 @@ $name:'ivue-table';
         }
     }
 
+    /* 列 */
+    &-column {
 
+        /* 居中 */
+        &-center {
+            text-align: center;
+        }
+
+        /* 左 */
+        &-left {
+            text-align: left;
+        }
+
+        /* 右 */
+        &-right {
+            text-align: right;
+        }
+    }
+
+    /* 扩展展开 */
+    &-expanded {
+
+        /* 隐藏 */
+        &--hidden {
+            visibility: hidden;
+        }
+
+        /* 内容 */
+        &--cell {
+            padding: 20px 50px;
+            background: #f8f8f9;
+        }
+    }
 }

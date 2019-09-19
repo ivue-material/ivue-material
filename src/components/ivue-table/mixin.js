@@ -1,5 +1,11 @@
 export default {
     methods: {
+        // 居中
+        alignClass (column, row = {}) {
+            return {
+                [`${this.prefixCls}-column-${column.align}`]: column.align,
+            }
+        },
         // 设置头部宽度
         setHeaderWidth (column) {
             let width = '';

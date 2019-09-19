@@ -13,6 +13,11 @@ let rowKey = 1;
 
 export default {
     name: prefixCls,
+    provide () {
+        return {
+            tableRoot: this
+        }
+    },
     props: {
         /**
          * 表格头部标题
@@ -89,6 +94,15 @@ export default {
          */
         highlightRow: {
             type: Boolean
+        },
+        /**
+         * 显示头部
+         *
+         * @type {Boolean}
+         */
+        showHeader: {
+            type: Boolean,
+            default: true
         }
     },
     data () {
@@ -344,7 +358,9 @@ export default {
                 columnsWidth,
                 headerColor,
                 tableStyle,
-                handleMouseWheel
+                handleMouseWheel,
+                sequenceTableData,
+                rewriteTableData
             } = this;
 
             return h('div', {
@@ -359,7 +375,9 @@ export default {
                             columnsWidth,
                             headerColor,
                             tableHeader: _tableHeader,
-                            tableStyle
+                            tableStyle,
+                            sequenceTableData,
+                            rewriteTableData
                         }
                     })
                 ]);
@@ -411,7 +429,8 @@ export default {
                 tableStyle,
                 rewriteTableData,
                 sequenceTableData,
-                handleFixedMousewheel
+                handleFixedMousewheel,
+                showHeader
             } = this;
 
             return h('div', {
@@ -419,7 +438,7 @@ export default {
                 style: fixedTableStyle
             }, [
                     // 头部
-                    h('div', {
+                    showHeader ? h('div', {
                         class: fixedHeaderClass
                     }, [
                             h(IvueTableHeader, {
@@ -431,7 +450,7 @@ export default {
                                     tableStyle: tableStyle
                                 }
                             })
-                        ]),
+                        ]) : '',
                     // 内容
                     h('div', {
                         class: fixedContentClass,
@@ -471,7 +490,8 @@ export default {
                 tableStyle,
                 rewriteTableData,
                 sequenceTableData,
-                handleFixedMousewheel
+                handleFixedMousewheel,
+                showHeader
             } = this;
 
             return h('div', {
@@ -482,7 +502,7 @@ export default {
                 style: fixedRightTableStyle
             }, [
                     // 头部
-                    h('div', {
+                    showHeader ? h('div', {
                         class: fixedHeaderClass
                     }, [
                             h(IvueTableHeader, {
@@ -494,7 +514,7 @@ export default {
                                     tableStyle: fixedRightTableStyle
                                 }
                             })
-                        ]),
+                        ]) : '',
                     // 内容
                     h('div', {
                         class: fixedContentClass,
@@ -715,7 +735,36 @@ export default {
                 newRow._isHover = false;
 
                 // 高亮行
-                newRow._isHighlight = false;
+                if (newRow._highlight) {
+                    newRow._isHighlight = newRow._highlight;
+                }
+                else {
+                    newRow._isHighlight = false;
+                }
+
+                // 是否展开扩展
+                if (newRow._expanded) {
+                    newRow._isExpanded = newRow._expanded;
+                }
+                else {
+                    newRow._isExpanded = false;
+                }
+
+                // 是否选中
+                if (newRow._checked) {
+                    newRow._isChecked = newRow._checked;
+                }
+                else {
+                    newRow._isChecked = false;
+                }
+
+                // 是否禁用
+                if (newRow._disabled) {
+                    newRow._isDisabled = newRow._disabled;
+                }
+                else {
+                    newRow._isDisabled = false;
+                }
 
                 data[index] = newRow;
             });
@@ -739,7 +788,7 @@ export default {
             if (!this.highlightRow) {
                 return;
             }
-    
+
             this.handleCurrentRow('clear');
         },
         // 某行的样式
@@ -757,6 +806,7 @@ export default {
         },
         // 处理当前行
         handleCurrentRow (type, _index) {
+            // 旧的下标
             let oldIndex = -1;
 
             for (let i in this.rewriteTableData) {
@@ -772,6 +822,11 @@ export default {
             if (type === 'highlight') {
                 this.rewriteTableData[_index]._isHighlight = true;
             }
+
+            const oldData = oldIndex < 0 ? null : this.tableData[oldIndex];
+            const newData = type === 'highlight' ? this.tableData[_index] : null;
+
+            this.$emit('on-current-row', newData, oldData)
         },
         // 固定头部
         fixedHeader () {
@@ -784,7 +839,15 @@ export default {
                     // 固定内容
                     this.$nextTick(() => {
                         this.fixedContent();
-                    })
+                    });
+                });
+            }
+            else {
+                this.bodyHeight = 0;
+
+                // 固定内容
+                this.$nextTick(() => {
+                    this.fixedContent();
                 });
             }
         },
@@ -830,15 +893,20 @@ export default {
         },
         // 内容滚动
         handleContentScroll (event) {
+            // 是否左固定
             if (this.isLeftFixed) {
                 this.$refs.fixedLeftBody.scrollTop = event.target.scrollTop;
             }
 
+            // 是否右固定
             if (this.isRightFixed) {
                 this.$refs.fixedRightBody.scrollTop = event.target.scrollTop;
             }
 
-            this.$refs.header.scrollLeft = event.target.scrollLeft;
+            // 是否显示头部
+            if (this.showHeader) {
+                this.$refs.header.scrollLeft = event.target.scrollLeft;
+            }
 
         },
         // 鼠标滚动
@@ -908,6 +976,90 @@ export default {
                 content.scrollLeft = content.scrollLeft - 10;
             }
 
+        },
+        // 是否展开扩展
+        toggleExpand (_index) {
+            let data = {};
+
+            for (let i in this.rewriteTableData) {
+                if (parseInt(i) === _index) {
+                    data = this.rewriteTableData[i];
+
+                    break;
+                }
+            }
+
+            const status = !data._isExpanded;
+
+            this.rewriteTableData[_index]._isExpanded = status;
+        },
+        // 选择全部选项
+        handleSelectAll (isSelect) {
+            for (const data of this.sequenceTableData) {
+                // 是否禁用
+                if (this.rewriteTableData[data._index]._isDisabled) {
+                    continue;
+                }
+                // 选择选项
+                else {
+                    this.rewriteTableData[data._index]._isChecked = isSelect;
+                }
+            }
+
+
+            const selectOption = this.getSelectOption();
+
+
+            // 是否选择了全部
+            if (isSelect) {
+                this.$emit('on-select-all', selectOption);
+            }
+            else {
+                this.$emit('on-select-cancel', selectOption);
+            }
+
+            this.$emit('on-select-change', selectOption);
+        },
+        // 切换选项选择状态
+        toggleSelect (_index) {
+            let data = {};
+
+            for (let i in this.rewriteTableData) {
+                if (parseInt(i) === _index) {
+                    data = this.rewriteTableData[i];
+
+                    break;
+                }
+            }
+
+            const status = !data._isChecked;
+
+            this.rewriteTableData[_index]._isChecked = status;
+
+            const selectOption = this.getSelectOption();
+
+
+            this.$emit(status ? 'on-select' : 'on-select-cancel', selectOption, this.rewriteTableData[_index]);
+
+            this.$emit('on-select-change', selectOption);
+        },
+        // 获取选择了的选项
+        getSelectOption () {
+            // 选择选项的下标
+            let selectionIndexes = [];
+
+            for (let i in this.rewriteTableData) {
+                if (this.rewriteTableData[i]._isChecked) {
+                    selectionIndexes.push(parseInt(i));
+                }
+            }
+
+            // 过滤选择的选项
+            const tableData = this.tableData.filter((data, index) => {
+                return selectionIndexes.indexOf(index) > -1;
+            });
+
+            return tableData;
         }
     },
     beforeDestroy () {
@@ -938,7 +1090,8 @@ export default {
             genContent,
             genLeftFixed,
             genRightFixed,
-            genRightHeader
+            genRightHeader,
+            showHeader
         } = this;
 
 
@@ -952,7 +1105,7 @@ export default {
                 h('div', {
                     class: classes
                 }, [
-                        genHeader(h),
+                        showHeader ? genHeader(h) : '',
                         genContent(h),
                         isLeftFixed ? genLeftFixed(h) : '',
                         isRightFixed ? genRightFixed(h) : '',

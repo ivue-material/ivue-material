@@ -39,7 +39,7 @@ $name: 'ivue-checkbox';
         /* 是否激活 */
         &-checked {
             .#{$name}-inner {
-                border-color: currentColor;
+                border-color: currentColor !important;
                 background-color: currentColor;
             }
         }
@@ -146,7 +146,7 @@ $name: 'ivue-checkbox';
         cursor: $cursor-disabled;
 
         .#{$name}-inner {
-            border-color: #d7dde4;
+            border-color: #d7dde4 !important;
             background-color: #f3f3f3;
 
             &::after {
