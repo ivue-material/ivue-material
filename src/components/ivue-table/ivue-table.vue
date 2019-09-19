@@ -5,6 +5,7 @@ import { on, off } from '../../utils/dom.js';
 
 import IvueTableHeader from './ivue-table-header';
 import IvueTableContent from './ivue-table-content';
+import IvueSpin from '../ivue-spin/ivue-spin';
 
 const prefixCls = 'ivue-table';
 
@@ -103,6 +104,14 @@ export default {
         showHeader: {
             type: Boolean,
             default: true
+        },
+        /**
+         * 加载中
+         *
+         * @type {Boolean}
+         */
+        loading: {
+            type: Boolean
         }
     },
     data () {
@@ -1091,7 +1100,8 @@ export default {
             genLeftFixed,
             genRightFixed,
             genRightHeader,
-            showHeader
+            showHeader,
+            loading
         } = this;
 
 
@@ -1110,8 +1120,15 @@ export default {
                         isLeftFixed ? genLeftFixed(h) : '',
                         isRightFixed ? genRightFixed(h) : '',
                         isRightFixed ? genRightHeader(h) : ''
-                    ])
-            ]);
+                    ]),
+                loading ? h(IvueSpin, {
+                    props: {
+                        fix: true,
+                        size: 'large'
+                    }
+                }, this.$slots.loading) : ''
+            ]
+        );
     }
 }
 </script>

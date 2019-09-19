@@ -11,7 +11,9 @@
             @on-select-change="handleSelection"
             @on-select-all="handleSelectionAll"
             @on-select-cancel="handleSelectCancel"
-        ></IvueTable>
+            loading
+        >
+        </IvueTable>
         <Button @click="handleSelectAll(true)">Set all selected</Button>
         <Button @click="handleSelectAll(false)">Cancel all selected</Button>
         <IvueTable
