@@ -628,6 +628,7 @@ export default {
             let reduceWidth = hasWidthColumns.map(cell => cell.width).reduce((a, b) => a + b, 0);
             // 可以使用的宽度
             let usableWidth = tableWidth - reduceWidth - sumMinWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0);
+
             // 可以使用的长度
             let usableLength = noWidthColumns.length;
 
@@ -675,7 +676,6 @@ export default {
                     width: width
                 };
             }
-
 
             // 表格宽度
             this.tableWidth = this._tableHeader.map((header) => header._width).reduce((a, b) => a + b, 0) + (this.showVerticalScrollBar ? this.scrollBarWidth : 0);
@@ -1103,7 +1103,6 @@ export default {
             showHeader,
             loading
         } = this;
-
 
         const colsWithId = this.setTableHeaderId(this.tableHeader);
         this._tableHeader = this.setTableHeader(colsWithId);

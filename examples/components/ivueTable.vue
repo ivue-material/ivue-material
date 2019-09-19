@@ -12,8 +12,7 @@
             @on-select-all="handleSelectionAll"
             @on-select-cancel="handleSelectCancel"
             loading
-        >
-        </IvueTable>
+        ></IvueTable>
         <Button @click="handleSelectAll(true)">Set all selected</Button>
         <Button @click="handleSelectAll(false)">Cancel all selected</Button>
         <IvueTable
@@ -41,6 +40,11 @@
             <template slot-scope="{ row }" slot="age">age</template>
             <template slot-scope="{ row }" slot="province">province</template>
         </IvueTable>
+        <IvueTable
+            :tableHeader="columns3"
+            :tableData="data1"
+        >
+        </IvueTable>
     </div>
 </template>
 
@@ -48,6 +52,12 @@
 export default {
     data () {
         return {
+            columns3: [
+                {
+                    title: 'Age',
+                    key: 'age',
+                },
+            ],
             columns1: [
                 {
                     type: 'expand',
