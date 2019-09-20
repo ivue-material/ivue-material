@@ -30,21 +30,17 @@
         <p>oldData: {{oldData && oldData.name}}</p>
         <IvueButton @click="handleClick">清除 highlightRow</IvueButton>
         <IvueTable
+        border
             :tableHeader="columns1"
             :tableData="data1"
             width="600"
             height="200"
             highlightRow
-            :showHeader="false"
         >
             <template slot-scope="{ row }" slot="age">age</template>
             <template slot-scope="{ row }" slot="province">province</template>
         </IvueTable>
-        <IvueTable
-            :tableHeader="columns3"
-            :tableData="data1"
-        >
-        </IvueTable>
+        <IvueTable :tableHeader="tableHeader" :tableData="tableData" ></IvueTable>
     </div>
 </template>
 
@@ -52,6 +48,55 @@
 export default {
     data () {
         return {
+             tableHeader: [
+                {
+                    title: 'Name',
+                    key: 'name',
+                    fixed: 'left',
+                },
+                {
+                    title: 'Age',
+                    key: 'age',
+                },
+                {
+                    title: 'Address',
+                    key: 'address'
+                },
+                {
+                    title: 'Date',
+                    key: 'date',
+                    fixed: 'right'
+                }
+            ],
+            tableData: [
+                {
+                    name: 'John Brown',
+                    age: 18,
+                    address: 'New York No. 1 Lake Park',
+                    date: '2016-10-03',
+                     render: (h, params) => {
+                        return h('div', '123')
+                    }
+                },
+                {
+                    name: 'Jim Green',
+                    age: 24,
+                    address: 'London No. 1 Lake Park',
+                    date: '2016-10-01',
+                },
+                {
+                    name: 'Joe Black',
+                    age: 30,
+                    address: 'Sydney No. 1 Lake Park',
+                    date: '2016-10-02',
+                },
+                {
+                    name: 'Jon Snow',
+                    age: 26,
+                    address: 'Ottawa No. 2 Lake Park',
+                    date: '2016-10-04',
+                }
+            ],
             columns3: [
                 {
                     title: 'Age',
@@ -63,7 +108,7 @@ export default {
                     type: 'expand',
                     width: 50,
                     render: (h, params) => {
-                        return h('div', `${params.row.name}`)
+                        return h('div', '123')
                     }
                 },
                 {
@@ -79,7 +124,7 @@ export default {
                     key: 'age',
                     width: 100,
                     align: 'center',
-                    slot: 'age'
+                    slot: 'age',
                 },
                 {
                     title: 'Province',
@@ -103,7 +148,6 @@ export default {
                     title: 'Postcode',
                     key: 'zip',
                     width: 100,
-                    fixed: 'right'
                 },
             ],
             columns2: [
@@ -111,7 +155,7 @@ export default {
                     type: 'selection',
                     width: 60,
                     checkBoxColor: '#4177f6',
-                    align: 'center'
+                    align: 'center',
                 },
                 {
                     type: 'index',
@@ -119,12 +163,15 @@ export default {
                     align: 'center',
                     indexMethod: (row) => {
                         return row._index % 2
-                    }
+                    },
                 },
                 {
                     title: 'Name',
                     key: 'name',
                     className: 'demo-table-info-column',
+                     render: (h, params) => {
+                        return h('div', '123')
+                    }
                 },
                 {
                     title: 'Age',
@@ -147,7 +194,10 @@ export default {
                     _checked: true,
                     _expanded: true,
                     _highlight: true,
-                    _disabled: true
+                    _disabled: true,
+                     render: (h, params) => {
+                        return h('div', '123')
+                    }
                 },
                 {
                     name: 'Jim Green',
