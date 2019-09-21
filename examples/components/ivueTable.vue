@@ -1,6 +1,6 @@
 <template>
     <div>
-        <IvueTable
+        <!-- <IvueTable
             border=""
             :tableHeader="columns2"
             :headerColor="headerColor"
@@ -41,7 +41,7 @@
         >
             <template slot-scope="{ row }" slot="age">age</template>
             <template slot-scope="{ row }" slot="province">province</template>
-        </IvueTable>
+        </IvueTable>-->
         <IvueTable :tableHeader="tableHeader" :tableData="tableData"></IvueTable>
     </div>
 </template>
@@ -62,6 +62,13 @@ export default {
                 {
                     title: 'Age',
                     key: 'age',
+                    fixed: 'left',
+                    children: [
+                        {
+                            title: 'Address',
+                            key: 'address',
+                        },
+                    ]
                 },
                 {
                     title: 'Address',

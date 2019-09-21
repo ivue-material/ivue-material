@@ -87,3 +87,78 @@ export const convertColumnOrder = (columns, fixedType) => {
 
     return list.concat(other);
 }
+
+
+// 多行表头
+export const convertToRows = (fixedType = false, columns) => {
+    // 原始列
+    let originColumns;
+    let maxLevel = 1;
+
+    if (fixedType && fixedType === 'left') {
+        originColumns = deepCopy(convertColumnOrder(columns, 'left'));
+    }
+    else if (fixedType && fixedType === 'right') {
+        originColumns = deepCopy(convertColumnOrder(columns, 'right'));
+    }
+    else {
+        originColumns = deepCopy(columns);
+    }
+
+    // 树
+    const traverse = (column, parent) => {
+        if (parent) {
+            column.level = parent.level + 1;
+
+            if (maxLevel < column.level) {
+                maxLevel = column.level;
+            }
+        }
+
+        // 是否有子
+        if (column.children) {
+            let colSpan = 0;
+
+            column.children.forEach((subColumn) => {
+                // 递归调用
+                traverse(subColumn, column);
+
+                colSpan += subColumn.colSpan;
+            });
+
+            column.colSpan = colSpan;
+        }
+        else {
+            column.colSpan = 1;
+        }
+    }
+
+
+    originColumns.forEach((column) => {
+        column.level = 1;
+
+        traverse(column);
+    });
+
+    const rows = [];
+
+    for (let i = 0; i < maxLevel; i++) {
+        rows.push([]);
+    }
+
+    // 获取所有行
+    const allColumns = getAllColumns(originColumns, true);
+
+    allColumns.forEach((column) => {
+        if (!column.children) {
+            column.rowspan = maxLevel - column.level + 1;
+        }
+        else {
+            column.rowspan = 1;
+        }
+
+        rows[column.level - 1].push(column);
+    });
+
+    return rows;
+}

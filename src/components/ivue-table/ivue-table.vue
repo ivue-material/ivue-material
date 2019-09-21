@@ -1,5 +1,5 @@
 <script>
-import { getRandomStr, getAllColumns, convertColumnOrder } from '../../utils/helpers.js';
+import { getRandomStr, getAllColumns, convertColumnOrder, convertToRows } from '../../utils/helpers.js';
 import { deepCopy, getStyle, getScrollBarSize } from '../../utils/assist.js';
 import { on, off } from '../../utils/dom.js';
 
@@ -193,11 +193,39 @@ export default {
              *
              * @type {Number}
              */
-            headerHeight: 0
+            headerHeight: 0,
+            /**
+             * 行列
+             *
+             * @type {Array}
+             */
+            columnRows: [],
+            /**
+             * 左固定行列
+             *
+             * @type {Array}
+             */
+            leftFixedColumnRows: [],
+            /**
+             * 左固定行列
+             *
+             * @type {Array}
+             */
+            rightFixedColumnRows: []
         }
     },
     mounted () {
         this.sequenceTableData = this.makeSequenceTableData();
+
+        const colsWithId = this.setTableHeaderId(this.tableHeader);
+        // 多行表头
+        this.columnRows = this.makeColumnRows(false, colsWithId);
+        // 左固定行列
+        this.leftFixedColumnRows = this.makeColumnRows('left', colsWithId);
+        // 左固定行列
+        this.rightFixedColumnRows = this.makeColumnRows('right', colsWithId);
+
+        console.log(this.leftFixedColumnRows)
 
         this.handleResize();
 
@@ -367,9 +395,10 @@ export default {
                 columnsWidth,
                 headerColor,
                 tableStyle,
+                columnRows,
                 handleMouseWheel,
                 sequenceTableData,
-                rewriteTableData
+                rewriteTableData,
             } = this;
 
             return h('div', {
@@ -383,6 +412,7 @@ export default {
                         props: {
                             columnsWidth,
                             headerColor,
+                            columnRows,
                             tableHeader: _tableHeader,
                             tableStyle,
                             sequenceTableData,
@@ -439,7 +469,8 @@ export default {
                 rewriteTableData,
                 sequenceTableData,
                 handleFixedMousewheel,
-                showHeader
+                showHeader,
+                leftFixedColumnRows
             } = this;
 
             return h('div', {
@@ -455,6 +486,7 @@ export default {
                                     fixed: 'left',
                                     columnsWidth,
                                     headerColor,
+                                    fixedColumnRows: leftFixedColumnRows,
                                     tableHeader: leftFixedColumns,
                                     tableStyle: tableStyle
                                 }
@@ -500,6 +532,7 @@ export default {
                 rewriteTableData,
                 sequenceTableData,
                 handleFixedMousewheel,
+                rightFixedColumnRows,
                 showHeader
             } = this;
 
@@ -519,6 +552,7 @@ export default {
                                     fixed: 'right',
                                     columnsWidth,
                                     headerColor,
+                                    fixedColumnRows: rightFixedColumnRows,
                                     tableHeader: rightFixedColumns,
                                     tableStyle: fixedRightTableStyle
                                 }
@@ -1069,6 +1103,10 @@ export default {
             });
 
             return tableData;
+        },
+        // 创建多行表头
+        makeColumnRows (fixedType, columns) {
+            return convertToRows(fixedType, columns);
         }
     },
     beforeDestroy () {
@@ -1079,6 +1117,35 @@ export default {
         IvueTableContent
     },
     watch: {
+        // 监听表格数据
+        tableData: {
+            handler () {
+                let sequenceTableData = this.sequenceTableData.length;
+
+                this._tableHeader = this.setTableHeader(colsWithId);
+
+                this.sequenceTableData = this.makeSequenceTableData();
+
+                this.handleResize();
+
+                if (!sequenceTableData) {
+                    this.fixedHeader();
+                }
+            },
+            deep: true
+        },
+        // 监听表头数据
+        tableHeader: {
+            handler () {
+                const colsWithId = this.setTableHeaderId(this.tableHeader);
+
+
+                this.sequenceTableData = this.makeSequenceTableData();
+
+                this.handleResize();
+            },
+            deep: true
+        },
         // 监听是否开启横向滚动
         showHorizontalScrollBar () {
             this.handleResize();

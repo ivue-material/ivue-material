@@ -82,6 +82,28 @@ export default {
          */
         rewriteTableData: {
             type: [Array, Object]
+        },
+        /**
+         * 多行表头
+         *
+         * @type {Array}
+         */
+        columnRows: {
+            type: Array,
+            default: () => {
+                return [];
+            }
+        },
+        /**
+         * 固定的行
+         *
+         * @type {Array}
+         */
+        fixedColumnRows: {
+            type: Array,
+            default: () => {
+                return [];
+            }
         }
     },
     data () {
@@ -92,7 +114,15 @@ export default {
     computed: {
         // 渲染头部
         headRows () {
-            return [this.tableHeader];
+            const isGroup = this.columnRows.length > 1;
+
+            if (isGroup) {
+                return this.fixed ? this.fixedColumnRows : this.columnRows;
+            }
+            else {
+                return [this.tableHeader];
+            }
+
         },
         // table style
         tableStyles () {
