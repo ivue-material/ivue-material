@@ -52,23 +52,16 @@ export default {
         return {
             tableHeader: [
                 {
+                    type: 'selection',
                     title: 'Name',
                     key: 'name',
                     className: 'demo-table-info-column',
-                    render: (h, params) => {
-                        return h('div', '123')
-                    }
+                    _disabled: true
                 },
                 {
                     title: 'Age',
                     key: 'age',
-                    fixed: 'left',
-                    children: [
-                        {
-                            title: 'Address',
-                            key: 'address',
-                        },
-                    ]
+                    _disabled: true
                 },
                 {
                     title: 'Address',
@@ -78,6 +71,7 @@ export default {
                     title: 'Date',
                     key: 'date',
                     className: 'demo-table-info-column',
+                    _disabled: true
                 }
             ],
             tableData: [
@@ -167,11 +161,13 @@ export default {
                     width: 60,
                     checkBoxColor: '#4177f6',
                     align: 'center',
+                    _disabled: true
                 },
                 {
                     type: 'index',
                     width: 60,
                     align: 'center',
+                    _disabled: true,
                     indexMethod: (row) => {
                         return row._index % 2
                     },
@@ -180,17 +176,23 @@ export default {
                     title: 'Name',
                     key: 'name',
                     className: 'demo-table-info-column',
+                    _disabled: true,
+
                     render: (h, params) => {
                         return h('div', '123')
                     }
                 },
                 {
                     title: 'Age',
-                    key: 'age'
+                    key: 'age',
+                    _disabled: true,
+
                 },
                 {
                     title: 'Address',
                     key: 'address',
+                    _disabled: true,
+
                 }
             ],
             data1: [

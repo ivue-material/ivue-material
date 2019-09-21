@@ -157,6 +157,24 @@ export default {
             }
 
             return isSelectAll;
+        },
+        // 禁用选择
+        isSelectDisabled () {
+            let isSelectDisabled = false;
+
+
+            // 没有数据时
+            if(!this.sequenceTableData.length) {
+                isSelectDisabled = true;
+            }
+
+            // 全部选项都禁用时
+            if(this.sequenceTableData.find((item) => !item._disabled)){
+                isSelectDisabled = true;
+            }
+
+
+            return isSelectDisabled
         }
     },
     methods: {
@@ -191,7 +209,8 @@ export default {
                 alignClass,
                 sequenceTableData,
                 isSelectAll,
-                handleSelectAll
+                handleSelectAll,
+                isSelectDisabled
             } = this;
 
             return h('thead', headRows.map((cols, rowIndex) => {
@@ -236,7 +255,7 @@ export default {
                     if (column.type === 'selection') {
                         base = h(IvueCheckbox, {
                             props: {
-                                disabled: !sequenceTableData.length,
+                                disabled: isSelectDisabled,
                                 color: column.checkBoxColor,
                                 value: isSelectAll
                             },

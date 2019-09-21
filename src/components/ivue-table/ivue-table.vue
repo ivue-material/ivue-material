@@ -225,8 +225,6 @@ export default {
         // 左固定行列
         this.rightFixedColumnRows = this.makeColumnRows('right', colsWithId);
 
-        console.log(this.leftFixedColumnRows)
-
         this.handleResize();
 
         on(window, 'resize', this.handleResize);
