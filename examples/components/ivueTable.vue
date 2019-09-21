@@ -12,7 +12,9 @@
             @on-select-all="handleSelectionAll"
             @on-select-cancel="handleSelectCancel"
             loading
-        ></IvueTable>
+        >
+            <div slot="loading">loading</div>
+        </IvueTable>
         <Button @click="handleSelectAll(true)">Set all selected</Button>
         <Button @click="handleSelectAll(false)">Cancel all selected</Button>
         <IvueTable
@@ -30,7 +32,7 @@
         <p>oldData: {{oldData && oldData.name}}</p>
         <IvueButton @click="handleClick">清除 highlightRow</IvueButton>
         <IvueTable
-        border
+            border=""
             :tableHeader="columns1"
             :tableData="data1"
             width="600"
@@ -40,7 +42,7 @@
             <template slot-scope="{ row }" slot="age">age</template>
             <template slot-scope="{ row }" slot="province">province</template>
         </IvueTable>
-        <IvueTable :tableHeader="tableHeader" :tableData="tableData" ></IvueTable>
+        <IvueTable :tableHeader="tableHeader" :tableData="tableData"></IvueTable>
     </div>
 </template>
 
@@ -48,11 +50,14 @@
 export default {
     data () {
         return {
-             tableHeader: [
+            tableHeader: [
                 {
                     title: 'Name',
                     key: 'name',
-                    fixed: 'left',
+                    className: 'demo-table-info-column',
+                    render: (h, params) => {
+                        return h('div', '123')
+                    }
                 },
                 {
                     title: 'Age',
@@ -65,7 +70,7 @@ export default {
                 {
                     title: 'Date',
                     key: 'date',
-                    fixed: 'right'
+                    className: 'demo-table-info-column',
                 }
             ],
             tableData: [
@@ -74,15 +79,14 @@ export default {
                     age: 18,
                     address: 'New York No. 1 Lake Park',
                     date: '2016-10-03',
-                     render: (h, params) => {
-                        return h('div', '123')
-                    }
+
                 },
                 {
                     name: 'Jim Green',
                     age: 24,
                     address: 'London No. 1 Lake Park',
                     date: '2016-10-01',
+                    _highlight: true,
                 },
                 {
                     name: 'Joe Black',
@@ -169,7 +173,7 @@ export default {
                     title: 'Name',
                     key: 'name',
                     className: 'demo-table-info-column',
-                     render: (h, params) => {
+                    render: (h, params) => {
                         return h('div', '123')
                     }
                 },
@@ -195,7 +199,7 @@ export default {
                     _expanded: true,
                     _highlight: true,
                     _disabled: true,
-                     render: (h, params) => {
+                    render: (h, params) => {
                         return h('div', '123')
                     }
                 },

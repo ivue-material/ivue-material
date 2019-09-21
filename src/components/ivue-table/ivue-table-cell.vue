@@ -3,6 +3,7 @@
 import IvueTableSlot from './ivue-table-slot';
 import IvueIcon from '../ivue-icon/ivue-icon';
 import IvueCheckBox from '../ivue-checkbox/ivue-checkbox';
+import IvueTableExpand from './ivue-table-expand';
 
 const prefixCls = 'ivue-table-cell';
 
@@ -136,6 +137,7 @@ export default {
         let renderSlot;
         let renderExpand;
         let renderChecked;
+        let renderFunction;
 
         //  应该渲染的内容
         let rednerContent;
@@ -216,6 +218,18 @@ export default {
 
         if (this.renderType === 'selection') {
             rednerContent = renderChecked;
+        }
+
+        // 是否使用了 render 函数
+        if (column.render) {
+            rednerContent = h(IvueTableExpand, {
+                props: {
+                    render: column.render,
+                    row: row,
+                    column,
+                    index: this.index
+                }
+            });
         }
 
         return h('div', {
