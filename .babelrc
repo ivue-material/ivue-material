@@ -20,7 +20,8 @@
                 "useBuiltIns": "usage",
                 "corejs": 3,
                 "debug": false
-            }
+            },
+            "@vue/app"
         ]
     ],
     "env": {
@@ -31,20 +32,7 @@
         }
     },
     "plugins": [
-        "dynamic-import-node",
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-transform-property-mutators",
-        "@babel/plugin-proposal-object-rest-spread",
-        [
-            "@babel/plugin-transform-runtime",
-            {
-                "corejs": 2
-            }
-        ],
-        "transform-vue-jsx",
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-syntax-import-meta",
-        "@babel/plugin-proposal-json-strings"
+        "@babel/plugin-transform-modules-umd"
     ],
     "comments": false
 }

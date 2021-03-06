@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "src/components/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}

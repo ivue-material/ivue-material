@@ -21,7 +21,7 @@ $ivue-transition-enter-timing: cubic-bezier(0, 0, .2, 1);
 $ivue-transition-enter-duration: .3s;
 $ivue-transition-enter: $ivue-transition-enter-duration $ivue-transition-enter-timing;
 /**
- * leave 
+ * leave
  * ---
  * $access private
  * $type transition
@@ -32,7 +32,7 @@ $ivue-transition-leave-timing: cubic-bezier(.4, .0, 1, 1);
 $ivue-transition-leave-duration: .3s;
 $ivue-transition-leave: $ivue-transition-leave-duration $ivue-transition-leave-timing;
 /**
- * stand 
+ * stand
  * movements from bottom to top
  * ---
  * $access private
@@ -44,7 +44,7 @@ $ivue-transition-stand-timing: cubic-bezier(.25, .8, .25, 1);
 $ivue-transition-stand-duration: .3s;
 $ivue-transition-stand: $ivue-transition-stand-duration $ivue-transition-stand-timing;
 /**
- * drop 
+ * drop
  * movements from top to bottom
  * ---
  * $access private

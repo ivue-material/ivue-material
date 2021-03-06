@@ -1,0 +1,457 @@
+$name: 'ivue-switch';
+$defailt-width: 52px;
+$defailt-after-width: 24px;
+$small-after-width: $defailt-after-width - 10;
+$large-after-width: $defailt-after-width+8;
+$large-height: ($defailt-after-width * 3 / 2);
+
+$emboss-default-width: 38px;
+$emboss-default-height: 22px;
+$emboss-large-width: 60px;
+$emboss-large-height: 28px;
+$emboss-small-width: 28px;
+$emboss-small-height: 16px;
+$emboss-margin: 7px;
+
+@mixin transition() {
+  transition: transform .2s ease-in-out 0s, width .25s ease-in-out 0s;
+  will-change: transform, width;
+}
+
+.#{$name} {
+  position: relative;
+  display: inline-block;
+  width: $defailt-width;
+  height: $defailt-width / 2;
+  line-height: $defailt-after-width;
+  border-radius: 22px;
+  vertical-align: middle;
+  border: 1px solid #858585;
+  background: #858585;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: all .2s ease-in-out 0s;
+  will-change: transition;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:focus:hover {
+    box-shadow: none;
+  }
+
+  &:after {
+    content: '';
+    width: $defailt-after-width;
+    height: $defailt-after-width;
+    border-radius: $defailt-after-width;
+    background: #fff;
+    position: absolute;
+    cursor: pointer;
+    @include transition;
+  }
+
+  &:active:after {
+    width: 28px;
+    @include transition;
+  }
+
+  &:before {
+    content: '';
+    display: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    border: 1px solid currentColor;
+    border-color: transparent transparent transparent currentColor;
+    animation: switch-loading 1s linear;
+    animation-iteration-count: infinite;
+  }
+
+  // 未激活
+  &-false {
+    border-color: currentColor;
+    background: currentColor;
+  }
+
+  /*内部文字样式*/
+  &-inner {
+    position: absolute;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    color: #fff;
+    font-size: $font-base-size;
+    transform: translate3d(23px, 0, 0);
+    will-change: transform;
+
+    i {
+      position: relative;
+      // top: -1px;
+      width: 12px;
+      height: 12px;
+      text-align: center;
+    }
+  }
+
+  /*禁用*/
+  &-disabled {
+    cursor: $cursor-disabled;
+    border-color: #f3f3f3 !important;
+    background-color: #f3f3f3 !important;
+
+    &:after {
+      background: #ccc;
+      cursor: $cursor-disabled;
+    }
+
+    .#{$name}-inner {
+      color: #ccc;
+    }
+  }
+
+  /*loading*/
+  &-loading {
+    opacity: .6;
+
+    &:before {
+      display: block;
+    }
+
+    &:active:after {
+      width: $defailt-after-width;
+      transform: translate3d(0, 0, 0) !important;
+    }
+
+    &.#{$name}-small:active:after {
+      width: $small-after-width;
+      transform: translate3d(0, 0, 0) !important;
+    }
+
+    &.#{$name}-large:active:after {
+      width: $large-after-width;
+      transform: translate3d(0, 0, 0) !important;
+    }
+  }
+
+  /*小*/
+  &-small {
+    width: 28px;
+    height: 16px;
+    line-height: $small-after-width;
+
+    &:after {
+      width: $small-after-width;
+      height: $small-after-width;
+    }
+
+    &:active:after {
+      width: 16px;
+      @include transition;
+    }
+
+    &:before {
+      width: 10px;
+      height: 10px;
+    }
+
+    &.#{$name}-checked:after {
+      transform: translate3d($small-after-width - 2, 0, 0);
+    }
+
+    &.#{$name}-checked:before {
+      left: $small-after-width;
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &-small:active {
+    &.#{$name}-checked:after {
+      transform: translate3d(10px, 0, 0);
+    }
+  }
+
+  /*大*/
+  &-large {
+    width: $defailt-after-width * 3;
+    height: $large-height - 2;
+
+    &:active:after {
+      width: 36px;
+      @include transition;
+    }
+
+    &:before {
+      width: $large-after-width - 4;
+      height: $large-after-width - 4;
+    }
+
+    &:after {
+      width: $large-after-width;
+      height: $large-after-width;
+    }
+
+    &.#{$name}-checked:after {
+      transform: translate3d($large-height + 2, 0, 0);
+    }
+
+    &.#{$name}-checked:before {
+      left: $large-height + 4;
+      width: $large-after-width - 4;
+      height: $large-after-width - 4;
+    }
+
+    .#{$name}-inner {
+      transform: translate3d($large-after-width + 2, 0, 0);
+    }
+  }
+
+  &-large:active {
+    &.#{$name}-checked:after {
+      transform: translate3d($large-after-width + 2, 0, 0);
+    }
+  }
+
+  /*检查*/
+  &-checked {
+    border-color: currentColor;
+    background: currentColor;
+
+    .#{$name}-inner {
+      transform: translate3d(3px, 0, 0);
+    }
+
+    &:after {
+      transform: translate3d($defailt-after-width + 2, 0, 0);
+    }
+
+    &:before {
+      left: 24px;
+    }
+
+    &:active:after {
+      transform: translate3d(22px, 0, 0);
+    }
+  }
+
+
+  /* 扁平化 */
+  &-emboss {
+    position: relative;
+    display: inline-flex;
+    width: $emboss-default-width;
+    height: $emboss-default-height;
+    flex: 0 0 auto;
+
+    /* 外层 */
+    &--wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      user-select: none;
+      outline: none;
+      cursor: pointer;
+
+      .#{$name}-inner {
+        position: relative;
+        transform: none;
+        margin-left: 8px;
+        color: #000000;
+      }
+    }
+
+
+    /* loading */
+    &--loading {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: $emboss-default-height - 4;
+      height: $emboss-default-height - 4;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      border-color: transparent transparent transparent currentColor;
+      animation: switch-loading 1s linear;
+      animation-iteration-count: infinite;
+      background-color: transparent;
+    }
+
+    /* 跟踪 */
+    &--track {
+      position: absolute;
+      left: 1px;
+      right: 2px;
+      top: calc(50% - 5.5px);
+      width: $emboss-default-width - 2;
+      height: $emboss-default-height / 2;
+      border-radius: 8px;
+      opacity: .6;
+      color: #858585;
+      background-color: currentColor;
+      transition: $ivue-transition-default;
+      transition-property: color, background-color;
+
+      /* 激活 */
+      &__checked {
+        color: currentColor;
+      }
+    }
+
+    /* 指示器 */
+    &--thumb {
+      position: relative;
+      width: $emboss-default-height;
+      height: $emboss-default-height;
+      color: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      pointer-events: none;
+      background-color: currentColor;
+      transition: $ivue-transition-default;
+      transition-property: color, transform;
+
+      /* 激活 */
+      &__checked {
+        color: currentColor;
+        transform: translate($emboss-default-height - ($emboss-default-height / 4), 0);
+      }
+    }
+
+    /* ripple */
+    &--ripple {
+      position: absolute;
+      top: calc(50% - 25px);
+      left: -14px;
+      width: $emboss-default-width - 2;
+      height: $emboss-default-width - 2;
+      margin: $emboss-margin;
+      border-radius: 50%;
+      transition: $ivue-transition-default;
+
+      /* 激活 */
+      &__checked {
+        transform: translate($emboss-default-height - ($emboss-default-height / 4), 0);
+      }
+    }
+
+    /* 禁用 */
+    &--disabled {
+      cursor: $cursor-disabled;
+
+      .#{$name}-emboss--thumb {
+        color: #fafafa !important;
+      }
+
+      .#{$name}-emboss--track {
+        caret-color: rgba(0, 0, 0, 0.12) !important;
+        color: rgba(0, 0, 0, 0.12) !important;
+
+        &__checked {
+          caret-color: rgba(0, 0, 0, 0.38) !important;
+          color: rgba(0, 0, 0, 0.38) !important;
+        }
+      }
+    }
+
+    /*小*/
+    &--small {
+      width: $emboss-small-width;
+      height: $emboss-small-height;
+
+      .#{$name}-emboss--loading {
+        width: $emboss-small-height - 4;
+        height: $emboss-small-height - 4;
+      }
+
+      .#{$name}-emboss--track {
+        top: calc(50% - 4px);
+        left: 1px;
+        width: $emboss-small-width - 2;
+        height: $emboss-small-height / 2;
+      }
+
+      .#{$name}-emboss--thumb {
+        width: $emboss-small-height;
+        height: $emboss-small-height;
+
+        &__checked {
+          transform: translate($emboss-small-height - ($emboss-small-height / 4), 0);
+        }
+      }
+
+      .#{$name}-emboss--ripple {
+        top: calc(50% - 20px);
+        left: -(($emboss-small-height / 2) + ($emboss-small-height / 4));
+        width: $emboss-small-width - 2;
+        height: $emboss-small-width - 2;
+
+        &__checked {
+          transform: translate($emboss-small-height - ($emboss-small-height / 4), 0);
+        }
+      }
+    }
+
+    /*大*/
+    &--large {
+      width: $emboss-large-width;
+      height: $emboss-large-height;
+
+      .#{$name}-emboss--loading {
+        width: $emboss-large-height - 4;
+        height: $emboss-large-height - 4;
+      }
+
+      .#{$name}-emboss--track {
+        top: calc(50% - 7px);
+        left: 3px;
+        width: $emboss-large-width - 10;
+        height: $emboss-large-height / 2;
+      }
+
+      .#{$name}-emboss--thumb {
+        width: $emboss-large-height;
+        height: $emboss-large-height;
+
+        &__checked {
+          transform: translate($emboss-large-height + ($emboss-large-height / 4) - 9, 0);
+        }
+      }
+
+      .#{$name}-emboss--ripple {
+        top: calc(50% - 32px);
+        left: -($emboss-large-width - $emboss-large-height - ($emboss-large-height / 4) - 2) + 4;
+        width: $emboss-large-width - 10;
+        height: $emboss-large-width - 10;
+
+        &__checked {
+          transform: translate($emboss-large-height + ($emboss-large-height / 4) - 9, 0);
+        }
+      }
+    }
+  }
+}
+
+@keyframes switch-loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}

@@ -1,3 +1,4 @@
+@import "./animation/variables";
 @import "./custom";
 @import "./mixins.scss";
 @import "./components/index";
@@ -5,60 +6,60 @@
 *,
 ::after,
 ::before {
-      box-sizing: border-box;
-      list-style: none;
-      margin: 0;
-      padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 * {
-      -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
-      text-decoration: none;
-      outline: 0px;
-      color: #2d8cf0;
-      will-change: color;
-      transition: color 0.2s ease 0s;
-      background: 0px 0px;
-      cursor: pointer;
+  text-decoration: none;
+  outline: 0px;
+  color: #2d8cf0;
+  will-change: color;
+  transition: color 0.2s ease 0s;
+  background: 0px 0px;
+  cursor: pointer;
 }
 
 body {
-      font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #515a6e;
-      background-color: #fff;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #515a6e;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
 
 .tab-transition-enter {
-      transform: translate(100%, 0);
+  transform: translate(100%, 0);
 }
 
 .tab-transition-leave,
 .tab-transition-leave-active {
-      position: absolute;
-      top: 0;
+  position: absolute;
+  top: 0;
 }
 
 .tab-transition-leave-to {
-      position: absolute;
-      transform: translate(-100%, 0);
+  position: absolute;
+  transform: translate(-100%, 0);
 }
 
 .tab-reverse-transition-enter {
-      transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
 }
 
 .tab-reverse-transition-leave,
 .tab-reverse-transition-leave-to {
-      top: 0;
-      position: absolute;
-      transform: translate(100%, 0);
+  top: 0;
+  position: absolute;
+  transform: translate(100%, 0);
 }

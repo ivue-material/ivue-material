@@ -1,0 +1,366 @@
+$name: 'ivue-input';
+
+
+.#{$name}-wrapper {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  line-height: normal;
+  width: 100%;
+
+  .#{$name}-group-prepend,
+  .#{$name}-group-append {
+    padding: 4px 7px;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1;
+    color: #515a6e;
+    text-align: center;
+    border: 1px solid #dcdee2;
+    border-radius: 4px;
+    display: table-cell;
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .#{$name}-group-prepend {
+    border-right: 0;
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+
+  .#{$name}-group-append {
+    border-left: 0;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+  }
+
+  .#{$name}-with-prefix {
+    padding-left: 32px;
+  }
+
+  .#{$name}-with-suffix {
+    padding-right: 32px;
+  }
+
+  // 图标
+  .#{$name}-icon,
+  .#{$name}-clear {
+    position: absolute;
+    right: 0;
+    line-height: 1;
+    font-size: $font-default-size;
+    color: $arrow-color;
+    height: 100%;
+    width: 32px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    z-index: 10;
+    overflow: hidden;
+
+    &-clear {
+      opacity: 0;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      width: 100%;
+      font-size: $font-default-size;
+      transition: all .2s ease-in-out;
+
+      &--wrapper {
+        padding: 2px 0;
+      }
+    }
+  }
+
+  .#{$name}-clear {
+    top: 0;
+    right: 1px;
+    padding: 2px 0;
+  }
+
+  .is-suffix {
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  .#{$name}-prefix,
+  .#{$name}-suffix {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 100%;
+    text-align: center;
+    z-index: 1;
+
+    i {
+      font-size: $font-default-size;
+      line-height: 32px;
+      height: 100%;
+      color: $arrow-color;
+    }
+  }
+
+  .#{$name}-suffix {
+    right: 0;
+    left: auto;
+  }
+
+
+  // 小图标
+  &-small {
+
+    .#{$name}-icon,
+    .#{$name}-icon i,
+    .#{$name}-prefix i,
+    .#{$name}-suffix i {
+      width: 24px;
+      font-size: $font-base-size;
+      height: 100%;
+      line-height: 24px;
+    }
+
+
+  }
+
+  // 大图标
+  &-large {
+
+    .#{$name}-icon,
+    .#{$name}-icon i,
+    .#{$name}-prefix i,
+    .#{$name}-suffix i {
+      font-size: $font-large-size;
+      height: 100%;
+      line-height: 40px;
+    }
+  }
+
+  &-default {}
+
+}
+
+// 输入框
+.#{$name} {
+  display: inline-block;
+  position: relative;
+  padding: 4px 7px;
+  font-size: $font-base-size;
+  border-radius: $border-radius-small;
+  // border: 1px solid $border-color;
+  border: none;
+  color: $text-color;
+  cursor: text;
+  width: 100%;
+  line-height: 1.5;
+  height: 32px;
+  transition: border $ivue-transition-default, background $ivue-transition-default, box-shadow $ivue-transition-default;
+
+  // input外壳
+  &-content {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 0 !important;
+    border-radius: $border-radius-small + 1;
+    border: 1px solid $border-color;
+    transition: border $ivue-transition-default, background $ivue-transition-default, box-shadow $ivue-transition-default;
+    overflow: hidden;
+
+    &:hover {
+      border-color: $primary-color;
+
+      .#{$name}-icon-clear {
+        opacity: 1;
+      }
+    }
+
+    &--prepend {
+      border-bottom-right-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+
+    &--append {
+      border-bottom-left-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+    }
+
+  }
+
+  // 密码
+  &-password {
+    padding: 2px 0;
+
+    i {
+      background: #fff;
+    }
+  }
+
+  &-small {
+    padding: 1px 7px;
+    height: 24px;
+    border-radius: 3px;
+    font-size: $font-base-size;
+  }
+
+  &-large {
+    font-size: $font-large-size;
+    padding: 6px 7px;
+    height: 40px;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px transparentize($primary-color, 0.8);
+  }
+
+  &:focus,
+  &:hover {
+    border-color: $primary-color;
+  }
+
+  &[disabled] {
+    background-color: $background-color-select-hover;
+    opacity: 1;
+    cursor: not-allowed;
+    color: $input-disabled-color;
+
+    &:hover {
+      border-color: $border-color;
+    }
+  }
+
+  @include placeholder;
+}
+
+
+.#{$name}-textarea {
+  max-width: 100%;
+  border: 1px solid $border-color;
+  height: auto;
+  min-height: 32px;
+  vertical-align: bottom;
+}
+
+// 前置内容大小
+.#{$name}-group {
+  display: table !important;
+  width: 100%;
+  border-collapse: separate;
+  position: relative;
+  font-size: 14px;
+
+  &-small {
+    font-size: $font-base-size;
+
+    .#{$name}-search {
+      padding: 0 12px !important;
+
+      i {
+        font-size: $font-base-size;
+      }
+    }
+
+    .#{$name}-group-prepend,
+    .#{$name}-group-append {
+      padding: 1px 7px;
+      height: 24px;
+      border-radius: 3px;
+    }
+  }
+
+  &-large {
+    font-size: $font-large-size;
+
+    .#{$name}-search {
+      padding: 0 20px !important;
+
+      i {
+        font-size: $font-large-size;
+      }
+    }
+
+    .#{$name}-group-prepend,
+    .#{$name}-group-append {
+      font-size: $font-large-size;
+      padding: 6px 7px;
+      height: 40px;
+    }
+  }
+
+  &-default {}
+
+}
+
+// 前置内容
+.#{$name}-group-with-append .#{$name} {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+// 后置内容
+.#{$name}-group-with-append .#{$name} {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+// 字数统计
+.#{$name}-word-count {
+  text-align: center;
+  position: absolute;
+  right: 7px;
+  top: 2px;
+  bottom: 2px;
+  padding-left: 7px;
+  background: #fff;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  color: #808695;
+  font-size: 12px;
+}
+
+
+// 搜索输入框
+.#{$name}-search {
+  cursor: pointer;
+  padding: 0 16px !important;
+  background: #2d8cf0;
+  color: #fff !important;
+  border-color: #2d8cf0 !important;
+  transition: all .2s ease-in-out;
+  position: relative;
+  z-index: 2;
+  border-radius: 3px !important;
+
+  i {
+    font-size: $font-default-size;
+    min-width: auto;
+    width: auto;
+    display: inline;
+  }
+
+  &:hover {
+    background: #57a3f3 !important;
+    border-color: #57a3f3 !important;
+  }
+
+  .#{$name}-wrapper:hover {
+    border-color: $primary-color;
+  }
+}
+
+// 隐藏边框
+.#{$name}-no-border {
+  border-color: transparent;
+  border-radius: 0;
+
+  &:focus,
+  &:hover {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}

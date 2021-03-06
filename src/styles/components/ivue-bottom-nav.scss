@@ -1,0 +1,148 @@
+$name:'ivue-bottom-nav';
+$item:'ivue-bottom-nav-item';
+
+
+.#{$name} {
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 3px 14px 2px rgba(0, 0, 0, .12);
+  width: 100%;
+  transform: translate3d(0, 60px, 0);
+  transition: all $ivue-transition-stand;
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--fixed {
+    position: fixed;
+    z-index: 4;
+  }
+
+  &--active {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &--is-color {
+
+    /*没有激活时的状态*/
+    .ivue-button:not(.ivue-button--active) {
+      opacity: .5;
+      color: currentColor;
+    }
+  }
+
+  /*没有激活时的状态*/
+  &:not(.ivue-bottom-nav--is-color) {
+    .ivue-button:not(.ivue-button--active) {
+      color: rgba(0, 0, 0, .54) !important;
+    }
+  }
+
+  &--shift {
+    .ivue-button {
+      min-width: 56px;
+      max-width: 96px;
+      transition: .3s $ivue-transition-default-timing;
+      transition-property: min-width, max-width;
+      will-change: min-width, max-width;
+
+      &--active {
+        min-width: 96px;
+        max-width: 168px;
+      }
+
+      .ivue-button-content {
+
+        // font-size: 14px;
+        span {
+          will-change: transform, opacity;
+        }
+      }
+    }
+  }
+}
+
+.#{$name}--shift {
+  .ivue-button:not(.ivue-button--active) .ivue-button-content {
+    .ivue-icon {
+      transform: scale(1, 1) translate(0, 8px);
+    }
+
+    span {
+      opacity: 0;
+    }
+  }
+}
+
+
+.#{$item} {
+  flex-shrink: 1;
+  margin: 0;
+  text-transform: none;
+  max-width: 168px;
+  min-width: 80px;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: transparent;
+
+  //   .ivue-ripple {
+  //     padding: 8px 12px 10px;
+  //     transition: padding $ivue-transition-stand;
+  //   }
+
+  //   .ivue-button-content {
+  //     display: flex;
+  //     flex-direction: column-reverse;
+  //     justify-content: center;
+  //     font-size: 12px;
+  //     white-space: nowrap;
+  //     height: 100%;
+  //     transition: all $ivue-transition-stand;
+
+  //     span {
+  //       line-height: 1;
+  //       transform: scale(1);
+  //       transition: all .15s $ivue-transition-stand-timing;
+  //     }
+  //   }
+
+  //   .ivue-icon {
+  //     // position: absolute;
+  //     // left: 0;
+  //     // top: 0;
+  //     // right: 0;
+  //     margin-top: 0;
+  //     color: inherit;
+  //     margin-bottom: 4px;
+  //     transition: all .15s $ivue-transition-stand-timing;
+  //   }
+
+  //   /*激活*/
+  //   &--active {
+  //     opacity: 1;
+
+  //     &:before {
+  //       background-color: transparent;
+  //     }
+
+  //     .ivue-ripple {
+  //       padding-top: 6px;
+  //     }
+
+  //     .ivue-icon {
+  //       transform: translate3d(0, -2px, 0);
+  //     }
+
+  //     .ivue-button-content {
+
+  //       // font-size: 14px;
+  //       span {
+  //         transform: scale(1.2);
+  //       }
+  //     }
+  //   }
+}
