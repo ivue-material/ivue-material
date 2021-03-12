@@ -12,6 +12,7 @@ import List from '../components/list';
 import Carousel from '../components/carousel';
 import Switch from '../components/switch';
 import BottomNav from '../components/bottom-nav';
+import Breadcrumb from '../components/breadcrumb';
 
 const routes = [{
     path: "/Affix",
@@ -62,6 +63,11 @@ const routes = [{
     path: "/bottom-nav",
     name: "BottomNav",
     component: BottomNav,
+  },
+  {
+    path: "/breadcrumb",
+    name: "Breadcrumb",
+    component: Breadcrumb,
   },
 ];
 

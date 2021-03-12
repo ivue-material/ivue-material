@@ -46,6 +46,11 @@
                 <li>
                     <router-link to="/bottom-nav"> BottomNav </router-link>
                 </li>
+
+
+                <li>
+                    <router-link to="/breadcrumb"> Breadcrumb </router-link>
+                </li>
             </ul>
         </nav>
         <link

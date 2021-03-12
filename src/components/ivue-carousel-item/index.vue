@@ -22,7 +22,6 @@ const prefixCls = 'ivue-carousel-item';
 export default defineComponent({
     name: prefixCls,
     componentName: 'ivue-carousel-item',
-    inject: ['childData'],
     setup() {
         const childData = inject('childData');
 

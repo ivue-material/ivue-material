@@ -10,7 +10,6 @@ import {
 
 import IvueButtonContent from "./content.vue";
 import Colorable from '../../utils/mixins/colorable';
-import { inject as registrableInject } from '../../utils/mixins/registrable';
 import ripple from '../../utils/directives/ripple';
 
 const prefixCls = 'ivue-button';
@@ -19,7 +18,6 @@ export default defineComponent({
     name: prefixCls,
     mixins: [
         Colorable,
-        registrableInject('buttonGroup', null, null)
     ],
     directives: {
         ripple

@@ -1,41 +1,83 @@
 <template>
     <div>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <p>有主题颜色</p>
-        <ivue-bottom-nav :value="true" :active.sync="bottomNav">
-            <ivue-button flat color="primary">
-                <span>Recents</span>
-                <!-- <IvueIcon>history</IvueIcon> -->
-            </ivue-button>
-            <ivue-button flat color="pink">
-                <span>Favorites</span>
-                <!-- <IvueIcon>favorite</IvueIcon> -->
-            </ivue-button>
 
-            <ivue-bottom-nav-item>123</ivue-bottom-nav-item>
+        <ivue-switch
+            color="#13ce66"
+            false-color="#ff4949"
+            v-model="showNav"
+        ></ivue-switch>
+
+        <ivue-bottom-nav
+            v-model:active="bottomNav"
+            shift
+            @on-change="handleChange"
+            position="fixed"
+
+        >
+            <ivue-bottom-nav-item
+                label="Home"
+                icon="history"
+                :color="color"
+                id="1"
+                to="/123"
+            >
+            </ivue-bottom-nav-item>
+
+            <ivue-bottom-nav-item
+                label="Favorites"
+                icon="favorite"
+                :color="color"
+                rippleDisabled
+                id="2"
+            >
+            </ivue-bottom-nav-item>
         </ivue-bottom-nav>
-        <!-- <p>基础</p>
-        <ivue-bottom-nav :value="true" :active.sync="bottomNav" key="base" :height="'100'">
-            <ivue-button flat color="red-accent-4" key="base1" to="/ivue-bottom-nav">
+
+        <h1>基础</h1>
+        <ivue-bottom-nav
+            :value="true"
+            :active.sync="bottomNav"
+            key="base"
+            :height="'100'"
+        >
+            <ivue-bottom-nav-item
+                flat
+                color="red-accent-4"
+                key="base1"
+                to="/ivue-bottom-nav"
+            >
                 <span>Recents</span>
-                <IvueIcon>history</IvueIcon>
-            </ivue-button>
-            <ivue-button flat color="blue" key="base2" to="/ivue-bottom-nav?q=q" tag="div">
+                <ivue-icon>history</ivue-icon>
+            </ivue-bottom-nav-item>
+            <ivue-bottom-nav-item
+                flat
+                color="blue"
+                key="base2"
+                to="/ivue-bottom-nav?q=q"
+                tag="div"
+            >
                 <span>Recents</span>
-                <IvueIcon>history</IvueIcon>
-            </ivue-button>
+                <ivue-icon>history</ivue-icon>
+            </ivue-bottom-nav-item>
         </ivue-bottom-nav>
-        <p>不激活时隐藏按钮上的文字</p>
-        <ivue-bottom-nav :value="true" :active.sync="bottomNav3" :shift="true" @onChange="onChange">
-            <ivue-button flat color="red-accent-4">
+
+        <h1>不激活时隐藏按钮上的文字</h1>
+        <br />
+        <ivue-bottom-nav :value="true" :active.sync="bottomNav3" :shift="true">
+            <ivue-bottom-nav-item flat color="red-accent-4">
                 <span>Recents</span>
-                <IvueIcon>history</IvueIcon>
-            </ivue-button>
-            <ivue-button flat color="buld">
+                <ivue-icon>history</ivue-icon>
+            </ivue-bottom-nav-item>
+            <ivue-bottom-nav-item flat color="blue">
                 <span>Recents</span>
-                <IvueIcon>history</IvueIcon>
-            </ivue-button>
-        </ivue-bottom-nav> -->
+                <ivue-icon>history</ivue-icon>
+            </ivue-bottom-nav-item>
+        </ivue-bottom-nav>
     </div>
 </template>
 
@@ -43,7 +85,7 @@
 export default {
     data () {
         return {
-            bottomNav: 0,
+            bottomNav: '1',
             bottomNav2: 1,
             bottomNav3: 0,
             showNav: true
@@ -52,18 +94,18 @@ export default {
     computed: {
         color () {
             switch (this.bottomNav) {
-                case 0: return 'red'
-                case 1: return 'lime'
+                case '1': return 'red'
+                case '2': return 'lime'
             }
         }
     },
     methods: {
-        onChange (data) {
+        handleChange (data) {
             console.log(data)
         }
     }
 }
 </script>
 
-<style>
+<style scope>
 </style>

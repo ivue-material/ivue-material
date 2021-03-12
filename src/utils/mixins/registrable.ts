@@ -11,26 +11,19 @@ export function inject(namespace, child, parent) {
         unregister: generateWarning(child, parent)
     } : null;
 
-    return createApp({
-        name: 'registrable-inject',
-
+    return {
         inject: {
             [namespace]: {
                 default: defaultImpl
             }
         }
-    })
+    }
 }
 
 // 提供
 export function provide(namespace) {
-    return createApp({
-        name: 'registrable-provide',
 
-        methods: {
-            register: null,
-            unregister: null
-        },
+    return {
         provide() {
             return {
                 [namespace]: {
@@ -39,5 +32,5 @@ export function provide(namespace) {
                 }
             }
         }
-    });
+    };
 }

@@ -4,16 +4,22 @@ import {
     h,
     reactive,
     computed,
+    provide,
+    watch,
+    onMounted,
 } from 'vue';
 
 import Colorable from '../../utils/mixins/colorable';
-import { provide as registrableProvide } from '../../utils/mixins/registrable';
+import { oneOf } from '../../utils/assist';
 
 const prefixCls = 'ivue-bottom-nav';
 
 export default defineComponent({
     name: prefixCls,
-    mixins: [Colorable, registrableProvide('buttonGroup')],
+    mixins: [
+        Colorable,
+    ],
+    emits: ['update:active', 'on-change'],
     props: {
         /**
          * 当前激活的导航
@@ -38,13 +44,16 @@ export default defineComponent({
 
         },
         /**
-         * 是否隐藏
+         * 隐藏方式
          *
          * @type {Boolean}
          */
-        hidden: {
-            type: Boolean,
-            default: false
+        hiddenType: {
+            type: String,
+            validator(value: string) {
+                return oneOf(value, ['', 'bottom', 'hidden']);
+            },
+            default: ''
         },
         /**
          * 导航栏 position
@@ -53,6 +62,9 @@ export default defineComponent({
          */
         position: {
             type: String,
+            validator(value: string) {
+                return oneOf(value, ['absolute', 'fixed']);
+            },
             default: null
         },
         /**
@@ -65,27 +77,25 @@ export default defineComponent({
             default: false
         }
     },
-    setup(props: any) {
+    setup(props: any, { emit }) {
         // data
-        const data = reactive({
-            // 按钮导航数组
-            buttons: [],
-            // 监听事件列表
-            listeners: [],
-            // 判断是否是路由按钮
-            // isRouteButton: [],
-            // 是否开启监听导航路由
-            ivueSyncRoute: false,
-            // 是否正在销毁
-            isDestroying: false
+        const data = reactive<{
+            bottom_nav: any
+        }>({
+            bottom_nav: {
+                activeItem: null,
+                items: {},
+            }
         });
 
+        // provide
+        provide('bottom_nav', data.bottom_nav);
 
         // class
         const classes = computed(() => {
             return {
                 [`${prefixCls}--absolute`]: props.position === 'absolute',
-                [`${prefixCls}--active`]: props.value,
+                [`${prefixCls}--hidden_${props.hiddenType}`]: props.hiddenType,
                 [`${prefixCls}--fixed`]: props.position === 'fixed',
                 [`${prefixCls}--shift`]: props.shift,
                 [`${prefixCls}--is-color`]: props.color !== ''
@@ -95,11 +105,48 @@ export default defineComponent({
         // 实时计算高度
         const computedHeight = computed(() => {
             return parseInt(props.height);
-        })
+        });
+
+        // 激活的选项
+        const activeItem = computed(() => {
+            return data.bottom_nav.activeItem;
+        });
+
+        // methods
+        const getItemsAndKeys = () => {
+            const items = data.bottom_nav.items;
+
+            return {
+                ...items,
+            }
+        };
+
+        // 设置激活选项
+        const setActiveItemByIndex = (index: number) => {
+            const { id } = getItemsAndKeys();
+
+
+            if (!props.active) {
+                data.bottom_nav.activeItem = id
+            } else {
+                data.bottom_nav.activeItem = props.active
+            }
+        }
+
+        onMounted(() => {
+            // 初始化
+            setActiveItemByIndex(0);
+        });
+
+        watch(() => activeItem.value, (value) => {
+            emit('update:active', value);
+
+            emit('on-change', value);
+        });
 
         return {
             classes,
-            computedHeight
+            computedHeight,
         }
     },
     render() {

@@ -1,0 +1,74 @@
+$name:'ivue-breadcrumbs';
+
+.#{$name} {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 18px 12px;
+  font-size: 14px;
+  color: #999;
+
+  .ivue-icon {
+    height: auto;
+    width: auto;
+    min-width: auto;
+    transition: none;
+  }
+
+  >span {
+    display: inline-flex;
+  }
+
+  &-item-separator {
+    margin: 0 8px;
+    color: #dcdee2;
+  }
+
+  &>span:last-child {
+    font-weight: 700;
+    color: #515a6e;
+  }
+
+  &>span:last-child &-item {
+    color: rgba(0, 0, 0, .38);
+  }
+
+  &--divider {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: $divider-color;
+
+    .ivue-icon {
+      font-size: 16px;
+    }
+  }
+
+  &-item {
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    text-decoration: none;
+    color: $text-color;
+    transition: color $ivue-transition-default;
+
+    &:hover {
+      color: $primary-color;
+      opacity: .8;
+    }
+
+    .ivue-icon {
+      margin-right: 4px;
+      font-size: 12px;
+    }
+  }
+
+  &-item--disabled {
+    cursor: default;
+    pointer-events: none;
+    color: $divider-color;
+  }
+}
