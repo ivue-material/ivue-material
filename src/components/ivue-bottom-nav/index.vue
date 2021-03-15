@@ -41,7 +41,6 @@ export default defineComponent({
             validator: (value: any) => {
                 return !isNaN(parseInt(value))
             }
-
         },
         /**
          * 隐藏方式

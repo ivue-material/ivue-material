@@ -18,28 +18,8 @@ $name:'ivue-breadcrumbs';
     transition: none;
   }
 
-  >span {
-    display: inline-flex;
-  }
-
   &-item-separator {
     margin: 0 8px;
-    color: #dcdee2;
-  }
-
-  &>span:last-child {
-    font-weight: 700;
-    color: #515a6e;
-  }
-
-  &>span:last-child &-item {
-    color: rgba(0, 0, 0, .38);
-  }
-
-  &--divider {
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
     color: $divider-color;
 
     .ivue-icon {
@@ -47,6 +27,11 @@ $name:'ivue-breadcrumbs';
     }
   }
 
+  &-item:last-child &-item-separator {
+    display: none;
+  }
+
+  // 子项
   &-item {
     align-items: center;
     justify-content: center;
@@ -55,20 +40,27 @@ $name:'ivue-breadcrumbs';
     color: $text-color;
     transition: color $ivue-transition-default;
 
-    &:hover {
-      color: $primary-color;
-      opacity: .8;
-    }
-
     .ivue-icon {
-      margin-right: 4px;
       font-size: 12px;
     }
+
+    &-text {
+      display: contents;
+      color: #606266;
+    }
+
+    // router
+    &-link {
+      color: $text-color;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s $ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
   }
 
-  &-item--disabled {
-    cursor: default;
-    pointer-events: none;
-    color: $divider-color;
-  }
 }
