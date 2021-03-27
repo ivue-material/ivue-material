@@ -96,6 +96,21 @@ import { IvueIcon } from '../ivue-icon';
 
 const prefixCls = 'ivue-carousel';
 
+interface Props {
+    arrow: string,
+    leftArrow: string,
+    rightArrow: string,
+    easing: string,
+    loop: boolean,
+    height: string | number,
+    modelValue: number,
+    autoplay: boolean,
+    autoplaySpeed: number,
+    dots: string,
+    radiusDot: boolean,
+    trigger: string,
+}
+
 export default defineComponent({
     name: prefixCls,
     directives: { Touch },
@@ -227,7 +242,7 @@ export default defineComponent({
             }
         }
     },
-    setup(props: any, { emit }) {
+    setup(props: Props, { emit }) {
 
         // ref
         const copyTrack = ref(null);

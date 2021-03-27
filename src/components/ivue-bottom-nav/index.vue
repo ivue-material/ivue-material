@@ -124,7 +124,6 @@ export default defineComponent({
         const setActiveItemByIndex = (index: number) => {
             const { id } = getItemsAndKeys();
 
-
             if (!props.active) {
                 data.bottom_nav.activeItem = id
             } else {

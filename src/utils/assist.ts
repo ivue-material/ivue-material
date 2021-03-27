@@ -1,4 +1,8 @@
 
+import {
+    extend,
+  } from '@vue/shared'
+
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
@@ -44,3 +48,14 @@ export const getStyle = (element: any, styleName: any) => {
         return element.style[styleName];
     }
 }
+
+// 合并对象
+export function toObject<T>(arr: Array<T>): Record<string, T> {
+    const res = {}
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]) {
+        extend(res, arr[i])
+      }
+    }
+    return res
+  }

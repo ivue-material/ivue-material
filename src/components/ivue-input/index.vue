@@ -27,7 +27,7 @@
                     :autocomplete="autocomplete"
                     :readonly="readonly"
                     :name="name"
-                    :value="currentValue"
+                    :value="data.currentValue"
                     :autofocus="autofocus"
                     :number="number"
                     :id="id"
@@ -45,7 +45,7 @@
                 <!-- 重置选择 -->
                 <div
                     :class="[`${prefixCls}-icon`, `${prefixCls}-clear`]"
-                    v-if="clearable && currentValue && !disabled"
+                    v-if="clearable && data.currentValue && !disabled"
                     @click.stop="handleClear"
                 >
                     <ivue-icon
@@ -67,7 +67,7 @@
                     v-if="password"
                     @click="handleShowPassword"
                 >
-                    <i class="ivue-icon" v-if="showPassword">
+                    <i class="ivue-icon" v-if="data.showPassword">
                         {{ passwordIcon.on }}
                     </i>
                     <i class="ivue-icon" v-else>{{ passwordIcon.off }}</i>
@@ -121,8 +121,8 @@
                 :name="name"
                 :disabled="disabled"
                 :class="textareaClasses"
-                :style="textareaStyles"
-                :value="currentValue"
+                :style="data.textareaStyles"
+                :value="data.currentValue"
                 :placeholder="placeholder"
                 :autofocus="autofocus"
                 :readonly="readonly"
@@ -153,8 +153,8 @@ import {
     onMounted
 } from 'vue'
 
-import { calcTextareaHeight } from '../../utils/calc-textarea-height';
 import { oneOf } from '../../utils/assist';
+import { useInputStates, useInput } from './useInput';
 
 
 function isCssColor(color) {
@@ -179,15 +179,6 @@ export default defineComponent({
          * @type {String, Number}
          */
         modelValue: {
-            type: [String, Number],
-            default: ''
-        },
-        /**
-         * 绑定的值，可使用 v-model 双向绑定
-         *
-         * @type {String, Number}
-         */
-        value: {
             type: [String, Number],
             default: ''
         },
@@ -440,270 +431,26 @@ export default defineComponent({
         }
     },
     // 组合式 API
-    setup(props: any, { emit }) {
-        // 当前输入值
-        const currentValue = ref(props.modelValue || props.value);
+    setup(props: any, ctx) {
 
-        // 文本框样式
-        const textareaStyles = ref({});
+        // data
+        const data = useInputStates(props);
 
-        // 显示密码
-        const showPassword = ref(false);
+        let useInputData = {};
 
-        // ref = textarea
-        const textarea = ref(null);
-        // ref = input
-        const input = ref(null);
-
-        // computed
-
-        // 输入的内容
-        const nativeInputValue = computed(() => {
-            return props.modelValue || props.value
-        });
-
-        // 输入上限
-        const upperLimit = computed(() => {
-            return props.maxlength;
-        });
-
-        // 监听输入的长度
-        const textLength = computed(() => {
-            if (typeof currentValue.value === 'number') {
-                return String(currentValue.value).length;
-            }
-
-            return (currentValue.value || '').length;
-        });
-
-        // 获取当前输入框type
-        const currentType = computed(() => {
-            let type = props.type;
-
-            if (type === 'password' && props.password && showPassword.value) {
-                type = 'text';
-            }
-
-            return type;
-        });
-
-        // methods
-        // 按下回车键时触发
-        const handleEnter = (event) => {
-            emit('on-enter', event);
-        }
-
-        // 原生的 keyup 事件
-        const handleKeyup = (event) => {
-            emit('on-keyup', event);
-        }
-
-        // 原生的 keypress 事件
-        const handleKeypress = (event) => {
-            emit('on-keypress', event);
-        }
-
-        // 原生的 keydown 事件
-        const handleKeydown = (event) => {
-            emit('on-keydown', event);
-        }
-
-        // 尾部图标点击事件
-        const handleSuffix = (event) => {
-            emit('on-suffix', event);
-        }
-
-        // 更新value
-        const setNativeInputValue = () => {
-            if (props.modelValue === currentValue.value) {
-                return;
-            }
-
-            currentValue.value = nativeInputValue.value
-        }
-
-        // 设置当前值
-        const setCurrentValue = (value) => {
-            if (value === currentValue.value) {
-                return;
-            }
-
-            nextTick(() => {
-                resizeTextarea();
-            });
-
-            currentValue.value = value;
-
-            // ensure native input value is controlled
-            // see: https://github.com/ElemeFE/element/issues/12850
-            nextTick(() => {
-                setNativeInputValue();
-            });
-        }
-
-        // 自适应内容高度，仅在 textarea 类型下有效，可传入对象，
-        // 如 { minRows: 2, maxRows: 6 }
-        const resizeTextarea = () => {
-            const autoHeight = props.autoHeight;
-
-            // 是否是 textarea 是否开启了自适应高度
-            if (!autoHeight || props.type !== 'textarea') {
-                return;
-            }
-
-            const minRows = autoHeight.minRows;
-            const maxRows = autoHeight.maxRows;
-
-            // 文本框样式
-            textareaStyles.value = calcTextareaHeight(textarea.value, minRows, maxRows);
-        }
-
-
-        // 输入事件
-        const handleInput = (event) => {
-            let value = event.target.value;
-
-            // 是否开启了 Number 类型
-            if (props.number && value !== '') {
-                value = Number.isNaN(Number(value)) ? value : Number(value);
-            }
-
-            // updated v-model
-            emit('update:modelValue', value);
-            emit('input', value);
-
-            setCurrentValue(value);
-
-            emit('on-change', event.target.value);
-        }
-
-        // 输入框聚焦时触发
-        const handleFocus = (event) => {
-            emit('on-focus', event);
-        }
-
-        // 输入框失去焦点时触发
-        const handleBlur = (event) => {
-            emit('on-blur', event);
-        }
-
-        // 清除数据
-        const handleClear = () => {
-            emit('input', '');
-            emit('update:modelValue', '');
-
-            setCurrentValue('');
-
-            emit('on-change', { target: { value: '' } });
-        }
-
-        // 获取焦点
-        const focus = (option) => {
-            const $el = props.type === 'textarea' ? textarea.value : input.value;
-            $el.focus(option);
-
-            // 选择内容
-            const { cursor } = option || {};
-            if (cursor) {
-                const len = $el.value.length;
-
-                switch (cursor) {
-                    case 'start':
-                        $el.setSelectionRange(0, 0);
-                        break;
-                    case 'end':
-                        $el.setSelectionRange(len, len);
-                        break;
-                    default:
-                        $el.setSelectionRange(0, len);
-                }
-            }
-        }
-
-        // 是否显示密码
-        const handleShowPassword = () => {
-            if (props.disabled) {
-                return false;
-            }
-
-            showPassword.value = !showPassword.value;
-
-            focus(null);
-
-            const len = currentValue.value.length;
-            setTimeout(() => {
-                input.value.setSelectionRange(len, len);
-            }, 0);
-        }
-
-        // 点击搜索
-        const handleSearch = () => {
-            if (props.disabled) {
-                return false;
-            }
-
-            input.value.focus();
-
-            emit('on-search', currentValue.value);
-        }
-
-        // 监听value
-        watch(() => props.modelValue, (value) => {
-            setCurrentValue(value);
-        });
-
-        // native input value is set explicitly
-        // do not use v-model / :value in template
-        // see: https://github.com/ElemeFE/element/issues/14521
-        watch(nativeInputValue, () => {
-            setNativeInputValue();
-        });
-
-        // when change between <input> and <textarea>,
-        // update DOM dependent value and styles
-        // https://github.com/ElemeFE/element/issues/14857
-        watch(() => props.type, () => {
-            nextTick(() => {
-                setNativeInputValue()
-                resizeTextarea()
-            })
-        });
-
+        const {
+            resizeTextarea,
+        } = useInputData = useInput(props, data, ctx);
 
         onMounted(() => {
             resizeTextarea();
-        })
+        });
 
         return {
             prefixCls,
-            // computed
-            // prepend,
-            // class | style
-            // wrapClasses,
-            // inputClass,
-            textareaStyles,
-            upperLimit,
-            textLength,
-            currentType,
-            // methods
-            handleEnter,
-            handleKeyup,
-            handleKeypress,
-            handleKeydown,
-            handleFocus,
-            handleBlur,
-            handleInput,
-            handleClear,
-            setCurrentValue,
-            handleShowPassword,
-            handleSuffix,
-            handleSearch,
-            focus,
+            ...useInputData,
             // data
-            showPassword,
-            currentValue,
-            textarea,
-            input
+            data,
         }
     },
     computed: {

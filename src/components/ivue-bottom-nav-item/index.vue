@@ -32,6 +32,16 @@ import uuid from '../../utils/uuid';
 
 const prefixCls = 'ivue-bottom-nav-item';
 
+interface Props {
+    rippleDisabled: boolean,
+    label: string,
+    icon: string,
+    color: string,
+    id: string,
+    to: string | object,
+    replace: boolean
+}
+
 export default defineComponent({
     name: prefixCls,
     props: {
@@ -100,12 +110,11 @@ export default defineComponent({
         },
 
     },
-    setup(props: any) {
+    setup(props: Props) {
         // data
         const data = reactive({
             router: useRouter()
         });
-
 
         const bottom_nav: any = inject('bottom_nav');
 

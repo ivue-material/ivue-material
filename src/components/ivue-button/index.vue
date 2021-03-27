@@ -14,6 +14,18 @@ import ripple from '../../utils/directives/ripple';
 
 const prefixCls = 'ivue-button';
 
+interface Props {
+    href: string,
+    type: string,
+    disabled: boolean,
+    ripple: boolean,
+    flat: boolean,
+    depressed: boolean,
+    icon: boolean,
+    outline: boolean,
+    center: boolean,
+}
+
 export default defineComponent({
     name: prefixCls,
     mixins: [
@@ -92,7 +104,7 @@ export default defineComponent({
         center: Boolean
     },
     // 组合式 API
-    setup(props, { emit }) {
+    setup(props: Props) {
         // data
         const data = reactive<{
             rippleActive: boolean

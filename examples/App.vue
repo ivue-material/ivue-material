@@ -51,6 +51,11 @@
                 <li>
                     <router-link to="/breadcrumb"> Breadcrumb </router-link>
                 </li>
+
+
+                <li>
+                    <router-link to="/select"> Select </router-link>
+                </li>
             </ul>
         </nav>
         <link
