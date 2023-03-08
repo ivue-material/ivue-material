@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://lovevuerk.com/" target="_blank">
-    <img width="100"src="https://lovevuerk.com/img/logo.png">
+  <a href="https://lovevuerk.com/ui/" target="_blank">
+    <img width="100"src="https://cdn.lovevuerk.com/plus/assets/logo-96761cb2.png"/>
   </a>
 </p>
 
